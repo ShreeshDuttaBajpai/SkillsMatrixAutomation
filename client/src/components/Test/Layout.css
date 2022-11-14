@@ -1,0 +1,27 @@
+.pull-right {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .h1 {
+    margin-top: 10px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .background{
+  background-color:white;
+ height: 400px;
+ overflow-y: scroll;
+  }
+  .bottom
+  {
+    background-color: black;
+    position:absolute;
+    bottom: 0Px;
+    height: 30Px;
+    width:100%;
+    display: flex;
+    justify-content: flex-end;
+    color:white;
+    padding-right: 10px;
+  }
