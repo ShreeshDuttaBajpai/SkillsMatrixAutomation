@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AutomationtestAPIs.Migrations
 {
-    public partial class initial1 : Migration
+    public partial class initmig1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,8 +18,8 @@ namespace AutomationtestAPIs.Migrations
                     Name = table.Column<string>(nullable: true),
                     Ticket_type = table.Column<string>(nullable: true),
                     Story_point = table.Column<int>(nullable: false),
-                    Start_date = table.Column<string>(nullable: true),
-                    End_date = table.Column<string>(nullable: true),
+                    Start_date = table.Column<DateTime>(nullable: false),
+                    End_date = table.Column<DateTime>(nullable: false),
                     Hours = table.Column<int>(nullable: false),
                     Status = table.Column<string>(nullable: true),
                     Code_reviewer = table.Column<string>(nullable: true),
