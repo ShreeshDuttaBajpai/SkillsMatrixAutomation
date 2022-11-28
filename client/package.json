@@ -28,7 +28,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.js",
+    
     "prebuild": "rimraf dist",
     "build": "cross-env NODE_ENV=production webpack -p --config webpack.production.config.js",
     "lint": "eslint src/ --ext .js,.jsx",
