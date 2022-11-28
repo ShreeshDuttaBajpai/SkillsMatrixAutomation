@@ -9,7 +9,6 @@
     "@testing-library/user-event": "^12.8.3",
     "bootstrap": "^5.0.2",
     "bootstrap-sass": "^3.4.1",
-    "file-loader": "^6.2.0",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
     "npm": "^7.14.0",
@@ -29,6 +28,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
+    
     "prebuild": "rimraf dist",
     "lint": "eslint src/ --ext .js,.jsx",
     "lint:fix": "npm run lint -- --fix",
