@@ -20,6 +20,7 @@ const App = () => {
               {homeRoute('/home', dynamicLoad)}
             </Route> */}
             <Route exact path="/" component={Home} />
+            <Route path="/Home" component={MainPage} />
             <Route component={NoMatch} />
           </Switch>
         </div>
