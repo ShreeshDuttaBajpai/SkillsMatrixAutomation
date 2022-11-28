@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^12.8.3",
     "bootstrap": "^5.0.2",
     "bootstrap-sass": "^3.4.1",
+    "file-loader": "^6.2.0",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
     "npm": "^7.14.0",
@@ -28,11 +29,11 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.js",
     "prebuild": "rimraf dist",
-    "build": "cross-env NODE_ENV=production webpack -p --config webpack.production.config.js",
     "lint": "eslint src/ --ext .js,.jsx",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "start": "webpack-dev-server --config webpack.config.js",
+    "build": "cross-env NODE_ENV=production webpack -p --config webpack.production.config.js"
   },
   "eslintConfig": {
     "extends": [
@@ -59,7 +60,7 @@
     "node-sass": "^5.0.0",
     "postcss": "^8.2.15",
     "postcss-loader": "^4.3.0",
-    "postcss-preset-env": "^6.7.0",
+    "postcss-preset-env": "^6.7.1",
     "react-hot-loader": "^4.13.0",
     "rimraf": "^3.0.2",
     "sass-loader": "^10.1.1",
