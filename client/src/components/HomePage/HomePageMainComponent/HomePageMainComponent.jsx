@@ -1,11 +1,22 @@
 import React from 'react';
-import './HomepageMainComponent.css';
+import css from './HomepageMainComponent.css';
+import bglogo from '../../../assests/homeLogo2.png';
+import bgHomePicture from '../../../assests/bg-image.jpg';
 
 function HomePageMainComponent() {
   return (
-    <div className="home">
-      <h3>Automation Tool for Story Tracker</h3>
-      <img src="C:\Users\shreesh.bajpai\Desktop\MyApps\MyApps\MyApps\client\src\assests\bg-image.jpg"></img>
+    <div className={css.home}>
+      <img className={css.bgHomePicture} src={bgHomePicture}></img>
+      <div className={css.pageContent}>
+        <div className={css.homeLogo}>
+          <img className={css.bglogo} src={bglogo}></img>
+          <div className={css.loginButton}>
+            <button className={css.button1} type="submit">
+              Continue With Microsoft
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
