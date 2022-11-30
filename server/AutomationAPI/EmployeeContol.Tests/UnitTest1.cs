@@ -12,28 +12,28 @@ namespace EmployeeControl.Tests
     public class UnitTest1
     {
      
-        UserController _controller;
-        public UnitTest1()
-        {
+        //UserController _controller;
+        //public UnitTest1()
+        //{
            
-            var builder = new ConfigurationBuilder()
-         .SetBasePath(Directory.GetCurrentDirectory())
-         .AddJsonFile("appsettings.json");
-            var config = builder.Build();
-            _controller = new UserController(config);
-        }
+        //    var builder = new ConfigurationBuilder()
+        // .SetBasePath(Directory.GetCurrentDirectory())
+        // .AddJsonFile("appsettings.json");
+        //    var config = builder.Build();
+        //    _controller = new UserController(config);
+        //}
 
-        [TestMethod]
-            public void UserGetByIdSuccess()
-            {
+        //[TestMethod]
+        //    public void UserGetByIdSuccess()
+        //    {
                 
-                var response = _controller.GetEmp(300);
+        //        var response = _controller.GetEmp(300);
 
-                var contentResult = response as OkNegotiatedContentResult<Employee>;
+        //        var contentResult = response as OkNegotiatedContentResult<Employee>;
 
-                Assert.IsNotNull(contentResult);
-                Assert.IsNotNull(contentResult.Content);
-                Assert.AreEqual(300, contentResult.Content.Emp_id);
-            }
+        //        Assert.IsNotNull(contentResult);
+        //        Assert.IsNotNull(contentResult.Content);
+        //        Assert.AreEqual(300, contentResult.Content.Emp_id);
+        //    }
         }
     }
