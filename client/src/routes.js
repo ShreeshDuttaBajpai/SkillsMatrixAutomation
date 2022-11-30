@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 // import dynamicLoader from './components/layout/loader';
 // import AppContainer from './components/layout/AppContainer';
 import Home from './components/Test/HomeContainer';
-import MainPage from './components/HomePage/HomePageMainComponent/HomePageMainComponent';
+import MainPage from '../src/Pages/HomePage';
 import Login from './components/Login/Login';
 
 const store = configureStore();
