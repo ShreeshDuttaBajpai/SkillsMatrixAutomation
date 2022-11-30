@@ -5,13 +5,19 @@ function Navbar() {
   return (
     <div className={css.Navbar}>
       <div className={css.navbarHeadings}>
-        <NavLink to="#">Home</NavLink>
+        <a href="#">Home </a>
       </div>
       <div className={css.navbarHeadings}>
-        <NavLink to="#">About</NavLink>
+        <a href="#">Dashboard </a>
       </div>
       <div className={css.navbarHeadings}>
-        <NavLink to="#">Offers</NavLink>
+        <a href="#">Code Review </a>
+      </div>
+      <div className={css.navbarHeadings}>
+        <a href="#"> Reports </a>
+      </div>
+      <div className={css.navbarHeadings}>
+        <a href="#"> Login/Register </a>
       </div>
     </div>
   );

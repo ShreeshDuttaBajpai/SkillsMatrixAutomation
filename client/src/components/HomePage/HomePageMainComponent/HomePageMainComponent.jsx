@@ -1,6 +1,6 @@
 import React from 'react';
 import css from './HomepageMainComponent.css';
-import bglogo from '../../../assests/homeLogo2.png';
+import bglogo from '../../../assests/homeLogo.png';
 import bgHomePicture from '../../../assests/bg-image.jpg';
 
 function HomePageMainComponent() {
