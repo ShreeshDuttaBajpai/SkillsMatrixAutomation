@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Anjali.Saini\\Desktop\\Crypto\\AutomationAPI\\EmployeeContol.Tests\\EmployeeControl.Tests.csproj": {}
+    "C:\\Users\\Anjali.Saini\\Desktop\\app\\MyApps\\server\\AutomationAPI\\EmployeeContol.Tests\\EmployeeControl.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Anjali.Saini\\Desktop\\Crypto\\AutomationAPI\\AutomationAPI\\AutomationAPI.csproj": {
+    "C:\\Users\\Anjali.Saini\\Desktop\\app\\MyApps\\server\\AutomationAPI\\AutomationAPI\\AutomationAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Anjali.Saini\\Desktop\\Crypto\\AutomationAPI\\AutomationAPI\\AutomationAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Anjali.Saini\\Desktop\\app\\MyApps\\server\\AutomationAPI\\AutomationAPI\\AutomationAPI.csproj",
         "projectName": "AutomationAPI",
-        "projectPath": "C:\\Users\\Anjali.Saini\\Desktop\\Crypto\\AutomationAPI\\AutomationAPI\\AutomationAPI.csproj",
+        "projectPath": "C:\\Users\\Anjali.Saini\\Desktop\\app\\MyApps\\server\\AutomationAPI\\AutomationAPI\\AutomationAPI.csproj",
         "packagesPath": "C:\\Users\\Anjali.Saini\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Anjali.Saini\\Desktop\\Crypto\\AutomationAPI\\AutomationAPI\\obj\\",
+        "outputPath": "C:\\Users\\Anjali.Saini\\Desktop\\app\\MyApps\\server\\AutomationAPI\\AutomationAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Anjali.Saini\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -100,14 +100,14 @@
         }
       }
     },
-    "C:\\Users\\Anjali.Saini\\Desktop\\Crypto\\AutomationAPI\\EmployeeContol.Tests\\EmployeeControl.Tests.csproj": {
+    "C:\\Users\\Anjali.Saini\\Desktop\\app\\MyApps\\server\\AutomationAPI\\EmployeeContol.Tests\\EmployeeControl.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Anjali.Saini\\Desktop\\Crypto\\AutomationAPI\\EmployeeContol.Tests\\EmployeeControl.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\Anjali.Saini\\Desktop\\app\\MyApps\\server\\AutomationAPI\\EmployeeContol.Tests\\EmployeeControl.Tests.csproj",
         "projectName": "EmployeeControl.Tests",
-        "projectPath": "C:\\Users\\Anjali.Saini\\Desktop\\Crypto\\AutomationAPI\\EmployeeContol.Tests\\EmployeeControl.Tests.csproj",
+        "projectPath": "C:\\Users\\Anjali.Saini\\Desktop\\app\\MyApps\\server\\AutomationAPI\\EmployeeContol.Tests\\EmployeeControl.Tests.csproj",
         "packagesPath": "C:\\Users\\Anjali.Saini\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Anjali.Saini\\Desktop\\Crypto\\AutomationAPI\\EmployeeContol.Tests\\obj\\",
+        "outputPath": "C:\\Users\\Anjali.Saini\\Desktop\\app\\MyApps\\server\\AutomationAPI\\EmployeeContol.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Anjali.Saini\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -124,8 +124,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Anjali.Saini\\Desktop\\Crypto\\AutomationAPI\\AutomationAPI\\AutomationAPI.csproj": {
-                "projectPath": "C:\\Users\\Anjali.Saini\\Desktop\\Crypto\\AutomationAPI\\AutomationAPI\\AutomationAPI.csproj"
+              "C:\\Users\\Anjali.Saini\\Desktop\\app\\MyApps\\server\\AutomationAPI\\AutomationAPI\\AutomationAPI.csproj": {
+                "projectPath": "C:\\Users\\Anjali.Saini\\Desktop\\app\\MyApps\\server\\AutomationAPI\\AutomationAPI\\AutomationAPI.csproj"
               }
             }
           }
