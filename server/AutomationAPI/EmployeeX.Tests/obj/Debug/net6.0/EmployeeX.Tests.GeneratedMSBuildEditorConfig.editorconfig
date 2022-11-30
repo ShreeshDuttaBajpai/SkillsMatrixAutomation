@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = EmployeeX.Tests
-build_property.ProjectDir = C:\Users\Anjali.Saini\Desktop\Crypto\AutomationAPI\EmployeeX.Tests\
+build_property.ProjectDir = C:\Users\Anjali.Saini\Desktop\app\MyApps\server\AutomationAPI\EmployeeX.Tests\

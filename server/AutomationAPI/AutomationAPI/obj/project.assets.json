@@ -3702,11 +3702,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Anjali.Saini\\Desktop\\Crypto\\AutomationAPI\\AutomationAPI\\AutomationAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Anjali.Saini\\Desktop\\app\\MyApps\\server\\AutomationAPI\\AutomationAPI\\AutomationAPI.csproj",
       "projectName": "AutomationAPI",
-      "projectPath": "C:\\Users\\Anjali.Saini\\Desktop\\Crypto\\AutomationAPI\\AutomationAPI\\AutomationAPI.csproj",
+      "projectPath": "C:\\Users\\Anjali.Saini\\Desktop\\app\\MyApps\\server\\AutomationAPI\\AutomationAPI\\AutomationAPI.csproj",
       "packagesPath": "C:\\Users\\Anjali.Saini\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Anjali.Saini\\Desktop\\Crypto\\AutomationAPI\\AutomationAPI\\obj\\",
+      "outputPath": "C:\\Users\\Anjali.Saini\\Desktop\\app\\MyApps\\server\\AutomationAPI\\AutomationAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Anjali.Saini\\AppData\\Roaming\\NuGet\\NuGet.Config",

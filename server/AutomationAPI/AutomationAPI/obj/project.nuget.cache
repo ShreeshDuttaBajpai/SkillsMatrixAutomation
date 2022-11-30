@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "e27iQttJdUT4BflhVOpNZAKts8lxM05IUgO5kaNk0WGngOv1Mco2eQlyRRxxczhDej1yFAP+7FMKRTOIKaBq4g==",
+  "dgSpecHash": "nqmRsMWDz25i4WQUE72Z1ICkPA49lRcrdSvADZBw915WYbX2HHrwkT4IKF7V7jhtBiSFSNnD38G3//4Q7Y/8xg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Anjali.Saini\\Desktop\\Crypto\\AutomationAPI\\AutomationAPI\\AutomationAPI.csproj",
+  "projectFilePath": "C:\\Users\\Anjali.Saini\\Desktop\\app\\MyApps\\server\\AutomationAPI\\AutomationAPI\\AutomationAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Anjali.Saini\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Anjali.Saini\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
