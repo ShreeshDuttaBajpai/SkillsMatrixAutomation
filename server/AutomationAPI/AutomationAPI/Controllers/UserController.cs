@@ -38,5 +38,28 @@ namespace AutomationAPI.Controllers
             }
             return new JsonResult(table);
         }
+        [HttpPost]
+        public JsonResult Post([FromBody] StoryTrackerDB us)
+        {
+            string query1 = $"insert into dbo.StoryTrackerDB values('" + us.Ticket_no + "'," +
+                "'" + us.Client + "', '" + us.Team + "','" + us.Name + "','" + us.Ticket_type + "'," +
+                " " + us.Story_point + ",'" + us.Start_date + "','" + us.End_date + "'," + us.Hours + "," +
+                "'" + us.Status + "','" + us.Code_reviewer + "')";
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("MyConnectionString");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query1, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+            return new JsonResult("Added Successfully");
+        }
     }
 }
