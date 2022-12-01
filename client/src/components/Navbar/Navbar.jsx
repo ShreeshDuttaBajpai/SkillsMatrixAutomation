@@ -1,24 +1,38 @@
 import React from 'react';
 import css from '../Navbar/Navbar.css';
+import navbarLogo from '../../assests/story-tracker.jpg';
 
 function Navbar() {
   return (
     <div className={css.Navbar}>
-      <div className={css.navbarHeadings}>
-        <a href="#">Home </a>
+      <div className={css.NavbarLogo}>
+        <a href="#">
+          <img src={navbarLogo}></img>
+          Story Tracker
+        </a>
       </div>
-      <div className={css.navbarHeadings}>
-        <a href="#">Dashboard </a>
-      </div>
-      <div className={css.navbarHeadings}>
-        <a href="#">Code Review </a>
-      </div>
-      <div className={css.navbarHeadings}>
-        <a href="#"> Reports </a>
-      </div>
-      <div className={css.navbarHeadings}>
-        <a href="#"> Login/Register </a>
-      </div>
+      <ul className={css.navbarHeadings}>
+        <li>
+          <a href="#">Home </a>{' '}
+        </li>
+
+        <li>
+          <a href="#">Dashboard </a>{' '}
+        </li>
+
+        <li>
+          <a href="#">Code Review </a>{' '}
+        </li>
+
+        <li>
+          <a href="#"> Reports </a>{' '}
+        </li>
+        <div>
+          <li>
+            <a href="#"> Login/Register </a>{' '}
+          </li>
+        </div>
+      </ul>
     </div>
   );
 }

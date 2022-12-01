@@ -9,7 +9,7 @@ function HomePageMainComponent() {
       <img className={css.bgHomePicture} src={bgHomePicture}></img>
       <div className={css.pageContent}>
         <div className={css.homeLogo}>
-          <img className={css.bglogo} src={bglogo}></img>
+          <img src={bglogo}></img>
           <div className={css.loginButton}>
             <button className={css.button1} type="submit">
               Continue With Microsoft
