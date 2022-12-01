@@ -27,7 +27,7 @@ function Navbar() {
         <li>
           <a href="#"> Reports </a>{' '}
         </li>
-        <div>
+        <div className={css.right_navbarHeadings}>
           <li>
             <a href="#"> Login/Register </a>{' '}
           </li>

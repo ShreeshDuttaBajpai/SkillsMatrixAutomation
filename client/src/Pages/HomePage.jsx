@@ -6,7 +6,8 @@ function HomePage() {
   return (
     <>
       <Navbar />
-      <HomepageMainComponent />
+      <HomepageMainComponent 
+      />
     </>
   );
 }

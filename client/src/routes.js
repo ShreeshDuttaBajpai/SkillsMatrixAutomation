@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 // import AppContainer from './components/layout/AppContainer';
 import Home from './components/Test/HomeContainer';
 import MainPage from '../src/Pages/HomePage';
+import Login from './components/Login/Login';
 
 const store = configureStore();
 // const dynamicLoad = dynamicLoader(store);
@@ -22,6 +23,7 @@ const App = () => {
             </Route> */}
             <Route exact path="/" component={Home} />
             <Route path="/Home" component={MainPage} />
+            <Route path="/Login" component={Login} />
             <Route component={NoMatch} />
           </Switch>
         </div>
