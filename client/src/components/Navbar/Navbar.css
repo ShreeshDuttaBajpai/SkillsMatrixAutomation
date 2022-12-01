@@ -1,15 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,500&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.NavbarLogo img{
+    width:50px;
+    margin-right: 10px;
+}
+
+.NavbarLogo a{
+    text-align: justify;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.Navbar{
+    width:auto;
+    background: #222;
+    display: flex;
+    color: aliceblue;
+}
+
+.NavbarLogo img{
+    border-radius: 70%;
+}
+
+
 .navbarHeadings{
     display:flex;
     font-size: large;
-    display: inline; 
+    display: flex;
+    align-items: center;
+    list-style: none; 
     margin-left: 8px;
     margin-right: 8px;
     cursor: pointer;
     text-transform: uppercase;
     text-decoration: none;
     color: white;
-    font-size: 17px;   
+    font-size: 17px; 
+    /* font-family: "Poppins";  */
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-top: 18px; 
 }
+
+
+.navbarHeadings li{
+    padding: 15px 10px;
+    font-size: 16px;
+}
+
+.navbarHeadings a{
+    color: white;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-right: 6px;
+    margin-left: 6px;
+    
+}
+.navbarHeadings a:hover{
+    color: #da0f32;
+}
+
+.NavbarLogo a{
+    color: white;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.NavbarLogo{
+    margin-left: 20px;
+    margin-top: 23px;
+}
+/* 
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.items-center{
+    align-items: center;
+    padding-right: 25px;
+} */
+
 
 
 
