@@ -50,7 +50,7 @@ function HomePageMainComponent() {
   }
 
   useEffect(() => {
-    myData && alert('Hello ' + myData.emp_name);
+    myData && alert('Hello ' + myData.emp_name + ' ,Id- ' + myData.emp_id);
   }, [myData]);
 
   return (
