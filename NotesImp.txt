@@ -1,9 +1,0 @@
-How do i solve the error
-
-1- I clone the application then try running npm i.
-2- It was throwing error so i google the error ,what the error is.
-3- Then after not getting any solution after many tries (changes in the code as well) ,i tried understanding the error on my own.
-4- It was showing error regarding the node sass version version mismatch.
-5- Then i google the version of node sass compatible with my node js version
-6- Then i just change the node sass version related to my node js version.
-8- It start running properly without any error. 
