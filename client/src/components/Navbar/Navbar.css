@@ -20,6 +20,7 @@
 .Navbar{
     width:auto;
     background: #222;
+    height: 70px;
     display: flex;
     color: aliceblue;
 }
@@ -74,8 +75,8 @@
 }
 
 .NavbarLogo{
-    margin-left: 30px;
-    margin-top: 23px;
+    margin-left: 50px;
+    margin-top: 18px;
 }
 /* 
 .flex {
