@@ -51,10 +51,10 @@ function HomePageMainComponent() {
   }
 
   useEffect(() => {
-    myData && alert("Hello " + myData.emp_designation);
+    myData && alert("Hello " + myData.emp_name);
   }, [myData])
 
-  
+
 
   return (
     <div className={css.home}>
