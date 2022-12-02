@@ -55,7 +55,7 @@ function HomePageMainComponent() {
   }
 
   useEffect(() => {
-    myData && alert('Hello ' + myData.emp_designation +' ,Id- '+ myData.emp_id);
+    myData && alert('Hello ' + myData.emp_name +' ,Id- '+ myData.emp_id);
   }, [myData]);
 
   return (
