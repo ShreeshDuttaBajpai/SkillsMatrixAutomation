@@ -1,0 +1,7 @@
+C:\Users\Anjali.Saini\Desktop\AutomationAPI\EmployeeContol.Tests\bin\Debug\net6.0\CoverletSourceRootsMapping
+C:\Users\Anjali.Saini\Desktop\AutomationAPI\EmployeeContol.Tests\obj\Debug\net6.0\EmployeeContol.Tests.csproj.AssemblyReference.cache
+C:\Users\Anjali.Saini\Desktop\AutomationAPI\EmployeeContol.Tests\obj\Debug\net6.0\MvcTestingAppManifest.json
+C:\Users\Anjali.Saini\Desktop\AutomationAPI\EmployeeContol.Tests\obj\Debug\net6.0\EmployeeContol.Tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Anjali.Saini\Desktop\AutomationAPI\EmployeeContol.Tests\obj\Debug\net6.0\EmployeeContol.Tests.AssemblyInfoInputs.cache
+C:\Users\Anjali.Saini\Desktop\AutomationAPI\EmployeeContol.Tests\obj\Debug\net6.0\EmployeeContol.Tests.AssemblyInfo.cs
+C:\Users\Anjali.Saini\Desktop\AutomationAPI\EmployeeContol.Tests\obj\Debug\net6.0\EmployeeContol.Tests.csproj.CoreCompileInputs.cache
