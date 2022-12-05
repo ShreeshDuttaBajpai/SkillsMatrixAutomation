@@ -5,7 +5,6 @@ import bgHomePicture from '../../../assests/bg-image.jpg';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
-// import * as Msal from 'msal';
 import * as Msal from 'msal';
 import { ButtonComponent } from '../../ButtonComponent/ButtonComponent';
 
