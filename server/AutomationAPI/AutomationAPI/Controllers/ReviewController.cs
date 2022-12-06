@@ -18,7 +18,7 @@ namespace AutomationAPI.Controllers
         [HttpPost]
         public JsonResult Post([FromBody] CodeReview cr)
         {
-            string query1 = $"insert into dbo.StoryTrackerDB values('" + cr.Ticket_no + "'," +
+            string query1 = $"insert into dbo.CodeReview values('" + cr.Ticket_no + "'," +
                 "'" + cr.Name + "', '" + cr.Code_reviewer_name + "','" + cr.Code_deviation_count + "','" + cr.Bugs_count + "'," +
                 " " + cr.Remarks + "')";
             DataTable table = new DataTable();
