@@ -44,7 +44,8 @@ namespace AutomationAPI.Controllers
             string query1 = $"insert into dbo.StoryTrackerDB values('" + us.Ticket_no + "'," +
                 "'" + us.Client + "', '" + us.Team + "','" + us.Name + "','" + us.Ticket_type + "'," +
                 " " + us.Story_point + ",'" + us.Start_date + "','" + us.End_date + "'," + us.Hours + "," +
-                "'" + us.Status + "','" + us.Code_reviewer + "')";
+                "'" + us.Status + "','" + us.Code_reviewer + "','"+us.Code_deviation_count+"','"+us.Bugs_count+"'" +
+                "'"+us.Remarks+"')";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("MyConnectionString");
             SqlDataReader myReader;

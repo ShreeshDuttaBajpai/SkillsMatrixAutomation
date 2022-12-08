@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutomationAPI.Migrations
 {
     [DbContext(typeof(LoginContext))]
-    [Migration("20221125100816_init1")]
-    partial class init1
+    [Migration("20221207124617_ini1")]
+    partial class ini1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,7 +30,6 @@ namespace AutomationAPI.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Bugs_count")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Client")
@@ -38,11 +37,9 @@ namespace AutomationAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Code_deviation_count")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Code_reviewer")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("End_date")
@@ -56,11 +53,7 @@ namespace AutomationAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Remarks")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Serial_no")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("Start_date")
                         .HasColumnType("datetime2");

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AutomationAPI.Migrations
 {
-    public partial class init1 : Migration
+    public partial class ini1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,6 @@ namespace AutomationAPI.Migrations
                 columns: table => new
                 {
                     Ticket_no = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Serial_no = table.Column<int>(type: "int", nullable: false),
                     Client = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Team = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -24,10 +23,10 @@ namespace AutomationAPI.Migrations
                     End_date = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Hours = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Code_reviewer = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Code_deviation_count = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Bugs_count = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Remarks = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Code_reviewer = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Code_deviation_count = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Bugs_count = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Remarks = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
