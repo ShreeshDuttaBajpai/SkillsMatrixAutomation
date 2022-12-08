@@ -5,54 +5,30 @@ import bgHomePicture from '../../../assests/bg-image.jpg';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
-import * as Msal from 'msal';
+import { useAuth } from '../../auth.context';
+import Cookies from 'universal-cookie';
 import { ButtonComponent } from '../../ButtonComponent/ButtonComponent';
+// import { useNavigate, Link } from 'react-router-dom';
 
 function HomePageMainComponent() {
-  const [myData, setmyData] = useState();
-
-  useEffect(() => {
-    axios.post('https://localhost:7040/api/Emp', myData);
-    // .then((res)=> setmyData(res.data)
-    // );
-  });
+  const { run, myData } = useAuth();
+  // const navigate = useNavigate();
 
   <script
     type="text/javascript"
     src="https://alcdn.msauth.net/lib/1.3.0/js/msal.js"
   ></script>;
-  async function run() {
-    console.log('running...');
-    const config = {
-      auth: {
-        clientId: 'addbbf7a-a97c-40e0-a662-37646b433007',
-        authority: 'https://login.microsoftonline.com/common/',
-        redirectUri: 'http://localhost:3000/Home'
-      }
-    };
-    var client = new Msal.UserAgentApplication(config);
-    var request = {
-      scopes: ['user.read']
-    };
-    let loginResponse = await client.loginPopup(request);
-    // console.dir(loginResponse);
-    let tokenResponse = await client.acquireTokenSilent(request);
-    // console.dir(tokenResponse);
-    let payload = await fetch('https://graph.microsoft.com/beta/me', {
-      headers: {
-        Authorization: 'Bearer ' + tokenResponse.accessToken
-      }
-    });
-    let json = await payload.json();
-    setmyData(() => {
-      return {
-        emp_id: json.employeeId,
-        emp_name: json.displayName,
-        emp_designation: json.jobTitle
-      };
-    });
-    //console.log(json.displayName,json.employeeId,json.jobTitle);
-  }
+
+  useEffect(() => {
+    console.log(myData);
+    if (myData)
+      axios.post('https://localhost:7040/api/Emp', myData).then(res => {
+        const token = res.data;
+        const cookies = new Cookies();
+        cookies.set('my_cookie', token);
+        // navigate('/Home');
+      });
+  }, [myData]);
 
   useEffect(() => {
     myData && alert('Hello ' + myData.emp_name + ' ,Id- ' + myData.emp_id);
