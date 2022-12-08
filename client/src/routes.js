@@ -5,9 +5,9 @@ import configureStore from './store/main';
 import { Provider } from 'react-redux';
 // import dynamicLoader from './components/layout/loader';
 // import AppContainer from './components/layout/AppContainer';
-import Home from './components/Test/HomeContainer';
-import MainPage from '../src/Pages/HomePage';
-import Login from './components/Login/Login';
+// import Home from './components/Test/HomeContainer';
+import MainPage from './Pages/HomePage';
+import TablePage from './Pages/TablePage';
 
 const store = configureStore();
 // const dynamicLoad = dynamicLoader(store);
@@ -18,12 +18,10 @@ const App = () => {
       <Router>
         <div>
           <Switch store={store}>
-            {/* <Route path="/" component={AppContainer}>
-              {homeRoute('/home', dynamicLoad)}
-            </Route> */}
-            <Route exact path="/" component={Home} />
-            <Route path="/Home" component={MainPage} />
-            <Route path="/Login" component={Login} />
+            {/* <Route exact path="/" component={Home} /> */}
+            <Route path="/" exact component={MainPage} />
+            <Route path="/table" component={TablePage} />
+            {/* <Route path="/service" component={Service} /> */}
             <Route component={NoMatch} />
           </Switch>
         </div>

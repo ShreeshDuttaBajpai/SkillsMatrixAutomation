@@ -5,8 +5,8 @@ import bgHomePicture from '../../../assests/bg-image.jpg';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
-// import * as Msal from 'msal';
 import * as Msal from 'msal';
+import { ButtonComponent } from '../../ButtonComponent/ButtonComponent';
 
 function HomePageMainComponent() {
   const [myData, setmyData] = useState();
@@ -55,7 +55,7 @@ function HomePageMainComponent() {
   }
 
   useEffect(() => {
-    myData && alert('Hello ' + myData.emp_name +' ,Id- '+ myData.emp_id);
+    myData && alert('Hello ' + myData.emp_name + ' ,Id- ' + myData.emp_id);
   }, [myData]);
 
   return (
@@ -65,9 +65,11 @@ function HomePageMainComponent() {
         <div className={css.homeLogo}>
           <img src={bglogo}></img>
           <div className={css.loginButton}>
-            <button className={css.button1} type="submit" onClick={run}>
-              Continue With Microsoft
-            </button>
+            <ButtonComponent
+              cname={css.button1}
+              value="Continue With Microsoft"
+              run={run}
+            />
           </div>
         </div>
       </div>
