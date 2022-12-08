@@ -1,0 +1,70 @@
+.home {
+    font-size: 150%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 17rem;
+    padding-bottom: 10rem;
+    min-height: 585px !important;
+    max-height: 65px !important;
+    overflow: hidden;
+    padding: 0;
+    position: relative; 
+}
+
+.bgHomePicture{
+    opacity: 0.3;
+    width: 100%;
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 17rem;
+    padding-bottom: 10rem;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+}
+
+
+.homeLogo{
+    background-image: none;
+}
+
+
+ .button1{
+  background-color: #2d7191;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.loginButton{
+    margin-top: 15px;
+    margin-left: .6rem;
+}
+
+
+.pageContent{
+    position: absolute;
+}
+
+.home.bgHomePicture{
+    width:100%;
+}
+
+.button1{
+    margin-left: auto;
+}
