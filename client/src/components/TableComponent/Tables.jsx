@@ -22,6 +22,9 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from 'axios'
 import Alert from '@material-ui/lab/Alert';
+import { useAuth } from '../auth.context';
+import jwt_decode from 'jwt-decode';
+
  
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -42,7 +45,8 @@ const tableIcons = {
   ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
- 
+
+
 const api = axios.create({
   baseURL: `https://localhost:7040/api/User`
 })
@@ -53,11 +57,10 @@ const api = axios.create({
 //   return re.test(String(email).toLowerCase());
 // }
  
-function Service() {
+function Tables() {
  
   var columns = [
     {title: "Ticket_no", field: "Ticket_no"},
-    {title: "Serial_no", field: "Serial_no"},
     {title: "Client", field: "Client"},
     {title: "Team", field: "Team"},
     {title: "Ticket_type", field: "Ticket_type"},
@@ -74,15 +77,22 @@ function Service() {
 
   ]
   const [data, setData] = useState([]); //table data
- 
+  
   //for error handling
   const [iserror, setIserror] = useState(false)
   const [errorMessages, setErrorMessages] = useState([])
- 
+
+  const { userToken } = useAuth();
+  const decoded = jwt_decode(userToken);
+
+
+  console.log (decoded);
+
   useEffect(() => { 
-    api.get("/User")
+    api.get(`/${decoded.Emp_id}`)
         .then(res => {               
-            setData(res.data.data)
+            setData(res.data)
+            console.log(res.data)
          })
          .catch(error=>{
              console.log("Error")
@@ -95,15 +105,15 @@ function Service() {
     if(newData.Ticket_no === ""){
       errorList.push("Please enter Ticket_no")
     }
-    if(newData.Serial_no === ""){
-      errorList.push("Please enter Serial_no")
+    if(newData.Team === ""){
+      errorList.push("Please enter Team")
     }
     if(newData.Client === ""){
       errorList.push("Please enter a Client")
     }
  
     if(errorList.length < 1){
-      api.patch("/users/"+newData.id, newData)
+      api.patch("/Users/"+newData.id, newData)
       .then(res => {
         const dataUpdate = [...data];
         const index = oldData.tableData.id;
@@ -134,8 +144,8 @@ function Service() {
     if(newData.Ticket_no === undefined){
       errorList.push("Please enter Ticket_no")
     }
-    if(newData.Serial_no === undefined){
-      errorList.push("Please enter Serial_no")
+    if(newData.Team === undefined){
+      errorList.push("Please enter Team")
     }
     if(newData.Client === undefined ){
       errorList.push("Please enter a Client")
@@ -227,7 +237,7 @@ function Service() {
   );
 }
  
-export default Service;
+export default Tables;
 
 
 
