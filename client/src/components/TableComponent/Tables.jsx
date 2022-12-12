@@ -3,8 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { forwardRef } from 'react';
 // import Avatar from 'react-avatar';
 import Grid from '@material-ui/core/Grid'
- 
-import MaterialTable from "material-table";
+import {TablePagination} from '@mui/material/TablePagination';
+import MaterialTable from '@material-table/core';
+// import MaterialTable from "material-table";
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import Check from '@material-ui/icons/Check';
@@ -60,19 +61,19 @@ const api = axios.create({
 function Tables() {
  
   var columns = [
-    {title: "Ticket_no", field: "Ticket_no"},
-    {title: "Client", field: "Client"},
-    {title: "Team", field: "Team"},
-    {title: "Ticket_type", field: "Ticket_type"},
-    {title: "Story_point", field: "Story_point"},
-    {title: "Start_date", field: "Start_date"},
-    {title: "End_date", field: "End_date"},
-    {title: "Hours", field: "Hours"},
-    {title: "Status", field: "Status"},
-    {title: "Code_reviewer", field: "Code_reviewer"},
-    {title: "Code_deviation_count", field: "Code_deviation_count"},
-    {title: "Bugs_count", field: "Bugs_count"},
-    {title: "Remarks", field: "Remarks"},
+    {title: "Ticket_no", field: "ticket_no"},
+    {title: "Client", field: "client"},
+    {title: "Team", field: "team"},
+    {title: "Ticket_type", field: "ticket_type"},
+    {title: "Story_point", field: "story_point"},
+    {title: "Start_date", field: "start_date"},
+    {title: "End_date", field: "end_date"},
+    {title: "Hours", field: "hours"},
+    {title: "Status", field: "status"},
+    {title: "Code_reviewer", field: "code_reviewer"},
+    {title: "Code_deviation_count", field: "code_deviation_count"},
+    {title: "Bugs_count", field: "bugs_count"},
+    {title: "Remarks", field: "remarks"},
 
 
   ]
@@ -139,15 +140,16 @@ function Tables() {
   }
  
   const handleRowAdd = (newData, resolve) => {
+    console.log(newData);
     //validation
     let errorList = []
-    if(newData.Ticket_no === undefined){
+    if(newData.ticket_no === undefined){
       errorList.push("Please enter Ticket_no")
     }
-    if(newData.Team === undefined){
+    if(newData.team === undefined){
       errorList.push("Please enter Team")
     }
-    if(newData.Client === undefined ){
+    if(newData.client === undefined ){
       errorList.push("Please enter a Client")
     }
  
