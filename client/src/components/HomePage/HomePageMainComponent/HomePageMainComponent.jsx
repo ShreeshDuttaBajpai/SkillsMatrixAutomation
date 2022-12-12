@@ -25,6 +25,7 @@ function HomePageMainComponent() {
         const token = res.data;
         const cookies = new Cookies();
         cookies.set('my_cookie', token);
+        window.location.reload();
         // navigate('/Home');
       });
   }, [myData]);

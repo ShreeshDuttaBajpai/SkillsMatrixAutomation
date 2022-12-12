@@ -13,6 +13,8 @@ import Cookies from 'universal-cookie';
 import { AuthProvider } from './components/auth.context';
 import { useAuth } from '../src/components/auth.context';
 import jwt_decode from 'jwt-decode';
+// import { Table } from '@material-ui/core';
+import TablePage from '../src/Pages/TablePage';
 
 const store = configureStore();
 // const dynamicLoad = dynamicLoader(store);
@@ -42,6 +44,7 @@ const App = () => {
               <Route path="/Home" component={MainPage} />
               <Route path="/User" component={UserPage} />
               <Route path="/Admin" component={AdminPage} />
+              <Route path="/Table" component={TablePage} />
               if (Emp_designation=="Associate Software Engineer")
               {
                 <Route>

@@ -68,7 +68,7 @@ export const AuthProvider = props => {
       };
     });
     //console.log(json.displayName,json.employeeId,json.jobTitle);
-    window.location.reload();
+    // window.location.reload();
   }
 
   return (
