@@ -2,7 +2,6 @@ import React from 'react';
 import css from './HomepageMainComponent.css';
 import bglogo from '../../../assests/homeLogo.png';
 import bgHomePicture from '../../../assests/bg-image.jpg';
-import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../auth.context';

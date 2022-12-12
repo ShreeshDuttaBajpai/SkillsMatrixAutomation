@@ -29,20 +29,6 @@ export const AuthProvider = props => {
     authUser();
   }, [userToken]);
 
-  // axios
-  //   .delete('https://localhost:7040/api/Emp')
-  //   .then(response => (element.innerHTML = 'Delete successful'))
-  //   .catch(error => {
-  //     element.parentElement.innerHTML = `Error: ${error.message}`;
-  //     console.error('There was an error!', error);
-  //   });
-
-  //   (async () => {
-  //     // DELETE request using axios with async/await
-  //     const element = document.querySelector('');
-  //     await axios.delete('https://localhost:7040/api/Emp');
-  //   })();
-
   const logout = async Emp_id => {
     const cookies = new Cookies();
     cookies.remove('my_cookie');
