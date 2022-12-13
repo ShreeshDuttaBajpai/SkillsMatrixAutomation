@@ -41,18 +41,8 @@ const App = () => {
           <div>
             <Switch store={store}>
               {/* <Route exact path="/" component={Home} /> */}
-              <Route path="/Home" exact component={MainPage} />
-              <Route path="/User" component={UserPage} />
-              <Route path="/Admin" component={AdminPage} />
-              <Route path="/Table" component={TablePage} />
-              if (Emp_designation=="Associate Software Engineer")
-              {
-                <Route>
-                  <Route path="/User" component={UserPage} />
-                </Route>
-              }
-              else
-              {<Route path="/Admin" component={AdminPage} />}
+              <Route path="/Home" exact component={MainPage} /> 
+              <Route path="/Table" component={TablePage} />          
               <Route component={NoMatch} />
             </Switch>
           </div>
