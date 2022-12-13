@@ -40,7 +40,36 @@ namespace AutomationAPI.Controllers
                  );
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-        
+    
+        [HttpGet] 
+        [Route("{Emp_id}")]
+        public IActionResult VerifyUser(string Emp_id)
+        {
+
+            string query2 = $" select *  from Emp_details where Emp_id= '{Emp_id}'";
+            DataTable table = new DataTable(); 
+            string sqlDataSource = _configuration.GetConnectionString("MyConnectionString");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            { 
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query2, myCon))
+                { 
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader); 
+                    myReader.Close();
+                    myCon.Close(); 
+                } 
+            }
+            if (table.Rows.Count > 0)
+            {
+                return Ok("User Found");
+            }
+            else { return NoContent(); }
+        }
+
+
+
         [HttpPost]
         public IActionResult Post([FromBody] Employee us)
         {
