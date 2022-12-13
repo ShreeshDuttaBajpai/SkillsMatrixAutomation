@@ -35,6 +35,11 @@
 
 .homeLogo{
     background-image: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: rgb(27, 24, 20);
 }
 
 
@@ -68,3 +73,8 @@
 .button1{
     margin-left: auto;
 } */
+
+.welcomeMessage{
+    display: flex;
+    text-shadow: 1px 1px rgb(230, 221, 214);
+}
