@@ -6,7 +6,7 @@ function TablePage() {
   return (
     <>
     <Navbar/>
-    <Tables/>
+    <Tables />
     </>
   )
 }
