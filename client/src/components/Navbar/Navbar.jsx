@@ -38,7 +38,7 @@ const Navbar = () => {
           {authSuccess === true ? (
             <div className="login-navlink">
               <div className={css.headings}>
-                <NavLink to="/dashboard">Dashboard</NavLink>
+                <NavLink to="/Table">Dashboard</NavLink>
               </div>
               <div className={css.headings}>
                 <NavLink to="/codereview">Code Review</NavLink>
@@ -65,7 +65,10 @@ const Navbar = () => {
             </div>
           ) : (
             <div>
-              <div className={css.right_navbarHeadings} onClick={run}>
+              <div
+                className={css.right_navbarHeadingsBeforeLogin}
+                onClick={run}
+              >
                 Sign In/Sign Up
               </div>
             </div>

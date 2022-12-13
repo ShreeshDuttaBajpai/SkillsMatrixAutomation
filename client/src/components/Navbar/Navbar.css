@@ -2,13 +2,12 @@
 
 
 .Navbar{
-    /* width:auto; */
+    width:auto;
     background: #222;
     height: 70px;
     display: flex;
     color: aliceblue;
     position: sticky;
-    z-index: 30;
 }
 
 .logoImage{
@@ -33,12 +32,11 @@
     margin-left: 50px;
     display: flex;
     align-items: center;
-   
 }
 
 .NavbarItems{
     justify-content: space-between;
-    width: 95%;
+    width: 100%;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -67,6 +65,12 @@
 }
 
 .right_navbarHeadings{
-    display: inline;
-    margin-left: auto;
+    display: inline-flex;
+    margin-left: 16rem;
+}
+
+
+.right_navbarHeadingsBeforeLogin{
+    display: inline-flex;
+    margin-left: 49rem;
 }
