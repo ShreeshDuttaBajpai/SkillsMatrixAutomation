@@ -64,7 +64,7 @@ export const AuthProvider = props => {
       return {
         emp_id: json.employeeId,
         emp_name: json.displayName,
-        emp_designation: json.jobTitle
+        emp_designation: 'Engineering Manager'
       };
     });
     //console.log(json.displayName,json.employeeId,json.jobTitle);
