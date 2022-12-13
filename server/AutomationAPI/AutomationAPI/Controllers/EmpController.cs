@@ -65,5 +65,26 @@ namespace AutomationAPI.Controllers
             return Ok(token);
            
         }
+        [HttpDelete("{id}")]
+        public JsonResult Delete(int id)
+        {
+            string query3 = $"delete from Emp_details where Emp_id= '{id}'";
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("MyConnectionString");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query3, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult("Deleted Successfully");
+        }
     }
 }
