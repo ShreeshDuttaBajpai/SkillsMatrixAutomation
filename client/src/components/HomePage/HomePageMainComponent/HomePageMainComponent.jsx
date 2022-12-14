@@ -10,7 +10,7 @@ import { ButtonComponent } from '../../ButtonComponent/ButtonComponent';
 // import { useNavigate, Link } from 'react-router-dom';
 
 function HomePageMainComponent() {
-  const { run, myData } = useAuth();
+  const { run, myData, authSuccess } = useAuth();
   // const navigate = useNavigate();
 
   <script
@@ -41,11 +41,22 @@ function HomePageMainComponent() {
         <div className={css.homeLogo}>
           <img src={bglogo}></img>
           <div className={css.loginButton}>
-            <ButtonComponent
+            {authSuccess === true ? (
+              <h3 className={css.welcomeMessage}>
+                Welcome to SAM - Automation Tool for Story Tracker
+              </h3>
+            ) : (
+              <ButtonComponent
+                cname={css.button1}
+                value="Continue With Microsoft"
+                run={run}
+              />
+            )}
+            {/* <ButtonComponent
               cname={css.button1}
               value="Continue With Microsoft"
               run={run}
-            />
+            /> */}
           </div>
         </div>
       </div>

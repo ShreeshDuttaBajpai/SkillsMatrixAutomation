@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import { forwardRef } from 'react';
 // import Avatar from 'react-avatar';
 import jwt_decode from 'jwt-decode';
@@ -27,7 +26,6 @@ import Alert from '@material-ui/lab/Alert';
 import { useAuth } from '../auth.context';
 import { Input } from '@material-ui/core';
 
-
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
   Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -52,21 +50,20 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-
 // function validateEmail(email){
 //   const re = /^((?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\]))$/;
 //   return re.test(String(email).toLowerCase());
 // }
 
 function Tables() {
-
   const { userToken } = useAuth();
   const decoded = jwt_decode(userToken);
-  
+
   const api = axios.create({
-    baseURL: `https://localhost:7040/api/${decoded.Emp_designation === "Software Engineer Trainee" ? "User" : "Admin"}`
+    baseURL: `https://localhost:7040/api/${
+      decoded.Emp_designation === 'Engineering Manager' ? 'Admin' : 'User'
+    }`
   });
-  
 
   var columns = [
     { title: 'Ticket_no', field: 'ticket_no' },
@@ -95,7 +92,13 @@ function Tables() {
 
   useEffect(() => {
     api
-      .get(`/${decoded.Emp_designation === "Software Engineer Trainee"&& decoded.Emp_id }`)
+      .get(
+        `/${
+          decoded.Emp_designation === 'Engineering Manager'
+            ? ''
+            : decoded.Emp_id
+        }`
+      )
       .then(res => {
         setData(res.data);
         console.log(res.data);

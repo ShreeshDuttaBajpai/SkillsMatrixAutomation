@@ -33,7 +33,7 @@ const Navbar = () => {
           </h3>
 
           <div className={css.headings}>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/Home">Home</NavLink>
           </div>
           {authSuccess === true ? (
             <div className="login-navlink">
