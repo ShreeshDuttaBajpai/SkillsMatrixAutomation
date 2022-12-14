@@ -25,6 +25,7 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from 'axios';
 import Alert from '@material-ui/lab/Alert';
 import { useAuth } from '../auth.context';
+import { Input } from '@material-ui/core';
 
 
 const tableIcons = {
@@ -74,8 +75,8 @@ function Tables() {
     { title: 'Name', field: 'name' },
     { title: 'Ticket_type', field: 'ticket_type' },
     { title: 'Story_point', field: 'story_point' },
-    { title: 'Start_date', field: 'start_date' },
-    { title: 'End_date', field: 'end_date' },
+    { title: 'Start_date', field: 'start_date', type:"date"},
+    { title: 'End_date', field: 'end_date' ,type:"date"},
     { title: 'Hours', field: 'hours' },
     { title: 'Status', field: 'status' },
     { title: 'Code_reviewer', field: 'code_reviewer' },
