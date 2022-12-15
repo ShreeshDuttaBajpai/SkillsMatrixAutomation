@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { forwardRef } from 'react';
-// import Avatar from 'react-avatar';
 import jwt_decode from 'jwt-decode';
 import Grid from '@material-ui/core/Grid';
-import { TablePagination } from '@mui/material/TablePagination';
 import MaterialTable from '@material-table/core';
-// import MaterialTable from "material-table";
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import Check from '@material-ui/icons/Check';
@@ -49,11 +46,6 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-// function validateEmail(email){
-//   const re = /^((?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\]))$/;
-//   return re.test(String(email).toLowerCase());
-// }
-
 function Tables() {
   const { userToken } = useAuth();
   const decoded = jwt_decode(userToken);
@@ -65,16 +57,44 @@ function Tables() {
   });
 
   var columns = [
-    { title: 'Ticket_no', editable: 'never', field: 'ticket_no' },
-    { title: 'Client', field: 'client' },
+    { title: 'Ticket_no', field: 'ticket_no', editable: 'onAdd' },
+    {
+      title: 'Client',
+      field: 'client',
+      lookup: {
+        1: 'CW'
+      }
+    },
     { title: 'Team', field: 'team' },
-    { title: 'Name', field: 'name' },
-    { title: 'Ticket_type', field: 'ticket_type' },
+    {
+      title: 'Name',
+      field: 'name',
+      initialEditValue: decoded.Emp_name,
+      editable: 'never'
+    },
+    {
+      title: 'Ticket_type',
+      field: 'ticket_type',
+      lookup: {
+        1: 'Story',
+        2: 'Bug',
+        3: 'Task',
+        4: 'Sub-Task'
+      }
+    },
     { title: 'Story_point', field: 'story_point' },
     { title: 'Start_date', field: 'start_date', type: 'date' },
     { title: 'End_date', field: 'end_date', type: 'date' },
     { title: 'Hours', field: 'hours' },
-    { title: 'Status', field: 'status' },
+    {
+      title: 'Status',
+      field: 'status',
+      lookup: {
+        1: 'Completed',
+        2: 'InProgress',
+        3: 'Incomplete'
+      }
+    },
     { title: 'Code_Reviewer', field: 'code_reviewer' },
     decoded.Emp_designation === 'Engineering Manager'
       ? { title: 'Code_deviation_count', field: 'code_deviation_count' }
@@ -91,13 +111,8 @@ function Tables() {
       : { title: 'Remarks', field: 'remarks', editable: 'never' }
   ];
   const [data, setData] = useState([]); //table data
-
-  //for error handling
   const [iserror, setIserror] = useState(false);
   const [errorMessages, setErrorMessages] = useState([]);
-
-  // const { userToken } = useAuth();
-  // const decoded = jwt_decode(userToken);
 
   useEffect(() => {
     api
@@ -157,7 +172,7 @@ function Tables() {
       resolve();
     }
   };
-
+  //Add Data of User
   const handleRowAdd = (newData, resolve) => {
     console.log(newData);
     //validation
@@ -199,7 +214,7 @@ function Tables() {
       resolve();
     }
   };
-
+  //Delete records
   const handleRowDelete = (oldData, resolve) => {
     console.log(oldData);
     api
@@ -207,13 +222,10 @@ function Tables() {
       .then(res => {
         const dataDelete = [...data];
         console.log(dataDelete);
-        // const index = oldData.ticket_no;
-        // console.log(index);
-        // dataDelete.splice(index, 1);
         setData(prev =>
           prev.filter(obj => obj.ticket_no !== oldData.ticket_no)
         );
-        // window.location.reload();
+        window.location.reload();
         resolve();
       })
       .catch(error => {
@@ -239,27 +251,30 @@ function Tables() {
           </div>
           <MaterialTable
             mt={90}
-            title="User Details"
+            title="Client : ConnectWise"
             columns={columns}
             data={data}
             icons={tableIcons}
             options={{
               headerStyle: { size: '80px' }
             }}
-            editable={{
-              onRowUpdate: (newData, oldData) =>
-                new Promise(resolve => {
-                  handleRowUpdate(newData, oldData, resolve);
-                }),
-              onRowAdd: newData =>
-                new Promise(resolve => {
-                  handleRowAdd(newData, resolve);
-                }),
-              onRowDelete: oldData =>
-                new Promise(resolve => {
-                  handleRowDelete(oldData, resolve);
-                })
-            }}
+            //Add, Edit & Update functionality to User Only
+            editable={
+              decoded.Emp_designation !== 'Engineering Manager' && {
+                onRowUpdate: (newData, oldData) =>
+                  new Promise(resolve => {
+                    handleRowUpdate(newData, oldData, resolve);
+                  }),
+                onRowAdd: newData =>
+                  new Promise(resolve => {
+                    handleRowAdd(newData, resolve);
+                  }),
+                onRowDelete: oldData =>
+                  new Promise(resolve => {
+                    handleRowDelete(oldData, resolve);
+                  })
+              }
+            }
           />
         </Grid>
         <Grid item xs={1}></Grid>
