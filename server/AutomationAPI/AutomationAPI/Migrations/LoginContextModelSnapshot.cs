@@ -27,8 +27,14 @@ namespace AutomationAPI.Migrations
                     b.Property<string>("Ticket_no")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("Bugs_count")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Client")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Code_deviation_count")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Code_reviewer")
@@ -42,6 +48,9 @@ namespace AutomationAPI.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Start_date")
