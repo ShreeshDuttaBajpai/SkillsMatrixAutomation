@@ -57,7 +57,7 @@ const Navbar = () => {
                 </div>
                 <div className={css.headings}>
                   <NavLink
-                    to="/Home"
+                    to="/"
                     onClick={() => {
                       logout(Emp_id);
                     }}

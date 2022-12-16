@@ -7,11 +7,9 @@ import axios from 'axios';
 import { useAuth } from '../../auth.context';
 import Cookies from 'universal-cookie';
 import { ButtonComponent } from '../../ButtonComponent/ButtonComponent';
-// import { useNavigate, Link } from 'react-router-dom';
 
 function HomePageMainComponent() {
   const { run, myData, authSuccess } = useAuth();
-  // const navigate = useNavigate();
 
   <script
     type="text/javascript"
@@ -26,7 +24,6 @@ function HomePageMainComponent() {
         const cookies = new Cookies();
         cookies.set('my_cookie', token);
         window.location.reload();
-        // navigate('/Home');
       });
   }, [myData]);
 
@@ -52,11 +49,6 @@ function HomePageMainComponent() {
                 run={run}
               />
             )}
-            {/* <ButtonComponent
-              cname={css.button1}
-              value="Continue With Microsoft"
-              run={run}
-            /> */}
           </div>
         </div>
       </div>
