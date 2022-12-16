@@ -24,7 +24,7 @@ import { useAuth } from '../auth.context';
 import { Input } from '@material-ui/core';
 
 const tableIcons = {
-  Add: forwardRef((props, ref) => <AddBox {...props}  ref={ref}  />),
+  Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
   Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
   Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
   Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
@@ -57,6 +57,10 @@ function Tables() {
     }`
   });
 
+  const CodeReviewapi = axios.create({
+    baseURL: `https://localhost:7040/api/Review/${decoded.Emp_name}`
+  });
+
   var columns = [
     { title: 'Ticket_no', field: 'ticket_no', editable: 'onAdd' },
     {
@@ -66,15 +70,16 @@ function Tables() {
         1: 'CW'
       }
     },
-    { title: 'Team',
+    {
+      title: 'Team',
       field: 'team',
-      lookup:{
-        1:'CNS',
-        2:'Mobile Team',
-        3:'Partner Service',
-        4:'Contacts',
-        5:'CP',
-        6:'Event Bridge'
+      lookup: {
+        1: 'CNS',
+        2: 'Mobile Team',
+        3: 'Partner Service',
+        4: 'Contacts',
+        5: 'CP',
+        6: 'Event Bridge'
       }
     },
     {
@@ -126,21 +131,24 @@ function Tables() {
   const [errorMessages, setErrorMessages] = useState([]);
 
   useEffect(() => {
-    api
-      .get(
-        `/${
-          decoded.Emp_designation === 'Engineering Manager'
-            ? ''
-            : decoded.Emp_id
-        }`
-      )
-      .then(res => {
-        setData(res.data);
-        console.log(res.data);
-      })
-      .catch(error => {
-        console.log('Error');
-      });
+    if (window.location.pathname === '/CodeReview') {
+    } else {
+      api
+        .get(
+          `/${
+            decoded.Emp_designation === 'Engineering Manager'
+              ? ''
+              : decoded.Emp_id
+          }`
+        )
+        .then(res => {
+          setData(res.data);
+          console.log(res.data);
+        })
+        .catch(error => {
+          console.log('Error');
+        });
+    }
   }, []);
 
   const handleRowUpdate = (newData, oldData, resolve) => {
@@ -200,7 +208,6 @@ function Tables() {
   };
   //Add Data of User
   const handleRowAdd = (newData, resolve) => {
-    console.log(newData);
     //validation
     let errorList = [];
     if (newData.ticket_no === undefined) {
@@ -208,9 +215,6 @@ function Tables() {
     }
     if (newData.team === undefined) {
       errorList.push('Please enter Team');
-    }
-    if (newData.name === undefined) {
-      errorList.push('Please enter Name');
     }
     if (newData.client === undefined) {
       errorList.push('Please enter a Client');
@@ -230,7 +234,6 @@ function Tables() {
     if (newData.status === undefined) {
       errorList.push('Please enter Status');
     }
-
 
     if (errorList.length < 1) {
       //no error
@@ -278,7 +281,7 @@ function Tables() {
   };
   return (
     <div className="App" style={{ marginTop: '60px' }}>
-      <h2 style={{ textAlign: 'center' }}>User Details</h2>
+      <h2 style={{ textAlign: 'center' }}>User Dashboard</h2>
       <Grid container spacing={1}>
         <Grid item xs={1}></Grid>
         <Grid item xs={10}>
@@ -306,6 +309,7 @@ function Tables() {
                 onRowUpdate: (newData, oldData) =>
                   new Promise(resolve => {
                     handleRowUpdate(newData, oldData, resolve);
+                    window.location.reload();
                   }),
                 onRowAdd: newData =>
                   new Promise(resolve => {
@@ -315,6 +319,7 @@ function Tables() {
                 onRowDelete: oldData =>
                   new Promise(resolve => {
                     handleRowDelete(oldData, resolve);
+                    window.location.reload();
                   })
               }
             }
