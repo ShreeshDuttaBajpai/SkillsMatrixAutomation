@@ -208,7 +208,6 @@ function Tables() {
   };
   //Add Data of User
   const handleRowAdd = (newData, resolve) => {
-    console.log(newData);
     //validation
     let errorList = [];
     if (newData.ticket_no === undefined) {
@@ -216,9 +215,6 @@ function Tables() {
     }
     if (newData.team === undefined) {
       errorList.push('Please enter Team');
-    }
-    if (newData.name === undefined) {
-      errorList.push('Please enter Name');
     }
     if (newData.client === undefined) {
       errorList.push('Please enter a Client');
@@ -318,7 +314,7 @@ function Tables() {
                 onRowAdd: newData =>
                   new Promise(resolve => {
                     handleRowAdd(newData, resolve);
-                    window.location.reload();
+                    // window.location.reload();
                   }),
                 onRowDelete: oldData =>
                   new Promise(resolve => {

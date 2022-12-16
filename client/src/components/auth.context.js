@@ -50,7 +50,6 @@ export const AuthProvider = props => {
       scopes: ['user.read']
     };
     let loginResponse = await client.loginPopup(request);
-    // console.dir(loginResponse);
     let tokenResponse = await client.acquireTokenSilent(request);
     let payload = await fetch('https://graph.microsoft.com/beta/me', {
       headers: {
