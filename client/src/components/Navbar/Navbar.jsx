@@ -29,7 +29,7 @@ const Navbar = () => {
           </NavLink>
 
           <h3 className={css.navbarBrand}>
-            <NavLink to="/">Story Tracker</NavLink>
+            <NavLink to="/Home">Story Tracker</NavLink>
           </h3>
 
           <div className={css.headings}>

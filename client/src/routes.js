@@ -7,8 +7,6 @@ import { Provider } from 'react-redux';
 // import AppContainer from './components/layout/AppContainer';
 // import Home from './components/Test/HomeContainer';
 import MainPage from './Pages/HomePage';
-import AdminPage from './Pages/AdminPage';
-import UserPage from './Pages/UserPage';
 import Cookies from 'universal-cookie';
 import { AuthProvider } from './components/auth.context';
 import { useAuth } from '../src/components/auth.context';
