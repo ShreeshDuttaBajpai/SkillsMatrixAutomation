@@ -27,7 +27,7 @@ const App = () => {
         <Router>
           <div>
             <Switch store={store}>
-              <Route path="/Home" exact component={MainPage} />
+              <Route exact path="/" component={MainPage} />
               <Route path="/Table" component={TablePage} />
               <Route path="/CodeReview" component={CodeReview} />
               <Route component={NoMatch} />
