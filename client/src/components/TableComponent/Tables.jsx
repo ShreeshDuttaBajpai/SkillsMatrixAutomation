@@ -27,7 +27,7 @@ import { useAuth } from '../auth.context';
 import { Input } from '@material-ui/core';
 
 const tableIcons = {
-  Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
+  Add: forwardRef((props, ref) => <AddBox {...props}  ref={ref}  />),
   Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
   Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
   Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
@@ -66,20 +66,30 @@ function Tables() {
   });
 
   var columns = [
-    { title: 'Ticket_no', field: 'ticket_no' },
+    { title: 'Ticket_no', editable: 'never', field: 'ticket_no' },
     { title: 'Client', field: 'client' },
     { title: 'Team', field: 'team' },
     { title: 'Name', field: 'name' },
     { title: 'Ticket_type', field: 'ticket_type' },
     { title: 'Story_point', field: 'story_point' },
-    { title: 'Start_date', field: 'start_date', type:"date"},
-    { title: 'End_date', field: 'end_date' ,type:"date"},
+    { title: 'Start_date', field: 'start_date', type: 'date' },
+    { title: 'End_date', field: 'end_date', type: 'date' },
     { title: 'Hours', field: 'hours' },
     { title: 'Status', field: 'status' },
-    { title: 'Code_reviewer', field: 'code_reviewer' },
-    { title: 'Code_deviation_count', field: 'code_deviation_count' },
-    { title: 'Bugs_count', field: 'bugs_count' },
-    { title: 'Remarks', field: 'remarks' }
+    { title: 'Code_Reviewer', field: 'code_reviewer' },
+    decoded.Emp_designation === 'Engineering Manager'
+      ? { title: 'Code_deviation_count', field: 'code_deviation_count' }
+      : {
+          title: 'Code_deviation_count',
+          field: 'code_deviation_count',
+          editable: 'never'
+        },
+    decoded.Emp_designation === 'Engineering Manager'
+      ? { title: 'Bugs_count', field: 'bugs_count' }
+      : { title: 'Bugs_count', field: 'bugs_count', editable: 'never' },
+    decoded.Emp_designation === 'Engineering Manager'
+      ? { title: 'Remarks', field: 'remarks' }
+      : { title: 'Remarks', field: 'remarks', editable: 'never' }
   ];
   const [data, setData] = useState([]); //table data
 
@@ -126,7 +136,7 @@ function Tables() {
 
     if (errorList.length < 1) {
       api
-        .patch('/Users/' + newData.id, newData)
+        .put(`/${oldData.ticket_no}`, newData)
         .then(res => {
           const dataUpdate = [...data];
           const index = oldData.tableData.id;
@@ -137,6 +147,7 @@ function Tables() {
           setErrorMessages([]);
         })
         .catch(error => {
+          console.log(oldData);
           setErrorMessages(['Update failed! Server error']);
           setIserror(true);
           resolve();
