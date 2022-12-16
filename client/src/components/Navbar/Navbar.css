@@ -1,84 +1,76 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,500&display=swap');
 
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-.NavbarLogo img{
-    width:40px;
-    margin-right: 10px;
-    
-}
-
-.NavbarLogo a{
-    text-align: justify;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
 .Navbar{
-    /* width:auto; */
+    width:auto;
     background: #222;
     height: 70px;
     display: flex;
     color: aliceblue;
+    position: sticky;
 }
 
-.NavbarLogo img{
-    border-radius: 70%;
+.logoImage{
+    height: 40px;
+    width: 45px;
+    border-radius: 60%;
 }
 
-
-.navbarHeadings{
-    display:flex;
-    width: 80%;
-    font-size: large;
-    display: flex;
-    align-items: center;
-    list-style: none; 
-    margin-left: 8px;
-    margin-right: 8px;
-    cursor: pointer;
-    text-transform: uppercase;
+.navbarBrand, 
+.navbarBrand a{
+    margin-top: 6px;
+    margin-right: 10px;
+    margin-left: 0.5rem;
     text-decoration: none;
     color: white;
+    font-size: 17px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.Left_Navbar_Headings{
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.NavbarItems{
+    justify-content: space-between;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: white;
     font-size: 17px; 
-    /* font-family: "Poppins";  */
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    margin-top: 15px; 
+    margin-top: 4px; 
 }
 
-.right_navbarHeadings{
-    margin-left: auto;
-}
-.navbarHeadings li{
-    padding: 15px 10px;
-    font-size: 16px;
-}
-
-.navbarHeadings a{
+.headings,
+.headings a{
+    display: inline;
     color: white;
     cursor: pointer;
     text-transform: uppercase;
     text-decoration: none;
     margin-right: 6px;
     margin-left: 6px;
-    
+    text-align: justify;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
-.navbarHeadings a:hover{
+
+.headings a:hover{
     color: #da0f32;
 }
 
-.NavbarLogo a{
-    color: white;
-    cursor: pointer;
-    text-transform: uppercase;
-    text-decoration: none;
+.right_navbarHeadings{
+    display: inline-flex;
+    margin-left: 16rem;
 }
 
-.NavbarLogo{
-    margin-left: 50px;
-    margin-top: 18px;
+
+.right_navbarHeadingsBeforeLogin{
+    display: inline-flex;
+    margin-left: 49rem;
 }

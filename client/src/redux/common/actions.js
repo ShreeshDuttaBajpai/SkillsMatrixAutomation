@@ -8,3 +8,18 @@ export const refreshData = payload => ({
   type: types.REFRESH_DATA,
   payload
 });
+
+export const userToken = payload => ({
+  type: types.AUTH_SUCCESS,
+  payload
+});
+
+export const authSuccess = payload => ({
+  type: types.AUTH_SUCCESS,
+  payload
+});
+
+export const myData = payload => ({
+  type: types.MY_DATA,
+  payload
+});
