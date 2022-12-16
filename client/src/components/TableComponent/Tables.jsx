@@ -56,6 +56,10 @@ function Tables() {
     }`
   });
 
+  const CodeReviewapi = axios.create({
+    baseURL: `https://localhost:7040/api/Review/${decoded.Emp_name}`
+  });
+
   var columns = [
     { title: 'Ticket_no', field: 'ticket_no', editable: 'onAdd' },
     {
@@ -115,21 +119,24 @@ function Tables() {
   const [errorMessages, setErrorMessages] = useState([]);
 
   useEffect(() => {
-    api
-      .get(
-        `/${
-          decoded.Emp_designation === 'Engineering Manager'
-            ? ''
-            : decoded.Emp_id
-        }`
-      )
-      .then(res => {
-        setData(res.data);
-        console.log(res.data);
-      })
-      .catch(error => {
-        console.log('Error');
-      });
+    if (window.location.pathname === '/CodeReview') {
+    } else {
+      api
+        .get(
+          `/${
+            decoded.Emp_designation === 'Engineering Manager'
+              ? ''
+              : decoded.Emp_id
+          }`
+        )
+        .then(res => {
+          setData(res.data);
+          console.log(res.data);
+        })
+        .catch(error => {
+          console.log('Error');
+        });
+    }
   }, []);
 
   const handleRowUpdate = (newData, oldData, resolve) => {

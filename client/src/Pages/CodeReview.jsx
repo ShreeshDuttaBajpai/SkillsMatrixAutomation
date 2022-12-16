@@ -1,17 +1,14 @@
-import { Table } from '@mui/material';
 import React from 'react';
-import { connect } from 'react-redux';
+import Navbar from '../components/Navbar/Navbar';
+import Table from '../components/TableComponent/Tables';
 
-export const CodeReview = props => {
+function CodeReview() {
   return (
     <div>
+      <Navbar />
       <Table />
     </div>
   );
-};
+}
 
-const mapStateToProps = state => ({});
-
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CodeReview);
+export default CodeReview;
