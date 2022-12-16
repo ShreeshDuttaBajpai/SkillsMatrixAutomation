@@ -5,14 +5,12 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth.context';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import jwt_Decode from 'jwt-decode';
-import { ButtonComponent } from '../ButtonComponent/ButtonComponent';
+import con from '../constants';
 
 const Navbar = () => {
   const { authSuccess, userToken, logout, run } = useAuth();
   let Emp_name = '';
   let Emp_id = '';
-
-  // const navigate = useNavigate();
 
   if (userToken) {
     const decoded_token = jwt_Decode(userToken);
@@ -74,32 +72,6 @@ const Navbar = () => {
             </div>
           )}
         </div>
-        {/* <div className={css.right_navbarHeadings}>
-          {authSuccess === true ? (
-            <div className="login-navlink">
-              <div className={css.headings}>
-                <AccountCircleIcon />
-                <span>Hi, {Emp_name}</span>
-              </div>
-              <div className={css.headings}>
-                <NavLink
-                  to="/Home"
-                  onClick={() => {
-                    logout(Emp_id);
-                  }}
-                >
-                  Logout
-                </NavLink>
-              </div>
-            </div>
-          ) : (
-            <div>
-              <div className={css.headings} onClick={run}>
-                Sign In/Sign Up
-              </div>
-            </div>
-          )}
-        </div> */}
       </nav>
     </div>
   );
