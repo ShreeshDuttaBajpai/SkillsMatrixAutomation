@@ -21,9 +21,10 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from 'axios';
 import Alert from '@material-ui/lab/Alert';
 import { useAuth } from '../auth.context';
+import { Input } from '@material-ui/core';
 
 const tableIcons = {
-  Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
+  Add: forwardRef((props, ref) => <AddBox {...props}  ref={ref}  />),
   Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
   Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
   Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
@@ -65,7 +66,17 @@ function Tables() {
         1: 'CW'
       }
     },
-    { title: 'Team', field: 'team' },
+    { title: 'Team',
+      field: 'team',
+      lookup:{
+        1:'CNS',
+        2:'Mobile Team',
+        3:'Partner Service',
+        4:'Contacts',
+        5:'CP',
+        6:'Event Bridge'
+      }
+    },
     {
       title: 'Name',
       field: 'name',
@@ -147,6 +158,21 @@ function Tables() {
     if (newData.Client === '') {
       errorList.push('Please enter a Client');
     }
+    if (newData.Ticket_type === '') {
+      errorList.push('Please enter Ticket_type');
+    }
+    if (newData.Story_point === '') {
+      errorList.push('Please enter Story_point');
+    }
+    if (newData.Start_date === '') {
+      errorList.push('Please enter Start_date');
+    }
+    if (newData.Hours === '') {
+      errorList.push('Please enter a Hours');
+    }
+    if (newData.Status === '') {
+      errorList.push('Please enter a Status');
+    }
 
     if (errorList.length < 1) {
       api
@@ -189,6 +215,22 @@ function Tables() {
     if (newData.client === undefined) {
       errorList.push('Please enter a Client');
     }
+    if (newData.ticket_type === undefined) {
+      errorList.push('Please enter Ticket_type');
+    }
+    if (newData.story_point === undefined) {
+      errorList.push('Please enter Story_point');
+    }
+    if (newData.start_date === undefined) {
+      errorList.push('Please enter Start_date');
+    }
+    if (newData.hours === undefined) {
+      errorList.push('Please enter Hours');
+    }
+    if (newData.status === undefined) {
+      errorList.push('Please enter Status');
+    }
+
 
     if (errorList.length < 1) {
       //no error
@@ -268,6 +310,7 @@ function Tables() {
                 onRowAdd: newData =>
                   new Promise(resolve => {
                     handleRowAdd(newData, resolve);
+                    // window.location.reload();
                   }),
                 onRowDelete: oldData =>
                   new Promise(resolve => {

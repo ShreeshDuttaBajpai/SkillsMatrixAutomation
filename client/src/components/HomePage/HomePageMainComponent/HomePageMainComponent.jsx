@@ -43,7 +43,7 @@ function HomePageMainComponent() {
           <div className={css.loginButton}>
             {authSuccess === true ? (
               <h3 className={css.welcomeMessage}>
-                Welcome to SAM - Automation Tool for Story Tracker
+                Welcome to AMS - Automation Tool for Story Tracker
               </h3>
             ) : (
               <ButtonComponent

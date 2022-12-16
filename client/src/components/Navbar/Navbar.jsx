@@ -31,7 +31,7 @@ const Navbar = () => {
           </h3>
 
           <div className={css.headings}>
-            <NavLink to="/Home">Home</NavLink>
+            <NavLink to="/">Home</NavLink>
           </div>
           {authSuccess === true ? (
             <div className="login-navlink">
@@ -51,7 +51,7 @@ const Navbar = () => {
                 </div>
                 <div className={css.headings}>
                   <NavLink
-                    to="/Home"
+                    to="/"
                     onClick={() => {
                       logout(Emp_id);
                     }}
