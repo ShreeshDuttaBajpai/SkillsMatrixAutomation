@@ -1,19 +1,25 @@
-const StoryTracker = 'StoryTracker';
+const Home = 'Home';
+const Story = 'Story';
+const Tracker = 'Tracker';
 const Dashboard = 'Dashboard';
-const CodeReview = 'CodeReview';
+const Code = 'Code';
+const Review = 'Review';
 const Reports = 'Reports';
 const Signin = 'Signin';
 const SignUp = 'SignUp';
+const Hi = 'Hi';
 const Logout = 'Logout';
-const Home = 'Home';
 
 export default {
-  StoryTracker,
+  Home,
+  Story,
+  Tracker,
   Dashboard,
-  CodeReview,
+  Code,
+  Review,
   Reports,
   Signin,
   SignUp,
-  Logout,
-  Home
+  Hi,
+  Logout
 };

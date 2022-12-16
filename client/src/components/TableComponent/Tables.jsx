@@ -236,7 +236,7 @@ function Tables() {
   };
   return (
     <div className="App" style={{ marginTop: '60px' }}>
-      <h2 style={{ textAlign: 'center' }}>User Details</h2>
+      <h2 style={{ textAlign: 'center' }}>User Dashboard</h2>
       <Grid container spacing={1}>
         <Grid item xs={1}></Grid>
         <Grid item xs={10}>
@@ -264,14 +264,17 @@ function Tables() {
                 onRowUpdate: (newData, oldData) =>
                   new Promise(resolve => {
                     handleRowUpdate(newData, oldData, resolve);
+                    window.location.reload();
                   }),
                 onRowAdd: newData =>
                   new Promise(resolve => {
                     handleRowAdd(newData, resolve);
+                    window.location.reload();
                   }),
                 onRowDelete: oldData =>
                   new Promise(resolve => {
                     handleRowDelete(oldData, resolve);
+                    window.location.reload();
                   })
               }
             }

@@ -27,27 +27,33 @@ const Navbar = () => {
           </NavLink>
 
           <h3 className={css.navbarBrand}>
-            <NavLink to="/Home">Story Tracker</NavLink>
+            <NavLink to="/Home">
+              {con.Story} {con.Tracker}
+            </NavLink>
           </h3>
 
           <div className={css.headings}>
-            <NavLink to="/Home">Home</NavLink>
+            <NavLink to="/Home">{con.Home}</NavLink>
           </div>
           {authSuccess === true ? (
             <div className="login-navlink">
               <div className={css.headings}>
-                <NavLink to="/Table">Dashboard</NavLink>
+                <NavLink to="/Table">{con.Dashboard}</NavLink>
               </div>
               <div className={css.headings}>
-                <NavLink to="/codereview">Code Review</NavLink>
+                <NavLink to="/CodeReview">
+                  {con.Code} {con.Review}
+                </NavLink>
               </div>
               <div className={css.headings}>
-                <NavLink to="/codereview">Reports</NavLink>
+                <NavLink to="/codereview">{con.Reports}</NavLink>
               </div>
               <div className={css.right_navbarHeadings}>
                 <div className={css.headings}>
                   <AccountCircleIcon />
-                  <span>Hi, {Emp_name}</span>
+                  <span>
+                    {con.Hi}, {Emp_name}
+                  </span>
                 </div>
                 <div className={css.headings}>
                   <NavLink
@@ -56,7 +62,7 @@ const Navbar = () => {
                       logout(Emp_id);
                     }}
                   >
-                    Logout
+                    {con.Logout}
                   </NavLink>
                 </div>
               </div>
@@ -67,7 +73,7 @@ const Navbar = () => {
                 className={css.right_navbarHeadingsBeforeLogin}
                 onClick={run}
               >
-                Sign In/Sign Up
+                {con.Signin}/{con.SignUp}
               </div>
             </div>
           )}

@@ -15,6 +15,7 @@ import { useAuth } from '../src/components/auth.context';
 import jwt_decode from 'jwt-decode';
 // import { Table } from '@material-ui/core';
 import TablePage from '../src/Pages/TablePage';
+import { CodeReview } from './Pages/CodeReview';
 
 const store = configureStore();
 // const dynamicLoad = dynamicLoader(store);
@@ -45,6 +46,7 @@ const App = () => {
               <Route path="/User" component={UserPage} />
               <Route path="/Admin" component={AdminPage} />
               <Route path="/Table" component={TablePage} />
+              <Route path="/CodeReview" component={CodeReview} />
               if (Emp_designation=="Associate Software Engineer")
               {
                 <Route>
