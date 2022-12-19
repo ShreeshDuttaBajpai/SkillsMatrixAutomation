@@ -50,9 +50,7 @@ export const AuthProvider = props => {
       scopes: ['user.read']
     };
     let loginResponse = await client.loginPopup(request);
-    // console.dir(loginResponse);
     let tokenResponse = await client.acquireTokenSilent(request);
-    // console.dir(tokenResponse);
     let payload = await fetch('https://graph.microsoft.com/beta/me', {
       headers: {
         Authorization: 'Bearer ' + tokenResponse.accessToken
@@ -67,8 +65,6 @@ export const AuthProvider = props => {
         emp_designation: json.jobTitle
       };
     });
-    //console.log(json.displayName,json.employeeId,json.jobTitle);
-    // window.location.reload();
   }
 
   return (
