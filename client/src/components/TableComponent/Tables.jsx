@@ -23,6 +23,8 @@ import Alert from '@material-ui/lab/Alert';
 import { useAuth } from '../auth.context';
 import { Input } from '@material-ui/core';
 
+export const TABLE_AS_PER_USER = 'TABLE_AS_PER_USER';
+
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
   Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -47,7 +49,7 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-function Tables() {
+function Tables(props) {
   const { userToken } = useAuth();
   const decoded = jwt_decode(userToken);
 
@@ -79,7 +81,7 @@ function Tables() {
         'Partner Service': 'Partner Service',
         Contacts: 'Contacts',
         CP: 'CP',
-        'Event Bridge' : 'Event Bridge'
+        'Event Bridge': 'Event Bridge'
       }
     },
     {
@@ -281,7 +283,7 @@ function Tables() {
   };
   return (
     <div className="App" style={{ marginTop: '60px' }}>
-      <h2 style={{ textAlign: 'center' }}>User Dashboard</h2>
+      <h2 style={{ textAlign: 'center' }}>{props.dashboard}</h2>
       <Grid container spacing={1}>
         <Grid item xs={1}></Grid>
         <Grid item xs={10}>
