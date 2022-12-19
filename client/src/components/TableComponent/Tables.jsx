@@ -64,16 +64,22 @@ function Tables() {
   var columns = [
     
     { title: 'Ticket_no', field: 'ticket_no', editable: 'onAdd' },
-
+    {
+      title: 'Client',
+      field: 'client',
+      lookup: {
+        CW: 'CW'
+      }
+    },
     { title: 'Team',
       field: 'team',
       lookup: {
-        1: 'CNS',
-        2: 'Mobile Team',
-        3: 'Partner Service',
-        4: 'Contacts',
-        5: 'CP',
-        6: 'Event Bridge'
+        CNS: 'CNS',
+        'Mobile Team': 'Mobile Team',
+        'Partner Service': 'Partner Service',
+        Contacts: 'Contacts',
+        CP: 'CP',
+        'Event Bridge' : 'Event Bridge'
       }
     },
     {
@@ -86,10 +92,10 @@ function Tables() {
       title: 'Ticket_type',
       field: 'ticket_type',
       lookup: {
-        1: 'Story',
-        2: 'Bug',
-        3: 'Task',
-        4: 'Sub-Task'
+        Story: 'Story',
+        Bug: 'Bug',
+        Task: 'Task',
+        'Sub-Task': 'Sub-Task'
       }
     },
     { title: 'Story_point', field: 'story_point' },
@@ -100,9 +106,9 @@ function Tables() {
       title: 'Status',
       field: 'status',
       lookup: {
-        1: 'Completed',
-        2: 'InProgress',
-        3: 'Incomplete'
+        Completed: 'Completed',
+        InProgress: 'InProgress',
+        Incomplete: 'Incomplete'
       }
     },
     { title: 'Code_Reviewer', field: 'code_reviewer' },
@@ -302,11 +308,11 @@ function Tables() {
             //Add, Edit & Update functionality to User Only
             editable={
               decoded.Emp_designation !== 'Engineering Manager' && {
-                onRowUpdate: (newData, oldData) =>
-                  new Promise(resolve => {
-                    handleRowUpdate(newData, oldData, resolve);
-                    window.location.reload();
-                  }),
+                // onRowUpdate: (newData, oldData) =>
+                //   new Promise(resolve => {
+                //     handleRowUpdate(newData, oldData, resolve);
+                //     window.location.reload();
+                //   }),
                 onRowAdd: newData =>
                   new Promise(resolve => {
                     handleRowAdd(newData, resolve);
