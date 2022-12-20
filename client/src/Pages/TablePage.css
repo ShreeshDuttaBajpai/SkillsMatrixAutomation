@@ -1,0 +1,29 @@
+.bgHomePicture{
+    opacity: 0.3;
+    width: 100%;
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 17rem;
+    padding-bottom: 10rem;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+}
+.showForm{
+    opacity: 1 ;
+	transition: 0.4s;
+}
+
+.hideForm{
+    opacity: 0;
+	transition: 0.4s;
+}
+
+.tabb{
+    background-color: rgb(172, 219, 231);
+}

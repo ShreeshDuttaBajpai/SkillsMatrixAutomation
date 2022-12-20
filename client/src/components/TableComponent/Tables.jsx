@@ -62,6 +62,7 @@ function Tables() {
   });
 
   var columns = [
+    
     { title: 'Ticket_no', field: 'ticket_no', editable: 'onAdd' },
     {
       title: 'Client',
@@ -125,7 +126,7 @@ function Tables() {
     decoded.Emp_designation === 'Engineering Manager'
       ? { title: 'Remarks', field: 'remarks' }
       : { title: 'Remarks', field: 'remarks', editable: 'never' }
-  ];
+    ];
   const [data, setData] = useState([]); //table data
   const [iserror, setIserror] = useState(false);
   const [errorMessages, setErrorMessages] = useState([]);
@@ -163,9 +164,9 @@ function Tables() {
     if (newData.Name === '') {
       errorList.push('Please enter Name');
     }
-    if (newData.Client === '') {
-      errorList.push('Please enter a Client');
-    }
+    // if (newData.Client === '') {
+    //   errorList.push('Please enter a Client');
+    // }
     if (newData.Ticket_type === '') {
       errorList.push('Please enter Ticket_type');
     }
@@ -216,9 +217,10 @@ function Tables() {
     if (newData.team === undefined) {
       errorList.push('Please enter Team');
     }
-    if (newData.client === undefined) {
-      errorList.push('Please enter a Client');
+    if (newData.name === undefined) {
+      errorList.push('Please enter Name');
     }
+  
     if (newData.ticket_type === undefined) {
       errorList.push('Please enter Ticket_type');
     }
@@ -298,11 +300,12 @@ function Tables() {
             mt={90}
             title="Client : ConnectWise"
             columns={columns}
+            options={{columnsButton:true}}
             data={data}
             icons={tableIcons}
-            options={{
-              headerStyle: { size: '80px' }
-            }}
+            // options={{
+            //   headerStyle: { size: '80px' }
+            // }}
             //Add, Edit & Update functionality to User Only
             editable={
               decoded.Emp_designation !== 'Engineering Manager' && {
@@ -329,6 +332,10 @@ function Tables() {
       </Grid>
     </div>
   );
+}
+
+function add() {
+  return <h2>Hii</h2>
 }
 
 export default Tables;

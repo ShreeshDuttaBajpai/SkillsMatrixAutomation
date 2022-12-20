@@ -32,9 +32,9 @@ const Navbar = () => {
             </NavLink>
           </h3>
 
-          <div className={css.headings}>
+          {/* <div className={css.headings}>
             <NavLink to="/Home">{con.Home}</NavLink>
-          </div>
+          </div> */}
           {authSuccess === true ? (
             <div className="login-navlink">
               <div className={css.headings}>
