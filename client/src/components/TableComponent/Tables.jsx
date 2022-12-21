@@ -63,7 +63,7 @@ function Tables() {
 
   var columns = [
     
-    { title: 'Ticket_no', field: 'ticket_no', editable: 'onAdd' },
+    { title: 'Ticket No', field: 'ticket_no', editable: 'onAdd' },
     {
       title: 'Client',
       field: 'client',
@@ -89,7 +89,7 @@ function Tables() {
       editable: 'never'
     },
     {
-      title: 'Ticket_type',
+      title: 'Ticket Type',
       field: 'ticket_type',
       lookup: {
         Story: 'Story',
@@ -98,7 +98,7 @@ function Tables() {
         'Sub-Task': 'Sub-Task'
       }
     },
-    { title: 'Story_point', field: 'story_point' },
+    { title: 'Story Point', field: 'story_point' },
     { title: 'Start_date', field: 'start_date', type: 'date' },
     { title: 'End_date', field: 'end_date', type: 'date' },
     { title: 'Hours', field: 'hours' },
@@ -111,17 +111,17 @@ function Tables() {
         Incomplete: 'Incomplete'
       }
     },
-    { title: 'Code_Reviewer', field: 'code_reviewer' },
+    { title: 'Code Reviewer', field: 'code_reviewer' },
     decoded.Emp_designation === 'Engineering Manager'
-      ? { title: 'Code_deviation_count', field: 'code_deviation_count' }
+      ? { title: 'Code_deviation Count', field: 'code_deviation_count' }
       : {
-          title: 'Code_deviation_count',
+          title: 'Code Deviation Count',
           field: 'code_deviation_count',
           editable: 'never'
         },
     decoded.Emp_designation === 'Engineering Manager'
-      ? { title: 'Bugs_count', field: 'bugs_count' }
-      : { title: 'Bugs_count', field: 'bugs_count', editable: 'never' },
+      ? { title: 'Bugs Count', field: 'bugs_count' }
+      : { title: 'Bugs Count', field: 'bugs_count', editable: 'never' },
     decoded.Emp_designation === 'Engineering Manager'
       ? { title: 'Remarks', field: 'remarks' }
       : { title: 'Remarks', field: 'remarks', editable: 'never' }
