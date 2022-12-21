@@ -7,13 +7,30 @@ import { ButtonComponent } from '../components/ButtonComponent/ButtonComponent';
 
 function TablePage() {
   const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(!open);
+  };
+
   return (    
     <>  
       <Navbar/>
+      <div className={css.dropdown}>
             <ButtonComponent
                 cname={css.button1}
                 value="Actions"
+                run={handleOpen}
             />
+            {open ? (
+        <ul className="menu">
+          <li className="menu-item">
+            <button>Edit</button>
+          </li>
+          <li className="menu-item">
+            <button>Delete</button>
+          </li>
+        </ul>
+      ) : null}
+      </div>
       <Tables />
       </>
   )
