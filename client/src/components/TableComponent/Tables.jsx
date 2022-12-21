@@ -334,8 +334,4 @@ function Tables() {
   );
 }
 
-function add() {
-  return <h2>Hii</h2>
-}
-
 export default Tables;

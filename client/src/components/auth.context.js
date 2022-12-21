@@ -67,10 +67,6 @@ export const AuthProvider = props => {
     });
   }
 
-  // function add(){
-
-  // }
-
   return (
     <AuthContext.Provider
       value={{ userToken, setUserToken, authSuccess, logout, run, myData }}

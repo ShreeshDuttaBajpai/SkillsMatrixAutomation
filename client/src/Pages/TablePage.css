@@ -17,6 +17,9 @@
 .showForm{
     opacity: 1 ;
 	transition: 0.4s;
+    position: absolute;
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 
 .hideForm{

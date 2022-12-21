@@ -46,7 +46,28 @@ function TablePage() {
                 setOpenForm = {setOpenForm}
             />
         <div className={openForm ? css.showForm : css.hideForm }>
-          <h2>Hii</h2>
+          {/* <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+          <TextField id="filled-basic" label="Filled" variant="filled" />
+          <TextField id="standard-basic" label="Standard" variant="standard" /> */}
+          <form className={css.tableForm}>
+              <label>
+                Enter Table Name:
+                <input type="text" name="Table Name" />
+              </label>
+              <label>
+                Enter Column 1 Name:
+                <input type="text" name="Column 1 Name" />
+              </label>
+              <label>
+                Enter Column 2 Name:
+                <input type="text" name="Column 2 Name" />
+              </label>
+              <label>
+                Enter Column 3 Name:
+                <input type="text" name="Column 3 Name" />
+              </label>
+              <input type="submit" value="Add" />
+          </form>
         </div>
       <Tables />
       
