@@ -14,7 +14,7 @@
     padding: 0;
     position: absolute;
 }
-.showForm{
+/* .showForm{
     opacity: 1 ;
 	transition: 0.4s;
     position: absolute;
@@ -25,7 +25,7 @@
 .hideForm{
     opacity: 0;
 	transition: 0.4s;
-}
+} */
 
 .tabb{
     background-color: rgb(172, 219, 231);
