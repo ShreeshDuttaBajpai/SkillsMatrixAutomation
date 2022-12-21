@@ -2,6 +2,8 @@ export const ON_INIT = 'ON_INIT';
 export const TOGGLE_DESKTOP = 'LAYOUT_DESKTOP_TOGGLE_FULLSCREEN';
 export const INIT_GET_API_CALL = 'INIT_GET_API_CALL';
 export const REFRESH_DATA = 'REFRESH_DATA';
+export const MY_DATA = 'MY_DATA';
+export const AUTH_SUCCESS='AUTH_SUCCESS';
 
 // export const USER_TOKEN = 'USER_TOKEN';
 // export const AUTH_SUCCESS = 'AUTH_SUCCESS';

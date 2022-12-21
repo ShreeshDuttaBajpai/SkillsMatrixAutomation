@@ -2,14 +2,16 @@ import React from 'react';
 import css from './HomepageMainComponent.css';
 import bglogo from '../../../assests/homeLogo.png';
 import bgHomePicture from '../../../assests/bg-image.jpg';
+import homeimg1 from '../../../assests/homeimg1.jpg';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../auth.context';
 import Cookies from 'universal-cookie';
 import { ButtonComponent } from '../../ButtonComponent/ButtonComponent';
+import { NavLink, useNavigate } from 'react-router-dom';
 
-function HomePageMainComponent() {
-  const { run, myData, authSuccess } = useAuth();
+function HomePageMainComponent(props) {
+  const { authSuccess } = useAuth();
 
   <script
     type="text/javascript"
@@ -17,24 +19,28 @@ function HomePageMainComponent() {
   ></script>;
 
   useEffect(() => {
-    console.log(myData);
-    if (myData)
-      axios.post('https://localhost:7040/api/Emp', myData).then(res => {
+    console.log(props.myData);
+    if (props.myData)
+      axios.post('https://localhost:7040/api/Emp', props.myData).then(res => {
         const token = res.data;
         const cookies = new Cookies();
         cookies.set('my_cookie', token);
-        window.location.reload();
+        // window.location.reload();
       });
-  }, [myData]);
+  }, [props.myData]);
 
   useEffect(() => {
-    myData && alert('Hello ' + myData.emp_name + ' ,Id- ' + myData.emp_id);
-  }, [myData]);
+    props.myData &&
+      alert('Hello ' + props.myData.emp_name + ' ,Id- ' + props.myData.emp_id);
+  }, [props.myData]);
 
   return (
     <div className={css.home}>
       <img className={css.bgHomePicture} src={bgHomePicture}></img>
       <div className={css.pageContent}>
+        <div className={css.homeimg}>
+          <img src={homeimg1}></img>
+        </div>
         <div className={css.homeLogo}>
           <img src={bglogo}></img>
           <div className={css.loginButton}>
@@ -46,7 +52,7 @@ function HomePageMainComponent() {
               <ButtonComponent
                 cname={css.button1}
                 value="Continue With Microsoft"
-                run={run}
+                run={() => props.run}
               />
             )}
           </div>
