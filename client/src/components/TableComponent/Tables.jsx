@@ -307,7 +307,7 @@ function Tables(props) {
             options={{
               selection: true
             }}
-            onSelectionChange={(rows) => {if (rows.length>0)
+            onSelectionChange={(rows) => {if (rows.length===1)
             props.setSelected(true);
           else{
             props.setSelected(false);

@@ -6,8 +6,9 @@ import bgHomePicture from '../assests/bg-image.jpg';
 import { ButtonComponent } from '../components/ButtonComponent/ButtonComponent';
 
 function TablePage() {
-  const [open, setOpen] = React.useState(false);
-  const [select, setSelected] = useState(false);
+  const [open, setOpen] = React.useState();
+  const [openActions, setOpenActions] = useState();
+  const [selected, setSelected] = useState();
   const handleOpen = () => {
     setOpen(!open);
   };
@@ -16,27 +17,28 @@ function TablePage() {
     <div className={css.tabb}>  
       <Navbar/>
       <div className={css.dropdown}>
-            <ButtonComponent select={select}
+            <ButtonComponent selected={selected}
                 cname={css.button1}
                 value="Actions"
-                run={handleOpen}
+                disable={true}
+                // run={handleOpen}
             />
             {open ? (
-        <ul className={css.menu}>
-         
+        <li className={css.menu}>
           <li className={css.menu_item}>
             <button>Edit</button>
           </li>
           <li className="menu-item">
             <button>Delete</button>
           </li>
-        </ul>
+        </li>
       ) : null}
       </div>
       <div className={css.dropdowndiv}>
         <ButtonComponent
         cname={css.button1}
         value="Add"
+        disable={false}
         run={handleOpen}
         />
         {open?(

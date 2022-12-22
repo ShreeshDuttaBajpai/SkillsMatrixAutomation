@@ -36,8 +36,9 @@
     /* padding: 1rem;     */
   }
   .formdiv{
+    margin-top: 5rem;
     position: absolute;
-    z-index: 2;
+    z-index: 4;
   }
   .dropdownndiv .button1{
     padding: 1rem;
