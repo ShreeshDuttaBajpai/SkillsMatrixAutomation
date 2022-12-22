@@ -7,6 +7,7 @@ import { ButtonComponent } from '../components/ButtonComponent/ButtonComponent';
 
 function TablePage() {
   const [open, setOpen] = React.useState(false);
+  const [select, setSelected] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
@@ -15,23 +16,23 @@ function TablePage() {
     <>  
       <Navbar/>
       <div className={css.dropdown}>
-            <ButtonComponent
+            <ButtonComponent select={select}
                 cname={css.button1}
                 value="Actions"
                 run={handleOpen}
             />
             {open ? (
-        <ul className="menu">
-          <li className="menu-item">
-            <button>Edit</button>
-          </li>
-          <li className="menu-item">
-            <button>Delete</button>
-          </li>
-        </ul>
+              <ul className="menu">
+                <ul className="menu-item">
+                  <button>Edit</button>
+                </ul>
+                <ul className="menu-item">
+                  <button>Delete</button>
+                </ul>
+              </ul>
       ) : null}
       </div>
-      <Tables />
+      <Tables setSelected={setSelected} />
       </>
   )
 }

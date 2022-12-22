@@ -22,8 +22,10 @@ import axios from 'axios';
 import Alert from '@material-ui/lab/Alert';
 import { useAuth } from '../auth.context';
 import { Input } from '@material-ui/core';
+import css from "../TableComponent/Table.css"
 
 const tableIcons = {
+  
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
   Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
   Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
@@ -47,7 +49,7 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-function Tables() {
+function Tables(props) {
   const { userToken } = useAuth();
   const decoded = jwt_decode(userToken);
 
@@ -63,14 +65,14 @@ function Tables() {
 
   var columns = [
     
-    { title: 'Ticket_no', field: 'ticket_no', editable: 'onAdd' },
-    {
-      title: 'Client',
-      field: 'client',
-      lookup: {
-        CW: 'CW'
-      }
-    },
+    { title: 'Ticket_no', field: 'ticket_no', editable: 'onAdd', width:'10%' },
+    // {
+    //   title: 'Client',
+    //   field: 'client',
+    //   lookup: {
+    //     CW: 'CW'
+    //   }
+    // },
     {
       title: 'Team',
       field: 'team',
@@ -81,27 +83,27 @@ function Tables() {
         Contacts: 'Contacts',
         CP: 'CP',
         'Event Bridge' : 'Event Bridge'
-      }
+      }, width:'20%'
     },
+    // {
+    //   title: 'Name',
+    //   field: 'name',
+    //   initialEditValue: decoded.Emp_name,
+    //   editable: 'never'
+    // },
     {
-      title: 'Name',
-      field: 'name',
-      initialEditValue: decoded.Emp_name,
-      editable: 'never'
-    },
-    {
-      title: 'Ticket_type',
+      title: 'Ticket Type',
       field: 'ticket_type',
       lookup: {
         Story: 'Story',
         Bug: 'Bug',
         Task: 'Task',
         'Sub-Task': 'Sub-Task'
-      }
+      }, width:'20%'
     },
-    { title: 'Story_point', field: 'story_point' },
-    { title: 'Start_date', field: 'start_date', type: 'date' },
-    { title: 'End_date', field: 'end_date', type: 'date' },
+    // { title: 'Story Point', field: 'story_point' },
+    { title: 'Start date', field: 'start_date', type: 'date' },
+    { title: 'End date', field: 'end_date', type: 'date' },
     { title: 'Hours', field: 'hours' },
     {
       title: 'Status',
@@ -110,26 +112,27 @@ function Tables() {
         Completed: 'Completed',
         InProgress: 'InProgress',
         Incomplete: 'Incomplete'
-      }
+      }, width:'50%'
     },
-    { title: 'Code_Reviewer', field: 'code_reviewer' },
-    decoded.Emp_designation === 'Engineering Manager'
-      ? { title: 'Code_deviation_count', field: 'code_deviation_count' }
-      : {
-          title: 'Code_deviation_count',
-          field: 'code_deviation_count',
-          editable: 'never'
-        },
-    decoded.Emp_designation === 'Engineering Manager'
-      ? { title: 'Bugs_count', field: 'bugs_count' }
-      : { title: 'Bugs_count', field: 'bugs_count', editable: 'never' },
-    decoded.Emp_designation === 'Engineering Manager'
-      ? { title: 'Remarks', field: 'remarks' }
-      : { title: 'Remarks', field: 'remarks', editable: 'never' }
+    // { title: 'Code Reviewer', field: 'code_reviewer' },
+    // decoded.Emp_designation === 'Engineering Manager'
+    //   ? { title: 'Code Deviation Count', field: 'code_deviation_count' }
+    //   : {
+          // title: 'Code Deviation Count',
+          // field: 'code_deviation_count',
+          // editable: 'never'
+    //     },
+    // decoded.Emp_designation === 'Engineering Manager'
+    //   ? { title: 'Bugs Count', field: 'bugs_count' }
+    //   : { title: 'Bugs_count', field: 'bugs_count', editable: 'never' },
+    // decoded.Emp_designation === 'Engineering Manager'
+    //   ? { title: 'Remarks', field: 'remarks' }
+    //   : { title: 'Remarks', field: 'remarks', editable: 'never' }
     ];
   const [data, setData] = useState([]); //table data
   const [iserror, setIserror] = useState(false);
   const [errorMessages, setErrorMessages] = useState([]);
+
 
   useEffect(() => {
     if (window.location.pathname === '/CodeReview') {
@@ -208,59 +211,59 @@ function Tables() {
     }
   };
   //Add Data of User
-  const handleRowAdd = (newData, resolve) => {
-    //validation
-    let errorList = [];
-    if (newData.ticket_no === undefined) {
-      errorList.push('Please enter Ticket_no');
-    }
-    if (newData.team === undefined) {
-      errorList.push('Please enter Team');
-    }
-    if (newData.name === undefined) {
-      errorList.push('Please enter Name');
-    }
+  // const handleRowAdd = (newData, resolve) => {
+  //   //validation
+  //   let errorList = [];
+  //   if (newData.ticket_no === undefined) {
+  //     errorList.push('Please enter Ticket_no');
+  //   }
+  //   if (newData.team === undefined) {
+  //     errorList.push('Please enter Team');
+  //   }
+  //   if (newData.name === undefined) {
+  //     errorList.push('Please enter Name');
+  //   }
   
-    if (newData.ticket_type === undefined) {
-      errorList.push('Please enter Ticket_type');
-    }
-    if (newData.story_point === undefined) {
-      errorList.push('Please enter Story_point');
-    }
-    if (newData.start_date === undefined) {
-      errorList.push('Please enter Start_date');
-    }
-    if (newData.hours === undefined) {
-      errorList.push('Please enter Hours');
-    }
-    if (newData.status === undefined) {
-      errorList.push('Please enter Status');
-    }
+  //   if (newData.ticket_type === undefined) {
+  //     errorList.push('Please enter Ticket_type');
+  //   }
+  //   if (newData.story_point === undefined) {
+  //     errorList.push('Please enter Story_point');
+  //   }
+  //   if (newData.start_date === undefined) {
+  //     errorList.push('Please enter Start_date');
+  //   }
+  //   if (newData.hours === undefined) {
+  //     errorList.push('Please enter Hours');
+  //   }
+  //   if (newData.status === undefined) {
+  //     errorList.push('Please enter Status');
+  //   }
 
-    if (errorList.length < 1) {
-      //no error
-      api
-        .post('/', newData)
-        .then(res => {
-          let dataToAdd = [...data];
-          dataToAdd.push(newData);
-          setData(dataToAdd);
-          resolve();
-          setErrorMessages([]);
-          setIserror(false);
-          window.location.reload();
-        })
-        .catch(error => {
-          setErrorMessages(['Cannot add data. Server error!']);
-          setIserror(true);
-          resolve();
-        });
-    } else {
-      setErrorMessages(errorList);
-      setIserror(true);
-      resolve();
-    }
-  };
+  //   if (errorList.length < 1) {
+  //     //no error
+  //     api
+  //       .post('/', newData)
+  //       .then(res => {
+  //         let dataToAdd = [...data];
+  //         dataToAdd.push(newData);
+  //         setData(dataToAdd);
+  //         resolve();
+  //         setErrorMessages([]);
+  //         setIserror(false);
+  //         window.location.reload();
+  //       })
+  //       .catch(error => {
+  //         setErrorMessages(['Cannot add data. Server error!']);
+  //         setIserror(true);
+  //         resolve();
+  //       });
+  //   } else {
+  //     setErrorMessages(errorList);
+  //     setIserror(true);
+  //     resolve();
+  //   }
+  // };
   //Delete records
   const handleRowDelete = (oldData, resolve) => {
     console.log(oldData);
@@ -284,7 +287,7 @@ function Tables() {
   return (
     <div className="App" style={{ marginTop: '60px' }}>
       <h2 style={{ textAlign: 'center' }}>User Dashboard</h2>
-      <Grid container spacing={1}>
+      <Grid container spacing={0.2}>
         <Grid item xs={1}></Grid>
         <Grid item xs={10}>
           <div>
@@ -296,11 +299,21 @@ function Tables() {
               </Alert>
             )}
           </div>
-          <MaterialTable
-            mt={90}
+          <MaterialTable 
+            mt={20}
             title="Client : ConnectWise"
-            columns={columns}
-            options={{columnsButton:true}}
+            columns={columns } 
+            
+            options={{
+              selection: true
+            }}
+            onSelectionChange={(rows) => {if (rows.length>0)
+            props.setSelected(true);
+          else{
+            props.setSelected(false);
+              }
+            }
+          }
             data={data}
             icons={tableIcons}
             // options={{
@@ -319,13 +332,10 @@ function Tables() {
                     handleRowAdd(newData, resolve);
                     // window.location.reload();
                   }),
-                onRowDelete: oldData =>
-                  new Promise(resolve => {
-                    handleRowDelete(oldData, resolve);
-                    window.location.reload();
-                  })
+
               }
             }
+            
           />
         </Grid>
         <Grid item xs={1}></Grid>
