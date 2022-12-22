@@ -40,10 +40,40 @@ function TablePage() {
         />
         {open?(
           <div className={css.formdiv}>
+			
             <form className={css.form_popup} id="myForm" >
+			<span>
+						<button
+							className={css.remove_btn}
+							onClick={handleOpen}
+							// onClick={() => {
+							// 	const remove = passList.filter((i, j) => {
+							// 		return index !== j;
+							// 	});
+							// 	setPassList(remove);
+							// }}
+						>
+							X
+						</button>
+					</span>
+
+					
               {/* onSubmit={postPassenger} */}
             <h1>User Details</h1>
+			<span className={css.book_input}>
+		  <h5>Name</h5>
+						<input
+							id="Name"
+							placeholder="Name"
+							required
+							// onChange={(e) => {
+							// 	handleChangeName(index, e);
+							// }}
+						/>
+					</span>
+
             <span className={css.book_input}>
+				<h5>Ticket No.</h5>
 						<input
 							id="Ticket No"
 							placeholder="Ticket No"
@@ -55,6 +85,7 @@ function TablePage() {
 					</span>
 
           <span className={css.book_input}>
+		  <h5>Team</h5>
 						<select
 							// type="number"
 							id="Team"
@@ -70,18 +101,10 @@ function TablePage() {
 							<option>Event Bridge</option>
               </select>
 					</span>
-          <span className={css.book_input}>
-						<input
-							id="Name"
-							placeholder="Name"
-							required
-							// onChange={(e) => {
-							// 	handleChangeName(index, e);
-							// }}
-						/>
-					</span>
+         
 
 					<span className={css.book_input}>
+					<h5>Ticket Type</h5>
 						<select
 							id="Ticket Type"
 							placeholder="Ticket Type"
@@ -98,6 +121,7 @@ function TablePage() {
 					</span>
 			
           <span className={css.book_input}>
+		  <h5>Story Points</h5>
 						<input
 							type="number"
 							id="Story Points"
@@ -110,6 +134,7 @@ function TablePage() {
 					</span>
 
 					<span className={css.book_input}>
+					<h5>Start Date</h5>
 						<input
 							type="Date"
 							id="Start Date"
@@ -118,8 +143,7 @@ function TablePage() {
 							// 	handleChangeUid(index, e);
 							// }}
 						></input>
-					</span>
-          <span className={css.book_input}>
+						 <h5>End Date</h5>
 						<input
 							type="Date"
 							id="End Date"
@@ -129,8 +153,12 @@ function TablePage() {
 							// }}
 						></input>
 					</span>
+          <span className={css.book_input}>
+		 
+					</span>
 
           <span className={css.book_input}>
+		  <h5>Hours</h5>
 						<input
 							type="number"
 							id="Hours"
@@ -140,9 +168,8 @@ function TablePage() {
 							// 	handleChangeAge(index, e);
 							// }}
 						/>
-					</span>
 
-          <span className={css.book_input}>
+						<h5>Status</h5>
 						<select
 							id="Status"
 							placeholder="Status"
@@ -157,7 +184,11 @@ function TablePage() {
 						</select>
 					</span>
 
-					<span>
+          <span className={css.book_input}>
+		  
+					</span>
+
+					{/* <span>
 						<button
 							className={css.remove_btn}
 							onClick={() => {
@@ -169,7 +200,7 @@ function TablePage() {
 						>
 							X
 						</button>
-					</span>
+					</span> */}
 				
 			<div className={css.add_user}>
 				<button
