@@ -27,13 +27,13 @@ const Navbar = () => {
           </NavLink>
 
           <h3 className={css.navbarBrand}>
-            <NavLink to="/Home">
+            <NavLink to="/">
               {con.Story} {con.Tracker}
             </NavLink>
           </h3>
 
           {/* <div className={css.headings}>
-            <NavLink to="/Home">{con.Home}</NavLink>
+            <NavLink to="/">{con.Home}</NavLink>
           </div> */}
           {authSuccess === true ? (
             <div className="login-navlink">
