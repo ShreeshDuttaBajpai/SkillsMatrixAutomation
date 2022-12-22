@@ -12,9 +12,136 @@
     padding-bottom: 10rem;
     overflow: hidden;
     padding: 0;
-    position: absolute;
+    position: relative;
 }
+
+/* .showForm{
+    opacity: 1 ;
+	transition: 0.4s;
+    position: absolute;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.hideForm{
+    opacity: 0;
+	transition: 0.4s;
+} */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    z-index: 2;
+    /* display: inline; */
+    /* padding: 1rem;     */
+  }
+  .formdiv{
+    position: absolute;
+    z-index: 2;
+  }
+  .dropdownndiv .button1{
+    padding: 1rem;
+  }
+
+  /* .menu {
+    position: absolute;
+  
+    list-style-type: none;
+    margin: 5px 0;
+    padding: 0;
+  
+    border: 1px solid grey;
+    width: 150px;
+  }
+  
+  .menu > li {
+    margin: 0;
+  
+    background-color: white;
+  }
+  
+  .menu > li:hover {
+    background-color: lightgray;
+  }
+  
+  .menu > li > button {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+  
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 5px;
+    margin: 0;
+    font: inherit;
+    cursor: pointer;
+  }*/
 
 .tabb{
     background-color: rgb(172, 219, 231);
+    
+} 
+
+
+
+.form_popup{
+  background: #eee;
+  padding: 2rem;
+  border-radius: 5px;
+}
+
+.form_popup h1{
+  font-size: 2rem;
+}
+.add_user .add_btn{
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgb(39, 116, 136);
+  padding: 10px;
+  font-weight: 500;
+}
+.submitadd_btn button{
+  background-color:  rgb(37, 135, 160);
+color: white;
+border: none;
+  font-size: 1.7rem;
+  padding: 7px;
+  border-radius: 5px;
+  cursor: pointer;  
+}
+.submitadd_btn{
+  display: flex;
+  justify-content: center;
+}
+.remove_btn{
+  background-color:  rgb(35, 120, 141);
+color: white;
+border: none;
+  font-size: 1.7rem;
+  padding: 7px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.book_input{
+  margin-right: 1rem;
+}
+.book-input input,select{
+  padding: 6px;
+  
+}
+select{
+  background-color: #eee;
+  border: 2px solid;
+  font-weight: 600;
+}
+.form_content{
+  padding: 5px;
+}
+::placeholder{
+  font-weight: 600;
+  color: #1e2227;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }

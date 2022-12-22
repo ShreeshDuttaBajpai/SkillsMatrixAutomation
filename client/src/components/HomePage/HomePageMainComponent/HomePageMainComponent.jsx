@@ -7,10 +7,11 @@ import axios from 'axios';
 import { useAuth } from '../../auth.context';
 import Cookies from 'universal-cookie';
 import { ButtonComponent } from '../../ButtonComponent/ButtonComponent';
+import {useNavigate} from "react-router-dom";
 
 function HomePageMainComponent() {
   const { run, myData, authSuccess } = useAuth();
-
+  // const navigate = useNavigate();
   <script
     type="text/javascript"
     src="https://alcdn.msauth.net/lib/1.3.0/js/msal.js"
@@ -29,6 +30,7 @@ function HomePageMainComponent() {
 
   useEffect(() => {
     myData && alert('Hello ' + myData.emp_name + ' ,Id- ' + myData.emp_id);
+    // myData && navigate("/Table");
   }, [myData]);
 
   return (
