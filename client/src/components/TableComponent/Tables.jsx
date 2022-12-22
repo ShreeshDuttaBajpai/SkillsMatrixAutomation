@@ -22,10 +22,8 @@ import axios from 'axios';
 import Alert from '@material-ui/lab/Alert';
 import { useAuth } from '../auth.context';
 import { Input } from '@material-ui/core';
-import css from "../TableComponent/Table.css"
 
 const tableIcons = {
-  
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
   Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
   Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
@@ -83,14 +81,14 @@ function Tables(props) {
         Contacts: 'Contacts',
         CP: 'CP',
         'Event Bridge' : 'Event Bridge'
-      }, width:'20%'
+      }
     },
-    // {
-    //   title: 'Name',
-    //   field: 'name',
-    //   initialEditValue: decoded.Emp_name,
-    //   editable: 'never'
-    // },
+    {
+      title: 'Name',
+      field: 'name',
+      initialEditValue: decoded.Emp_name,
+      editable: 'never'
+    },
     {
       title: 'Ticket Type',
       field: 'ticket_type',
@@ -99,7 +97,7 @@ function Tables(props) {
         Bug: 'Bug',
         Task: 'Task',
         'Sub-Task': 'Sub-Task'
-      }, width:'20%'
+      }
     },
     // { title: 'Story Point', field: 'story_point' },
     { title: 'Start date', field: 'start_date', type: 'date' },
@@ -132,7 +130,6 @@ function Tables(props) {
   const [data, setData] = useState([]); //table data
   const [iserror, setIserror] = useState(false);
   const [errorMessages, setErrorMessages] = useState([]);
-
   
   useEffect(() => {
     if (window.location.pathname === '/CodeReview') {
@@ -211,59 +208,59 @@ function Tables(props) {
     }
   };
   //Add Data of User
-  // const handleRowAdd = (newData, resolve) => {
-  //   //validation
-  //   let errorList = [];
-  //   if (newData.ticket_no === undefined) {
-  //     errorList.push('Please enter Ticket_no');
-  //   }
-  //   if (newData.team === undefined) {
-  //     errorList.push('Please enter Team');
-  //   }
-  //   if (newData.name === undefined) {
-  //     errorList.push('Please enter Name');
-  //   }
+  const handleRowAdd = (newData, resolve) => {
+    //validation
+    let errorList = [];
+    if (newData.ticket_no === undefined) {
+      errorList.push('Please enter Ticket_no');
+    }
+    if (newData.team === undefined) {
+      errorList.push('Please enter Team');
+    }
+    if (newData.name === undefined) {
+      errorList.push('Please enter Name');
+    }
   
-  //   if (newData.ticket_type === undefined) {
-  //     errorList.push('Please enter Ticket_type');
-  //   }
-  //   if (newData.story_point === undefined) {
-  //     errorList.push('Please enter Story_point');
-  //   }
-  //   if (newData.start_date === undefined) {
-  //     errorList.push('Please enter Start_date');
-  //   }
-  //   if (newData.hours === undefined) {
-  //     errorList.push('Please enter Hours');
-  //   }
-  //   if (newData.status === undefined) {
-  //     errorList.push('Please enter Status');
-  //   }
+    if (newData.ticket_type === undefined) {
+      errorList.push('Please enter Ticket_type');
+    }
+    if (newData.story_point === undefined) {
+      errorList.push('Please enter Story_point');
+    }
+    if (newData.start_date === undefined) {
+      errorList.push('Please enter Start_date');
+    }
+    if (newData.hours === undefined) {
+      errorList.push('Please enter Hours');
+    }
+    if (newData.status === undefined) {
+      errorList.push('Please enter Status');
+    }
 
-  //   if (errorList.length < 1) {
-  //     //no error
-  //     api
-  //       .post('/', newData)
-  //       .then(res => {
-  //         let dataToAdd = [...data];
-  //         dataToAdd.push(newData);
-  //         setData(dataToAdd);
-  //         resolve();
-  //         setErrorMessages([]);
-  //         setIserror(false);
-  //         window.location.reload();
-  //       })
-  //       .catch(error => {
-  //         setErrorMessages(['Cannot add data. Server error!']);
-  //         setIserror(true);
-  //         resolve();
-  //       });
-  //   } else {
-  //     setErrorMessages(errorList);
-  //     setIserror(true);
-  //     resolve();
-  //   }
-  // };
+    if (errorList.length < 1) {
+      //no error
+      api
+        .post('/', newData)
+        .then(res => {
+          let dataToAdd = [...data];
+          dataToAdd.push(newData);
+          setData(dataToAdd);
+          resolve();
+          setErrorMessages([]);
+          setIserror(false);
+          window.location.reload();
+        })
+        .catch(error => {
+          setErrorMessages(['Cannot add data. Server error!']);
+          setIserror(true);
+          resolve();
+        });
+    } else {
+      setErrorMessages(errorList);
+      setIserror(true);
+      resolve();
+    }
+  };
   //Delete records
   const handleRowDelete = (oldData, resolve) => {
     console.log(oldData);
@@ -287,7 +284,7 @@ function Tables(props) {
   return (
     <div className="App" style={{ marginTop: '60px' }}>
       <h2 style={{ textAlign: 'center' }}>User Dashboard</h2>
-      <Grid container spacing={0.2}>
+      <Grid container spacing={1}>
         <Grid item xs={1}></Grid>
         <Grid item xs={10}>
           <div>
@@ -299,8 +296,8 @@ function Tables(props) {
               </Alert>
             )}
           </div>
-          <MaterialTable 
-            mt={20}
+          <MaterialTable
+            mt={90}
             title="Client : ConnectWise"
             columns={columns } 
             
@@ -327,15 +324,18 @@ function Tables(props) {
                 //     handleRowUpdate(newData, oldData, resolve);
                 //     window.location.reload();
                 //   }),
-                onRowAdd: newData =>
-                  new Promise(resolve => {
-                    handleRowAdd(newData, resolve);
-                    // window.location.reload();
-                  }),
-
+                // onRowAdd: newData =>
+                //   new Promise(resolve => {
+                //     handleRowAdd(newData, resolve);
+                //     // window.location.reload();
+                //   }),
+                // onRowDelete: oldData =>
+                //   new Promise(resolve => {
+                //     handleRowDelete(oldData, resolve);
+                //     window.location.reload();
+                //   })
               }
             }
-            
           />
         </Grid>
         <Grid item xs={1}></Grid>
