@@ -112,9 +112,9 @@ function Tables(props) {
         Completed: 'Completed',
         InProgress: 'InProgress',
         Incomplete: 'Incomplete'
-      }, width:'50%'
+      }, width:'20%'
     },
-    // { title: 'Code Reviewer', field: 'code_reviewer' },
+    { title: 'Code Reviewer', field: 'code_reviewer' },
     // decoded.Emp_designation === 'Engineering Manager'
     //   ? { title: 'Code Deviation Count', field: 'code_deviation_count' }
     //   : {
