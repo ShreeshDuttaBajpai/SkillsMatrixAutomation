@@ -60,3 +60,9 @@
   transform: translate(0, -100%);
   transition: transform 300ms ease-in-out;
 }
+
+/* 
+.MuiToolbar-root.MuiToolbar-regular.MTableToolbar-root-4.MuiToolbar-gutters
+{
+  display: none;
+} */

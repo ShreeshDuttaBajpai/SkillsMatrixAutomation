@@ -13,6 +13,10 @@ function TablePage() {
     setOpen(!open);
   };
 
+  const handleOpenActions = () => {
+    setOpenActions(!openActions);
+  };
+
   return (    
     <div className={css.tabb}>  
       <Navbar/>
@@ -21,9 +25,9 @@ function TablePage() {
                 cname={css.button1}
                 value="Actions"
                 disable={true}
-                // run={handleOpen}
+                run={handleOpenActions}
             />
-            {open ? (
+            {openActions ? (
         <ul className={css.menu}>
           <li className={css.menu_item}>
             <button>Edit</button>

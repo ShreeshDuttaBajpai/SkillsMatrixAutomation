@@ -22,6 +22,7 @@ import axios from 'axios';
 import Alert from '@material-ui/lab/Alert';
 import { useAuth } from '../auth.context';
 import { Input } from '@material-ui/core';
+import { MTableToolbar } from 'material-table';
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -50,7 +51,6 @@ const tableIcons = {
 function Tables(props) {
   const { userToken } = useAuth();
   const decoded = jwt_decode(userToken);
-
   const api = axios.create({
     baseURL: `https://localhost:7040/api/${
       decoded.Emp_designation === 'Engineering Manager' ? 'Admin' : 'User'
@@ -296,12 +296,14 @@ function Tables(props) {
               </Alert>
             )}
           </div>
-          <MaterialTable
+          <MaterialTable 
+            
             mt={90}
             title="Client : ConnectWise"
-            columns={columns } 
+            columns={columns }   
             
             options={{
+              showTextRowsSelected: false,
               selection: true
             }}
             onSelectionChange={(rows) => {if (rows.length===1)
