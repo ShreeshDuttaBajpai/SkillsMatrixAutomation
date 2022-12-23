@@ -62,7 +62,7 @@ function TablePage() {
 
 					
               {/* onSubmit={postPassenger} */}
-            <h1>User Details</h1>
+            <h3>Add Ticket</h3>
 			<span className={css.book_input}>
 		  <h5>Name</h5>
 						<input
@@ -89,21 +89,20 @@ function TablePage() {
 
           <span className={css.book_input}>
 		  <h5>Team</h5>
-						<select
-							// type="number"
-							id="Team"
-							placeholder="Team"
-							required
-              >
-              <option>Team</option>
-              <option>CNS</option>
-							<option>Mobile Team</option>
-							<option>Partner Service</option>
-              <option>Contact</option>
-							<option>CP</option>
-							<option>Event Bridge</option>
-              </select>
-					</span>
+			<select
+					// type="number"
+					id="Team"
+					placeholder="Team"
+					required
+            	>
+            	<option>CNS</option>
+				<option>Mobile Team</option>
+				<option>Partner Service</option>
+            	<option>Contact</option>
+				<option>CP</option>
+				<option>Event Bridge</option>
+            </select>
+			</span>
          
 
 					<span className={css.book_input}>
@@ -115,7 +114,6 @@ function TablePage() {
 							// 	handleChangeGender(index, e);
 							// }}
 						>
-              <option>Ticket Type</option>
 							<option>Story</option>
 							<option>Bug</option>
 							<option>Task</option>
@@ -136,7 +134,7 @@ function TablePage() {
 						/>
 					</span>
 
-					<span className={css.book_input}>
+					<span className={css.Date_input}>
 					<h5>Start Date</h5>
 						<input
 							type="Date"
@@ -180,7 +178,6 @@ function TablePage() {
 							// 	handleChangeGender(index, e);
 							// }}
 						>
-              <option>Status</option>
 							<option>Completed</option>
 							<option>Incomplete</option>
 							<option>Inprogress</option>
@@ -205,7 +202,7 @@ function TablePage() {
 						</button>
 					</span> */}
 				
-			<div className={css.add_user}>
+			{/* <div className={css.add_user}>
 				<button
 					className={css.add_btn}
 					onClick={() => {
@@ -214,7 +211,7 @@ function TablePage() {
 				>
 					+ Add Another User
 				</button>
-			</div>
+			</div> */}
 			<div className={css.submitadd_btn}>
 				<button type="submit">Submit</button>
       </div>
