@@ -4,6 +4,7 @@ import Tables from '../components/TableComponent/Tables'
 import css from '../../src/Pages/TablePage.css'
 import bgHomePicture from '../assests/bg-image.jpg';
 import { ButtonComponent } from '../components/ButtonComponent/ButtonComponent';
+import PopupComponent from '../components/PopupComponent/PopupComponent';
 
 function TablePage() {
   const [open, setOpen] = React.useState();
@@ -14,7 +15,7 @@ function TablePage() {
   };
 
   return (    
-    <div className={css.tabb}>  
+    <div className={css.tab}>  
       <Navbar/>
       <div className={css.dropdown}>
             <ButtonComponent selected={selected}
@@ -28,7 +29,7 @@ function TablePage() {
           <li className={css.menu_item}>
             <button>Edit</button>
           </li>
-          <li className="menu-item">
+          <li className={css.menu_item}>
             <button>Delete</button>
           </li>
         </ul>
@@ -42,191 +43,7 @@ function TablePage() {
         run={handleOpen}
         />
         {open?(
-          <div className={css.formdiv}>
-			
-            <form className={css.form_popup} id="myForm" >
-			<span>
-						<button
-							className={css.remove_btn}
-							onClick={handleOpen}
-							// onClick={() => {
-							// 	const remove = passList.filter((i, j) => {
-							// 		return index !== j;
-							// 	});
-							// 	setPassList(remove);
-							// }}
-						>
-							X
-						</button>
-					</span>
-
-					
-              {/* onSubmit={postPassenger} */}
-            <h3>Add Ticket</h3>
-			<span className={css.book_input}>
-		  <h5>Name</h5>
-						<input
-							id="Name"
-							placeholder="Name"
-							required
-							// onChange={(e) => {
-							// 	handleChangeName(index, e);
-							// }}
-						/>
-					</span>
-
-            <span className={css.book_input}>
-				<h5>Ticket No.</h5>
-						<input
-							id="Ticket No"
-							placeholder="Ticket No"
-							required
-							// onChange={(e) => {
-							// 	handleChangeName(index, e);
-							// }}
-						/>
-					</span>
-
-          <span className={css.book_input}>
-		  <h5>Team</h5>
-			<select
-					// type="number"
-					id="Team"
-					placeholder="Team"
-					required
-            	>
-            	<option>CNS</option>
-				<option>Mobile Team</option>
-				<option>Partner Service</option>
-            	<option>Contact</option>
-				<option>CP</option>
-				<option>Event Bridge</option>
-            </select>
-			</span>
-         
-
-					<span className={css.book_input}>
-					<h5>Ticket Type</h5>
-						<select
-							id="Ticket Type"
-							placeholder="Ticket Type"
-							// onChange={(e) => {
-							// 	handleChangeGender(index, e);
-							// }}
-						>
-							<option>Story</option>
-							<option>Bug</option>
-							<option>Task</option>
-              <option>Sub Task</option>
-						</select>
-					</span>
-			
-          <span className={css.book_input}>
-		  <h5>Story Points</h5>
-						<input
-							type="number"
-							id="Story Points"
-							placeholder="Story Points"
-							required
-							// onChange={(e) => {
-							// 	handleChangeAge(index, e);
-							// }}
-						/>
-					</span>
-
-					<span className={css.Date_input}>
-					<h5>Start Date</h5>
-						<input
-							type="Date"
-							id="Start Date"
-							placeholder="Start Date"
-							// onChange={(e) => {
-							// 	handleChangeUid(index, e);
-							// }}
-						></input>
-						 <h5>End Date</h5>
-						<input
-							type="Date"
-							id="End Date"
-							placeholder="End Date"
-							// onChange={(e) => {
-							// 	handleChangeUid(index, e);
-							// }}
-						></input>
-					</span>
-          <span className={css.book_input}>
-		 
-					</span>
-
-          <span className={css.book_input}>
-		  <h5>Hours</h5>
-						<input
-							type="number"
-							id="Hours"
-							placeholder="Hours"
-							required
-							// onChange={(e) => {
-							// 	handleChangeAge(index, e);
-							// }}
-						/>
-
-						<h5>Status</h5>
-						<select
-							id="Status"
-							placeholder="Status"
-							// onChange={(e) => {
-							// 	handleChangeGender(index, e);
-							// }}
-						>
-							<option>Completed</option>
-							<option>Incomplete</option>
-							<option>Inprogress</option>
-						</select>
-					</span>
-
-          <span className={css.book_input}>
-		  
-					</span>
-
-					{/* <span>
-						<button
-							className={css.remove_btn}
-							onClick={() => {
-								const remove = passList.filter((i, j) => {
-									return index !== j;
-								});
-								setPassList(remove);
-							}}
-						>
-							X
-						</button>
-					</span> */}
-				
-			{/* <div className={css.add_user}>
-				<button
-					className={css.add_btn}
-					onClick={() => {
-						addPassenger();
-					}}
-				>
-					+ Add Another User
-				</button>
-			</div> */}
-			<div className={css.submitadd_btn}>
-				<button type="submit">Submit</button>
-      </div>
-      </form>
-            
-              {/* <div className={css.Main}>
-                <div className={css.popup}>
-                  <div className={css.popup_header}>
-                    <h1>Add User</h1>
-                    <h1>x</h1>
-                  </div>
-                </div>
-                <input type="text">Name</input>
-              </div> */}
-          </div>
+          <PopupComponent/>
           ) : null}
       </div>
       <Tables setSelected={setSelected}/>
