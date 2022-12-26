@@ -20,24 +20,31 @@ function TablePage() {
   return (    
     <div className={css.tabb}>  
       <Navbar/>
-      <div className={css.dropdown}>
+      <h2>User Dashboard</h2>
+      <div className={css.dropdowndiv}>
             <ButtonComponent selected={selected}
-                cname={css.button1}
+                cname={css.Actionsbutton}
                 value="Actions"
                 disable={true}
                 run={handleOpenActions}
-            />
+            /> </div>
             {selected && openActions ?(
         <ul className={css.menu}>
           <li className={css.menu_item}>
-            <button>Edit</button>
+            <ButtonComponent 
+            cname={css.button1}
+            value="Edit"
+            disable={true} />
           </li>
-          <li className="menu-item">
-            <button>Delete</button>
+          <li className={css.menu_item}>
+            <ButtonComponent  
+            cname={css.button1}
+            value="Delete"
+            disable={true} />
           </li>
         </ul>
       ) : null}
-      </div>
+     
       <div className={css.dropdowndiv}>
         <ButtonComponent
         cname={css.button1}
@@ -108,7 +115,6 @@ function TablePage() {
             </select>
 			</span>
          
-
 					<span className={css.book_input}>
 					<h5>Ticket Type</h5>
 						<select

@@ -40,11 +40,24 @@
     position: absolute;
     z-index: 4;
   }
-  .dropdownndiv .button1{
-    padding: 1rem;
+
+  .Actionsbutton{
+    text-align: left;
+    width: 120px;
+    background: url("http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png") no-repeat right white;
+    background-position-x: 80%;
+    background-size: 10px;
+    margin-left: 110px;
   }
 
-  /* .menu {
+  .button1{
+    display: inline-block;
+    margin-top: 10px;
+    justify-items: center;
+    margin-left: 80px;
+  }
+
+  .menu {
     position: absolute;
   
     list-style-type: none;
@@ -77,7 +90,7 @@
     margin: 0;
     font: inherit;
     cursor: pointer;
-  }*/
+  }
 
 .tabb{
     background-color: rgb(172, 219, 231);
@@ -85,6 +98,10 @@
 } 
 
 
+.tabb h2{
+    text-align: center;
+    margin-top: 20px;
+} 
 
 .form_popup{
   background: #eee;
@@ -202,4 +219,15 @@ select{
 .Date_input h5{
   margin-left:8px;
   margin-right: 2px;
+}
+
+.menu_item{
+    margin:auto;
+    margin-left: 3rem;
+    margin-bottom: 2rem;
+    border-radius: 5px;
+}
+
+.dropdowndiv{
+    display: inline;
 }

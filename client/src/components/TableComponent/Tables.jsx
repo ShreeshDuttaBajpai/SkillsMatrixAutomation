@@ -283,7 +283,7 @@ function Tables(props) {
   };
   return (
     <div className="App" style={{ marginTop: '60px' }}>
-      <h2 style={{ textAlign: 'center' }}>User Dashboard</h2>
+      
       <Grid container spacing={1}>
         <Grid item xs={1}></Grid>
         <Grid item xs={10}>
