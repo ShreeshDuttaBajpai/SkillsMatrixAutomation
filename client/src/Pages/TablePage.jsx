@@ -27,7 +27,7 @@ function TablePage() {
                 disable={true}
                 run={handleOpenActions}
             />
-            {openActions ? (
+            {selected && openActions ?(
         <ul className={css.menu}>
           <li className={css.menu_item}>
             <button>Edit</button>
