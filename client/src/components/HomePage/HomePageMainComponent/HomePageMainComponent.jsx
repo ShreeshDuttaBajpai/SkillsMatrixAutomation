@@ -52,7 +52,7 @@ function HomePageMainComponent(props) {
               <ButtonComponent
                 cname={css.button1}
                 value="Continue With Microsoft"
-                run={() => props.run}
+                run={props.run}
               />
             )}
           </div>
