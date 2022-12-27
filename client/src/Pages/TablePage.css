@@ -43,10 +43,10 @@
 
   .Actionsbutton{
     text-align: left;
-    width: 120px;
-    background: url("http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png") no-repeat right white;
+    width: 80px;
+    /* background: url("http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png") no-repeat right white;
     background-position-x: 80%;
-    background-size: 10px;
+    background-size: 10px; */
     margin-left: 110px;
   }
 

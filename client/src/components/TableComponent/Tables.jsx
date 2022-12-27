@@ -300,8 +300,7 @@ function Tables(props) {
             
             mt={90}
             title="Client : ConnectWise"
-            columns={columns }   
-            
+            columns={columns}   
             options={{
               showTextRowsSelected: false,
               selection: true
