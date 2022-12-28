@@ -15,6 +15,27 @@ namespace AutomationAPI.Controllers
         {
             _configuration = configuration;
         }
+        [HttpGet]
+        [Route("{Emp_name}")]
+        public JsonResult Get(string Emp_name)
+        {
+            string query2 = $"select * from StoryTrackerDB where Code_reviewer like '%{Emp_name}%'";
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("MyConnectionString");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query2, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader); ;
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+            return new JsonResult(table);
+        }
         [HttpPost]
         public JsonResult Post([FromBody] CodeReview cr)
         {

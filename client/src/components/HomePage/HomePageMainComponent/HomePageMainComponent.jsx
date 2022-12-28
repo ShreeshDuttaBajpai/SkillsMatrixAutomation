@@ -10,8 +10,8 @@ import Cookies from 'universal-cookie';
 import { ButtonComponent } from '../../ButtonComponent/ButtonComponent';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-function HomePageMainComponent(props) {
-  const { authSuccess } = useAuth();
+function HomePageMainComponent() {
+  const { authSuccess, run, myData } = useAuth();
 
   <script
     type="text/javascript"
@@ -19,20 +19,19 @@ function HomePageMainComponent(props) {
   ></script>;
 
   useEffect(() => {
-    console.log(props.myData);
-    if (props.myData)
-      axios.post('https://localhost:7040/api/Emp', props.myData).then(res => {
+    console.log(myData);
+    if (myData)
+      axios.post('https://localhost:7040/api/Emp', myData).then(res => {
         const token = res.data;
         const cookies = new Cookies();
         cookies.set('my_cookie', token);
-        // window.location.reload();
+        window.location.reload();
       });
-  }, [props.myData]);
+  }, [myData]);
 
   useEffect(() => {
-    props.myData &&
-      alert('Hello ' + props.myData.emp_name + ' ,Id- ' + props.myData.emp_id);
-  }, [props.myData]);
+    myData && alert('Hello ' + myData.emp_name + ' ,Id- ' + myData.emp_id);
+  }, [myData]);
 
   return (
     <div className={css.home}>
@@ -52,7 +51,7 @@ function HomePageMainComponent(props) {
               <ButtonComponent
                 cname={css.button1}
                 value="Continue With Microsoft"
-                run={props.run}
+                run={run}
               />
             )}
           </div>

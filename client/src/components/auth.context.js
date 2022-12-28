@@ -36,40 +36,41 @@ export const AuthProvider = props => {
     window.location.reload();
   };
 
-  // async function run() {
-  //   console.log('running...');
-  //   const config = {
-  //     auth: {
-  //       clientId: 'addbbf7a-a97c-40e0-a662-37646b433007',
-  //       authority: 'https://login.microsoftonline.com/common/',
-  //       redirectUri: 'http://localhost:3000/Home'
-  //     }
-  //   };
-  //   var client = new Msal.UserAgentApplication(config);
-  //   var request = {
-  //     scopes: ['user.read']
-  //   };
-  //   let loginResponse = await client.loginPopup(request);
-  //   let tokenResponse = await client.acquireTokenSilent(request);
-  //   let payload = await fetch('https://graph.microsoft.com/beta/me', {
-  //     headers: {
-  //       Authorization: 'Bearer ' + tokenResponse.accessToken
-  //     }
-  //   });
-  //   let json = await payload.json();
+  async function run() {
+    console.log('running...');
+    const config = {
+      auth: {
+        clientId: 'addbbf7a-a97c-40e0-a662-37646b433007',
+        authority: 'https://login.microsoftonline.com/common/',
+        redirectUri: 'http://localhost:3000/Home'
+      }
+    };
+    var client = new Msal.UserAgentApplication(config);
+    var request = {
+      scopes: ['user.read']
+    };
+    let loginResponse = await client.loginPopup(request);
+    let tokenResponse = await client.acquireTokenSilent(request);
+    let payload = await fetch('https://graph.microsoft.com/beta/me', {
+      headers: {
+        Authorization: 'Bearer ' + tokenResponse.accessToken
+      }
+    });
+    let json = await payload.json();
 
-  //   setmyData(() => {
-  //     return {
-  //       emp_id: json.employeeId,
-  //       emp_name: json.displayName,
-  //       emp_designation: json.jobTitle
-  //     };
-  //   });
-  // }
+    setmyData(() => {
+      return {
+        emp_id: json.employeeId,
+        emp_name: json.displayName,
+        emp_designation: json.jobTitle,
+        emp_firstname:json.givenName
+      };
+    });
+  }
 
   return (
     <AuthContext.Provider
-      value={{ userToken, setUserToken, authSuccess, logout }}
+      value={{ userToken, setUserToken, authSuccess, logout,run,myData }}
     >
       {props.children}
     </AuthContext.Provider>

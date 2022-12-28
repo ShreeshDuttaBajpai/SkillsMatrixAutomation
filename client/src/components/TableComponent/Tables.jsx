@@ -52,7 +52,7 @@ const tableIcons = {
 function Tables(props) {
   const { userToken } = useAuth();
   const decoded = jwt_decode(userToken);
-
+  console.log(decoded);
   const api = axios.create({
     baseURL: `https://localhost:7040/api/${
       decoded.Emp_designation === 'Engineering Manager' ? 'Admin' : 'User'
@@ -60,7 +60,7 @@ function Tables(props) {
   });
 
   const CodeReviewapi = axios.create({
-    baseURL: `https://localhost:7040/api/Review/${decoded.Emp_name}`
+    baseURL: `https://localhost:7040/api/Review/${decoded.Emp_firstname}`
   });
 
   var columns = [
@@ -134,6 +134,14 @@ function Tables(props) {
 
   useEffect(() => {
     if (window.location.pathname === '/CodeReview') {
+      CodeReviewapi.get('')
+        .then(res => {
+          setData(res.data);
+          console.log(res.data);
+        })
+        .catch(error => {
+          console.log('Error');
+        });
     } else {
       api
         .get(
@@ -297,6 +305,23 @@ function Tables(props) {
             )}
           </div>
           <MaterialTable
+            localization={{
+              body: {
+                emptyDataSourceMessage: (
+                  <h1
+                    style={{
+                      marginTop: '10%',
+                      position: 'absolute',
+                      top: '16%',
+                      marginLeft: '20px',
+                      textAlign: 'center'
+                    }}
+                  >
+                    No records to display
+                  </h1>
+                )
+              }
+            }}
             mt={90}
             title="Client : ConnectWise"
             columns={columns}
