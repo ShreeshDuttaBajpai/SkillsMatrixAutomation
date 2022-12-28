@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import css from '../PopupComponent/PopupComponent.css'
+import x from '../../assests/x.png'
 function PopupComponent() {
     const [open, setOpen] = React.useState();
     const [openActions, setOpenActions] = useState();
@@ -24,25 +25,17 @@ function PopupComponent() {
 							// 	setPassList(remove);
 							// }}
 						>
-							X
+                            
+							<img src={x} />
 						</button>
 					</span>
 				</div>	
               {/* onSubmit={postPassenger} */}
            
-			<span className={css.book_input}>
-		  <h6>Name</h6>
-						<input
-							id="Name"
-							placeholder="Name"
-							required
-							// onChange={(e) => {
-							// 	handleChangeName(index, e);
-							// }}
-						/>
-					</span>
+		
 
             <span className={css.book_input}>
+                <div className={css.nextline}>
 				<h6>Ticket No.</h6>
 						<input
 							id="Ticket No"
@@ -52,9 +45,27 @@ function PopupComponent() {
 							// 	handleChangeName(index, e);
 							// }}
 						/>
-					</span>
+                    </div>
+                    <div className={css.nextline}>
+                        <h6>Ticket Type</h6>
+						<select
+							id="Ticket Type"
+							// placeholder="Ticket Type"
+							// onChange={(e) => {
+							// 	handleChangeGender(index, e);
+							// }}
+						>
+							<option>Story</option>
+							<option>Bug</option>
+							<option>Task</option>
+                            <option>Sub Task</option>
+						</select>
+                    </div>
+				</span>
+                    
 
           <span className={css.book_input}>
+          <div className={css.nextline}>
 		  <h6>Team</h6>
 			<select
 					// type="number"
@@ -69,27 +80,9 @@ function PopupComponent() {
 				<option>CP</option>
 				<option>Event Bridge</option>
             </select>
-			</span>
-         
-
-					<span className={css.book_input}>
-					<h6>Ticket Type</h6>
-						<select
-							id="Ticket Type"
-							placeholder="Ticket Type"
-							// onChange={(e) => {
-							// 	handleChangeGender(index, e);
-							// }}
-						>
-							<option>Story</option>
-							<option>Bug</option>
-							<option>Task</option>
-              <option>Sub Task</option>
-						</select>
-					</span>
-			
-          <span className={css.book_input}>
-		  <h6>Story Points</h6>
+            </div>
+            <div className={css.nextline}>
+            <h6>Story Points</h6>
 						<input
 							type="number"
 							id="Story Points"
@@ -99,10 +92,14 @@ function PopupComponent() {
 							// 	handleChangeAge(index, e);
 							// }}
 						/>
-					</span>
+            </div>
+			</span>
+				
+			
                     {/* <div className={css.Dates}> */}
 					<span className={css.book_input}>
-					<h6>Start Date</h6>
+                    <div className={css.nextline}>
+					    <h6>Start Date</h6>
 						<input
 							type="Date"
 							id="Start Date"
@@ -111,6 +108,8 @@ function PopupComponent() {
 							// 	handleChangeUid(index, e);
 							// }}
 						></input>
+            </div>
+            <div className={css.nextline}>
 						 <h6>End Date</h6>
 						<input
 							type="Date"
@@ -119,14 +118,13 @@ function PopupComponent() {
 							// onChange={(e) => {
 							// 	handleChangeUid(index, e);
 							// }}
-						></input>     
+						></input> 
+            </div>   
 					</span>
                     {/* </div> */}
-          <span className={css.book_input}>
-		 
-					</span>
 
           <span className={css.book_input}>
+          <div className={css.nextline}>
 		  <h6>Hours</h6>
 						<input
 							type="number"
@@ -137,7 +135,8 @@ function PopupComponent() {
 							// 	handleChangeAge(index, e);
 							// }}
 						/>
-
+                        </div>
+                        <div className={css.nextline}>
 						<h6>Status</h6>
 						<select
 							id="Status"
@@ -150,11 +149,22 @@ function PopupComponent() {
 							<option>Incomplete</option>
 							<option>Inprogress</option>
 						</select>
+                        </div>
 					</span>
 
-          <span className={css.book_input}>
-		  
-					</span>
+                    {/* <span className={css.book_input}> */}
+                    <div className={css.next}>
+                    <h6>CodeReviewer</h6>
+						<input
+							id="CodeReviewer"
+							placeholder="CodeReviewer"
+							required
+							// onChange={(e) => {
+							// 	handleChangeName(index, e);
+							// }}
+						/>
+                        </div>
+					{/* </span> */}
 
 					{/* <span>
 						<button

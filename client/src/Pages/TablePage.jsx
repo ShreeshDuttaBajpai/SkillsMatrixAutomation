@@ -17,8 +17,8 @@ function TablePage(props) {
     setOpen(!open);
   };
 
-	const { userToken } = useAuth();
-	const decoded = jwt_decode(userToken);
+const { userToken } = useAuth();
+const decoded = jwt_decode(userToken);
 
   const handleOpenActions = () => {
     setOpenActions(!openActions);
@@ -45,8 +45,11 @@ function TablePage(props) {
             value="Edit"
             disable={true} />
           </li>
-          <li className={css.menu_item}>
-            <button>Delete</button>
+          <li className={css.delete_button}>
+		  <ButtonComponent 
+            cname={css.button1}
+            value="Delete"
+            disable={true} />
           </li>
         </ul>
       ) : null}
