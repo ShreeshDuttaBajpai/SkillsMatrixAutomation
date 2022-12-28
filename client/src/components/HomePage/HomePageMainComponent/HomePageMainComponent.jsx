@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useAuth } from '../../auth.context';
 import Cookies from 'universal-cookie';
 import { ButtonComponent } from '../../ButtonComponent/ButtonComponent';
-import {useNavigate} from "react-router-dom";
+import { Redirect } from 'react-router-dom';
 
 function HomePageMainComponent() {
   const { run, myData, authSuccess } = useAuth();
@@ -41,9 +41,10 @@ function HomePageMainComponent() {
           <img src={bglogo}></img>
           <div className={css.loginButton}>
             {authSuccess === true ? (
-              <h3 className={css.welcomeMessage}>
-                Welcome to Automation Tool for Story Tracker
-              </h3>
+              // <h3 className={css.welcomeMessage}>
+              //   Welcome to Automation Tool for Story Tracker
+              // </h3>
+              <Redirect to="/Table" />
             ) : (
               <ButtonComponent
                 cname={css.button1}

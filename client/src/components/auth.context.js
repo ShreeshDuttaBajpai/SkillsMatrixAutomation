@@ -33,7 +33,8 @@ export const AuthProvider = props => {
     const cookies = new Cookies();
     cookies.remove('my_cookie');
     await axios.delete(`https://localhost:7040/api/Emp/${Emp_id}`);
-    window.location.reload();
+    setAuthSuccess(false);
+    window.location = "http://localhost:3000/"
   };
 
   async function run() {

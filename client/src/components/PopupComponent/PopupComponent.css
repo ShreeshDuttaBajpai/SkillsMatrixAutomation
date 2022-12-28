@@ -1,33 +1,3 @@
-/* .bgHomePicture{
-    opacity: 0.3;
-    width: 100%;
-    height: auto;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 17rem;
-    padding-bottom: 10rem;
-    overflow: hidden;
-    padding: 0;
-    position: relative;
-} */
-
-/* .showForm{
-    opacity: 1 ;
-	transition: 0.4s;
-    position: absolute;
-    margin-left: 2rem;
-    margin-right: 2rem;
-}
-
-.hideForm{
-    opacity: 0;
-	transition: 0.4s;
-} */
-
 .dropdown {
     position: relative;
     display: inline-block;
@@ -36,7 +6,6 @@
     /* padding: 1rem;     */
   }
   .formdiv{
-    margin-top: 5rem;
     position: absolute;
     z-index: 4;
   }
@@ -44,41 +13,7 @@
     padding: 1rem;
   }
 
-  /* .menu {
-    position: absolute;
-  
-    list-style-type: none;
-    margin: 5px 0;
-    padding: 0;
-  
-    border: 1px solid grey;
-    width: 150px;
-  }
-  
-  .menu > li {
-    margin: 0;
-  
-    background-color: white;
-  }
-  
-  .menu > li:hover {
-    background-color: lightgray;
-  }
-  
-  .menu > li > button {
-    width: 100%;
-    height: 100%;
-    text-align: left;
-  
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 5px;
-    margin: 0;
-    font: inherit;
-    cursor: pointer;
-  }*/
-
+ 
 
 
 .head{
@@ -125,71 +60,100 @@
 color: white;
 border: none;
   font-size: 1.1rem;
-  padding: 5px;
+  padding:6px 25px;
   border-radius: 5px;
   cursor: pointer;  
 }
 .submitadd_btn{
   display: flex;
   justify-content: center;
-  margin-left: 38rem;
-  margin-top: 1rem;
+  margin-left: 31rem;
+  margin-top: 2rem;
+  padding-bottom: 1rem;
 }
+
+.remove_btn img{
+width: 25px;
+height: 25px;
+}
+
 .remove_btn{
   background-color: rgb(37, 135, 160);
   color: white;
   border: none;
+  width: 1rem;
   font-size: 1rem;
-  padding: 1px 7px;
+  padding: 7px 7px;
   border-radius: 5px;
   cursor: pointer;
-  margin-left: 38rem;
-  margin-top: 5px;
+  margin-left: 34rem;
+  margin-top: 9px;
+  
 }
 .book_input{
-  margin-right: 1rem;
-  display: inline;
+  display: flex;
   margin-top: 1rem;
- width: 50vw;
+ width: 49.2vw;
+ margin-left: 2rem;
 
+}
+.nexttline{
+display: inline;
+
+}
+.next{
+    display: inline;
+  
+}
+.next input{
+width: 42.4vw;
+margin-left: 4rem;
+}
+
+.next h6{
+    margin-left: 4rem;
+    margin-top: 1rem;
 }
 
 .book_input input{
-  width: 90%;
+  width: 20vw;
   border-radius: 5px;
   border-width: 0.1px;
   border-color: rgb(212, 214, 214);
   margin-left:2rem;
   margin-bottom: 1rem;
+ 
 } 
 
 .book_input select{
   /* padding: 6px; */
-  width:90%; 
+  width:20vw; 
   border-radius: 5px;
   border-width: 0.1px;
   border-color: rgb(124, 123, 123);
   margin-left:2rem;
   margin-bottom: 1rem;
+
 }
 
 .book_input h6{
-  width: 20%;
   margin-left: 2rem;
-
 }
 
 select{
   background-color: rgb(255, 255, 255);
   border: 1px solid;
-  font-weight: 600;
+  /* font-weight: 600; */
+}
+select ::placeholder{
+    color: rgb(182, 180, 180);
 }
 .form_content{
   padding: 5px;
 }
 ::placeholder{
   font-weight: 600;
-  color: #1e2227;
+  color: rgb(182, 180, 180);
   padding-top: 6px;
   padding-bottom: 6px;
 }
@@ -200,9 +164,7 @@ select{
   justify-content: center;
   /* margin-left: 1px; */
 }
-/* .Dates{
-    display: flex;
-} */
+
 
 .Date_input input{
   width: 90%;

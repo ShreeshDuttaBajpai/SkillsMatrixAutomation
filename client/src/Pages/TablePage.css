@@ -1,32 +1,3 @@
-/* .bgHomePicture{
-    opacity: 0.3;
-    width: 100%;
-    height: auto;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 17rem;
-    padding-bottom: 10rem;
-    overflow: hidden;
-    padding: 0;
-    position: relative;
-} */
-
-/* .showForm{
-    opacity: 1 ;
-	transition: 0.4s;
-    position: absolute;
-    margin-left: 2rem;
-    margin-right: 2rem;
-}
-
-.hideForm{
-    opacity: 0;
-	transition: 0.4s;
-} */
 .tab{
   background-color: rgb(172, 219, 231);
   
@@ -35,52 +6,14 @@
     position: relative;
     display: inline-block;
     z-index: 2;
-    /* display: inline; */
-    /* padding: 1rem;     */
+
   }
-  /* .formdiv{
-    margin-top: 5rem;
-    position: absolute;
-    z-index: 4;
-  } */
+
   .dropdownndiv .button1{
     padding: 1rem;
   }
 
-  /* .menu {
-    position: absolute;
-  
-    list-style-type: none;
-    margin: 5px 0;
-    padding: 0;
-  
-    border: 1px solid grey;
-    width: 150px;
-  }
-  
-  .menu > li {
-    margin: 0;
-  
-    background-color: white;
-  }
-  
-  .menu > li:hover {
-    background-color: lightgray;
-  }
-  
-  .menu > li > button {
-    width: 100%;
-    height: 100%;
-    text-align: left;
-  
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 5px;
-    margin: 0;
-    font: inherit;
-    cursor: pointer;
-  }*/
+ 
 
 
 
