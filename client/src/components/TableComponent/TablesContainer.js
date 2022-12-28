@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { useAuth } from '../auth.context';
 import jwt_decode from 'jwt-decode';
 import Tables from './Tables';
+import TablePage from '../../Pages/TablePage';
 
 const { userToken } = useAuth();
 const decoded = jwt_decode(userToken);

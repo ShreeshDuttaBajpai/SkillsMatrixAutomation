@@ -48,7 +48,7 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-function Tables(props) {
+const Tables = (props) => {
   const { userToken } = useAuth();
   const decoded = jwt_decode(userToken);
   const api = axios.create({
@@ -63,7 +63,7 @@ function Tables(props) {
 
   var columns = [
     
-    { title: 'Ticket_no', field: 'ticket_no', editable: 'onAdd', width:'10%' },
+    { title: 'Ticket No', field: 'ticket_no', editable: 'onAdd', width:'24%' },
     // {
     //   title: 'Client',
     //   field: 'client',
@@ -74,24 +74,31 @@ function Tables(props) {
     {
       title: 'Team',
       field: 'team',
+      width:'30%',
       lookup: {
         CNS: 'CNS',
         'Mobile Team': 'Mobile Team',
         'Partner Service': 'Partner Service',
         Contacts: 'Contacts',
         CP: 'CP',
-        'Event Bridge' : 'Event Bridge'
-      }
+        'Event Bridge' : 'Event Bridge',
+      },
     },
     {
       title: 'Name',
       field: 'name',
       initialEditValue: decoded.Emp_name,
-      editable: 'never'
+      editable: 'never',
+      cellStyle: { textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden', maxWidth: 130,
+      '&:hover': {
+        textOverflow: 'none'
+      }} 
     },
     {
       title: 'Ticket Type',
       field: 'ticket_type',
+      cellStyle: { textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden', maxWidth: 120
+      },
       lookup: {
         Story: 'Story',
         Bug: 'Bug',
@@ -283,7 +290,6 @@ function Tables(props) {
   };
   return (
     <div className="App" style={{ marginTop: '60px' }}>
-      
       <Grid container spacing={1}>
         <Grid item xs={1}></Grid>
         <Grid item xs={10}>

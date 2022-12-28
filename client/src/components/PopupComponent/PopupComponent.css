@@ -1,0 +1,220 @@
+/* .bgHomePicture{
+    opacity: 0.3;
+    width: 100%;
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 17rem;
+    padding-bottom: 10rem;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+} */
+
+/* .showForm{
+    opacity: 1 ;
+	transition: 0.4s;
+    position: absolute;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.hideForm{
+    opacity: 0;
+	transition: 0.4s;
+} */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    z-index: 2;
+    /* display: inline; */
+    /* padding: 1rem;     */
+  }
+  .formdiv{
+    margin-top: 5rem;
+    position: absolute;
+    z-index: 4;
+  }
+  .dropdownndiv .button1{
+    padding: 1rem;
+  }
+
+  /* .menu {
+    position: absolute;
+  
+    list-style-type: none;
+    margin: 5px 0;
+    padding: 0;
+  
+    border: 1px solid grey;
+    width: 150px;
+  }
+  
+  .menu > li {
+    margin: 0;
+  
+    background-color: white;
+  }
+  
+  .menu > li:hover {
+    background-color: lightgray;
+  }
+  
+  .menu > li > button {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+  
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 5px;
+    margin: 0;
+    font: inherit;
+    cursor: pointer;
+  }*/
+
+
+
+.head{
+  background-color: rgb(37, 135, 160) ;
+  /* min-width: 100%;
+  height: 10vh; */
+  display: flex;
+  height: 10vh;
+  margin-bottom: 3rem;
+
+}
+
+
+.form_popup{
+  background: #eee;
+  /* padding: 2rem; */
+  border-radius: 5px;
+  min-width: 10vw;
+  margin-left: 18REM;
+  
+}
+
+.head h5{
+  margin-top: 1rem;
+  display: flex;
+  margin-left: 17px;
+  background-color: rgb(37, 135, 160);
+  color: #eee;
+}
+
+.form_popup h1{
+  font-size: 2rem;
+}
+.add_user .add_btn{
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgb(39, 116, 136);
+  padding: 10px;
+  font-weight: 500;
+}
+.submitadd_btn button{
+  background-color:  rgb(37, 135, 160);
+color: white;
+border: none;
+  font-size: 1.1rem;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;  
+}
+.submitadd_btn{
+  display: flex;
+  justify-content: center;
+  margin-left: 38rem;
+  margin-top: 1rem;
+}
+.remove_btn{
+  background-color: rgb(37, 135, 160);
+  color: white;
+  border: none;
+  font-size: 1rem;
+  padding: 1px 7px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 38rem;
+  margin-top: 5px;
+}
+.book_input{
+  margin-right: 1rem;
+  display: inline;
+  margin-top: 1rem;
+ width: 50vw;
+
+}
+
+.book_input input{
+  width: 90%;
+  border-radius: 5px;
+  border-width: 0.1px;
+  border-color: rgb(212, 214, 214);
+  margin-left:2rem;
+  margin-bottom: 1rem;
+} 
+
+.book_input select{
+  /* padding: 6px; */
+  width:90%; 
+  border-radius: 5px;
+  border-width: 0.1px;
+  border-color: rgb(124, 123, 123);
+  margin-left:2rem;
+  margin-bottom: 1rem;
+}
+
+.book_input h6{
+  width: 20%;
+  margin-left: 2rem;
+
+}
+
+select{
+  background-color: rgb(255, 255, 255);
+  border: 1px solid;
+  font-weight: 600;
+}
+.form_content{
+  padding: 5px;
+}
+::placeholder{
+  font-weight: 600;
+  color: #1e2227;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.Date_input{
+  /* margin-right: 1rem; */
+  display: inline;
+  justify-content: center;
+  /* margin-left: 1px; */
+}
+/* .Dates{
+    display: flex;
+} */
+
+.Date_input input{
+  width: 90%;
+  /* margin: 0px 13px; */
+  margin-left: 36px;
+  padding: 5px;
+  border-radius: 5px;
+  border-width: 0.1px;
+  border-color: rgb(212, 214, 214);
+} 
+
+.Date_input h6{
+  margin-left: 2rem;
+  /* margin-right: 2px; */
+}
