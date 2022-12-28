@@ -43,20 +43,22 @@ const decoded = jwt_decode(userToken);
             <ButtonComponent 
             cname={css.button1}
             value="Edit"
-            disable={true} />
+            disable={true} 
+			/>
           </li>
           <li className={css.delete_button}>
 		  <ButtonComponent 
             cname={css.button1}
             value="Delete"
-            disable={true} />
+			disable={true} 
+            />
           </li>
         </ul>
       ) : null}
      
       <div className={css.dropdowndiv}>
         <ButtonComponent
-        cname={css.button1}
+        cname={css.add_button}
         value="Add"
         disable={false}
         run={handleOpen}
