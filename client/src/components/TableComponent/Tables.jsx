@@ -22,8 +22,7 @@ import axios from 'axios';
 import Alert from '@material-ui/lab/Alert';
 import { useAuth } from '../auth.context';
 import { Input } from '@material-ui/core';
-
-export const TABLE_AS_PER_USER = 'TABLE_AS_PER_USER';
+import { MTableToolbar } from 'material-table';
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -49,10 +48,9 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-function Tables(props) {
+const Tables = props => {
   const { userToken } = useAuth();
   const decoded = jwt_decode(userToken);
-  console.log(decoded);
   const api = axios.create({
     baseURL: `https://localhost:7040/api/${
       decoded.Emp_designation === 'Engineering Manager' ? 'Admin' : 'User'
@@ -64,17 +62,18 @@ function Tables(props) {
   });
 
   var columns = [
-    { title: 'Ticket_no', field: 'ticket_no', editable: 'onAdd' },
-    {
-      title: 'Client',
-      field: 'client',
-      lookup: {
-        CW: 'CW'
-      }
-    },
+    { title: 'Ticket No', field: 'ticket_no', editable: 'onAdd', width: '24%' },
+    // {
+    //   title: 'Client',
+    //   field: 'client',
+    //   lookup: {
+    //     CW: 'CW'
+    //   }
+    // },
     {
       title: 'Team',
       field: 'team',
+      width: '30%',
       lookup: {
         CNS: 'CNS',
         'Mobile Team': 'Mobile Team',
@@ -88,11 +87,26 @@ function Tables(props) {
       title: 'Name',
       field: 'name',
       initialEditValue: decoded.Emp_name,
-      editable: 'never'
+      editable: 'never',
+      cellStyle: {
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        maxWidth: 130,
+        '&:hover': {
+          textOverflow: 'none'
+        }
+      }
     },
     {
-      title: 'Ticket_type',
+      title: 'Ticket Type',
       field: 'ticket_type',
+      cellStyle: {
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        maxWidth: 120
+      },
       lookup: {
         Story: 'Story',
         Bug: 'Bug',
@@ -100,9 +114,9 @@ function Tables(props) {
         'Sub-Task': 'Sub-Task'
       }
     },
-    { title: 'Story_point', field: 'story_point' },
-    { title: 'Start_date', field: 'start_date', type: 'date' },
-    { title: 'End_date', field: 'end_date', type: 'date' },
+    // { title: 'Story Point', field: 'story_point' },
+    { title: 'Start date', field: 'start_date', type: 'date' },
+    { title: 'End date', field: 'end_date', type: 'date' },
     { title: 'Hours', field: 'hours' },
     {
       title: 'Status',
@@ -111,22 +125,23 @@ function Tables(props) {
         Completed: 'Completed',
         InProgress: 'InProgress',
         Incomplete: 'Incomplete'
-      }
+      },
+      width: '20%'
     },
-    { title: 'Code_Reviewer', field: 'code_reviewer' },
-    decoded.Emp_designation === 'Engineering Manager'
-      ? { title: 'Code_deviation_count', field: 'code_deviation_count' }
-      : {
-          title: 'Code_deviation_count',
-          field: 'code_deviation_count',
-          editable: 'never'
-        },
-    decoded.Emp_designation === 'Engineering Manager'
-      ? { title: 'Bugs_count', field: 'bugs_count' }
-      : { title: 'Bugs_count', field: 'bugs_count', editable: 'never' },
-    decoded.Emp_designation === 'Engineering Manager'
-      ? { title: 'Remarks', field: 'remarks' }
-      : { title: 'Remarks', field: 'remarks', editable: 'never' }
+    { title: 'Code Reviewer', field: 'code_reviewer' }
+    // decoded.Emp_designation === 'Engineering Manager'
+    //   ? { title: 'Code Deviation Count', field: 'code_deviation_count' }
+    //   : {
+    // title: 'Code Deviation Count',
+    // field: 'code_deviation_count',
+    // editable: 'never'
+    //     },
+    // decoded.Emp_designation === 'Engineering Manager'
+    //   ? { title: 'Bugs Count', field: 'bugs_count' }
+    //   : { title: 'Bugs_count', field: 'bugs_count', editable: 'never' },
+    // decoded.Emp_designation === 'Engineering Manager'
+    //   ? { title: 'Remarks', field: 'remarks' }
+    //   : { title: 'Remarks', field: 'remarks', editable: 'never' }
   ];
   const [data, setData] = useState([]); //table data
   const [iserror, setIserror] = useState(false);
@@ -173,9 +188,9 @@ function Tables(props) {
     if (newData.Name === '') {
       errorList.push('Please enter Name');
     }
-    if (newData.Client === '') {
-      errorList.push('Please enter a Client');
-    }
+    // if (newData.Client === '') {
+    //   errorList.push('Please enter a Client');
+    // }
     if (newData.Ticket_type === '') {
       errorList.push('Please enter Ticket_type');
     }
@@ -226,9 +241,10 @@ function Tables(props) {
     if (newData.team === undefined) {
       errorList.push('Please enter Team');
     }
-    if (newData.client === undefined) {
-      errorList.push('Please enter a Client');
+    if (newData.name === undefined) {
+      errorList.push('Please enter Name');
     }
+
     if (newData.ticket_type === undefined) {
       errorList.push('Please enter Ticket_type');
     }
@@ -291,7 +307,6 @@ function Tables(props) {
   };
   return (
     <div className="App" style={{ marginTop: '60px' }}>
-      <h2 style={{ textAlign: 'center' }}>{props.dashboard}</h2>
       <Grid container spacing={1}>
         <Grid item xs={1}></Grid>
         <Grid item xs={10}>
@@ -325,29 +340,40 @@ function Tables(props) {
             mt={90}
             title="Client : ConnectWise"
             columns={columns}
+            options={{
+              showTextRowsSelected: false,
+              selection: true
+            }}
+            onSelectionChange={rows => {
+              if (rows.length === 1) props.setSelected(true);
+              else {
+                props.setSelected(false);
+              }
+            }}
             data={data}
             icons={tableIcons}
-            options={{
-              headerStyle: { size: '80px' }
-            }}
+            // options={{
+            //   headerStyle: { size: '80px' }
+            // }}
             //Add, Edit & Update functionality to User Only
             editable={
-              decoded.Emp_designation !== 'Engineering Manager' && {
+              decoded.Emp_designation !== 'Engineering Manager' &&
+              {
                 // onRowUpdate: (newData, oldData) =>
                 //   new Promise(resolve => {
                 //     handleRowUpdate(newData, oldData, resolve);
                 //     window.location.reload();
                 //   }),
-                onRowAdd: newData =>
-                  new Promise(resolve => {
-                    handleRowAdd(newData, resolve);
-                    // window.location.reload();
-                  }),
-                onRowDelete: oldData =>
-                  new Promise(resolve => {
-                    handleRowDelete(oldData, resolve);
-                    window.location.reload();
-                  })
+                // onRowAdd: newData =>
+                //   new Promise(resolve => {
+                //     handleRowAdd(newData, resolve);
+                //     // window.location.reload();
+                //   }),
+                // onRowDelete: oldData =>
+                //   new Promise(resolve => {
+                //     handleRowDelete(oldData, resolve);
+                //     window.location.reload();
+                //   })
               }
             }
           />
@@ -356,6 +382,6 @@ function Tables(props) {
       </Grid>
     </div>
   );
-}
+};
 
 export default Tables;

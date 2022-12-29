@@ -7,8 +7,7 @@ let tokenData = cookies.get('my_cookie');
 const initialState = {
   apiResponse: 0,
   resContent: '',
-  userToken: tokenData,
-  myData:{},
+  userToken: tokenData
 };
 
 export const commonApi = (state = initialState, action) => {
@@ -20,10 +19,7 @@ export const commonApi = (state = initialState, action) => {
         resContent: action.payload,
         apiResponse: 1
       });
-    case types.MY_DATA:
-      return  {...state,myData:{ emp_id: action.payload.employeeId,
-      emp_name: action.payload.displayName,
-      emp_designation: action.payload.jobTitle}}
+
     default:
       return state;
   }

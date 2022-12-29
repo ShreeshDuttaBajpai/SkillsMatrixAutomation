@@ -1,0 +1,182 @@
+.dropdown {
+    position: relative;
+    display: inline-block;
+    z-index: 2;
+    /* display: inline; */
+    /* padding: 1rem;     */
+  }
+  .formdiv{
+    position: absolute;
+    z-index: 4;
+  }
+  .dropdownndiv .button1{
+    padding: 1rem;
+  }
+
+ 
+
+
+.head{
+  background-color: rgb(37, 135, 160) ;
+  /* min-width: 100%;
+  height: 10vh; */
+  display: flex;
+  height: 10vh;
+  margin-bottom: 3rem;
+
+}
+
+
+.form_popup{
+  background: #eee;
+  /* padding: 2rem; */
+  border-radius: 5px;
+  min-width: 10vw;
+  margin-left: 18REM;
+  
+}
+
+.head h5{
+  margin-top: 1rem;
+  display: flex;
+  margin-left: 17px;
+  background-color: rgb(37, 135, 160);
+  color: #eee;
+}
+
+.form_popup h1{
+  font-size: 2rem;
+}
+.add_user .add_btn{
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgb(39, 116, 136);
+  padding: 10px;
+  font-weight: 500;
+}
+.submitadd_btn button{
+  background-color:  rgb(37, 135, 160);
+color: white;
+border: none;
+  font-size: 1.1rem;
+  padding:6px 25px;
+  border-radius: 5px;
+  cursor: pointer;  
+}
+.submitadd_btn{
+  display: flex;
+  justify-content: center;
+  margin-left: 31rem;
+  margin-top: 2rem;
+  padding-bottom: 1rem;
+}
+
+.remove_btn img{
+width: 25px;
+height: 25px;
+}
+
+.remove_btn{
+  background-color: rgb(37, 135, 160);
+  color: white;
+  border: none;
+  width: 1rem;
+  font-size: 1rem;
+  padding: 7px 7px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 34rem;
+  margin-top: 9px;
+  
+}
+.book_input{
+  display: flex;
+  margin-top: 1rem;
+ width: 49.2vw;
+ margin-left: 2rem;
+
+}
+.nexttline{
+display: inline;
+
+}
+.next{
+    display: inline;
+  
+}
+.next input{
+width: 42.4vw;
+margin-left: 4rem;
+}
+
+.next h6{
+    margin-left: 4rem;
+    margin-top: 1rem;
+}
+
+.book_input input{
+  width: 20vw;
+  border-radius: 5px;
+  border-width: 0.1px;
+  border-color: rgb(212, 214, 214);
+  margin-left:2rem;
+  margin-bottom: 1rem;
+ 
+} 
+
+.book_input select{
+  /* padding: 6px; */
+  width:20vw; 
+  border-radius: 5px;
+  border-width: 0.1px;
+  border-color: rgb(124, 123, 123);
+  margin-left:2rem;
+  margin-bottom: 1rem;
+
+}
+
+.book_input h6{
+  margin-left: 2rem;
+}
+
+select{
+  background-color: rgb(255, 255, 255);
+  border: 1px solid;
+  /* font-weight: 600; */
+}
+select ::placeholder{
+    color: rgb(182, 180, 180);
+}
+.form_content{
+  padding: 5px;
+}
+::placeholder{
+  font-weight: 600;
+  color: rgb(182, 180, 180);
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.Date_input{
+  /* margin-right: 1rem; */
+  display: inline;
+  justify-content: center;
+  /* margin-left: 1px; */
+}
+
+
+.Date_input input{
+  width: 90%;
+  /* margin: 0px 13px; */
+  margin-left: 36px;
+  padding: 5px;
+  border-radius: 5px;
+  border-width: 0.1px;
+  border-color: rgb(212, 214, 214);
+} 
+
+.Date_input h6{
+  margin-left: 2rem;
+  /* margin-right: 2px; */
+}

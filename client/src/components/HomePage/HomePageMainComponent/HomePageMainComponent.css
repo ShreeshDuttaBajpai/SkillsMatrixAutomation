@@ -6,6 +6,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-top: 17rem;
+    padding-bottom: 10rem;
+    min-height: 585px !important;
+    max-height: 65px !important;
     overflow: hidden;
     padding: 0;
     position: relative; 
@@ -21,6 +25,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-top: 17rem;
+    padding-bottom: 10rem;
     overflow: hidden;
     padding: 0;
     position: relative;
@@ -54,16 +60,10 @@
     margin-top: 15px;
     margin-left: .6rem;
 }
-.homeimg img{
-   
-    width: 500px;
-    height: 600px;
-    margin-right: 5rem;
-}
+
 
 .pageContent{
     position: absolute;
-    display: flex;
 }
 
 .home.bgHomePicture{
