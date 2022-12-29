@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import css from '../PopupComponent/PopupComponent.css'
 import x from '../../assests/x.png'
+import { red } from '@mui/material/colors';
 function PopupComponent() {
     const [open, setOpen] = React.useState();
     const [openActions, setOpenActions] = useState();
@@ -36,7 +37,9 @@ function PopupComponent() {
 
             <span className={css.book_input}>
                 <div className={css.nextline}>
-				<h6>Ticket No.</h6>
+				<h6>Ticket No.
+                    <span className={css.color}>*</span>
+                </h6>
 						<input
 							id="Ticket No"
 							placeholder="Ticket No"
@@ -47,9 +50,12 @@ function PopupComponent() {
 						/>
                     </div>
                     <div className={css.nextline}>
-                        <h6>Ticket Type</h6>
+                        <h6>Ticket Type
+                        <span className={css.color}>*</span>
+                        </h6>
 						<select
 							id="Ticket Type"
+                            required
 							// placeholder="Ticket Type"
 							// onChange={(e) => {
 							// 	handleChangeGender(index, e);
@@ -66,7 +72,9 @@ function PopupComponent() {
 
           <span className={css.book_input}>
           <div className={css.nextline}>
-		  <h6>Team</h6>
+		  <h6>Team
+          <span className={css.color}>*</span>
+          </h6>
 			<select
 					// type="number"
 					id="Team"
@@ -82,7 +90,9 @@ function PopupComponent() {
             </select>
             </div>
             <div className={css.nextline}>
-            <h6>Story Points</h6>
+            <h6>Story Points
+            <span className={css.color}>*</span>
+            </h6>
 						<input
 							type="number"
 							id="Story Points"
@@ -99,11 +109,14 @@ function PopupComponent() {
                     {/* <div className={css.Dates}> */}
 					<span className={css.book_input}>
                     <div className={css.nextline}>
-					    <h6>Start Date</h6>
+					    <h6>Start Date
+                        <span className={css.color}>*</span>
+                        </h6>
 						<input
 							type="Date"
 							id="Start Date"
 							placeholder="Start Date"
+                            required
 							// onChange={(e) => {
 							// 	handleChangeUid(index, e);
 							// }}
@@ -130,17 +143,19 @@ function PopupComponent() {
 							type="number"
 							id="Hours"
 							placeholder="Hours"
-							required
 							// onChange={(e) => {
 							// 	handleChangeAge(index, e);
 							// }}
 						/>
                         </div>
                         <div className={css.nextline}>
-						<h6>Status</h6>
+						<h6>Status
+                        <span className={css.color}>*</span>
+                        </h6>
 						<select
 							id="Status"
 							placeholder="Status"
+                            required
 							// onChange={(e) => {
 							// 	handleChangeGender(index, e);
 							// }}
@@ -158,7 +173,6 @@ function PopupComponent() {
 						<input
 							id="CodeReviewer"
 							placeholder="CodeReviewer"
-							required
 							// onChange={(e) => {
 							// 	handleChangeName(index, e);
 							// }}

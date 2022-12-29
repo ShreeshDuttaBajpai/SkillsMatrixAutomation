@@ -14,8 +14,9 @@
     padding: 1rem;
   }
 
- 
-
+.color{
+    color: red;
+}
 
 .head{
   background-color: rgb(37, 135, 160) ;

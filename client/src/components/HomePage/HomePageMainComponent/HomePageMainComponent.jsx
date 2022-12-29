@@ -1,13 +1,13 @@
 import React from 'react';
 import css from './HomepageMainComponent.css';
 import bglogo from '../../../assests/homeLogo.png';
-import bgHomePicture from '../../../assests/bg-image.jpg';
+import bgHomePicture from '../../../assests/bg8.jpg';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../auth.context';
 import Cookies from 'universal-cookie';
 import { ButtonComponent } from '../../ButtonComponent/ButtonComponent';
-import { Redirect } from 'react-router-dom';
+import {Redirect} from "react-router-dom";
 
 function HomePageMainComponent() {
   const { run, myData, authSuccess } = useAuth();
