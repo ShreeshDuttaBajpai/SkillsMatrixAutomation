@@ -63,14 +63,15 @@ export const AuthProvider = props => {
       return {
         emp_id: json.employeeId,
         emp_name: json.displayName,
-        emp_designation: 'Engineering Manager'
+        emp_designation: json.jobTitle,
+        emp_firstname:json.givenName
       };
     });
   }
 
   return (
     <AuthContext.Provider
-      value={{ userToken, setUserToken, authSuccess, logout, run, myData }}
+      value={{ userToken, setUserToken, authSuccess, logout,run,myData }}
     >
       {props.children}
     </AuthContext.Provider>

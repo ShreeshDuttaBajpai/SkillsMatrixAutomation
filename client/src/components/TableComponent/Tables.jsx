@@ -48,7 +48,7 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-const Tables = (props) => {
+const Tables = props => {
   const { userToken } = useAuth();
   const decoded = jwt_decode(userToken);
   const api = axios.create({
@@ -58,12 +58,11 @@ const Tables = (props) => {
   });
 
   const CodeReviewapi = axios.create({
-    baseURL: `https://localhost:7040/api/Review/${decoded.Emp_name}`
+    baseURL: `https://localhost:7040/api/Review/${decoded.Emp_firstname}`
   });
 
   var columns = [
-    
-    { title: 'Ticket No', field: 'ticket_no', editable: 'onAdd', width:'24%' },
+    { title: 'Ticket No', field: 'ticket_no', editable: 'onAdd', width: '24%' },
     // {
     //   title: 'Client',
     //   field: 'client',
@@ -74,30 +73,39 @@ const Tables = (props) => {
     {
       title: 'Team',
       field: 'team',
-      width:'30%',
+      width: '30%',
       lookup: {
         CNS: 'CNS',
         'Mobile Team': 'Mobile Team',
         'Partner Service': 'Partner Service',
         Contacts: 'Contacts',
         CP: 'CP',
-        'Event Bridge' : 'Event Bridge',
-      },
+        'Event Bridge': 'Event Bridge'
+      }
     },
     {
       title: 'Name',
       field: 'name',
       initialEditValue: decoded.Emp_name,
       editable: 'never',
-      cellStyle: { textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden', maxWidth: 130,
-      '&:hover': {
-        textOverflow: 'none'
-      }} 
+      cellStyle: {
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        maxWidth: 130,
+        '&:hover': {
+          textOverflow: 'none'
+        }
+      }
     },
     {
       title: 'Ticket Type',
       field: 'ticket_type',
-      cellStyle: { textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden', maxWidth: 120
+      cellStyle: {
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        maxWidth: 120
       },
       lookup: {
         Story: 'Story',
@@ -106,7 +114,7 @@ const Tables = (props) => {
         'Sub-Task': 'Sub-Task'
       }
     },
-    // { title: 'Story Point', field: 'story_point' },
+    { title: 'Story Point', field: 'story_point' },
     { title: 'Start date', field: 'start_date', type: 'date' },
     { title: 'End date', field: 'end_date', type: 'date' },
     { title: 'Hours', field: 'hours' },
@@ -117,15 +125,16 @@ const Tables = (props) => {
         Completed: 'Completed',
         InProgress: 'InProgress',
         Incomplete: 'Incomplete'
-      }, width:'20%'
+      },
+      width: '20%'
     },
-    { title: 'Code Reviewer', field: 'code_reviewer' },
+    { title: 'Code Reviewer', field: 'code_reviewer' }
     // decoded.Emp_designation === 'Engineering Manager'
     //   ? { title: 'Code Deviation Count', field: 'code_deviation_count' }
     //   : {
-          // title: 'Code Deviation Count',
-          // field: 'code_deviation_count',
-          // editable: 'never'
+    // title: 'Code Deviation Count',
+    // field: 'code_deviation_count',
+    // editable: 'never'
     //     },
     // decoded.Emp_designation === 'Engineering Manager'
     //   ? { title: 'Bugs Count', field: 'bugs_count' }
@@ -133,13 +142,21 @@ const Tables = (props) => {
     // decoded.Emp_designation === 'Engineering Manager'
     //   ? { title: 'Remarks', field: 'remarks' }
     //   : { title: 'Remarks', field: 'remarks', editable: 'never' }
-    ];
+  ];
   const [data, setData] = useState([]); //table data
   const [iserror, setIserror] = useState(false);
   const [errorMessages, setErrorMessages] = useState([]);
-  
+
   useEffect(() => {
     if (window.location.pathname === '/CodeReview') {
+      CodeReviewapi.get('')
+        .then(res => {
+          setData(res.data);
+          console.log(res.data);
+        })
+        .catch(error => {
+          console.log('Error');
+        });
     } else {
       api
         .get(
@@ -227,7 +244,7 @@ const Tables = (props) => {
     if (newData.name === undefined) {
       errorList.push('Please enter Name');
     }
-  
+
     if (newData.ticket_type === undefined) {
       errorList.push('Please enter Ticket_type');
     }
@@ -302,22 +319,43 @@ const Tables = (props) => {
               </Alert>
             )}
           </div>
-          <MaterialTable 
-            
+          <MaterialTable
+            localization={{
+              body: {
+                emptyDataSourceMessage: (
+                  <h1
+                    style={{
+                      marginTop: '10%',
+                      position: 'absolute',
+                      top: '16%',
+                      marginLeft: '20px',
+                      textAlign: 'center'
+                    }}
+                  >
+                    No records to display
+                  </h1>
+                )
+              }
+            }}
             mt={90}
             title="Client : ConnectWise"
-            columns={columns}   
+            columns={columns}
             options={{
               showTextRowsSelected: false,
               selection: true
             }}
-            onSelectionChange={(rows) => {if (rows.length===1)
-            props.setSelected(true);
-          else{
-            props.setSelected(false);
+            onSelectionChange={rows => {
+              // console.log(rows);
+              if (rows.length === 1)
+              { 
+                props.setSelected(true);
+                props.setOldData(rows);
+                props.setNewData(rows);
               }
-            }
-          }
+              else {
+                props.setSelected(false);
+              }
+            }}
             data={data}
             icons={tableIcons}
             // options={{
@@ -325,7 +363,8 @@ const Tables = (props) => {
             // }}
             //Add, Edit & Update functionality to User Only
             editable={
-              decoded.Emp_designation !== 'Engineering Manager' && {
+              decoded.Emp_designation !== 'Engineering Manager' &&
+              {
                 // onRowUpdate: (newData, oldData) =>
                 //   new Promise(resolve => {
                 //     handleRowUpdate(newData, oldData, resolve);
@@ -349,6 +388,6 @@ const Tables = (props) => {
       </Grid>
     </div>
   );
-}
+};
 
 export default Tables;
