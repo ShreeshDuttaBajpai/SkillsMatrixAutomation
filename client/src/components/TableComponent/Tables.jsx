@@ -114,7 +114,7 @@ const Tables = props => {
         'Sub-Task': 'Sub-Task'
       }
     },
-    // { title: 'Story Point', field: 'story_point' },
+    { title: 'Story Point', field: 'story_point' },
     { title: 'Start date', field: 'start_date', type: 'date' },
     { title: 'End date', field: 'end_date', type: 'date' },
     { title: 'Hours', field: 'hours' },

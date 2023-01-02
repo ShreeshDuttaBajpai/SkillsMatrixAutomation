@@ -8,13 +8,15 @@
   .formdiv{
     position: absolute;
     z-index: 4;
-  }
+    right: 25%;
+}
   .dropdownndiv .button1{
     padding: 1rem;
   }
 
- 
-
+.color{
+    color: red;
+}
 
 .head{
   background-color: rgb(37, 135, 160) ;
@@ -32,7 +34,7 @@
   /* padding: 2rem; */
   border-radius: 5px;
   min-width: 10vw;
-  margin-left: 18REM;
+  /* margin-left: 18REM; */
   
 }
 

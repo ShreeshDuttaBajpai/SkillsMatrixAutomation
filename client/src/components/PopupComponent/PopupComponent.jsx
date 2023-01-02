@@ -105,16 +105,7 @@ function PopupComponent() {
         <div className={css.head}>
           <h5>Add Ticket</h5>
           <span>
-            <button
-              className={css.remove_btn}
-              onClick={handleOpen}
-              // onClick={() => {
-              // 	const remove = passList.filter((i, j) => {
-              // 		return index !== j;
-              // 	});
-              // 	setPassList(remove);
-              // }}
-            >
+            <button className={css.remove_btn} onClick={handleOpen}>
               <img src={x} />
             </button>
           </span>
@@ -124,7 +115,10 @@ function PopupComponent() {
           <div key={index} className="form-content"> */}
         <span className={css.book_input}>
           <div className={css.nextline}>
-            <h6>Ticket No.</h6>
+            <h6>
+              Ticket No.
+              <span className={css.color}>*</span>
+            </h6>
             <input
               id="Ticket No"
               placeholder="Ticket No"
@@ -135,7 +129,10 @@ function PopupComponent() {
             />
           </div>
           <div className={css.nextline}>
-            <h6>Ticket Type</h6>
+            <h6>
+              Ticket Type
+              <span className={css.color}>*</span>
+            </h6>
             <select
               id="Ticket Type"
               // placeholder="Ticket Type"
@@ -153,7 +150,10 @@ function PopupComponent() {
 
         <span className={css.book_input}>
           <div className={css.nextline}>
-            <h6>Team</h6>
+            <h6>
+              Team
+              <span className={css.color}>*</span>
+            </h6>
             <select
               // type="number"
               id="Team"
@@ -172,7 +172,10 @@ function PopupComponent() {
             </select>
           </div>
           <div className={css.nextline}>
-            <h6>Story Points</h6>
+            <h6>
+              Story Points
+              <span className={css.color}>*</span>
+            </h6>
             <input
               type="number"
               id="Story Points"
@@ -188,7 +191,10 @@ function PopupComponent() {
         {/* <div className={css.Dates}> */}
         <span className={css.book_input}>
           <div className={css.nextline}>
-            <h6>Start Date</h6>
+            <h6>
+              Start Date
+              <span className={css.color}>*</span>
+            </h6>
             <input
               type="Date"
               id="Start Date"
@@ -226,7 +232,10 @@ function PopupComponent() {
             />
           </div>
           <div className={css.nextline}>
-            <h6>Status</h6>
+            <h6>
+              Status
+              <span className={css.color}>*</span>
+            </h6>
             <select
               id="Status"
               placeholder="Status"
@@ -247,7 +256,6 @@ function PopupComponent() {
           <input
             id="CodeReviewer"
             placeholder="CodeReviewer"
-            required
             onChange={e => {
               handleChangecodereveiwer(e);
             }}
