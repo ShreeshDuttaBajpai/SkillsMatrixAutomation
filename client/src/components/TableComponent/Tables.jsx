@@ -147,6 +147,8 @@ const Tables = props => {
   const [iserror, setIserror] = useState(false);
   const [errorMessages, setErrorMessages] = useState([]);
 
+  console.log(data);
+
   useEffect(() => {
     if (window.location.pathname === '/CodeReview') {
       CodeReviewapi.get('')
@@ -345,8 +347,11 @@ const Tables = props => {
               selection: true
             }}
             onSelectionChange={rows => {
-              if (rows.length === 1) props.setSelected(true);
-              else {
+              if (rows.length === 1) {
+                props.setSelected(true);
+                props.setOldData(rows[0]);
+                props.setNewData(rows[0]);
+              } else {
                 props.setSelected(false);
               }
             }}

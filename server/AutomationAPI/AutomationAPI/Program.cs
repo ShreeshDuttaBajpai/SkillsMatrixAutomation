@@ -44,7 +44,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseCors(x => x.WithOrigins("http://localhost:3000").AllowAnyHeader().WithMethods("GET", "POST","DELETE").AllowCredentials());
+app.UseCors(x => x.WithOrigins("http://localhost:3000").AllowAnyHeader().WithMethods("GET", "POST","DELETE","PUT").AllowCredentials());
 
 app.UseHttpsRedirection();
 

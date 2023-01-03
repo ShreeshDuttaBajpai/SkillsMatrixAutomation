@@ -64,12 +64,13 @@ namespace AutomationAPI.Controllers
 
 
         [HttpPut("{ticket}")]
-        public JsonResult Put([FromBody] StoryTrackerDB us)
+        public JsonResult Put(string ticket,[FromBody] StoryTrackerDB us)
         {
-            string query1 = $"update dbo.StoryTrackerDB set Client = '" + us.Client + "', Team='" + us.Team + "', Name='" + us.Name + "'" +
-                ", Ticket_type = '" + us.Ticket_type + "', Story_point=" + us.Story_point + ", Start_date='" + us.Start_date + "', End_date='" + us.End_date + "', Hours=" + us.Hours + "," +
-                "Status='" + us.Status + "', Code_reviewer='" + us.Code_reviewer + "', Code_deviation_count='" + us.Code_deviation_count + "', Bugs_count='" + us.Bugs_count + "', " +
-                "Remarks='" + us.Remarks + "'  where Ticket_no = '" + us.Ticket_no + "'";
+            string query1 = $"update dbo.StoryTrackerDB set Team='" + us.Team +
+                "', Ticket_type = '" + us.Ticket_type + "', Story_point=" + us.Story_point + ", Start_date='" +
+                us.Start_date + "', End_date='" + us.End_date + "', Hours=" + us.Hours + "," +
+                "Status='" + us.Status + "', Code_reviewer='" + us.Code_reviewer + "' where Ticket_no = '" + 
+                ticket+ "'";
             DataTable table2 = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("MyConnectionString");
             SqlDataReader myReader;

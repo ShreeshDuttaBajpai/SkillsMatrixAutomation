@@ -5,7 +5,7 @@ import jwt_decode from 'jwt-decode';
 import { useAuth } from '../auth.context';
 import axios from 'axios';
 
-function PopupComponent() {
+function PopupComponent(props) {
   const [open, setOpen] = React.useState();
   const [openActions, setOpenActions] = useState();
   const [selected, setSelected] = useState();
@@ -25,10 +25,10 @@ function PopupComponent() {
     team: 'CNS',
     name: userName,
     ticket_type: 'Story',
-    story_points: '',
+    story_point: 0,
     start_date: '',
     end_date: '',
-    hours: '',
+    hours: 0,
     status: 'Completed',
     code_reviewer: '',
     code_deviation_count: '',
@@ -38,72 +38,70 @@ function PopupComponent() {
 
   useEffect(() => {}, [ticketDetails]);
 
-  const postUser = async e => {
-    // e.preventDefault();
-    console.log(ticketDetails);
-    axios.post('https://localhost:7040/api/User', ticketDetails).then(res => {
-      alert('Ticket added successfully!!');
-    });
-  };
-
   const handleChangeticketno = e => {
-    setticketDetails(prev => {
+    props.setNewData(prev => {
       return { ...prev, ticket_no: e.target.value };
     });
   };
 
   const handleChangetickettype = e => {
-    setticketDetails(prev => {
+    props.setNewData(prev => {
       return { ...prev, ticket_type: e.target.value };
     });
   };
 
   const handleChangeteam = e => {
-    setticketDetails(prev => {
+    props.setNewData(prev => {
       return { ...prev, team: e.target.value };
     });
   };
 
   const handleChangestorypoints = e => {
-    setticketDetails(prev => {
-      return { ...prev, story_points: e.target.value };
+    props.setNewData(prev => {
+      return { ...prev, story_point: e.target.value };
     });
   };
 
   const handleChangestartdate = e => {
-    setticketDetails(prev => {
+    props.setNewData(prev => {
       return { ...prev, start_date: e.target.value };
     });
   };
   const handleChangeenddate = e => {
-    setticketDetails(prev => {
+    props.setNewData(prev => {
       return { ...prev, end_date: e.target.value };
     });
   };
 
   const handleChangehours = e => {
-    setticketDetails(prev => {
+    props.setNewData(prev => {
       return { ...prev, hours: e.target.value };
     });
   };
 
   const handleChangestatus = e => {
     console.log(e.target.value);
-    setticketDetails(prev => {
+    props.setNewData(prev => {
       return { ...prev, status: e.target.value };
     });
   };
   const handleChangecodereveiwer = e => {
-    setticketDetails(prev => {
+    props.setNewData(prev => {
       return { ...prev, code_reviewer: e.target.value };
     });
   };
 
   return (
     <div className={css.formdiv}>
-      <form className={css.form_popup} id="myForm" onSubmit={postUser}>
+      <form
+        className={css.form_popup}
+        id="myForm"
+        onSubmit={e => {
+          props.val2();
+        }}
+      >
         <div className={css.head}>
-          <h5>Add Ticket</h5>
+          <h5>{props.val1}</h5>
           <span>
             <button className={css.remove_btn} onClick={handleOpen}>
               <img src={x} />
@@ -123,6 +121,7 @@ function PopupComponent() {
               id="Ticket No"
               placeholder="Ticket No"
               required
+              defaultValue={props.ticketno}
               onChange={e => {
                 handleChangeticketno(e);
               }}
@@ -136,6 +135,7 @@ function PopupComponent() {
             <select
               id="Ticket Type"
               // placeholder="Ticket Type"
+              defaultValue={props.tickettype}
               onChange={e => {
                 handleChangetickettype(e);
               }}
@@ -159,6 +159,7 @@ function PopupComponent() {
               id="Team"
               placeholder="Team"
               required
+              defaultValue={props.team}
               onChange={e => {
                 handleChangeteam(e);
               }}
@@ -181,6 +182,7 @@ function PopupComponent() {
               id="Story Points"
               placeholder="Story Points"
               required
+              defaultValue={props.storypoints}
               onChange={e => {
                 handleChangestorypoints(e);
               }}
@@ -199,6 +201,7 @@ function PopupComponent() {
               type="Date"
               id="Start Date"
               placeholder="Start Date"
+              defaultValue={props.startdate}
               onChange={e => {
                 handleChangestartdate(e);
               }}
@@ -210,6 +213,7 @@ function PopupComponent() {
               type="Date"
               id="End Date"
               placeholder="End Date"
+              defaultValue={props.enddate}
               onChange={e => {
                 handleChangeenddate(e);
               }}
@@ -226,6 +230,7 @@ function PopupComponent() {
               id="Hours"
               placeholder="Hours"
               required
+              defaultValue={props.hours}
               onChange={e => {
                 handleChangehours(e);
               }}
@@ -239,6 +244,7 @@ function PopupComponent() {
             <select
               id="Status"
               placeholder="Status"
+              defaultValue={props.status}
               onChange={e => {
                 handleChangestatus(e);
               }}
@@ -256,6 +262,7 @@ function PopupComponent() {
           <input
             id="CodeReviewer"
             placeholder="CodeReviewer"
+            defaultValue={props.codereviewer}
             onChange={e => {
               handleChangecodereveiwer(e);
             }}
