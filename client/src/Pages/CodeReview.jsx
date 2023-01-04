@@ -95,7 +95,7 @@ function CodeReview(props) {
                   <ButtonComponent
                     cname={css.button1}
                     value="Edit"
-                    run={handleEditOpen }
+                    run={handleOpen }
                     //disable={true}
                     // run={() => {
                     //   handleRowUpdate(newData, oldData);
