@@ -16,10 +16,10 @@ function TablePage(props) {
   const [data, setData] = useState([]);
   const [oldData, setOldData] = useState({});
   const [newData, setNewData] = useState({});
-  const [editopen, setEditopen] = useState();
+  const [editOpen, setEditOpen] = useState();
 
-  const handleEditopen = () => {
-    setEditopen(!open);
+  const handleEditOpen = () => {
+    setEditOpen(!editOpen);
   };
 
   const handleOpen = () => {
@@ -72,7 +72,7 @@ function TablePage(props) {
       .catch(error => {
         console.log(error);
       });
-  };
+  };  
 
   return (
     <div className={css.tab}>
@@ -108,7 +108,7 @@ function TablePage(props) {
                     //   handleRowUpdate(newData, oldData);
                     // }}
                   />
-                  {open ? (
+                  {editOpen ? (
                     <PopupComponent
                       setNewData={setNewData}
                       val1="Edit Ticket"
