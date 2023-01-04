@@ -79,7 +79,7 @@ function CodeReview(props) {
       <div className={css.headers}>
         <h3 className={css.dashboard}>Code Reviewer Dashboard</h3>
       <div className={css.Actionsdiv}>
-          <div className={css.dropdown}>
+          <div className={css.ActionsButton}>
             <ButtonComponent
               selected={selected}
               cname={css.Actionsbutton}
@@ -136,7 +136,7 @@ function CodeReview(props) {
           </div>
         </div>
 
-        <div className={css.dropdowndiv}>
+        <div className={css.AddButton}>
           <ButtonComponent
             cname={css.add_button}
             value="Add"
