@@ -3,6 +3,16 @@
   background-size: cover;
 
 } 
+
+.codereviewhead{
+  background-color: rgb(172, 219, 231);
+  background-size: cover;
+}
+
+.dashboardhead{
+  margin-top: 3rem;
+  margin-left: 7rem;
+}
 .headers{
   display :flex;
   margin-top: 3rem;
@@ -29,7 +39,7 @@
 }
 
 .Actionsbutton {
-  margin-left: 45.4rem;
+  margin-left: 47.4rem;
   margin-right: 1rem;
   display: inline-block;
   background-image: linear-gradient(#42A1EC, #0070C9);
@@ -83,7 +93,7 @@
 }
 
 .button1 {
-  margin-left: 43.4rem;
+  margin-left: 45.4rem;
   z-index: 10;
   margin-top: 0.3rem;
  

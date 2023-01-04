@@ -15,6 +15,7 @@ function PopupComponent(props) {
   const decodtoken = jwt_decode(userToken);
   console.log(decodtoken);
   console.log(userName);
+
   const handleOpen = () => {
     setOpen(!open);
   };
@@ -134,6 +135,7 @@ function PopupComponent(props) {
             </h6>
             <select
               id="Ticket Type"
+                            required
               // placeholder="Ticket Type"
               defaultValue={props.tickettype}
               onChange={e => {
@@ -229,7 +231,6 @@ function PopupComponent(props) {
               type="number"
               id="Hours"
               placeholder="Hours"
-              required
               defaultValue={props.hours}
               onChange={e => {
                 handleChangehours(e);

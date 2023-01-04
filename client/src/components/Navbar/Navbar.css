@@ -66,7 +66,8 @@
 
 .right_navbarHeadings{
     display: inline-flex;
-    margin-left: 30rem;
+    margin-left: 34rem;
+    position: absolute;
 }
 
 
