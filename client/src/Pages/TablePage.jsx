@@ -19,7 +19,7 @@ function TablePage(props) {
   const [editopen, setEditopen] = useState();
 
   const handleEditopen = () => {
-    setEditopen(!open);
+    setEditopen(!editopen);
   };
 
   const handleOpen = () => {
@@ -102,13 +102,13 @@ function TablePage(props) {
                   <ButtonComponent
                     cname={css.button1}
                     value="Edit"
-                    run={handleOpen}
+                    run={handleEditopen}
                     //disable={true}
                     // run={() => {
                     //   handleRowUpdate(newData, oldData);
                     // }}
                   />
-                  {open ? (
+                  {editopen ? (
                     <PopupComponent
                       setNewData={setNewData}
                       val1="Edit Ticket"
