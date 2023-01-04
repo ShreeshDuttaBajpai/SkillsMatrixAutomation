@@ -31,6 +31,7 @@ namespace AutomationAPI.Controllers
                 new Claim("Emp_id",emp.Emp_id.ToString()),
                 new Claim("Emp_name",emp.Emp_name.ToString()),
                 new Claim("Emp_designation",emp.Emp_designation.ToString()),
+                new Claim("Emp_firstname",emp.Emp_firstname.ToString())
             };
             var token = new JwtSecurityToken(_configuration["Jwt:Issuer"],
                  _configuration["Jwt:Audience"],
@@ -74,7 +75,7 @@ namespace AutomationAPI.Controllers
         public IActionResult Post([FromBody] Employee us)
         {
             string query1 = $"insert into dbo.Emp_details values(" + us.Emp_id + "," +
-                "'" + us.Emp_name + "', '" + us.Emp_designation + "')";
+                "'" + us.Emp_name + "', '" + us.Emp_designation + "','"+us.Emp_firstname+"')";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("MyConnectionString");
             SqlDataReader myReader;
