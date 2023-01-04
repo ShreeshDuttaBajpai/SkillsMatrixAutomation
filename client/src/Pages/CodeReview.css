@@ -19,6 +19,10 @@
     margin-bottom: 5rem;
   }
   
+  .editdash{
+    margin-left: 20rem;
+  }
+
   .dropdowndiv{
     display: inline-block;
   
@@ -39,7 +43,7 @@
   }
   
   .Actionsbutton {
-    margin-left: 39rem;
+    margin-left: 44rem;
     margin-right: 1rem;
     display: inline-block;
     background-image: linear-gradient(#42A1EC, #0070C9);
@@ -93,7 +97,7 @@
   }
   
   .button1 {
-    margin-left: 45.4rem;
+    margin-left: 42rem;
     z-index: 10;
     margin-top: 0.3rem;
    

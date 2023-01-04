@@ -16,15 +16,16 @@ function CodeReview(props) {
   const [data, setData] = useState([]);
   const [oldData, setOldData] = useState({});
   const [newData, setNewData] = useState({});
-  const [editopen, setEditOpen] = useState();
+  const [editopen, setEditopen] = useState();
 
-  const handleEditOpen = () => {
-    setEditOpen(!open);
+  const handleEditopen = () => {
+    setEditopen(!editopen);
   };
 
   const handleOpen = () => {
     setOpen(!open);
   };
+
   console.log(oldData);
   const { userToken } = useAuth();
   const decoded = jwt_decode(userToken);
@@ -95,13 +96,13 @@ function CodeReview(props) {
                   <ButtonComponent
                     cname={css.button1}
                     value="Edit"
-                    run={handleOpen }
+                    run={handleEditopen}
                     //disable={true}
                     // run={() => {
                     //   handleRowUpdate(newData, oldData);
                     // }}
                   />
-                  {open ? (
+                  {editopen ? (
                     <PopupComponent
                       setNewData={setNewData}
                       val1="Edit Ticket"
@@ -135,19 +136,12 @@ function CodeReview(props) {
             ) : null}
           </div>
         </div>
-
-        <div className={css.dropdowndiv}>
-          <ButtonComponent
-            cname={css.add_button}
-            value="Add"
-            // disable={false}
-            run={handleOpen}
-          />
-          {open ? <PopupComponent val1="Add Ticket"/> : null}
-        </div>
         </div>
         
-      <Table />
+      <Table
+       setSelected={setSelected} 
+       setOldData={setOldData}
+       setNewData={setNewData}/>
     </div>
   );
 }
