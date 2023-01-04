@@ -11,11 +11,13 @@ const Navbar = () => {
   const { authSuccess, userToken, logout, run } = useAuth();
   let Emp_name = '';
   let Emp_id = '';
+  let Emp_firstname ='';
 
   if (userToken) {
     const decoded_token = jwt_Decode(userToken);
     Emp_name = decoded_token.Emp_name;
     Emp_id = decoded_token.Emp_id;
+    Emp_firstname = decoded_token.Emp_firstname;
   }
 
   return (
@@ -52,7 +54,7 @@ const Navbar = () => {
                 <div className={css.headings}>
                   <AccountCircleIcon />
                   <span>
-                    {con.Hi}, {Emp_name}
+                    {con.Hi}, {Emp_firstname}
                   </span>
                 </div>
                 <div className={css.headings}>

@@ -16,6 +16,11 @@ function TablePage(props) {
   const [data, setData] = useState([]);
   const [oldData, setOldData] = useState({});
   const [newData, setNewData] = useState({});
+  const [editopen, setEditopen] = useState();
+
+  const handleEditopen = () => {
+    setEditopen(!open);
+  };
 
   const handleOpen = () => {
     setOpen(!open);
@@ -97,7 +102,7 @@ function TablePage(props) {
                   <ButtonComponent
                     cname={css.button1}
                     value="Edit"
-                    run={handleOpen}
+                    run={handleEditopen}
                     //disable={true}
                     // run={() => {
                     //   handleRowUpdate(newData, oldData);
@@ -145,7 +150,7 @@ function TablePage(props) {
             // disable={false}
             run={handleOpen}
           />
-          {/* {open ? <PopupComponent val1=Add Ticket/> : null} */}
+          {open ? <PopupComponent val1="Add Ticket"/> : null}
         </div>
       </div>
       <div className={css.tablediv}>
