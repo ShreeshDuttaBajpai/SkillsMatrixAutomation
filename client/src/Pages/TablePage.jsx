@@ -35,7 +35,6 @@ function TablePage(props) {
 
   const postUser = async e => {
     // e.preventDefault();
-    console.log(ticketDetails);
     axios.post('https://localhost:7040/api/User', newData).then(res => {
       alert('Ticket added successfully!!');
     });
@@ -47,7 +46,6 @@ function TablePage(props) {
       .delete(`https://localhost:7040/api/User/${oldData.ticket_no}`)
       .then(res => {
         const dataDelete = [...data];
-        console.log(dataDelete);
         setData(prev =>
           prev.filter(obj => obj.ticket_no !== oldData.ticket_no)
         );
@@ -150,7 +148,8 @@ function TablePage(props) {
             // disable={false}
             run={handleOpen}
           />
-          {open ? <PopupComponent val1="Add Ticket"/> : null}
+          {open ? <PopupComponent val1="Add Ticket"
+          setNewData={setNewData}/> : null}
         </div>
       </div>
       <div className={css.tablediv}>
