@@ -10,24 +10,40 @@ import axios from 'axios';
 // import TablesContainer from '../components/TableComponent/TablesContainer';
 
 function TablePage(props) {
+  const { userToken } = useAuth();
+  const userName = jwt_decode(userToken).Emp_name;
+  const decoded = jwt_decode(userToken);
+
   const [open, setOpen] = useState();
+  const [editOpen, setEditOpen] = useState();
   const [openActions, setOpenActions] = useState();
   const [selected, setSelected] = useState();
   const [data, setData] = useState([]);
   const [oldData, setOldData] = useState({});
-  const [newData, setNewData] = useState({});
-  const [editopen, setEditopen] = useState();
-
-  const handleEditopen = () => {
-    setEditopen(!open);
-  };
+  const [newData, setNewData] = useState({
+    ticket_no: '',
+    client: 'CW',
+    team: 'CNS',
+    name: userName,
+    ticket_type: 'Story',
+    story_point: 0,
+    start_date: '',
+    end_date: '',
+    hours: 0,
+    status: 'Completed',
+    code_reviewer: '',
+    code_deviation_count: '',
+    bug_count: '',
+    remarks: ''
+  });
 
   const handleOpen = () => {
     setOpen(!open);
   };
+  const handleEditOpen = () => {
+    setEditOpen(!editOpen);
+  };
   console.log(oldData);
-  const { userToken } = useAuth();
-  const decoded = jwt_decode(userToken);
 
   const handleOpenActions = () => {
     setOpenActions(!openActions);
@@ -35,7 +51,6 @@ function TablePage(props) {
 
   const postUser = async e => {
     // e.preventDefault();
-    console.log(ticketDetails);
     axios.post('https://localhost:7040/api/User', newData).then(res => {
       alert('Ticket added successfully!!');
     });
@@ -57,15 +72,11 @@ function TablePage(props) {
   };
 
   const handleRowUpdate = (newData, oldData) => {
-    console.log(newData);
-    console.log(oldData);
     axios
       .put(`https://localhost:7040/api/User/${oldData.ticket_no}`, newData)
       .then(res => {
         const dataUpdate = [...data];
-        console.log(dataUpdate);
         const index = oldData.tableData.id;
-        console.log(index);
         dataUpdate[index] = newData;
         setData([...dataUpdate]);
       })
@@ -102,13 +113,13 @@ function TablePage(props) {
                   <ButtonComponent
                     cname={css.button1}
                     value="Edit"
-                    run={handleOpen}
+                    run={handleEditOpen}
                     //disable={true}
                     // run={() => {
                     //   handleRowUpdate(newData, oldData);
                     // }}
                   />
-                  {open ? (
+                  {editOpen ? (
                     <PopupComponent
                       setNewData={setNewData}
                       val1="Edit Ticket"
@@ -150,7 +161,13 @@ function TablePage(props) {
             // disable={false}
             run={handleOpen}
           />
-          {open ? <PopupComponent val1="Add Ticket"/> : null}
+          {open ? (
+            <PopupComponent
+              setNewData={setNewData}
+              val1="Add Ticket"
+              val2={postUser}
+            />
+          ) : null}
         </div>
       </div>
       <div className={css.tablediv}>
