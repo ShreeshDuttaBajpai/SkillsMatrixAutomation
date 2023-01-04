@@ -95,7 +95,7 @@ function PopupComponent(props) {
   };
 
   return (
-    <div className={css.formdiv}>
+    <div className={css.formdiv} >
       <form
         className={css.form_popup}
         id="myForm"
@@ -147,7 +147,7 @@ function PopupComponent(props) {
               <option>Story</option>
               <option>Bug</option>
               <option>Task</option>
-              <option>Sub Task</option>
+              <option>Sub-Task</option>
             </select>
           </div>
         </span>

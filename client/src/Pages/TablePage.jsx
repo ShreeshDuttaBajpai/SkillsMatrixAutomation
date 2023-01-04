@@ -100,7 +100,7 @@ function TablePage(props) {
                   <ButtonComponent
                     cname={css.button1}
                     value="Edit"
-                    run={handleEditopen}
+                    run={handleEditOpen}
                     //disable={true}
                     // run={() => {
                     //   handleRowUpdate(newData, oldData);
