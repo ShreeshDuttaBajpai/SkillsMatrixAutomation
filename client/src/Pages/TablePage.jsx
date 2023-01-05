@@ -70,7 +70,6 @@ function TablePage(props) {
         //resolve();
       });
   };
-
   const handleRowUpdate = (newData, oldData) => {
     axios
       .put(`https://localhost:7040/api/User/${oldData.ticket_no}`, newData)

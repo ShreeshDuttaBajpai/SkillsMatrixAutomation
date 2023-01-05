@@ -24,7 +24,7 @@ function PopupComponent(props) {
     team: 'CNS',
     name: userName,
     ticket_type: 'Story',
-    story_point: 0,
+    story_point: '',
     start_date: '',
     end_date: '',
     hours: 0,
@@ -143,7 +143,7 @@ function PopupComponent(props) {
               <option>Story</option>
               <option>Bug</option>
               <option>Task</option>
-              <option>Sub Task</option>
+              <option>Sub-Task</option>
             </select>
           </div>
         </span>

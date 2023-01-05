@@ -129,6 +129,10 @@ const Tables = props => {
       width: '20%'
     },
     { title: 'Code Reviewer', field: 'code_reviewer' }
+    // window.location.pathname == '/CodeReview' && {
+    //   title: 'Code Deviation Count',
+    //   field: 'code_deviation_count'
+    // }
     // decoded.Emp_designation === 'Engineering Manager'
     //   ? { title: 'Code Deviation Count', field: 'code_deviation_count' }
     //   : {
