@@ -21,7 +21,7 @@ function CodeReview(props) {
   const handleEditopen = () => {
     setEditopen(!editopen);
   };
-
+  
   const handleOpen = () => {
     setOpen(!open);
   };
@@ -109,15 +109,9 @@ function CodeReview(props) {
                       val2={() => {
                         handleRowUpdate(newData, oldData);
                       }}
-                      ticketno={oldData.ticket_no}
-                      tickettype={oldData.ticket_type}
-                      team={oldData.team}
-                      storypoints={oldData.story_point}
-                      startdate={oldData.start_date}
-                      enddate={oldData.end_date}
-                      hours={oldData.hours}
-                      status={oldData.status}
-                      codereviewer={oldData.code_reviewer}
+                      code_deviation_count={oldData.code_deviation_count}
+                      bugs_count={oldData.bugs_count}
+                      remarks={oldData.remarks}
                     />
                   ) : null}
                 </li>

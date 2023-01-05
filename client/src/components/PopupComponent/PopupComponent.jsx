@@ -4,18 +4,16 @@ import x from '../../assests/x.png';
 import jwt_decode from 'jwt-decode';
 import { useAuth } from '../auth.context';
 import axios from 'axios';
+import { ButtonComponent } from '../ButtonComponent/ButtonComponent';
 
 
 function PopupComponent(props) {
   const [open, setOpen] = React.useState();
   const [openActions, setOpenActions] = useState();
   const [selected, setSelected] = useState();
-  const [ticketList, setTicketList] = useState([{ value: '' }]);
   const { userToken } = useAuth();
   const userName = jwt_decode(userToken).Emp_name;
   const decodtoken = jwt_decode(userToken);
-  console.log(decodtoken);
-  console.log(userName);
 
   const handleOpen = () => {
     setOpen(!open);
@@ -94,7 +92,27 @@ function PopupComponent(props) {
     });
   };
 
+  const handleChangecode_deviation_count = e => {
+    props.setNewData(prev => {
+      return { ...prev, code_deviation_count: e.target.value };
+    });
+  };
+  const handleChangebugs_count = e => {
+    props.setNewData(prev => {
+      return { ...prev, bugs_count: e.target.value };
+    });
+  };
+
+  const handleChangeremarks = e => {
+    props.setNewData(prev => {
+      return { ...prev, remarks: e.target.value };
+    });
+  };
+
+
   return (
+
+    
     <div className={css.formdiv} >
       <form
         className={css.form_popup}
@@ -114,6 +132,48 @@ function PopupComponent(props) {
         {/* onSubmit={postPassenger} */}
         {/* {ticketList.map((singlepass, index) => (
           <div key={index} className="form-content"> */}
+        {window.location.pathname=== '/CodeReview' ?
+        (<>
+         <span className={css.book_input}>
+        <div className={css.nextline}>
+            <h6>Code Deviation Count</h6>
+            <input
+              type="number"
+              id="code_deviation_count"
+              placeholder="code_deviation_count"
+              defaultValue={props.code_deviation_count}
+              onChange={e => {
+                handleChangecode_deviation_count(e);
+              }}
+            />
+          </div>
+      <div className={css.nextline}>
+      <h6>Bugs Count</h6>
+      <input
+      type="number"
+      id="bugs_count"
+      placeholder="BugsCount"
+      defaultValue={props.bugs_count}
+      onChange={e => {
+        handleChangebugs_count(e);
+      }}
+     />
+    </div>
+    </span> 
+    <div className={css.next}>
+          <h6>Remarks</h6>
+          <input
+            id="remarks"
+            placeholder="remarks"
+            defaultValue={props.remarks}
+            onChange={e => {
+              handleChangeremarks(e);
+            }}
+          />
+        </div>
+    </>):
+(
+  <>
         <span className={css.book_input}>
           <div className={css.nextline}>
             <h6>
@@ -124,7 +184,7 @@ function PopupComponent(props) {
               id="Ticket No"
               placeholder="Ticket No"
               required
-              defaultValue={props.ticketno}
+              defaultValue={props.ticketno ? props.ticketno : ''}
               onChange={e => {
                 handleChangeticketno(e);
               }}
@@ -137,9 +197,9 @@ function PopupComponent(props) {
             </h6>
             <select
               id="Ticket Type"
-                            required
+              required
               // placeholder="Ticket Type"
-              defaultValue={props.tickettype}
+              defaultValue={props.tickettype ? props.tickettype : ''}
               onChange={e => {
                 handleChangetickettype(e);
               }}
@@ -147,7 +207,7 @@ function PopupComponent(props) {
               <option>Story</option>
               <option>Bug</option>
               <option>Task</option>
-              <option>Sub Task</option>
+              <option>Sub-Task</option>
             </select>
           </div>
         </span>
@@ -163,7 +223,7 @@ function PopupComponent(props) {
               id="Team"
               placeholder="Team"
               required
-              defaultValue={props.team}
+              defaultValue={props.team ? props.team : ''}
               onChange={e => {
                 handleChangeteam(e);
               }}
@@ -186,7 +246,7 @@ function PopupComponent(props) {
               id="Story Points"
               placeholder="Story Points"
               required
-              defaultValue={props.storypoints}
+              defaultValue={props.storypoints ? props.storypoint : ''}
               onChange={e => {
                 handleChangestorypoints(e);
               }}
@@ -205,7 +265,7 @@ function PopupComponent(props) {
               type="Date"
               id="Start Date"
               placeholder="Start Date"
-              defaultValue={props.startdate}
+              defaultValue={props.startdate ? props.startdate : ''}
               onChange={e => {
                 handleChangestartdate(e);
               }}
@@ -217,7 +277,7 @@ function PopupComponent(props) {
               type="Date"
               id="End Date"
               placeholder="End Date"
-              defaultValue={props.enddate}
+              defaultValue={props.enddate ? props.enddate : ''}
               onChange={e => {
                 handleChangeenddate(e);
               }}
@@ -247,7 +307,7 @@ function PopupComponent(props) {
             <select
               id="Status"
               placeholder="Status"
-              defaultValue={props.status}
+              defaultValue={props.status ? props.status : ''}
               onChange={e => {
                 handleChangestatus(e);
               }}
@@ -265,30 +325,25 @@ function PopupComponent(props) {
           <input
             id="CodeReviewer"
             placeholder="CodeReviewer"
-            defaultValue={props.codereviewer}
+            defaultValue={props.codereviewer ? props.codereviewer : ''}
             onChange={e => {
               handleChangecodereveiwer(e);
             }}
           />
         </div>
+        </>
+)
+          }
         {/* </div>
         ))} */}
         <div className={css.submitadd_btn}>
           <button type="submit">Save</button>
         </div>
       </form>
-
-      {/* <div className={css.Main}>
-                <div className={css.popup}>
-                  <div className={css.popup_header}>
-                    <h1>Add User</h1>
-                    <h1>x</h1>
-                  </div>
-                </div>
-                <input type="text">Name</input>
-              </div> */}
     </div>
+     
   );
+  
 }
 
 export default PopupComponent;
