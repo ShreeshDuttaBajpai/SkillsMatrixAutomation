@@ -23,6 +23,7 @@ import Alert from '@material-ui/lab/Alert';
 import { useAuth } from '../auth.context';
 import { Input } from '@material-ui/core';
 import { MTableToolbar } from 'material-table';
+import { width } from '@mui/system';
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -61,92 +62,189 @@ const Tables = props => {
     baseURL: `https://localhost:7040/api/Review/${decoded.Emp_firstname}`
   });
 
-  var columns = [
-    { title: 'Ticket No', field: 'ticket_no', editable: 'onAdd', width: '24%' },
-    // {
-    //   title: 'Client',
-    //   field: 'client',
-    //   lookup: {
-    //     CW: 'CW'
-    //   }
-    // },
-    {
-      title: 'Team',
-      field: 'team',
-      width: '30%',
-      lookup: {
-        CNS: 'CNS',
-        'Mobile Team': 'Mobile Team',
-        'Partner Service': 'Partner Service',
-        Contacts: 'Contacts',
-        CP: 'CP',
-        'Event Bridge': 'Event Bridge'
-      }
-    },
-    {
-      title: 'Name',
-      field: 'name',
-      initialEditValue: decoded.Emp_name,
-      editable: 'never',
-      cellStyle: {
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        maxWidth: 130,
-        '&:hover': {
-          textOverflow: 'none'
+  if (window.location.pathname === '/CodeReview') {
+    var columns = [
+      {
+        title: 'Ticket No',
+        field: 'ticket_no',
+        editable: 'onAdd',
+        width: '24%'
+      },
+      // {
+      //   title: 'Client',
+      //   field: 'client',
+      //   lookup: {
+      //     CW: 'CW'
+      //   }
+      // },
+      {
+        title: 'Team',
+        field: 'team',
+        width: '30%',
+        lookup: {
+          CNS: 'CNS',
+          'Mobile Team': 'Mobile Team',
+          'Partner Service': 'Partner Service',
+          Contacts: 'Contacts',
+          CP: 'CP',
+          'Event Bridge': 'Event Bridge'
         }
-      }
-    },
-    {
-      title: 'Ticket Type',
-      field: 'ticket_type',
-      cellStyle: {
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        maxWidth: 120
       },
-      lookup: {
-        Story: 'Story',
-        Bug: 'Bug',
-        Task: 'Task',
-        'Sub-Task': 'Sub-Task'
-      }
-    },
-    { title: 'Story Point', field: 'story_point' },
-    { title: 'Start date', field: 'start_date', type: 'date' },
-    { title: 'End date', field: 'end_date', type: 'date' },
-    { title: 'Hours', field: 'hours' },
-    {
-      title: 'Status',
-      field: 'status',
-      lookup: {
-        Completed: 'Completed',
-        InProgress: 'InProgress',
-        Incomplete: 'Incomplete'
+      {
+        title: 'Name',
+        field: 'name',
+        initialEditValue: decoded.Emp_name,
+        editable: 'never',
+        cellStyle: {
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          maxWidth: 130,
+          '&:hover': {
+            textOverflow: 'none'
+          }
+        }
       },
-      width: '20%'
-    },
-    { title: 'Code Reviewer', field: 'code_reviewer' }
-    // window.location.pathname == '/CodeReview' && {
-    //   title: 'Code Deviation Count',
-    //   field: 'code_deviation_count'
-    // }
-    // decoded.Emp_designation === 'Engineering Manager'
-    //   ? { title: 'Code Deviation Count', field: 'code_deviation_count' }
-    //   : {
-    // title: 'Code Deviation Count',
-    // field: 'code_deviation_count',
-    // editable: 'never'
-    //     },
-    // decoded.Emp_designation === 'Engineering Manager'
-    //   ? { title: 'Bugs Count', field: 'bugs_count' }
-    //   : { title: 'Bugs_count', field: 'bugs_count', editable: 'never' },
-    // decoded.Emp_designation === 'Engineering Manager'
-    //   ? { title: 'Remarks', field: 'remarks' }
-    //   : { title: 'Remarks', field: 'remarks', editable: 'never' }
-  ];
+      {
+        title: 'Ticket Type',
+        field: 'ticket_type',
+        cellStyle: {
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          maxWidth: 150
+        },
+        lookup: {
+          Story: 'Story',
+          Bug: 'Bug',
+          Task: 'Task',
+          'Sub-Task': 'Sub-Task'
+        }
+      },
+      // { title: 'Story Point', field: 'story_point'},
+      // { title: 'Start date', field: 'start_date', type: 'date' },
+      // { title: 'End date', field: 'end_date', type: 'date' },
+      // { title: 'Hours', field: 'hours' },
+      {
+        title: 'Status',
+        field: 'status',
+        lookup: {
+          Completed: 'Completed',
+          InProgress: 'InProgress',
+          Incomplete: 'Incomplete'
+        },
+        width: '20%'
+      },
+      { title: 'Code Reviewer', field: 'code_reviewer' },
+      { title: 'Code Deviation Count', field: 'code_deviation_count' },
+      { title: 'Bugs Count', field: 'bugs_count' },
+      { title: 'Remarks', field: 'remarks' }
+      // decoded.Emp_designation === 'Engineering Manager'
+      //   ? { title: 'Code Deviation Count', field: 'code_deviation_count' }
+      //   : {
+      // title: 'Code Deviation Count',
+      // field: 'code_deviation_count',
+      // editable: 'never'
+      //     },
+      // decoded.Emp_designation === 'Engineering Manager'
+      //   ? { title: 'Bugs Count', field: 'bugs_count' }
+      //   : { title: 'Bugs_count', field: 'bugs_count', editable: 'never' },
+      // decoded.Emp_designation === 'Engineering Manager'
+      //   ? { title: 'Remarks', field: 'remarks' }
+      //   : { title: 'Remarks', field: 'remarks', editable: 'never' }
+    ];
+  } else {
+    var columns = [
+      {
+        title: 'Ticket No',
+        field: 'ticket_no',
+        editable: 'onAdd',
+        width: '24%'
+      },
+      // {
+      //   title: 'Client',
+      //   field: 'client',
+      //   lookup: {
+      //     CW: 'CW'
+      //   }
+      // },
+      {
+        title: 'Team',
+        field: 'team',
+        width: '30%',
+        lookup: {
+          CNS: 'CNS',
+          'Mobile Team': 'Mobile Team',
+          'Partner Service': 'Partner Service',
+          Contacts: 'Contacts',
+          CP: 'CP',
+          'Event Bridge': 'Event Bridge'
+        }
+      },
+      {
+        title: 'Name',
+        field: 'name',
+        initialEditValue: decoded.Emp_name,
+        editable: 'never',
+        cellStyle: {
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          maxWidth: 130,
+          '&:hover': {
+            textOverflow: 'none'
+          }
+        }
+      },
+      {
+        title: 'Ticket Type',
+        field: 'ticket_type',
+        cellStyle: {
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          maxWidth: 150
+        },
+        lookup: {
+          Story: 'Story',
+          Bug: 'Bug',
+          Task: 'Task',
+          'Sub-Task': 'Sub-Task'
+        }
+      },
+      { title: 'Story Point', field: 'story_point' },
+      { title: 'Start date', field: 'start_date', type: 'date' },
+      { title: 'End date', field: 'end_date', type: 'date' },
+      { title: 'Hours', field: 'hours' },
+      {
+        title: 'Status',
+        field: 'status',
+        lookup: {
+          Completed: 'Completed',
+          InProgress: 'InProgress',
+          Incomplete: 'Incomplete'
+        },
+        width: '20%'
+      },
+      { title: 'Code Reviewer', field: 'code_reviewer' }
+      // { title: 'Code Deviation Count', field: 'code_deviation_count' },
+      // { title: 'Bugs Count', field: 'bugs_count' },
+      // { title: 'Remarks', field: 'remarks' }
+      // decoded.Emp_designation === 'Engineering Manager'
+      //   ? { title: 'Code Deviation Count', field: 'code_deviation_count' }
+      //   : {
+      // title: 'Code Deviation Count',
+      // field: 'code_deviation_count',
+      // editable: 'never'
+      //     },
+      // decoded.Emp_designation === 'Engineering Manager'
+      //   ? { title: 'Bugs Count', field: 'bugs_count' }
+      //   : { title: 'Bugs_count', field: 'bugs_count', editable: 'never' },
+      // decoded.Emp_designation === 'Engineering Manager'
+      //   ? { title: 'Remarks', field: 'remarks' }
+      //   : { title: 'Remarks', field: 'remarks', editable: 'never' }
+    ];
+  }
   const [data, setData] = useState([]); //table data
   const [iserror, setIserror] = useState(false);
   const [errorMessages, setErrorMessages] = useState([]);

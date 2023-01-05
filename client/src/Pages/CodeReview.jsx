@@ -9,22 +9,22 @@ import { useAuth } from '../components/auth.context';
 import jwt_decode from 'jwt-decode';
 
 function CodeReview(props) {
-
   const [open, setOpen] = useState();
   const [openActions, setOpenActions] = useState();
   const [selected, setSelected] = useState();
   const [data, setData] = useState([]);
   const [oldData, setOldData] = useState({});
   const [newData, setNewData] = useState({});
-  const [editopen, setEditOpen] = useState();
+  const [editopen, setEditopen] = useState();
 
-  const handleEditOpen = () => {
-    setEditOpen(!open);
+  const handleEditopen = () => {
+    setEditopen(!editopen);
   };
 
   const handleOpen = () => {
     setOpen(!open);
   };
+
   console.log(oldData);
   const { userToken } = useAuth();
   const decoded = jwt_decode(userToken);
@@ -60,7 +60,7 @@ function CodeReview(props) {
     console.log(newData);
     console.log(oldData);
     axios
-      .put(`https://localhost:7040/api/User/${oldData.ticket_no}`, newData)
+      .put(`https://localhost:7040/api/Review/${oldData.ticket_no}`, newData)
       .then(res => {
         const dataUpdate = [...data];
         console.log(dataUpdate);
@@ -74,11 +74,11 @@ function CodeReview(props) {
       });
   };
   return (
-    <div className={css.codereviewhead}> 
+    <div className={css.codereviewhead}>
       <Navbar />
       <div className={css.headers}>
         <h3 className={css.dashboard}>Code Reviewer Dashboard</h3>
-      <div className={css.Actionsdiv}>
+        <div className={css.Actionsdiv}>
           <div className={css.dropdown}>
             <ButtonComponent
               selected={selected}
@@ -95,28 +95,22 @@ function CodeReview(props) {
                   <ButtonComponent
                     cname={css.button1}
                     value="Edit"
-                    run={handleOpen }
+                    run={handleEditopen}
                     //disable={true}
                     // run={() => {
                     //   handleRowUpdate(newData, oldData);
                     // }}
                   />
-                  {open ? (
+                  {editopen ? (
                     <PopupComponent
                       setNewData={setNewData}
                       val1="Edit Ticket"
                       val2={() => {
                         handleRowUpdate(newData, oldData);
                       }}
-                      ticketno={oldData.ticket_no}
-                      tickettype={oldData.ticket_type}
-                      team={oldData.team}
-                      storypoints={oldData.story_point}
-                      startdate={oldData.start_date}
-                      enddate={oldData.end_date}
-                      hours={oldData.hours}
-                      status={oldData.status}
-                      codereviewer={oldData.code_reviewer}
+                      code_deviation_count={oldData.code_deviation_count}
+                      bugs_count={oldData.bugs_count}
+                      remarks={oldData.remarks}
                     />
                   ) : null}
                 </li>
@@ -135,19 +129,13 @@ function CodeReview(props) {
             ) : null}
           </div>
         </div>
+      </div>
 
-        <div className={css.dropdowndiv}>
-          <ButtonComponent
-            cname={css.add_button}
-            value="Add"
-            // disable={false}
-            run={handleOpen}
-          />
-          {open ? <PopupComponent val1="Add Ticket"/> : null}
-        </div>
-        </div>
-        
-      <Table />
+      <Table
+        setSelected={setSelected}
+        setOldData={setOldData}
+        setNewData={setNewData}
+      />
     </div>
   );
 }
