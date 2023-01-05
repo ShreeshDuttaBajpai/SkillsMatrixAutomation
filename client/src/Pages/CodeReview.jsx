@@ -47,6 +47,7 @@ function CodeReview(props) {
     axios
       .delete(`https://localhost:7040/api/User/${oldData.ticket_no}`)
       .then(res => {
+        alert('Ticket Deleted successfully!!');
         const dataDelete = [...data];
         console.log(dataDelete);
         setData(prev =>
@@ -63,6 +64,7 @@ function CodeReview(props) {
     axios
       .put(`https://localhost:7040/api/User/${oldData.ticket_no}`, newData)
       .then(res => {
+        alert('Ticket Edited successfully!!');
         const dataUpdate = [...data];
         console.log(dataUpdate);
         const index = oldData.tableData.id;

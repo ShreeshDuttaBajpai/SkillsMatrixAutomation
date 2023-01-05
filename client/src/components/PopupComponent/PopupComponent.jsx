@@ -112,7 +112,7 @@ function PopupComponent(props) {
 
   return (
 
-    
+  <div className={props.ename}>
     <div className={css.formdiv} >
       <form
         className={css.form_popup}
@@ -246,7 +246,7 @@ function PopupComponent(props) {
               id="Story Points"
               placeholder="Story Points"
               required
-              defaultValue={props.storypoints ? props.storypoint : ''}
+              defaultValue={props.storypoints ? props.storypoints : ''}
               onChange={e => {
                 handleChangestorypoints(e);
               }}
@@ -265,6 +265,7 @@ function PopupComponent(props) {
               type="Date"
               id="Start Date"
               placeholder="Start Date"
+              required
               defaultValue={props.startdate ? props.startdate : ''}
               onChange={e => {
                 handleChangestartdate(e);
@@ -314,7 +315,7 @@ function PopupComponent(props) {
             >
               <option>Completed</option>
               <option>Incomplete</option>
-              <option>Inprogress</option>
+              <option>InProgress</option>
             </select>
           </div>
         </span>
@@ -341,7 +342,7 @@ function PopupComponent(props) {
         </div>
       </form>
     </div>
-     
+    </div>     
   );
   
 }

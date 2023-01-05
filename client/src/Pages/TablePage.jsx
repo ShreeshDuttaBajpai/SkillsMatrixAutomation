@@ -61,11 +61,13 @@ function TablePage(props) {
     axios
       .delete(`https://localhost:7040/api/User/${oldData.ticket_no}`)
       .then(res => {
+        alert('Ticket Deleted successfully!!');
         const dataDelete = [...data];
         console.log(dataDelete);
         setData(prev =>
           prev.filter(obj => obj.ticket_no !== oldData.ticket_no)
         );
+       
         window.location.reload();
         //resolve();
       });
@@ -79,6 +81,7 @@ function TablePage(props) {
         const index = oldData.tableData.id;
         dataUpdate[index] = newData;
         setData([...dataUpdate]);
+        alert('Ticket Edited successfully!!');
       })
       .catch(error => {
         console.log(error);
@@ -121,6 +124,7 @@ function TablePage(props) {
                   />
                   {editOpen ? (
                     <PopupComponent
+                    ename={css.editopen}
                       setNewData={setNewData}
                       val1="Edit Ticket"
                       val2={() => {

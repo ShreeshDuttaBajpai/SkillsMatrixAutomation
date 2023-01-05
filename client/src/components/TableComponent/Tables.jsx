@@ -65,13 +65,7 @@ const Tables = props => {
   if(window.location.pathname=== '/CodeReview'){
   var columns = [
     { title: 'Ticket No', field: 'ticket_no', editable: 'onAdd', width: '24%' },
-    // {
-    //   title: 'Client',
-    //   field: 'client',
-    //   lookup: {
-    //     CW: 'CW'
-    //   }
-    // },
+  
     {
       title: 'Team',
       field: 'team',
@@ -80,7 +74,7 @@ const Tables = props => {
         CNS: 'CNS',
         'Mobile Team': 'Mobile Team',
         'Partner Service': 'Partner Service',
-        Contacts: 'Contacts',
+        Contact: 'Contact',
         CP: 'CP',
         'Event Bridge': 'Event Bridge'
       }
@@ -116,17 +110,14 @@ const Tables = props => {
         'Sub-Task': 'Sub-Task'
       },
     },
-    // { title: 'Story Point', field: 'story_point'},
-    // { title: 'Start date', field: 'start_date', type: 'date' },
-    // { title: 'End date', field: 'end_date', type: 'date' },
-    // { title: 'Hours', field: 'hours' },
+
     {
       title: 'Status',
       field: 'status',
       lookup: {
         Completed: 'Completed',
-        InProgress: 'InProgress',
-        Incomplete: 'Incomplete'
+        Incomplete: 'Incomplete',
+        InProgress: 'InProgress'
       },
       width: '20%'
     },
@@ -134,31 +125,13 @@ const Tables = props => {
     { title: 'Code Deviation Count', field: 'code_deviation_count' },
     { title: 'Bugs Count', field: 'bugs_count' },
     { title: 'Remarks', field: 'remarks' }
-    // decoded.Emp_designation === 'Engineering Manager'
-    //   ? { title: 'Code Deviation Count', field: 'code_deviation_count' }
-    //   : {
-    // title: 'Code Deviation Count',
-    // field: 'code_deviation_count',
-    // editable: 'never'
-    //     },
-    // decoded.Emp_designation === 'Engineering Manager'
-    //   ? { title: 'Bugs Count', field: 'bugs_count' }
-    //   : { title: 'Bugs_count', field: 'bugs_count', editable: 'never' },
-    // decoded.Emp_designation === 'Engineering Manager'
-    //   ? { title: 'Remarks', field: 'remarks' }
-    //   : { title: 'Remarks', field: 'remarks', editable: 'never' }
+  
   ];
 
 }else{
   var columns = [
     { title: 'Ticket No', field: 'ticket_no', editable: 'onAdd', width: '24%' },
-    // {
-    //   title: 'Client',
-    //   field: 'client',
-    //   lookup: {
-    //     CW: 'CW'
-    //   }
-    // },
+
     {
       title: 'Team',
       field: 'team',
@@ -167,7 +140,7 @@ const Tables = props => {
         CNS: 'CNS',
         'Mobile Team': 'Mobile Team',
         'Partner Service': 'Partner Service',
-        Contacts: 'Contacts',
+        Contact: 'Contact',
         CP: 'CP',
         'Event Bridge': 'Event Bridge'
       }
@@ -218,22 +191,6 @@ const Tables = props => {
       width: '20%'
     },
     { title: 'Code Reviewer', field: 'code_reviewer' },
-    // { title: 'Code Deviation Count', field: 'code_deviation_count' },
-    // { title: 'Bugs Count', field: 'bugs_count' },
-    // { title: 'Remarks', field: 'remarks' }
-    // decoded.Emp_designation === 'Engineering Manager'
-    //   ? { title: 'Code Deviation Count', field: 'code_deviation_count' }
-    //   : {
-    // title: 'Code Deviation Count',
-    // field: 'code_deviation_count',
-    // editable: 'never'
-    //     },
-    // decoded.Emp_designation === 'Engineering Manager'
-    //   ? { title: 'Bugs Count', field: 'bugs_count' }
-    //   : { title: 'Bugs_count', field: 'bugs_count', editable: 'never' },
-    // decoded.Emp_designation === 'Engineering Manager'
-    //   ? { title: 'Remarks', field: 'remarks' }
-    //   : { title: 'Remarks', field: 'remarks', editable: 'never' }
   ];
 
 }
@@ -451,10 +408,6 @@ const Tables = props => {
             }}
             data={data}
             icons={tableIcons}
-            // options={{
-            //   headerStyle: { size: '80px' }
-            // }}
-            //Add, Edit & Update functionality to User Only
             editable={
               decoded.Emp_designation !== 'Engineering Manager' &&
               {
