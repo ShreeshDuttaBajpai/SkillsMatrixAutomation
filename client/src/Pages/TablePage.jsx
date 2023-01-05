@@ -70,7 +70,7 @@ function TablePage(props) {
       .catch(error => {
         console.log(error);
       });
-  };  
+  };
 
   return (
     <div className={css.tab}>
@@ -148,8 +148,11 @@ function TablePage(props) {
             // disable={false}
             run={handleOpen}
           />
-          {open ? <PopupComponent val1="Add Ticket"
-          setNewData={setNewData}/> : null}
+          {open ? 
+          <PopupComponent 
+          val1="Add Ticket"
+          setNewData={setNewData}
+          /> : null}
         </div>
       </div>
       <div className={css.tablediv}>

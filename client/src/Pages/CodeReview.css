@@ -19,7 +19,11 @@
     margin-bottom: 5rem;
   }
   
-  .AddButton{
+  .editdash{
+    margin-left: 20rem;
+  }
+
+  .dropdowndiv{
     display: inline-block;
     margin-right: 3rem;
 
@@ -89,7 +93,7 @@
   }
   
   .button1 {
-    margin-left: 45.4rem;
+    margin-left: 42rem;
     z-index: 10;
     margin-top: 0.3rem;
    
