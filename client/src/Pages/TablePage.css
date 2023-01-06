@@ -21,7 +21,8 @@
 
 .dropdowndiv{
   display: inline-block;
-
+  /* margin-right: 3rem;
+  margin-left: 44.6rem; */
 }
 
 
@@ -145,3 +146,8 @@
   margin-top: 3rem;
 }
 
+
+
+.showPopup{
+  display: block;
+}
