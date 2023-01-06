@@ -62,7 +62,7 @@ function CodeReview(props) {
     console.log(newData);
     console.log(oldData);
     axios
-      .put(`https://localhost:7040/api/User/${oldData.ticket_no}`, newData)
+      .put(`https://localhost:7040/api/review/${oldData.ticket_no}`, newData)
       .then(res => {
         alert('Ticket Edited successfully!!');
         const dataUpdate = [...data];
@@ -82,17 +82,17 @@ function CodeReview(props) {
       <div className={css.headers}>
         <h3 className={css.dashboard}>Code Reviewer Dashboard</h3>
       <div className={css.Actionsdiv}>
-          <div className={css.dropdown}>
+          <div className={css.ActionsButton}>
             <ButtonComponent
               selected={selected}
               cname={css.Actionsbutton}
               value="Actions"
               disable={true}
-              run={handleOpenActions}
+              //run={handleOpenActions}
             />
           </div>
           <div className={css.ActionsOptions}>
-            {selected && openActions ? (
+            {selected ? (
               <ul className={css.menu}>
                 <li className={css.menu_item}>
                   <ButtonComponent

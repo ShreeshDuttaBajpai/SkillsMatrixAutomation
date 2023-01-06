@@ -1,6 +1,7 @@
 .tab{
   background-color: rgb(172, 219, 231);
   background-size: cover;
+  height: 125vh;
 } 
 
 .codereviewhead{
@@ -20,7 +21,8 @@
 
 .dropdowndiv{
   display: inline-block;
-
+  /* margin-right: 3rem;
+  margin-left: 44.6rem; */
 }
 
 
@@ -147,3 +149,8 @@ margin-left: 56.1rem;
   margin-top: 3rem;
 }
 
+
+
+.showPopup{
+  display: block;
+}

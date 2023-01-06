@@ -119,7 +119,7 @@ const Tables = props => {
         Incomplete: 'Incomplete',
         InProgress: 'InProgress'
       },
-      width: '20%'
+      width: '25%'
     },
     { title: 'Code Reviewer', field: 'code_reviewer' },
     { title: 'Code Deviation Count', field: 'code_deviation_count' },

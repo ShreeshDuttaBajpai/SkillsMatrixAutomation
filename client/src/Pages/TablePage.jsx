@@ -14,7 +14,7 @@ function TablePage(props) {
   const userName = jwt_decode(userToken).Emp_name;
   const decoded = jwt_decode(userToken);
 
-  const [open, setOpen] = useState();
+  const [open, setOpen] = useState(false);
   const [editOpen, setEditOpen] = useState();
   const [openActions, setOpenActions] = useState();
   const [selected, setSelected] = useState();
@@ -63,7 +63,6 @@ function TablePage(props) {
       .then(res => {
         alert('Ticket Deleted successfully!!');
         const dataDelete = [...data];
-        console.log(dataDelete);
         setData(prev =>
           prev.filter(obj => obj.ticket_no !== oldData.ticket_no)
         );
@@ -98,7 +97,7 @@ function TablePage(props) {
             ? 'Admin Dashboard'
             : 'User Dashboard'}
         </h3>
-
+        
         <div className={css.Actionsdiv}>
           <div className={css.dropdown}>
             <ButtonComponent
@@ -106,11 +105,11 @@ function TablePage(props) {
               cname={css.Actionsbutton}
               value="Actions"
               disable={true}
-              run={handleOpenActions}
+              //run={handleOpenActions}
             />
           </div>
           <div className={css.ActionsOptions}>
-            {selected && openActions ? (
+            {selected ? (
               <ul className={css.menu}>
                 <li className={css.menu_item}>
                   <ButtonComponent
@@ -124,7 +123,8 @@ function TablePage(props) {
                   />
                   {editOpen ? (
                     <PopupComponent
-                    ename={css.editopen}
+                      ename={css.editopen}
+                      handleOpen={handleEditOpen}
                       setNewData={setNewData}
                       val1="Edit Ticket"
                       val2={() => {
@@ -165,13 +165,14 @@ function TablePage(props) {
             // disable={false}
             run={handleOpen}
           />
-          {open ? (
+          {open && (
             <PopupComponent
+              handleOpen={handleOpen}
               setNewData={setNewData}
               val1="Add Ticket"
               val2={postUser}
             />
-          ) : null}
+          )}
         </div>
       </div>
       <div className={css.tablediv}>

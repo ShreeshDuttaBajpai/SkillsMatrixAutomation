@@ -183,3 +183,9 @@ select ::placeholder{
   margin-left: 2rem;
   /* margin-right: 2px; */
 }
+
+.hidePopUp{
+  opacity: 0;
+  /* display: none; */
+  position: fixed;
+}

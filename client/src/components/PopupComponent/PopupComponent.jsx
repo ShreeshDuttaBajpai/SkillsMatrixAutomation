@@ -8,16 +8,17 @@ import { ButtonComponent } from '../ButtonComponent/ButtonComponent';
 
 
 function PopupComponent(props) {
-  const [open, setOpen] = React.useState();
   const [openActions, setOpenActions] = useState();
   const [selected, setSelected] = useState();
+  // const [popup, setpop] = useState(false);
   const { userToken } = useAuth();
   const userName = jwt_decode(userToken).Emp_name;
   const decodtoken = jwt_decode(userToken);
 
-  const handleOpen = () => {
-    setOpen(!open);
-  };
+
+  useEffect(() => {
+    console.log(open);
+  }, [open])
   
 
   const [ticketDetails, setticketDetails] = useState({
@@ -109,7 +110,6 @@ function PopupComponent(props) {
     });
   };
 
-
   return (
 
   <div className={props.ename}>
@@ -124,8 +124,8 @@ function PopupComponent(props) {
         <div className={css.head}>
           <h5>{props.val1}</h5>
           <span>
-            <button className={css.remove_btn} onClick={handleOpen}>
-              <img src={x} />
+            <button type='button' className={css.remove_btn} onClick={props.handleOpen}>
+              <img src={x}  />
             </button>
           </span>
         </div>
@@ -265,7 +265,7 @@ function PopupComponent(props) {
               type="Date"
               id="Start Date"
               placeholder="Start Date"
-              required
+              // required
               defaultValue={props.startdate ? props.startdate : ''}
               onChange={e => {
                 handleChangestartdate(e);

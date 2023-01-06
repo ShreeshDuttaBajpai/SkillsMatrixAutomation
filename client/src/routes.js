@@ -9,6 +9,7 @@ import { AuthProvider } from './components/auth.context';
 import jwt_decode from 'jwt-decode';
 import TablePage from '../src/Pages/TablePage';
 import CodeReview from './Pages/CodeReview';
+import ReportsPage from './Pages/ReportsPage';
 // import TablesContainer from './components/TableComponent/TablesContainer';
 
 const store = configureStore();
@@ -31,6 +32,7 @@ const App = () => {
               <Route exact path="/" component={MainPage} />
               <Route path="/Table" component={TablePage} />
               <Route path="/CodeReview" component={CodeReview} />
+              <Route path="/Reports" component={ReportsPage} />
               <Route component={NoMatch} />
             </Switch>
           </div>

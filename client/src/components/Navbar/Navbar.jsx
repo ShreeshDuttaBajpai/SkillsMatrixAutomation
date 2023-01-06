@@ -47,9 +47,9 @@ const Navbar = () => {
                   {con.Code} {con.Review}
                 </NavLink>
               </div>
-              {/* <div className={css.headings}>
-                <NavLink to="/codereview">{con.Reports}</NavLink>
-              </div> */}
+              <div className={css.headings}>
+                <NavLink to="/Reports">{con.Reports}</NavLink>
+              </div>
               <div className={css.right_navbarHeadings}>
                 <div className={css.headings}>
                   <AccountCircleIcon />

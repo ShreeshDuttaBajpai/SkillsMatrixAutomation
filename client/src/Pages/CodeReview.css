@@ -25,14 +25,10 @@
 
   .dropdowndiv{
     display: inline-block;
-  
+    margin-right: 3rem;
+
   }
-  
-  
-  .Actionsdiv{
-    display: inline;
-  }
-  
+    
   .menu{
     list-style: none;
   }
@@ -100,7 +96,6 @@
     margin-left: 42rem;
     z-index: 10;
     margin-top: 0.3rem;
-   
     /* display: inline-block; */
     background-image: linear-gradient(#54a0dd, #328dd8);
     border: 1px solid #0077CC;
