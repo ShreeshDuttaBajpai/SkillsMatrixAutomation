@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Navbar from '../components/Navbar/Navbar';
 import Table from '../components/TableComponent/Tables';
 import css from '../../src/Pages/CodeReview.css';
 import axios from 'axios';
@@ -78,7 +77,6 @@ function CodeReview(props) {
   };
   return (
     <div className={css.codereviewhead}> 
-      <Navbar />
       <div className={css.headers}>
         <h3 className={css.dashboard}>Code Reviewer Dashboard</h3>
       <div className={css.Actionsdiv}>

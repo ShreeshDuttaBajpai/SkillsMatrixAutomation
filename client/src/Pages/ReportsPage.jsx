@@ -5,7 +5,6 @@ import ReportsComponent from '../components/ReportsComponent/ReportsComponent'
 function ReportsPage() {
   return (
     <div>
-        <Navbar/>
         <ReportsComponent/>
     </div>
   )

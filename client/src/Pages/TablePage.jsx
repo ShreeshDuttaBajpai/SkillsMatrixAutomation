@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Navbar from '../components/Navbar/Navbar';
 import Tables from '../components/TableComponent/Tables';
 import css from '../../src/Pages/TablePage.css';
 import { ButtonComponent } from '../components/ButtonComponent/ButtonComponent';
@@ -89,8 +88,6 @@ function TablePage(props) {
 
   return (
     <div className={css.tab}>
-      <Navbar />
-
       <div className={css.headers}>
         <h3 className={css.dashboard}>
           {decoded.Emp_designation === 'Engineering Manager'
@@ -116,10 +113,6 @@ function TablePage(props) {
                     cname={css.button1}
                     value="Edit"
                     run={handleEditOpen}
-                    //disable={true}
-                    // run={() => {
-                    //   handleRowUpdate(newData, oldData);
-                    // }}
                   />
                   {editOpen ? (
                     <PopupComponent
@@ -146,7 +139,6 @@ function TablePage(props) {
                   <ButtonComponent
                     cname={css.button1}
                     value="Delete"
-                    //disable={true}
                     run={() => {
                       handleRowDelete(oldData);
                       //window.location.reload();

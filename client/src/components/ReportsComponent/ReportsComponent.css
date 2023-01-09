@@ -1,0 +1,15 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .chart-container {
+    margin-bottom: 5rem;
+    width: 50%;
+  }
+
+  .barChart{
+    width: 400px;
+    height: 800px;
+  }

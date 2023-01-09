@@ -1,12 +1,12 @@
 .tab{
     background-color: rgb(172, 219, 231);
     background-size: cover;
-  
   } 
   
   .codereviewhead{
     background-color: rgb(172, 219, 231);
     background-size: cover;
+    height: 120vh;
   }
   
   .dashboardhead{
@@ -15,7 +15,6 @@
   }
   .headers{
     display :flex;
-    margin-top: 3rem;
     margin-bottom: 5rem;
   }
   
@@ -34,11 +33,13 @@
   }
   
   .dashboard{
+      margin-top: 3rem;
       margin-left: 7rem;
       display: inline-block;
   }
   
   .Actionsbutton {
+    margin-top: 3rem;
     margin-left: 44rem;
     margin-right: 1rem;
     display: inline-block;

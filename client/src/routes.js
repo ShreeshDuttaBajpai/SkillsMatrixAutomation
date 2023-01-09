@@ -10,7 +10,10 @@ import jwt_decode from 'jwt-decode';
 import TablePage from '../src/Pages/TablePage';
 import CodeReview from './Pages/CodeReview';
 import ReportsPage from './Pages/ReportsPage';
+import Navbar from './components/Navbar/Navbar';
 // import TablesContainer from './components/TableComponent/TablesContainer';
+
+
 
 const store = configureStore();
 
@@ -23,11 +26,13 @@ if (tokenData) {
 }
 
 const App = () => {
+  
   return (
     <Provider store={store}>
       <AuthProvider tokenData={tokenData}>
         <Router>
           <div>
+          <Navbar />
             <Switch store={store}>
               <Route exact path="/" component={MainPage} />
               <Route path="/Table" component={TablePage} />

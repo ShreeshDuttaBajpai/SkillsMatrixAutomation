@@ -26,7 +26,7 @@ function HomePageMainComponent() {
         cookies.set('my_cookie', token);
         window.location.reload();
       });
-  }, [myData]);
+  }, [myData]);  
 
   useEffect(() => {
     myData && alert('Hello ' + myData.emp_name + ' ,Id- ' + myData.emp_id);
@@ -40,9 +40,6 @@ function HomePageMainComponent() {
           <img src={bglogo}></img>
           <div className={css.loginButton}>
             {authSuccess === true ? (
-              // <h3 className={css.welcomeMessage}>
-              //   Welcome to Automation Tool for Story Tracker
-              // </h3>
               <Redirect to="/Table" />
             ) : (
               <ButtonComponent

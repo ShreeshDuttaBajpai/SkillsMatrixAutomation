@@ -4,6 +4,7 @@ const initialState = {
     leftArea: '',
     mainArea: '',
   };
+
   const layout = (state = initialState, action) => {
     switch (action.type) {
       case 'LAYOUT_DESKTOP_TOGGLE_FULLSCREEN':

@@ -10,6 +10,7 @@ module.exports = {
     vendor: ['babel-polyfill'],
     app: './src/index.js'
   },
+
   output: {
     filename: '[name].[hash].js',
     publicPath: '/'

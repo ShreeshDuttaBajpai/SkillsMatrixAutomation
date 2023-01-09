@@ -8,12 +8,12 @@ import { ButtonComponent } from '../ButtonComponent/ButtonComponent';
 
 
 function PopupComponent(props) {
-  const [openActions, setOpenActions] = useState();
-  const [selected, setSelected] = useState();
+  // const [openActions, setOpenActions] = useState();
+  // const [selected, setSelected] = useState();
   // const [popup, setpop] = useState(false);
   const { userToken } = useAuth();
   const userName = jwt_decode(userToken).Emp_name;
-  const decodtoken = jwt_decode(userToken);
+  // const decodtoken = jwt_decode(userToken);
 
 
   useEffect(() => {

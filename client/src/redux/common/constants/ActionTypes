@@ -4,42 +4,6 @@ export const INIT_GET_API_CALL = 'INIT_GET_API_CALL';
 export const REFRESH_DATA = 'REFRESH_DATA';
 
 
-// export const USER_TOKEN = 'USER_TOKEN';
+export const LOGIN_ALERT_BOX = 'LOGIN_ALERT_BOX';
 // export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 // export const MY_DATA = 'MY_DATA';
-
-
-// async function run() {
-//     console.log('running...');
-//     const config = {
-//       auth: {
-//         clientId: 'addbbf7a-a97c-40e0-a662-37646b433007',
-//         authority: 'https://login.microsoftonline.com/common/',
-//         redirectUri: 'http://localhost:3000/Home'
-//       }
-//     };
-//     var client = new Msal.UserAgentApplication(config);
-//     var request = {
-//       scopes: ['user.read']
-//     };
-//     let loginResponse = await client.loginPopup(request);
-//     // console.dir(loginResponse);
-//     let tokenResponse = await client.acquireTokenSilent(request);
-//     // console.dir(tokenResponse);
-//     let payload = await fetch('https://graph.microsoft.com/beta/me', {
-//       headers: {
-//         Authorization: 'Bearer ' + tokenResponse.accessToken
-//       }
-//     });
-//     let json = await payload.json();
-
-//     setmyData(() => {
-//       return {
-//         emp_id: json.employeeId,
-//         emp_name: json.displayName,
-//         emp_designation: json.jobTitle
-//       };
-//     });
-//     //console.log(json.displayName,json.employeeId,json.jobTitle);
-//     window.location.reload();
-//   }
