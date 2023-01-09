@@ -11,7 +11,7 @@ const Navbar = () => {
   const { authSuccess, userToken, logout, run } = useAuth();
   let Emp_name = '';
   let Emp_id = '';
-  let Emp_firstname ='';
+  let Emp_firstname = '';
 
   if (userToken) {
     const decoded_token = jwt_Decode(userToken);
@@ -46,6 +46,9 @@ const Navbar = () => {
                 <NavLink to="/CodeReview">
                   {con.Code} {con.Review}
                 </NavLink>
+              </div>
+              <div className={css.headings}>
+                <NavLink to="/Reports">{con.Reports}</NavLink>
               </div>
               {/* <div className={css.headings}>
                 <NavLink to="/codereview">{con.Reports}</NavLink>

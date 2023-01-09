@@ -93,7 +93,7 @@ function TablePage(props) {
             ? 'Admin Dashboard'
             : 'User Dashboard'}
         </h3>
-        
+
         <div className={css.Actionsdiv}>
           <div className={css.dropdown}>
             <ButtonComponent

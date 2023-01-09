@@ -7,7 +7,14 @@ let tokenData = cookies.get('my_cookie');
 const initialState = {
   apiResponse: 0,
   resContent: '',
-  userToken: tokenData
+  userToken: tokenData,
+  open:'',
+  openActions:'',
+  selected:'',
+  data:'',
+  oldData:'',
+  newData:'',
+  editopen:''
 };
 
 export const commonApi = (state = initialState, action) => {

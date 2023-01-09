@@ -2,6 +2,13 @@ export const ON_INIT = 'ON_INIT';
 export const TOGGLE_DESKTOP = 'LAYOUT_DESKTOP_TOGGLE_FULLSCREEN';
 export const INIT_GET_API_CALL = 'INIT_GET_API_CALL';
 export const REFRESH_DATA = 'REFRESH_DATA';
+export const OPEN = 'OPEN';
+export const OPEN_ACTIONS = 'OPEN_ACTIONS';
+export const SELECTED = 'SELECTED';
+export const DATA = 'DATA';
+export const OLD_DATA = 'OLD_DATA';
+export const NEW_DATA = 'NEW_DATA';
+export const EDIT_OPEN = 'EDIT_OPEN';
 
 
 // export const USER_TOKEN = 'USER_TOKEN';
