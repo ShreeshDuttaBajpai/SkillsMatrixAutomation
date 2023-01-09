@@ -26,7 +26,7 @@ export default function ReportsComponent() {
 
   return (
     <div className="App">
-      <BarChart className={css.barChart} chartData={chartData} />
+      <BarChart chartData={chartData} />
     </div>
   );
 }
