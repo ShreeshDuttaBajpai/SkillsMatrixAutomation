@@ -20,7 +20,7 @@ function CodeReview(props) {
   const handleEditopen = () => {
     setEditopen(!editopen);
   };
-  
+
   const handleOpen = () => {
     setOpen(!open);
   };
@@ -43,6 +43,7 @@ function CodeReview(props) {
 
   const handleRowDelete = oldData => {
     console.log(oldData);
+     if (window.confirm('Are you sure you want to delete this Ticket?')) {
     axios
       .delete(`https://localhost:7040/api/User/${oldData.ticket_no}`)
       .then(res => {
@@ -55,6 +56,7 @@ function CodeReview(props) {
         window.location.reload();
         //resolve();
       });
+    }
   };
 
   const handleRowUpdate = (newData, oldData) => {
@@ -76,7 +78,7 @@ function CodeReview(props) {
       });
   };
   return (
-    <div className={css.codereviewhead}> 
+    <div className={css.codereviewhead}>
       <div className={css.headers}>
         <h3 className={css.dashboard}>Code Reviewer Dashboard</h3>
       <div className={css.Actionsdiv}>
@@ -131,9 +133,9 @@ function CodeReview(props) {
           </div>
         </div>
         </div>
-        
+
       <Table
-       setSelected={setSelected} 
+       setSelected={setSelected}
        setOldData={setOldData}
        setNewData={setNewData}/>
     </div>

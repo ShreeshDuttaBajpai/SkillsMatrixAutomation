@@ -57,18 +57,21 @@ function TablePage(props) {
 
   const handleRowDelete = oldData => {
     console.log(oldData);
-    axios
-      .delete(`https://localhost:7040/api/User/${oldData.ticket_no}`)
-      .then(res => {
-        alert('Ticket Deleted successfully!!');
-        const dataDelete = [...data];
-        setData(prev =>
-          prev.filter(obj => obj.ticket_no !== oldData.ticket_no)
-        );
-       
-        window.location.reload();
-        //resolve();
-      });
+     if (window.confirm('Are you sure you want to delete this Ticket?')) {
+       axios
+         .delete(`https://localhost:7040/api/User/${oldData.ticket_no}`)
+
+         .then(res => {
+           alert('Ticket Deleted successfully!!');
+           const dataDelete = [...data];
+           setData(prev =>
+             prev.filter(obj => obj.ticket_no !== oldData.ticket_no)
+           );
+
+           window.location.reload();
+           //resolve();
+         });
+     }
   };
 
   const handleRowUpdate = (newData, oldData) => {
@@ -94,7 +97,7 @@ function TablePage(props) {
             ? 'Admin Dashboard'
             : 'User Dashboard'}
         </h3>
-        
+
         <div className={css.Actionsdiv}>
           <div className={css.dropdown}>
             <ButtonComponent
