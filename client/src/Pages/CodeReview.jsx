@@ -4,8 +4,6 @@ import css from '../../src/Pages/CodeReview.css';
 import axios from 'axios';
 import { ButtonComponent } from '../components/ButtonComponent/ButtonComponent';
 import PopupComponent from '../components/PopupComponent/PopupComponent';
-import { useAuth } from '../components/auth.context';
-import jwt_decode from 'jwt-decode';
 
 function CodeReview(props) {
 
@@ -26,8 +24,8 @@ function CodeReview(props) {
   };
 
   console.log(oldData);
-  const { userToken } = useAuth();
-  const decoded = jwt_decode(userToken);
+  // const { userToken } = useAuth();
+//  const decoded = jwt_decode(userToken);
 
   const handleOpenActions = () => {
     setOpenActions(!openActions);
@@ -97,10 +95,6 @@ function CodeReview(props) {
                     cname={css.button1}
                     value="Edit"
                     run={handleEditopen}
-                    //disable={true}
-                    // run={() => {
-                    //   handleRowUpdate(newData, oldData);
-                    // }}
                   />
                   {editopen ? (
                     <PopupComponent
@@ -119,7 +113,6 @@ function CodeReview(props) {
                   <ButtonComponent
                     cname={css.button1}
                     value="Delete"
-                    //disable={true}
                     run={() => {
                       handleRowDelete(oldData);
                       //window.location.reload();

@@ -3,7 +3,6 @@ import css from '../PopupComponent/PopupComponent.css';
 import x from '../../assests/x.png';
 import jwt_decode from 'jwt-decode';
 import { useAuth } from '../auth.context';
-import axios from 'axios';
 import { ButtonComponent } from '../ButtonComponent/ButtonComponent';
 
 

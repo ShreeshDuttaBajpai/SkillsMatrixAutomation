@@ -19,7 +19,13 @@ export const commonApi = (state = initialState, action) => {
         resContent: action.payload,
         apiResponse: 1
       });
-
+    case types.RUN_FUNCTION:
+      return {
+        emp_id: json.employeeId,
+        emp_name: json.displayName,
+        emp_designation: json.jobTitle,
+        emp_firstname:json.givenName
+      };
     default:
       return state;
   }

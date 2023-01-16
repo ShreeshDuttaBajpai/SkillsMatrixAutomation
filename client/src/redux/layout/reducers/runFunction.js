@@ -5,7 +5,6 @@ import HomePageMainComponent from '../HomePage/HomePageMainComponent/HomePageMai
 
 const mapStateToProps = state => ({
     myData: state.commonApi.myData,
-    
   });
   console.log(myData);
 const mapDispatchToProps = dispatch => {
@@ -36,7 +35,6 @@ const mapDispatchToProps = dispatch => {
           }
         }
     }
-    const ButtonContainer = connect(mapStateToProps, mapDispatchToProps) (HomePageMainComponent);
-      export default ButtonContainer;
-      
 
+const ButtonContainer = connect(mapStateToProps, mapDispatchToProps) (HomePageMainComponent);
+export default HomePageContainer;

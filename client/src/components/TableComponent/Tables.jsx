@@ -21,7 +21,7 @@ import axios from 'axios';
 import Alert from '@material-ui/lab/Alert';
 import { useAuth } from '../auth.context';
 import jwt_decode from 'jwt-decode';
-// import {CodeReviewapi} from './../../services/TableService/tableService'
+import { CodeReviewapi } from './../../services/TableService/tableService';
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -49,6 +49,7 @@ const tableIcons = {
 
 const Tables = props => {
   const { userToken } = useAuth();
+  console.log(userToken, 'userToken');
   const decoded = jwt_decode(userToken);
   const api = axios.create({
     baseURL: `https://localhost:7040/api/${
@@ -56,154 +57,167 @@ const Tables = props => {
     }`
   });
 
-  const CodeReviewapi = axios.create({
-    baseURL: `https://localhost:7040/api/Review/${decoded.Emp_firstname}`
-  });
+  // const CodeReviewapi = axios.create({
+  //   baseURL: `https://localhost:7040/api/Review/${decoded.Emp_firstname}`
+  // });
 
-  if(window.location.pathname=== '/CodeReview'){
-  var columns = [
-    { title: 'Ticket No', field: 'ticket_no', editable: 'onAdd', width: '24%' },
-    {
-      title: 'Team',
-      field: 'team',
-      width: '30%',
-      lookup: {
-        CNS: 'CNS',
-        'Mobile Team': 'Mobile Team',
-        'Partner Service': 'Partner Service',
-        Contact: 'Contact',
-        CP: 'CP',
-        'Event Bridge': 'Event Bridge'
-      }
-    },
-    {
-      title: 'Name',
-      field: 'name',
-      initialEditValue: decoded.Emp_name,
-      editable: 'never',
-      cellStyle: {
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        maxWidth: 130,
-        '&:hover': {
-          textOverflow: 'none'
+  if (window.location.pathname === '/CodeReview') {
+    var columns = [
+      {
+        title: 'Ticket No',
+        field: 'ticket_no',
+        editable: 'onAdd',
+        width: '24%'
+      },
+      {
+        title: 'Team',
+        field: 'team',
+        width: '30%',
+        lookup: {
+          CNS: 'CNS',
+          'Mobile Team': 'Mobile Team',
+          'Partner Service': 'Partner Service',
+          Contact: 'Contact',
+          CP: 'CP',
+          'Event Bridge': 'Event Bridge'
         }
-      }
-    },
-    {
-      title: 'Ticket Type',
-      field: 'ticket_type',
-      cellStyle: {
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        maxWidth: 150
       },
-      lookup: {
-        Story: 'Story',
-        Bug: 'Bug',
-        Task: 'Task',
-        'Sub-Task': 'Sub-Task'
-      },
-    },
-
-    {
-      title: 'Status',
-      field: 'status',
-      lookup: {
-        Completed: 'Completed',
-        Incomplete: 'Incomplete',
-        InProgress: 'InProgress'
-      },
-      width: '25%'
-    },
-    { title: 'Code Reviewer', field: 'code_reviewer' },
-    { title: 'Code Deviation Count', field: 'code_deviation_count' },
-    { title: 'Bugs Count', field: 'bugs_count' },
-    { title: 'Remarks', field: 'remarks' }
-  ];
-
-}else{
-  var columns = [
-    { title: 'Ticket No', field: 'ticket_no', editable: 'onAdd', width: '24%' },
-    {
-      title: 'Team',
-      field: 'team',
-      width: '30%',
-      lookup: {
-        CNS: 'CNS',
-        'Mobile Team': 'Mobile Team',
-        'Partner Service': 'Partner Service',
-        Contact: 'Contact',
-        CP: 'CP',
-        'Event Bridge': 'Event Bridge'
-      }
-    },
-    {
-      title: 'Name',
-      field: 'name',
-      initialEditValue: decoded.Emp_name,
-      editable: 'never',
-      cellStyle: {
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        maxWidth: 130,
-        '&:hover': {
-          textOverflow: 'none'
+      {
+        title: 'Name',
+        field: 'name',
+        initialEditValue: decoded.Emp_name,
+        editable: 'never',
+        cellStyle: {
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          maxWidth: 130,
+          '&:hover': {
+            textOverflow: 'none'
+          }
         }
-      }
-    },
-    {
-      title: 'Ticket Type',
-      field: 'ticket_type',
-      cellStyle: {
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        maxWidth: 150
       },
-      lookup: {
-        Story: 'Story',
-        Bug: 'Bug',
-        Task: 'Task',
-        'Sub-Task': 'Sub-Task'
+      {
+        title: 'Ticket Type',
+        field: 'ticket_type',
+        cellStyle: {
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          maxWidth: 150
+        },
+        lookup: {
+          Story: 'Story',
+          Bug: 'Bug',
+          Task: 'Task',
+          'Sub-Task': 'Sub-Task'
+        }
       },
-    },
-    { title: 'Story Point', field: 'story_point'},
-    { title: 'Start date', field: 'start_date', type: 'date' },
-    { title: 'End date', field: 'end_date', type: 'date' },
-    { title: 'Hours', field: 'hours' },
-    {
-      title: 'Status',
-      field: 'status',
-      lookup: {
-        Completed: 'Completed',
-        InProgress: 'InProgress',
-        Incomplete: 'Incomplete'
-      },
-      width: '20%'
-    },
-    { title: 'Code Reviewer', field: 'code_reviewer' },
-  ];
 
-}
+      {
+        title: 'Status',
+        field: 'status',
+        lookup: {
+          Completed: 'Completed',
+          Incomplete: 'Incomplete',
+          InProgress: 'InProgress'
+        },
+        width: '25%'
+      },
+      { title: 'Code Reviewer', field: 'code_reviewer' },
+      { title: 'Code Deviation Count', field: 'code_deviation_count' },
+      { title: 'Bugs Count', field: 'bugs_count' },
+      { title: 'Remarks', field: 'remarks' }
+    ];
+  } else {
+    var columns = [
+      {
+        title: 'Ticket No',
+        field: 'ticket_no',
+        editable: 'onAdd',
+        width: '24%'
+      },
+      {
+        title: 'Team',
+        field: 'team',
+        width: '30%',
+        lookup: {
+          CNS: 'CNS',
+          'Mobile Team': 'Mobile Team',
+          'Partner Service': 'Partner Service',
+          Contact: 'Contact',
+          CP: 'CP',
+          'Event Bridge': 'Event Bridge'
+        }
+      },
+      {
+        title: 'Name',
+        field: 'name',
+        initialEditValue: decoded.Emp_name,
+        editable: 'never',
+        cellStyle: {
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          maxWidth: 130,
+          '&:hover': {
+            textOverflow: 'none'
+          }
+        }
+      },
+      {
+        title: 'Ticket Type',
+        field: 'ticket_type',
+        cellStyle: {
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          maxWidth: 150
+        },
+        lookup: {
+          Story: 'Story',
+          Bug: 'Bug',
+          Task: 'Task',
+          'Sub-Task': 'Sub-Task'
+        }
+      },
+      { title: 'Story Point', field: 'story_point' },
+      { title: 'Start date', field: 'start_date', type: 'date' },
+      { title: 'End date', field: 'end_date', type: 'date' },
+      { title: 'Hours', field: 'hours' },
+      {
+        title: 'Status',
+        field: 'status',
+        lookup: {
+          Completed: 'Completed',
+          InProgress: 'InProgress',
+          Incomplete: 'Incomplete'
+        },
+        width: '20%'
+      },
+      { title: 'Code Reviewer', field: 'code_reviewer' }
+    ];
+  }
+
   const [data, setData] = useState([]); //table data
   const [iserror, setIserror] = useState(false);
   const [errorMessages, setErrorMessages] = useState([]);
 
-  console.log(data);
+  const getData = async () => {
+    const response = await CodeReviewapi(decoded);
+    console.log(response, 'gagan');
+    return response;
+  };
 
   useEffect(() => {
     if (window.location.pathname === '/CodeReview') {
-      CodeReviewapi.get('')
+      getData()
         .then(res => {
-          setData(res.data);
-          console.log(res.data);
+          setData(res);
+          console.log(res);
         })
         .catch(error => {
-          console.log('Error');
+          console.log('Error' + error);
         });
     } else {
       api

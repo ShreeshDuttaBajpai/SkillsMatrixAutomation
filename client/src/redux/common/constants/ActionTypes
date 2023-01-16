@@ -3,7 +3,8 @@ export const TOGGLE_DESKTOP = 'LAYOUT_DESKTOP_TOGGLE_FULLSCREEN';
 export const INIT_GET_API_CALL = 'INIT_GET_API_CALL';
 export const REFRESH_DATA = 'REFRESH_DATA';
 
+export const RUN_FUNCTION = 'RUN_FUNCTION';
+export const LOGOUT_FUNCTION = 'LOGOUT_FUNCTION';
 
-export const LOGIN_ALERT_BOX = 'LOGIN_ALERT_BOX';
 // export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 // export const MY_DATA = 'MY_DATA';
