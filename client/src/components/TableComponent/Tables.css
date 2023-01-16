@@ -1,0 +1,9 @@
+
+.reports button{
+    color: white;
+    background-color: rgb(18, 206, 18);
+    border-radius: 3px;
+    padding: 5px;
+    border: 3px;
+    border-color: green;
+}

@@ -6,13 +6,14 @@ import PopupComponent from '../components/PopupComponent/PopupComponent';
 import { useAuth } from '../components/auth.context';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
+import { CSVLink } from 'react-csv';
 // import TablesContainer from '../components/TableComponent/TablesContainer';
 
 function TablePage(props) {
   const { userToken } = useAuth();
   const userName = jwt_decode(userToken).Emp_name;
   const decoded = jwt_decode(userToken);
-
+  const [getdata, setGetdata] = useState();
   const [open, setOpen] = useState(false);
   const [editOpen, setEditOpen] = useState();
   const [openActions, setOpenActions] = useState();
@@ -42,7 +43,6 @@ function TablePage(props) {
   const handleEditOpen = () => {
     setEditOpen(!editOpen);
   };
-  console.log(oldData);
 
   const handleOpenActions = () => {
     setOpenActions(!openActions);
@@ -57,21 +57,21 @@ function TablePage(props) {
 
   const handleRowDelete = oldData => {
     console.log(oldData);
-     if (window.confirm('Are you sure you want to delete this Ticket?')) {
-       axios
-         .delete(`https://localhost:7040/api/User/${oldData.ticket_no}`)
+    if (window.confirm('Are you sure you want to delete this Ticket?')) {
+      axios
+        .delete(`https://localhost:7040/api/User/${oldData.ticket_no}`)
 
-         .then(res => {
-           alert('Ticket Deleted successfully!!');
-           const dataDelete = [...data];
-           setData(prev =>
-             prev.filter(obj => obj.ticket_no !== oldData.ticket_no)
-           );
+        .then(res => {
+          alert('Ticket Deleted successfully!!');
+          const dataDelete = [...data];
+          setData(prev =>
+            prev.filter(obj => obj.ticket_no !== oldData.ticket_no)
+          );
 
-           window.location.reload();
-           //resolve();
-         });
-     }
+          window.location.reload();
+          //resolve();
+        });
+    }
   };
 
   const handleRowUpdate = (newData, oldData) => {
@@ -169,9 +169,18 @@ function TablePage(props) {
             />
           )}
         </div>
+        <div className={css.reports}>
+          {getdata && (
+            <CSVLink data={getdata} className={css.btn}>
+              <ButtonComponent cname={css.add_button} value="Export Data" />
+            </CSVLink>
+          )}
+        </div>
       </div>
       <div className={css.tablediv}>
         <Tables
+          data={getdata}
+          setData={setGetdata}
           setSelected={setSelected}
           setOldData={setOldData}
           setNewData={setNewData}

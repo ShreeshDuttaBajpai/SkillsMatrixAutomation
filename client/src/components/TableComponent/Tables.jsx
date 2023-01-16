@@ -21,6 +21,9 @@ import axios from 'axios';
 import Alert from '@material-ui/lab/Alert';
 import { useAuth } from '../auth.context';
 import jwt_decode from 'jwt-decode';
+import { CSVLink } from 'react-csv';
+import cs from '../TableComponent/Tables.css';
+import { css } from '@emotion/react';
 // import {CodeReviewapi} from './../../services/TableService/tableService'
 
 const tableIcons = {
@@ -60,146 +63,154 @@ const Tables = props => {
     baseURL: `https://localhost:7040/api/Review/${decoded.Emp_firstname}`
   });
 
-  if(window.location.pathname=== '/CodeReview'){
-  var columns = [
-    { title: 'Ticket No', field: 'ticket_no', editable: 'onAdd', width: '24%' },
-    {
-      title: 'Team',
-      field: 'team',
-      width: '30%',
-      lookup: {
-        CNS: 'CNS',
-        'Mobile Team': 'Mobile Team',
-        'Partner Service': 'Partner Service',
-        Contact: 'Contact',
-        CP: 'CP',
-        'Event Bridge': 'Event Bridge'
-      }
-    },
-    {
-      title: 'Name',
-      field: 'name',
-      initialEditValue: decoded.Emp_name,
-      editable: 'never',
-      cellStyle: {
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        maxWidth: 130,
-        '&:hover': {
-          textOverflow: 'none'
+  if (window.location.pathname === '/CodeReview') {
+    var columns = [
+      {
+        title: 'Ticket No',
+        field: 'ticket_no',
+        editable: 'onAdd',
+        width: '24%'
+      },
+      {
+        title: 'Team',
+        field: 'team',
+        width: '30%',
+        lookup: {
+          CNS: 'CNS',
+          'Mobile Team': 'Mobile Team',
+          'Partner Service': 'Partner Service',
+          Contact: 'Contact',
+          CP: 'CP',
+          'Event Bridge': 'Event Bridge'
         }
-      }
-    },
-    {
-      title: 'Ticket Type',
-      field: 'ticket_type',
-      cellStyle: {
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        maxWidth: 150
       },
-      lookup: {
-        Story: 'Story',
-        Bug: 'Bug',
-        Task: 'Task',
-        'Sub-Task': 'Sub-Task'
-      },
-    },
-
-    {
-      title: 'Status',
-      field: 'status',
-      lookup: {
-        Completed: 'Completed',
-        Incomplete: 'Incomplete',
-        InProgress: 'InProgress'
-      },
-      width: '25%'
-    },
-    { title: 'Code Reviewer', field: 'code_reviewer' },
-    { title: 'Code Deviation Count', field: 'code_deviation_count' },
-    { title: 'Bugs Count', field: 'bugs_count' },
-    { title: 'Remarks', field: 'remarks' }
-  ];
-
-}else{
-  var columns = [
-    { title: 'Ticket No', field: 'ticket_no', editable: 'onAdd', width: '24%' },
-    {
-      title: 'Team',
-      field: 'team',
-      width: '30%',
-      lookup: {
-        CNS: 'CNS',
-        'Mobile Team': 'Mobile Team',
-        'Partner Service': 'Partner Service',
-        Contact: 'Contact',
-        CP: 'CP',
-        'Event Bridge': 'Event Bridge'
-      }
-    },
-    {
-      title: 'Name',
-      field: 'name',
-      initialEditValue: decoded.Emp_name,
-      editable: 'never',
-      cellStyle: {
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        maxWidth: 130,
-        '&:hover': {
-          textOverflow: 'none'
+      {
+        title: 'Name',
+        field: 'name',
+        initialEditValue: decoded.Emp_name,
+        editable: 'never',
+        cellStyle: {
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          maxWidth: 130,
+          '&:hover': {
+            textOverflow: 'none'
+          }
         }
-      }
-    },
-    {
-      title: 'Ticket Type',
-      field: 'ticket_type',
-      cellStyle: {
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        maxWidth: 150
       },
-      lookup: {
-        Story: 'Story',
-        Bug: 'Bug',
-        Task: 'Task',
-        'Sub-Task': 'Sub-Task'
+      {
+        title: 'Ticket Type',
+        field: 'ticket_type',
+        cellStyle: {
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          maxWidth: 150
+        },
+        lookup: {
+          Story: 'Story',
+          Bug: 'Bug',
+          Task: 'Task',
+          'Sub-Task': 'Sub-Task'
+        }
       },
-    },
-    { title: 'Story Point', field: 'story_point'},
-    { title: 'Start date', field: 'start_date', type: 'date' },
-    { title: 'End date', field: 'end_date', type: 'date' },
-    { title: 'Hours', field: 'hours' },
-    {
-      title: 'Status',
-      field: 'status',
-      lookup: {
-        Completed: 'Completed',
-        InProgress: 'InProgress',
-        Incomplete: 'Incomplete'
-      },
-      width: '20%'
-    },
-    { title: 'Code Reviewer', field: 'code_reviewer' },
-  ];
 
-}
-  const [data, setData] = useState([]); //table data
+      {
+        title: 'Status',
+        field: 'status',
+        lookup: {
+          Completed: 'Completed',
+          Incomplete: 'Incomplete',
+          InProgress: 'InProgress'
+        },
+        width: '25%'
+      },
+      { title: 'Code Reviewer', field: 'code_reviewer' },
+      { title: 'Code Deviation Count', field: 'code_deviation_count' },
+      { title: 'Bugs Count', field: 'bugs_count' },
+      { title: 'Remarks', field: 'remarks' }
+    ];
+  } else {
+    var columns = [
+      {
+        title: 'Ticket No',
+        field: 'ticket_no',
+        editable: 'onAdd',
+        width: '24%'
+      },
+      {
+        title: 'Team',
+        field: 'team',
+        width: '30%',
+        lookup: {
+          CNS: 'CNS',
+          'Mobile Team': 'Mobile Team',
+          'Partner Service': 'Partner Service',
+          Contact: 'Contact',
+          CP: 'CP',
+          'Event Bridge': 'Event Bridge'
+        }
+      },
+      {
+        title: 'Name',
+        field: 'name',
+        initialEditValue: decoded.Emp_name,
+        editable: 'never',
+        cellStyle: {
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          maxWidth: 130,
+          '&:hover': {
+            textOverflow: 'none'
+          }
+        }
+      },
+      {
+        title: 'Ticket Type',
+        field: 'ticket_type',
+        cellStyle: {
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          maxWidth: 150
+        },
+        lookup: {
+          Story: 'Story',
+          Bug: 'Bug',
+          Task: 'Task',
+          'Sub-Task': 'Sub-Task'
+        }
+      },
+      { title: 'Story Point', field: 'story_point' },
+      { title: 'Start date', field: 'start_date', type: 'date' },
+      { title: 'End date', field: 'end_date', type: 'date' },
+      { title: 'Hours', field: 'hours' },
+      {
+        title: 'Status',
+        field: 'status',
+        lookup: {
+          Completed: 'Completed',
+          InProgress: 'InProgress',
+          Incomplete: 'Incomplete'
+        },
+        width: '20%'
+      },
+      { title: 'Code Reviewer', field: 'code_reviewer' }
+    ];
+  }
+  // const [data, setData] = useState([]); //table data
   const [iserror, setIserror] = useState(false);
   const [errorMessages, setErrorMessages] = useState([]);
 
-  console.log(data);
+  console.log(props.data);
 
   useEffect(() => {
     if (window.location.pathname === '/CodeReview') {
       CodeReviewapi.get('')
         .then(res => {
-          setData(res.data);
+          props.setData(res.data);
           console.log(res.data);
         })
         .catch(error => {
@@ -215,7 +226,7 @@ const Tables = props => {
           }`
         )
         .then(res => {
-          setData(res.data);
+          props.setData(res.data);
           console.log(res.data);
         })
         .catch(error => {
@@ -229,6 +240,11 @@ const Tables = props => {
       <Grid container spacing={1}>
         <Grid item xs={1}></Grid>
         <Grid item xs={10}>
+          {/* <div className={cs.reports}>
+            <CSVLink data={props.data} className={cs.btn}>
+              <button>Export Data</button>
+            </CSVLink>
+          </div> */}
           <div>
             {iserror && (
               <Alert severity="error">
@@ -238,6 +254,7 @@ const Tables = props => {
               </Alert>
             )}
           </div>
+
           <MaterialTable
             localization={{
               body: {
@@ -272,10 +289,11 @@ const Tables = props => {
                 props.setSelected(false);
               }
             }}
-            data={data}
+            data={props.data}
             icons={tableIcons}
           />
         </Grid>
+
         <Grid item xs={1}></Grid>
       </Grid>
     </div>

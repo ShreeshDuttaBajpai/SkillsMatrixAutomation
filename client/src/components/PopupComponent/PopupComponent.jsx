@@ -19,7 +19,7 @@ function PopupComponent(props) {
   useEffect(() => {
     console.log(open);
   }, [open])
-  
+
 
   const [ticketDetails, setticketDetails] = useState({
     ticket_no: '',
@@ -118,6 +118,7 @@ function PopupComponent(props) {
         className={css.form_popup}
         id="myForm"
         onSubmit={e => {
+          // e.preventDefault();
           props.val2();
         }}
       >
@@ -159,7 +160,7 @@ function PopupComponent(props) {
       }}
      />
     </div>
-    </span> 
+    </span>
     <div className={css.next}>
           <h6>Remarks</h6>
           <input
@@ -342,9 +343,9 @@ function PopupComponent(props) {
         </div>
       </form>
     </div>
-    </div>     
+    </div>
   );
-  
+
 }
 
 export default PopupComponent;

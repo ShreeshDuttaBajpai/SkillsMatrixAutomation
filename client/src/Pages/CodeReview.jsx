@@ -6,6 +6,7 @@ import { ButtonComponent } from '../components/ButtonComponent/ButtonComponent';
 import PopupComponent from '../components/PopupComponent/PopupComponent';
 import { useAuth } from '../components/auth.context';
 import jwt_decode from 'jwt-decode';
+import { CSVLink } from 'react-csv';
 
 function CodeReview(props) {
 
@@ -16,6 +17,7 @@ function CodeReview(props) {
   const [oldData, setOldData] = useState({});
   const [newData, setNewData] = useState({});
   const [editopen, setEditopen] = useState();
+const [getdata, setGetdata] = useState();
 
   const handleEditopen = () => {
     setEditopen(!editopen);
@@ -77,11 +79,13 @@ function CodeReview(props) {
         console.log(error);
       });
   };
+
+
   return (
     <div className={css.codereviewhead}>
       <div className={css.headers}>
         <h3 className={css.dashboard}>Code Reviewer Dashboard</h3>
-      <div className={css.Actionsdiv}>
+        <div className={css.Actionsdiv}>
           <div className={css.ActionsButton}>
             <ButtonComponent
               selected={selected}
@@ -91,6 +95,7 @@ function CodeReview(props) {
               //run={handleOpenActions}
             />
           </div>
+
           <div className={css.ActionsOptions}>
             {selected ? (
               <ul className={css.menu}>
@@ -132,12 +137,22 @@ function CodeReview(props) {
             ) : null}
           </div>
         </div>
+        <div className={css.reports}>
+          {getdata && (
+          <CSVLink data={getdata} className={css.btn}>
+            <ButtonComponent cname={css.reports_button} value="Export Data" />
+          </CSVLink>
+          )}
         </div>
+      </div>
 
       <Table
-       setSelected={setSelected}
-       setOldData={setOldData}
-       setNewData={setNewData}/>
+      data={getdata}
+      setData={setGetdata}
+        setSelected={setSelected}
+        setOldData={setOldData}
+        setNewData={setNewData}
+      />
     </div>
   );
 }
