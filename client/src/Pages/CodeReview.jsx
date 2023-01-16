@@ -4,9 +4,14 @@ import css from '../../src/Pages/CodeReview.css';
 import axios from 'axios';
 import { ButtonComponent } from '../components/ButtonComponent/ButtonComponent';
 import PopupComponent from '../components/PopupComponent/PopupComponent';
+import { useAuth } from '../components/auth.context';
+import jwt_decode from 'jwt-decode';
+import {
+  deleteReview,
+  updateReview
+} from '../services/CodeReview/codereviewService';
 
 function CodeReview(props) {
-
   const [open, setOpen] = useState();
   const [openActions, setOpenActions] = useState();
   const [selected, setSelected] = useState();
@@ -18,14 +23,14 @@ function CodeReview(props) {
   const handleEditopen = () => {
     setEditopen(!editopen);
   };
-  
+
   const handleOpen = () => {
     setOpen(!open);
   };
 
   console.log(oldData);
   // const { userToken } = useAuth();
-//  const decoded = jwt_decode(userToken);
+  //  const decoded = jwt_decode(userToken);
 
   const handleOpenActions = () => {
     setOpenActions(!openActions);
@@ -39,11 +44,9 @@ function CodeReview(props) {
     });
   };
 
-  const handleRowDelete = oldData => {
-    console.log(oldData);
-    axios
-      .delete(`https://localhost:7040/api/User/${oldData.ticket_no}`)
-      .then(res => {
+  const handleRowDelete = async oldData => {
+    const delrev = await deleteReview(`/User/${oldData.ticket_no}`).then(
+      res => {
         alert('Ticket Deleted successfully!!');
         const dataDelete = [...data];
         console.log(dataDelete);
@@ -52,14 +55,13 @@ function CodeReview(props) {
         );
         window.location.reload();
         //resolve();
-      });
+      }
+    );
+    return delrev;
   };
 
-  const handleRowUpdate = (newData, oldData) => {
-    console.log(newData);
-    console.log(oldData);
-    axios
-      .put(`https://localhost:7040/api/review/${oldData.ticket_no}`, newData)
+  const handleRowUpdate = async (newData, oldData) => {
+    const update = await updateReview(`/Review/${oldData.ticket_no}`, newData)
       .then(res => {
         alert('Ticket Edited successfully!!');
         const dataUpdate = [...data];
@@ -72,13 +74,15 @@ function CodeReview(props) {
       .catch(error => {
         console.log(error);
       });
+    return update;
   };
+
   return (
-    <div className={css.codereviewhead}> 
+    <div className={css.codereviewhead}>
       <div className={css.headers}>
         <h3 className={css.dashboard}>Code Reviewer Dashboard</h3>
-      <div className={css.Actionsdiv}>
-          <div className={css.ActionsButton}>
+        <div className={css.Actionsdiv}>
+          <div className={css.dropdown}>
             <ButtonComponent
               selected={selected}
               cname={css.Actionsbutton}
@@ -123,12 +127,13 @@ function CodeReview(props) {
             ) : null}
           </div>
         </div>
-        </div>
-        
+      </div>
+
       <Table
-       setSelected={setSelected} 
-       setOldData={setOldData}
-       setNewData={setNewData}/>
+        setSelected={setSelected}
+        setOldData={setOldData}
+        setNewData={setNewData}
+      />
     </div>
   );
 }

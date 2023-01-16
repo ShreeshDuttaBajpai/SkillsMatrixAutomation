@@ -11,7 +11,7 @@ const Navbar = () => {
   const { authSuccess, userToken, logout, run } = useAuth();
   let Emp_name = '';
   let Emp_id = '';
-  let Emp_firstname ='';
+  let Emp_firstname = '';
 
   if (userToken) {
     const decoded_token = jwt_Decode(userToken);

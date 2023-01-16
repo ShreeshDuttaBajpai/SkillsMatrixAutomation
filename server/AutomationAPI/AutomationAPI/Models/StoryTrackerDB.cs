@@ -21,5 +21,6 @@ namespace AutomationAPI.Models
         public string? Code_deviation_count { get; set; }
         public string? Bugs_count { get; set; }
         public string? Remarks { get; set; }
+
     }
 }

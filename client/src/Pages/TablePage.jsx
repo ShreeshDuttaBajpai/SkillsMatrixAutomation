@@ -25,7 +25,7 @@ function TablePage(props) {
     team: 'CNS',
     name: userName,
     ticket_type: 'Story',
-    story_point: 0,
+    story_point: '',
     start_date: '',
     end_date: '',
     hours: 0,
@@ -70,7 +70,6 @@ function TablePage(props) {
         //resolve();
       });
   };
-
   const handleRowUpdate = (newData, oldData) => {
     axios
       .put(`https://localhost:7040/api/User/${oldData.ticket_no}`, newData)
@@ -94,7 +93,7 @@ function TablePage(props) {
             ? 'Admin Dashboard'
             : 'User Dashboard'}
         </h3>
-        
+
         <div className={css.Actionsdiv}>
           <div className={css.dropdown}>
             <ButtonComponent
