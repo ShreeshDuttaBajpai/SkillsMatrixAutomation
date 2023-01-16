@@ -1,12 +1,12 @@
 .tab{
     background-color: rgb(172, 219, 231);
     background-size: cover;
-  
   } 
   
   .codereviewhead{
     background-color: rgb(172, 219, 231);
     background-size: cover;
+    height: 120vh;
   }
   
   .dashboardhead{
@@ -15,7 +15,6 @@
   }
   .headers{
     display :flex;
-    margin-top: 3rem;
     margin-bottom: 5rem;
   }
   
@@ -34,12 +33,14 @@
   }
   
   .dashboard{
+      margin-top: 3rem;
       margin-left: 7rem;
       display: inline-block;
   }
   
   .Actionsbutton {
-    margin-left: 36.4rem;
+    margin-top: 3rem;
+    margin-left: 44rem;
     margin-right: 1rem;
     display: inline-block;
     background-image: linear-gradient(#42A1EC, #0070C9);
@@ -96,7 +97,6 @@
     margin-left: 42rem;
     z-index: 10;
     margin-top: 0.3rem;
-   
     /* display: inline-block; */
     background-image: linear-gradient(#54a0dd, #328dd8);
     border: 1px solid #0077CC;

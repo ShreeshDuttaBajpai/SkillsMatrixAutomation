@@ -10,7 +10,7 @@ export const refreshData = payload => ({
 });
 
 export const userToken = payload => ({
-  type: types.AUTH_SUCCESS,
+  type: types.USER_TOKEN,
   payload
 });
 

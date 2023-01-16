@@ -7,12 +7,12 @@ import axios from 'axios';
 import { ButtonComponent } from '../ButtonComponent/ButtonComponent';
 
 function PopupComponent(props) {
-  const [openActions, setOpenActions] = useState();
-  const [selected, setSelected] = useState();
+  // const [openActions, setOpenActions] = useState();
+  // const [selected, setSelected] = useState();
   // const [popup, setpop] = useState(false);
   const { userToken } = useAuth();
   const userName = jwt_decode(userToken).Emp_name;
-  const decodtoken = jwt_decode(userToken);
+  // const decodtoken = jwt_decode(userToken);
 
   useEffect(() => {
     console.log(open);
@@ -108,237 +108,239 @@ function PopupComponent(props) {
   };
 
   return (
-    <div className={css.formdiv}>
-      <form
-        className={css.form_popup}
-        id="myForm"
-        onSubmit={e => {
-          props.val2();
-        }}
-      >
-        <div className={css.head}>
-          <h5>{props.val1}</h5>
-          <span>
-            <button
-              type="button"
-              className={css.remove_btn}
-              onClick={props.handleOpen}
-            >
-              <img src={x} />
-            </button>
-          </span>
-        </div>
-        {/* onSubmit={postPassenger} */}
-        {/* {ticketList.map((singlepass, index) => (
+    <div className={props.ename}>
+      <div className={css.formdiv}>
+        <form
+          className={css.form_popup}
+          id="myForm"
+          onSubmit={e => {
+            props.val2();
+          }}
+        >
+          <div className={css.head}>
+            <h5>{props.val1}</h5>
+            <span>
+              <button
+                type="button"
+                className={css.remove_btn}
+                onClick={props.handleOpen}
+              >
+                <img src={x} />
+              </button>
+            </span>
+          </div>
+          {/* onSubmit={postPassenger} */}
+          {/* {ticketList.map((singlepass, index) => (
           <div key={index} className="form-content"> */}
-        {window.location.pathname === '/CodeReview' ? (
-          <>
-            <span className={css.book_input}>
-              <div className={css.nextline}>
-                <h6>Code Deviation Count</h6>
+          {window.location.pathname === '/CodeReview' ? (
+            <>
+              <span className={css.book_input}>
+                <div className={css.nextline}>
+                  <h6>Code Deviation Count</h6>
+                  <input
+                    type="number"
+                    id="code_deviation_count"
+                    placeholder="code_deviation_count"
+                    defaultValue={props.code_deviation_count}
+                    onChange={e => {
+                      handleChangecode_deviation_count(e);
+                    }}
+                  />
+                </div>
+                <div className={css.nextline}>
+                  <h6>Bugs Count</h6>
+                  <input
+                    type="number"
+                    id="bugs_count"
+                    placeholder="BugsCount"
+                    defaultValue={props.bugs_count}
+                    onChange={e => {
+                      handleChangebugs_count(e);
+                    }}
+                  />
+                </div>
+              </span>
+              <div className={css.next}>
+                <h6>Remarks</h6>
                 <input
-                  type="number"
-                  id="code_deviation_count"
-                  placeholder="code_deviation_count"
-                  defaultValue={props.code_deviation_count}
+                  id="remarks"
+                  placeholder="remarks"
+                  defaultValue={props.remarks}
                   onChange={e => {
-                    handleChangecode_deviation_count(e);
+                    handleChangeremarks(e);
                   }}
                 />
               </div>
-              <div className={css.nextline}>
-                <h6>Bugs Count</h6>
-                <input
-                  type="number"
-                  id="bugs_count"
-                  placeholder="BugsCount"
-                  defaultValue={props.bugs_count}
-                  onChange={e => {
-                    handleChangebugs_count(e);
-                  }}
-                />
-              </div>
-            </span>
-            <div className={css.next}>
-              <h6>Remarks</h6>
-              <input
-                id="remarks"
-                placeholder="remarks"
-                defaultValue={props.remarks}
-                onChange={e => {
-                  handleChangeremarks(e);
-                }}
-              />
-            </div>
-          </>
-        ) : (
-          <>
-            <span className={css.book_input}>
-              <div className={css.nextline}>
-                <h6>
-                  Ticket No.
-                  <span className={css.color}>*</span>
-                </h6>
-                <input
-                  id="Ticket No"
-                  placeholder="Ticket No"
-                  required
-                  defaultValue={props.ticketno ? props.ticketno : ''}
-                  onChange={e => {
-                    handleChangeticketno(e);
-                  }}
-                />
-              </div>
-              <div className={css.nextline}>
-                <h6>
-                  Ticket Type
-                  <span className={css.color}>*</span>
-                </h6>
-                <select
-                  id="Ticket Type"
-                  required
-                  // placeholder="Ticket Type"
-                  defaultValue={props.tickettype ? props.tickettype : ''}
-                  onChange={e => {
-                    handleChangetickettype(e);
-                  }}
-                >
-                  <option>Story</option>
-                  <option>Bug</option>
-                  <option>Task</option>
-                  <option>Sub-Task</option>
-                </select>
-              </div>
-            </span>
+            </>
+          ) : (
+            <>
+              <span className={css.book_input}>
+                <div className={css.nextline}>
+                  <h6>
+                    Ticket No.
+                    <span className={css.color}>*</span>
+                  </h6>
+                  <input
+                    id="Ticket No"
+                    placeholder="Ticket No"
+                    required
+                    defaultValue={props.ticketno ? props.ticketno : ''}
+                    onChange={e => {
+                      handleChangeticketno(e);
+                    }}
+                  />
+                </div>
+                <div className={css.nextline}>
+                  <h6>
+                    Ticket Type
+                    <span className={css.color}>*</span>
+                  </h6>
+                  <select
+                    id="Ticket Type"
+                    required
+                    // placeholder="Ticket Type"
+                    defaultValue={props.tickettype ? props.tickettype : ''}
+                    onChange={e => {
+                      handleChangetickettype(e);
+                    }}
+                  >
+                    <option>Story</option>
+                    <option>Bug</option>
+                    <option>Task</option>
+                    <option>Sub-Task</option>
+                  </select>
+                </div>
+              </span>
 
-            <span className={css.book_input}>
-              <div className={css.nextline}>
-                <h6>
-                  Team
-                  <span className={css.color}>*</span>
-                </h6>
-                <select
-                  // type="number"
-                  id="Team"
-                  placeholder="Team"
-                  required
-                  defaultValue={props.team ? props.team : ''}
-                  onChange={e => {
-                    handleChangeteam(e);
-                  }}
-                >
-                  <option>CNS</option>
-                  <option>Mobile Team</option>
-                  <option>Partner Service</option>
-                  <option>Contact</option>
-                  <option>CP</option>
-                  <option>Event Bridge</option>
-                </select>
-              </div>
-              <div className={css.nextline}>
-                <h6>
-                  Story Points
-                  <span className={css.color}>*</span>
-                </h6>
+              <span className={css.book_input}>
+                <div className={css.nextline}>
+                  <h6>
+                    Team
+                    <span className={css.color}>*</span>
+                  </h6>
+                  <select
+                    // type="number"
+                    id="Team"
+                    placeholder="Team"
+                    required
+                    defaultValue={props.team ? props.team : ''}
+                    onChange={e => {
+                      handleChangeteam(e);
+                    }}
+                  >
+                    <option>CNS</option>
+                    <option>Mobile Team</option>
+                    <option>Partner Service</option>
+                    <option>Contact</option>
+                    <option>CP</option>
+                    <option>Event Bridge</option>
+                  </select>
+                </div>
+                <div className={css.nextline}>
+                  <h6>
+                    Story Points
+                    <span className={css.color}>*</span>
+                  </h6>
+                  <input
+                    type="number"
+                    id="Story Points"
+                    placeholder="Story Points"
+                    required
+                    defaultValue={props.storypoints ? props.storypoints : ''}
+                    onChange={e => {
+                      handleChangestorypoints(e);
+                    }}
+                  />
+                </div>
+              </span>
+
+              {/* <div className={css.Dates}> */}
+              <span className={css.book_input}>
+                <div className={css.nextline}>
+                  <h6>
+                    Start Date
+                    <span className={css.color}>*</span>
+                  </h6>
+                  <input
+                    type="Date"
+                    id="Start Date"
+                    placeholder="Start Date"
+                    // required
+                    defaultValue={props.startdate ? props.startdate : ''}
+                    onChange={e => {
+                      handleChangestartdate(e);
+                    }}
+                  ></input>
+                </div>
+                <div className={css.nextline}>
+                  <h6>End Date</h6>
+                  <input
+                    type="Date"
+                    id="End Date"
+                    placeholder="End Date"
+                    defaultValue={props.enddate ? props.enddate : ''}
+                    onChange={e => {
+                      handleChangeenddate(e);
+                    }}
+                  ></input>
+                </div>
+              </span>
+              {/* </div> */}
+
+              <span className={css.book_input}>
+                <div className={css.nextline}>
+                  <h6>Hours</h6>
+                  <input
+                    type="number"
+                    id="Hours"
+                    placeholder="Hours"
+                    defaultValue={props.hours}
+                    onChange={e => {
+                      handleChangehours(e);
+                    }}
+                  />
+                </div>
+                <div className={css.nextline}>
+                  <h6>
+                    Status
+                    <span className={css.color}>*</span>
+                  </h6>
+                  <select
+                    id="Status"
+                    placeholder="Status"
+                    defaultValue={props.status ? props.status : ''}
+                    onChange={e => {
+                      handleChangestatus(e);
+                    }}
+                  >
+                    <option>Completed</option>
+                    <option>Incomplete</option>
+                    <option>InProgress</option>
+                  </select>
+                </div>
+              </span>
+
+              {/* <span className={css.book_input}> */}
+              <div className={css.next}>
+                <h6>CodeReviewer</h6>
                 <input
-                  type="number"
-                  id="Story Points"
-                  placeholder="Story Points"
-                  required
-                  defaultValue={props.storypoints ? props.storypoints : ''}
+                  id="CodeReviewer"
+                  placeholder="CodeReviewer"
+                  defaultValue={props.codereviewer ? props.codereviewer : ''}
                   onChange={e => {
-                    handleChangestorypoints(e);
+                    handleChangecodereveiwer(e);
                   }}
                 />
               </div>
-            </span>
-
-            {/* <div className={css.Dates}> */}
-            <span className={css.book_input}>
-              <div className={css.nextline}>
-                <h6>
-                  Start Date
-                  <span className={css.color}>*</span>
-                </h6>
-                <input
-                  type="Date"
-                  id="Start Date"
-                  placeholder="Start Date"
-                  required
-                  defaultValue={props.startdate ? props.startdate : ''}
-                  onChange={e => {
-                    handleChangestartdate(e);
-                  }}
-                ></input>
-              </div>
-              <div className={css.nextline}>
-                <h6>End Date</h6>
-                <input
-                  type="Date"
-                  id="End Date"
-                  placeholder="End Date"
-                  defaultValue={props.enddate ? props.enddate : ''}
-                  onChange={e => {
-                    handleChangeenddate(e);
-                  }}
-                ></input>
-              </div>
-            </span>
-            {/* </div> */}
-
-            <span className={css.book_input}>
-              <div className={css.nextline}>
-                <h6>Hours</h6>
-                <input
-                  type="number"
-                  id="Hours"
-                  placeholder="Hours"
-                  defaultValue={props.hours}
-                  onChange={e => {
-                    handleChangehours(e);
-                  }}
-                />
-              </div>
-              <div className={css.nextline}>
-                <h6>
-                  Status
-                  <span className={css.color}>*</span>
-                </h6>
-                <select
-                  id="Status"
-                  placeholder="Status"
-                  defaultValue={props.status ? props.status : ''}
-                  onChange={e => {
-                    handleChangestatus(e);
-                  }}
-                >
-                  <option>Completed</option>
-                  <option>Incomplete</option>
-                  <option>InProgress</option>
-                </select>
-              </div>
-            </span>
-
-            {/* <span className={css.book_input}> */}
-            <div className={css.next}>
-              <h6>CodeReviewer</h6>
-              <input
-                id="CodeReviewer"
-                placeholder="CodeReviewer"
-                defaultValue={props.codereviewer ? props.codereviewer : ''}
-                onChange={e => {
-                  handleChangecodereveiwer(e);
-                }}
-              />
-            </div>
-          </>
-        )}
-        {/* </div>
+            </>
+          )}
+          {/* </div>
         ))} */}
-        <div className={css.submitadd_btn}>
-          <button type="submit">Save</button>
-        </div>
-      </form>
+          <div className={css.submitadd_btn}>
+            <button type="submit">Save</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

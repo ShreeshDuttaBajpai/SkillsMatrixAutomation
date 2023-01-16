@@ -8,6 +8,7 @@ const initialState = {
   apiResponse: 0,
   resContent: '',
   userToken: tokenData,
+  myData:'',
   open:'',
   openActions:'',
   selected:'',
@@ -26,6 +27,13 @@ export const commonApi = (state = initialState, action) => {
         resContent: action.payload,
         apiResponse: 1
       });
+    case types.MY_DATA:
+      return  { ...state,myData:{emp_id: json.employeeId,
+      emp_name: json.displayName,
+      emp_designation: json.jobTitle,
+      emp_firstname:json.givenName}}
+    case types.OPEN:
+      return 
 
     default:
       return state;

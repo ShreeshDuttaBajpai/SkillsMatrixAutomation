@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Navbar from '../components/Navbar/Navbar';
 import Tables from '../components/TableComponent/Tables';
 import css from '../../src/Pages/TablePage.css';
 import { ButtonComponent } from '../components/ButtonComponent/ButtonComponent';
@@ -61,10 +60,12 @@ function TablePage(props) {
     axios
       .delete(`https://localhost:7040/api/User/${oldData.ticket_no}`)
       .then(res => {
+        alert('Ticket Deleted successfully!!');
         const dataDelete = [...data];
         setData(prev =>
           prev.filter(obj => obj.ticket_no !== oldData.ticket_no)
         );
+       
         window.location.reload();
         //resolve();
       });
@@ -77,6 +78,7 @@ function TablePage(props) {
         const index = oldData.tableData.id;
         dataUpdate[index] = newData;
         setData([...dataUpdate]);
+        alert('Ticket Edited successfully!!');
       })
       .catch(error => {
         console.log(error);
@@ -85,8 +87,6 @@ function TablePage(props) {
 
   return (
     <div className={css.tab}>
-      <Navbar />
-
       <div className={css.headers}>
         <h3 className={css.dashboard}>
           {decoded.Emp_designation === 'Engineering Manager'
@@ -101,24 +101,21 @@ function TablePage(props) {
               cname={css.Actionsbutton}
               value="Actions"
               disable={true}
-              run={handleOpenActions}
+              //run={handleOpenActions}
             />
           </div>
           <div className={css.ActionsOptions}>
-            {selected && openActions ? (
+            {selected ? (
               <ul className={css.menu}>
                 <li className={css.menu_item}>
                   <ButtonComponent
                     cname={css.button1}
                     value="Edit"
                     run={handleEditOpen}
-                    //disable={true}
-                    // run={() => {
-                    //   handleRowUpdate(newData, oldData);
-                    // }}
                   />
                   {editOpen ? (
                     <PopupComponent
+                      ename={css.editopen}
                       handleOpen={handleEditOpen}
                       setNewData={setNewData}
                       val1="Edit Ticket"
@@ -141,7 +138,6 @@ function TablePage(props) {
                   <ButtonComponent
                     cname={css.button1}
                     value="Delete"
-                    //disable={true}
                     run={() => {
                       handleRowDelete(oldData);
                       //window.location.reload();
