@@ -23,10 +23,6 @@ const [getdata, setGetdata] = useState();
     setEditopen(!editopen);
   };
 
-  const handleOpen = () => {
-    setOpen(!open);
-  };
-
   console.log(oldData);
   const { userToken } = useAuth();
   const decoded = jwt_decode(userToken);
@@ -111,6 +107,7 @@ const [getdata, setGetdata] = useState();
                   />
                   {editopen ? (
                     <PopupComponent
+                      handleOpen={handleEditopen}
                       setNewData={setNewData}
                       val1="Edit Ticket"
                       val2={() => {
@@ -139,16 +136,16 @@ const [getdata, setGetdata] = useState();
         </div>
         <div className={css.reports}>
           {getdata && (
-          <CSVLink data={getdata} className={css.btn}>
-            <ButtonComponent cname={css.reports_button} value="Export Data" />
-          </CSVLink>
+            <CSVLink data={getdata} className={css.btn}>
+              <ButtonComponent cname={css.reports_button} value="Export Data" />
+            </CSVLink>
           )}
         </div>
       </div>
 
       <Table
-      data={getdata}
-      setData={setGetdata}
+        data={getdata}
+        setData={setGetdata}
         setSelected={setSelected}
         setOldData={setOldData}
         setNewData={setNewData}
