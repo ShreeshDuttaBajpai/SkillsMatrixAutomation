@@ -1,7 +1,7 @@
 .tab{
   background-color: rgb(172, 219, 231);
   background-size: cover;
-  height: 120vh;
+  height: auto;
 } 
 
 .codereviewhead{
@@ -30,6 +30,9 @@
   margin-top: 3rem;
   display: inline;
 }
+.reports{
+  margin-left: 1rem;
+}
 
 .menu{
   list-style: none;
@@ -42,7 +45,7 @@
 }
 
 .Actionsbutton {
-  margin-left: 47.4rem;
+  margin-left: 38.4rem;
   margin-right: 1rem;
   display: inline-block;
   background-image: linear-gradient(#42A1EC, #0070C9);
@@ -96,7 +99,7 @@
 }
 
 .button1 {
-  margin-left: 45.4rem;
+  margin-left: 36.4rem;
   /* z-index: 10; */
   margin-top: 0.3rem;
   /* display: inline-block; */
