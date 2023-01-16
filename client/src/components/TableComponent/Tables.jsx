@@ -21,6 +21,9 @@ import axios from 'axios';
 import Alert from '@material-ui/lab/Alert';
 import { useAuth } from '../auth.context';
 import jwt_decode from 'jwt-decode';
+import { CSVLink } from 'react-csv';
+import cs from '../TableComponent/Tables.css';
+import { css } from '@emotion/react';
 import { CodeReviewapi } from './../../services/TableService/tableService';
 
 const tableIcons = {
@@ -198,14 +201,13 @@ const Tables = props => {
       { title: 'Code Reviewer', field: 'code_reviewer' }
     ];
   }
-
-  const [data, setData] = useState([]); //table data
+  // const [data, setData] = useState([]); //table data
   const [iserror, setIserror] = useState(false);
   const [errorMessages, setErrorMessages] = useState([]);
 
   const getData = async () => {
     const response = await CodeReviewapi(decoded);
-    console.log(response, 'gagan');
+    console.log(props.response, 'gagan');
     return response;
   };
 
@@ -213,7 +215,7 @@ const Tables = props => {
     if (window.location.pathname === '/CodeReview') {
       getData()
         .then(res => {
-          setData(res);
+          props.setData(res);
           console.log(res);
         })
         .catch(error => {
@@ -229,7 +231,7 @@ const Tables = props => {
           }`
         )
         .then(res => {
-          setData(res.data);
+          props.setData(res.data);
           console.log(res.data);
         })
         .catch(error => {
@@ -243,6 +245,11 @@ const Tables = props => {
       <Grid container spacing={1}>
         <Grid item xs={1}></Grid>
         <Grid item xs={10}>
+          {/* <div className={cs.reports}>
+            <CSVLink data={props.data} className={cs.btn}>
+              <button>Export Data</button>
+            </CSVLink>
+          </div> */}
           <div>
             {iserror && (
               <Alert severity="error">
@@ -252,6 +259,7 @@ const Tables = props => {
               </Alert>
             )}
           </div>
+
           <MaterialTable
             localization={{
               body: {
@@ -286,10 +294,11 @@ const Tables = props => {
                 props.setSelected(false);
               }
             }}
-            data={data}
+            data={props.data}
             icons={tableIcons}
           />
         </Grid>
+
         <Grid item xs={1}></Grid>
       </Grid>
     </div>
