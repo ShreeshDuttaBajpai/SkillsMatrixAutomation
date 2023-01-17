@@ -3697,19 +3697,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Anjali.Saini\\.nuget\\packages\\": {}
+    "C:\\Users\\Mudit.Arya\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Anjali.Saini\\Desktop\\app\\MyApps\\server\\AutomationAPI\\AutomationAPI\\AutomationAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Mudit.Arya\\source\\repos\\AfterTraining\\StoryTracker\\MyApps\\server\\AutomationAPI\\AutomationAPI\\AutomationAPI.csproj",
       "projectName": "AutomationAPI",
-      "projectPath": "C:\\Users\\Anjali.Saini\\Desktop\\app\\MyApps\\server\\AutomationAPI\\AutomationAPI\\AutomationAPI.csproj",
-      "packagesPath": "C:\\Users\\Anjali.Saini\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Anjali.Saini\\Desktop\\app\\MyApps\\server\\AutomationAPI\\AutomationAPI\\obj\\",
+      "projectPath": "C:\\Users\\Mudit.Arya\\source\\repos\\AfterTraining\\StoryTracker\\MyApps\\server\\AutomationAPI\\AutomationAPI\\AutomationAPI.csproj",
+      "packagesPath": "C:\\Users\\Mudit.Arya\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Mudit.Arya\\source\\repos\\AfterTraining\\StoryTracker\\MyApps\\server\\AutomationAPI\\AutomationAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Anjali.Saini\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Mudit.Arya\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3791,7 +3791,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }
