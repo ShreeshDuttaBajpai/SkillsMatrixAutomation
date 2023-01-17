@@ -1,15 +1,14 @@
-import React from 'react'
-import Navbar from '../components/Navbar/Navbar'
-import ReportsComponent from '../components/ReportsComponent/ReportsComponent'
-import Horizontalchart from '../components/ChartsComponent/Chart'
+import React from 'react';
+import Navbar from '../components/Navbar/Navbar';
+import Horizontalchart from '../components/ChartsComponent/Chart';
 
 function ReportsPage() {
   return (
     <div>
-        {/* <ReportsComponent/> */}
-        <Horizontalchart/>
+      {/* <ReportsComponent/> */}
+      <Horizontalchart />
     </div>
-  )
+  );
 }
 
-export default ReportsPage
+export default ReportsPage;

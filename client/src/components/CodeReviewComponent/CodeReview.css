@@ -1,0 +1,151 @@
+.tab{
+    background-color: rgb(172, 219, 231);
+    background-size: cover;
+  } 
+  
+  .codereviewhead{
+    background-color: rgb(172, 219, 231);
+    background-size: cover;
+    height: auto;
+  }
+  
+  .dashboardhead{
+    margin-top: 3rem;
+    margin-left: 7rem;
+  }
+  .headers{
+    display :flex;
+    margin-bottom: 5rem;
+  }
+  /* .reports{
+    margin-left: 1rem;
+  } */
+  .editdash{
+    margin-left: 20rem;
+  }
+
+  .dropdowndiv{
+    display: inline-block;
+    margin-right: 3rem;
+
+  }
+    
+  .menu{
+    list-style: none;
+  }
+  
+  .dashboard{
+      margin-top: 3rem;
+      margin-left: 7rem;
+      display: inline-block;
+  }
+  
+  .Actionsbutton {
+    margin-top: 3rem;
+    margin-left: 35.2rem;
+    margin-right: 1rem;
+    display: inline-block;
+    background-image: linear-gradient(#42A1EC, #0070C9);
+    border: 1px solid #0077CC;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 4px 15px;  
+    color: #FFFFFF;
+    cursor: pointer;
+    direction: ltr;
+    display: block;
+    font-family: "SF Pro Text","SF Pro Icons","AOS Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -.022em;
+    line-height: 1.47059;
+    min-width: 30px;
+    overflow: visible;
+    text-align: center;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+  }
+    
+  .ActionsOptions{
+    position: absolute;
+    z-index: 4;
+  }
+  
+  .Actionsbutton:disabled {
+    cursor: default;
+    opacity: .3;
+  }
+    
+  .Actionsbutton:hover {
+    background-image: linear-gradient(#2d92df, #147BCD);
+    border-color: #1482D0;
+    text-decoration: none;
+  }
+    
+  .Actionsbutton:active {
+    background-image: linear-gradient(#1fe049, #7fb2db);
+    border-color: #006DBC;
+    outline: none;
+  }
+    
+  .Actionsbutton:focus {
+    box-shadow: rgba(131, 192, 253, 0.5) 0 0 0 3px;
+    outline: none;
+  }
+  
+  .button1 {
+    margin-left: 33.2rem;
+    z-index: 10;
+    margin-top: 0.3rem;
+    /* display: inline-block; */
+    background-image: linear-gradient(#54a0dd, #328dd8);
+    border: 1px solid #0077CC;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    /* direction: ltr; */
+    display: inline;
+    font-family: "SF Pro Text","SF Pro Icons","AOS Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -.022em;
+    line-height: 1.47059;
+    width: 85px;
+    overflow: visible;
+    padding: 4px 15px;
+  }
+  
+  .button1:hover{
+    background-image: linear-gradient(#2891e7, #0067B9);
+  }
+  
+  .reports_button {
+    margin-top: 3rem;
+    display: flex;
+    background-image: linear-gradient(#42A1EC, #0070C9);
+    border: 1px solid #0077CC;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 4px 15px;  
+    color: #FFFFFF;
+    cursor: pointer;
+    direction: ltr;
+    display: block;
+    font-family: "SF Pro Text","SF Pro Icons","AOS Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.47059;
+    min-width: 30px;
+    overflow: visible;
+    text-align: center;
+    user-select: none;
+  }
+  
+  .tablediv{
+    margin-top: 3rem;
+  }
+  
+  

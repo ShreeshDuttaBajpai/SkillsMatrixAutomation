@@ -3,6 +3,7 @@ import { Bar, Pie } from "react-chartjs-2";
 import css from "../ChartsComponent/Chart.css"
 import { useEffect ,useState } from "react";
 import axios from "axios";
+
 const options ={
     elements:{
         bar:{
@@ -29,24 +30,8 @@ const Horizontalchart = ()=>{
     const[name,setName]=useState();
 const [firstCol, setFirstCol] = useState();
 const [secondCol, setSecondCol] = useState()
-const [data, setData] = useState({
-    labels :['Sunday','Monday','Tuesday','Wednesday' ,'Thursday'],
-    datasets:[
-        {
-            label:'Datasets 1',
-            data:[1,4,3,5,2.5],
-            borderColor: 'rgb(255,99,132)',
-            backgroundColor: 'rgb(255,99,132,0.5)',
-        },
-        {
-            label:'Datasets 2',
-            data:[5,2,3.5,1,4.5],
-            borderColor: 'rgb(53,162,235)',
-            backgroundColor: 'rgb(53,162,235,0.5)',
-        }
-    ]
-}
-)
+const [data, setData] = useState({})
+
 useEffect(()=>{
     const fetchTeam=async ()=>{
         const url = `https://localhost:7040/api/User/Team`;
@@ -107,12 +92,6 @@ useEffect(()=>{
                         'rgb(247, 180, 36,0.5)'
                       ]
                     }
-                    // {
-                    //   label: 'Datasets ID',
-                    //   data: dataset2,
-                    //   borderColor: 'rgb(53,162,235)',
-                    //   backgroundColor: 'rgb(53,162,235,0.5)'
-                    // }
                   ]
                 });
 
