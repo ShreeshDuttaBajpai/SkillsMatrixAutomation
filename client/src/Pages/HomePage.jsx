@@ -1,11 +1,11 @@
 import React from 'react';
-import ButtonContainer from '../components/ButtonComponent/ButtonContainer';
+import HomePageContainer from '../components/HomePage/HomePageMainComponent/HomePageContainer';
 //import HomepageMainComponent from '../components/HomePage/HomePageMainComponent/HomepageMainComponent';
 
 function HomePage() {
   return (
     <>
-      <ButtonContainer />
+      <HomePageContainer />
       {/* <HomepageMainComponent /> */}
     </>
   );

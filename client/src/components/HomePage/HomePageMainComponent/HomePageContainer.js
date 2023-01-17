@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
-import { myData } from '../../redux/common/actions';
+import { myData } from '../../../redux/common/actions';
 import * as Msal from 'msal';
-import HomePageMainComponent from '../HomePage/HomePageMainComponent/HomePageMainComponent';
+import HomePageMainComponent from './HomePageMainComponent';
 
 const mapStateToProps = state => ({
-    myData: state.commonApi.myData,
+    myData: state.authUser.myData,
   });
   console.log(myData);
 const mapDispatchToProps = dispatch => {
@@ -24,17 +24,16 @@ const mapDispatchToProps = dispatch => {
             };
             let loginResponse = await client.loginPopup(request);
             let tokenResponse = await client.acquireTokenSilent(request);
-            let payload = await fetch('https://graph.microsoft.com/beta/me', {
+            let response = await fetch('https://graph.microsoft.com/beta/me', {
               headers: {
                 Authorization: 'Bearer ' + tokenResponse.accessToken
               }
             });
-            let json = await payload.json();
+            let json = await response.json();
             console.log(json);
-            return dispatch(myData(json));        
-          }
+            dispatch(myData(json));        
+          } 
         }
     }
-
-const HomePageContainer = connect(mapStateToProps, mapDispatchToProps) (HomePageMainComponent);
+const HomePageContainer = connect(mapStateToProps, mapDispatchToProps)(HomePageMainComponent);
 export default HomePageContainer;

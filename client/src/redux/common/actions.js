@@ -9,6 +9,13 @@ export const refreshData = payload => ({
   payload
 });
 
+export const continueWithMicrosoft = (data) => {
+  return{
+    type: types.continueWithMicrosoft,
+    data:data
+  }
+};
+
 export const userToken = payload => ({
   type: types.USER_TOKEN,
   payload
@@ -18,8 +25,9 @@ export const authSuccess = () => ({
   type: types.AUTH_SUCCESS,
 });
 
-export const myData = () => ({
+export const myData = payload => ({
   type: types.MY_DATA,
+  payload
 });
 
 export const open = payload => ({
