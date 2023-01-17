@@ -1,55 +1,60 @@
-class InactivityLogout {
-    constructor({ timeout, onTimeout, onExpired }) {
-      this.timeout = timeout;
-      this.onTimeout = onTimeout;
-  
-      const expiredTime = parseInt(localStorage.getItem("_expiredTime"), 10);
-      if (expiredTime > 0 && expiredTime < Date.now()) {
-        onExpired();
-        return;
-      }
-  
-      this.eventHandler = this.updateExpiredTime.bind(this);
-      this.tracker();
-      this.startInterval();
-    }
-  
-    startInterval() {
-      this.updateExpiredTime();
-  
-      this.interval = setInterval(() => {
-        const expiredTime = parseInt(localStorage.getItem("_expiredTime"), 10);
-        if (expiredTime < Date.now()) {
-          if (this.onTimeout) {
-            this.onTimeout();
-            this.cleanUp();
-          }
-        }
-      }, 1000);
-    }
-  
-    updateExpiredTime() {
-      if (this.timeoutTracker) {
-        clearTimeout(this.timeoutTracker);
-      }
-      this.timeoutTracker = setTimeout(() => {
-        localStorage.setItem("_expiredTime", Date.now() + this.timeout * 1000);
-      }, 300);
-    }
-  
-    tracker() {
-      window.addEventListener("mousemove", this.eventHandler);
-      window.addEventListener("scroll", this.eventHandler);
-      window.addEventListener("keydown", this.eventHandler);
-    }
-  
-    cleanUp() {
-      localStorage.removeItem("_expiredTime");
-      clearInterval(this.interval);
-      window.removeEventListener("mousemove", this.eventHandler);
-      window.removeEventListener("scroll", this.eventHandler);
-      window.removeEventListener("keydown", this.eventHandler);
-    }
-  }
-  export default InactivityLogout;
-  
+import { useAuth } from "./auth.context";
+import { useEffect } from "react";
+
+const events = [
+  "load",
+  "mousemove",
+  "mousedown",
+  "click",
+  "scroll",
+  "keypress",
+];
+
+const InactivityLogout = ({ children }) => {
+  const {logout} = useAuth();
+  let timer;
+
+// this function sets the timer that logs out the user after 10 secs
+const handleLogoutTimer = () => {
+  timer = setTimeout(() => {
+    // clears any pending timer.
+    resetTimer();
+    // Listener clean up. Removes the existing event listener from the window
+    Object.values(events).forEach((item) => {
+      window.removeEventListener(item, resetTimer);
+    });
+    // logs out user
+    console.log("Hi");  
+    logout();
+  }, 200000000000000); // 10000ms = 10secs. You can change the time.
+};
+
+// this resets the timer if it exists.
+const resetTimer = () => {
+  if (timer) clearTimeout(timer);
+};
+
+// when component mounts, it adds an event listeners to the window
+// each time any of the event is triggered, i.e on mouse move, click, scroll, keypress etc, the timer to logout user after 10 secs of inactivity resets.
+// However, if none of the event is triggered within 10 secs, that is app is inactive, the app automatically logs out.
+useEffect(() => {
+  Object.values(events).forEach((item) => {
+    window.addEventListener(item, () => {
+      resetTimer();
+      handleLogoutTimer();
+    });
+  });
+}, []);
+
+// logs out user by clearing out auth token in localStorage and redirecting url to /signin page.
+// const logoutAction = () => {
+//   // localStorage.clear();
+//   // window.location.pathname = "/signin";
+//   const {logout} = useAuth();
+//   logout();
+// };
+
+  return children;
+};
+
+export default InactivityLogout;

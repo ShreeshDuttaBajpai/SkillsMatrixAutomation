@@ -3,11 +3,9 @@ import axios from 'axios';
 
 const baseurl="https://localhost:7040/api";
 
-export const getApi = async (apiURL, id) => {
-  const requetURL = id ? `${apiURL}/${id}` : apiURL;
-  const response = await superagent
-    .get(requetURL)
-    .set('Accept', 'application/json');
+export const getApi = async (baseURL) => {
+  const response = await axios.get(baseURL);
+  console.log(response);
   return response;
 };
 export const putApi = async (apiURL,data) => {

@@ -8,7 +8,7 @@ const AuthContext = createContext(null);
 
 export const AuthProvider = props => {
   const [userToken, setUserToken] = useState(props.tokenData);
-  const [authSuccess, setAuthSuccess] = useState();
+  const [authSuccess, setAuthSuccess] = useState(false);
   const [myData, setmyData] = useState();
 
   useEffect(() => {
@@ -23,6 +23,7 @@ export const AuthProvider = props => {
             } else setAuthSuccess(false);
           });
       } catch (error) {
+        console.log('gagan')
         setAuthSuccess(false);
       }
     };

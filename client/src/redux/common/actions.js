@@ -14,14 +14,12 @@ export const userToken = payload => ({
   payload
 });
 
-export const authSuccess = payload => ({
+export const authSuccess = () => ({
   type: types.AUTH_SUCCESS,
-  payload
 });
 
-export const myData = payload => ({
+export const myData = () => ({
   type: types.MY_DATA,
-  payload
 });
 
 export const open = payload => ({
@@ -39,7 +37,7 @@ export const selected= payload => ({
   payload
 });
 
-export const data= payload => ({
+export const datafunc= payload => ({
   type: types.DATA,
   payload
 });

@@ -12,8 +12,8 @@ const initialState = {
   open:'',
   openActions:'',
   selected:'',
-  data:'',
-  oldData:'',
+  data:[],
+  oldData:{},
   newData:'',
   editopen:''
 };
@@ -32,8 +32,11 @@ export const commonApi = (state = initialState, action) => {
       emp_name: json.displayName,
       emp_designation: json.jobTitle,
       emp_firstname:json.givenName}}
-    case types.OPEN:
-      return 
+    case types.DATA:
+      return {...state,data:(prev =>
+        prev.filter(obj => obj.ticket_no !== oldData.ticket_no))}
+      case types.OLD_DATA:
+        return{...state,oldData:rows[0]}
 
     default:
       return state;

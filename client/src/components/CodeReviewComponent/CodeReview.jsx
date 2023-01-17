@@ -12,7 +12,7 @@ import {
   updateReview
 } from '../../services/CodeReview/codereviewService';
 
-export const CodeReview = props => {
+export const CodeReview = (props, { handleRowDelete }) => {
   const [open, setOpen] = useState();
   const [openActions, setOpenActions] = useState();
   const [selected, setSelected] = useState();
@@ -27,8 +27,8 @@ export const CodeReview = props => {
   };
 
   console.log(oldData);
-  const { userToken } = useAuth();
-  const decoded = jwt_decode(userToken);
+  // const { userToken } = useAuth();
+  //  const decoded = jwt_decode(userToken);
 
   const handleOpenActions = () => {
     setOpenActions(!openActions);
@@ -42,23 +42,23 @@ export const CodeReview = props => {
     });
   };
 
-  const handleRowDelete = async oldData => {
-    if (window.confirm('Are you sure you want to delete this Ticket?')) {
-      const delrev = await deleteReview(`/User/${oldData.ticket_no}`).then(
-        res => {
-          alert('Ticket Deleted successfully!!');
-          const dataDelete = [...data];
-          console.log(dataDelete);
-          setData(prev =>
-            prev.filter(obj => obj.ticket_no !== oldData.ticket_no)
-          );
-          window.location.reload();
-          //resolve();
-        }
-      );
-      return delrev;
-    }
-  };
+  // const handleRowDelete = async oldData => {
+  //   if (window.confirm('Are you sure you want to delete this Ticket?')) {
+  //     const delrev = await deleteReview(`/User/${oldData.ticket_no}`).then(
+  //       res => {
+  //         alert('Ticket Deleted successfully!!');
+  //         const dataDelete = [...data];
+  //         console.log(dataDelete);
+  //         setData(prev =>
+  //           prev.filter(obj => obj.ticket_no !== oldData.ticket_no)
+  //         );
+  //         window.location.reload();
+  //         //resolve();
+  //       }
+  //     );
+  //     return delrev;
+  //   }
+  // };
 
   const handleRowUpdate = async (newData, oldData) => {
     const update = await updateReview(`/Review/${oldData.ticket_no}`, newData)
