@@ -15,8 +15,7 @@ function ProtectedRoute({ component: Component, ...restOfProps }) {
     <Route
       {...restOfProps}
       render={(props) =>
-        userToken ? <Component {...props}  />:{}
-        // : <Redirect to="/CodeReview" />
+        userToken ? <Component {...props}  /> : {}
       }
     />
   );

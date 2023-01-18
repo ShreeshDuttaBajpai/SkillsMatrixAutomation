@@ -39,7 +39,7 @@ export const AuthProvider = props => {
     window.location = "http://localhost:3000/"
   };
 
-  async function run() {
+  async function continueWithMicrosoft() {
     console.log('running...');
     const config = {
       auth: {
@@ -54,12 +54,12 @@ export const AuthProvider = props => {
     };
     let loginResponse = await client.loginPopup(request);
     let tokenResponse = await client.acquireTokenSilent(request);
-    let payload = await fetch('https://graph.microsoft.com/beta/me', {
+    let response = await fetch('https://graph.microsoft.com/beta/me', {
       headers: {
         Authorization: 'Bearer ' + tokenResponse.accessToken
       }
     });
-    let json = await payload.json();
+    let json = await response.json();
 
     setmyData(() => {
       return {
@@ -73,7 +73,7 @@ export const AuthProvider = props => {
 
   return (
     <AuthContext.Provider
-      value={{ userToken, setUserToken, authSuccess, run, logout, myData }}
+      value={{ userToken, setUserToken, authSuccess, continueWithMicrosoft, logout, myData }}
     >
       {props.children}
     </AuthContext.Provider>

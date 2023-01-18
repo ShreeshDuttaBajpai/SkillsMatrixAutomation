@@ -7,18 +7,15 @@ import MainPage from './Pages/HomePage';
 import Cookies from 'universal-cookie';
 import { AuthProvider, useAuth } from './components/auth.context';
 import jwt_decode from 'jwt-decode';
-import TablePage from '../src/Pages/TablePage';
+import TablePage from './Pages/TablePage'
 import CodeReview from './Pages/CodeReview';
 import ReportsPage from './Pages/ReportsPage';
 import Navbar from './components/Navbar/Navbar';
-// import InactivityLogout from "./components/InactivityLogout";
 import ProtectedRoute from "./components/ProtectedRoute";
 import MainDashboardEntry from "./components/MainDashboardEntry";
-// import {logout} from './components/auth.context';
-// import TablesContainer from './components/TableComponent/TablesContainer';
 // import HomePageContainer from "./components/HomePage/HomePageMainComponent/HomePageContainer";
 
-// const {logout} = useAuth();
+
 const store = configureStore();
 
 const App = () => {

@@ -1,1 +1,2 @@
-For exporting the data
+For exporting the data of excel
+command- 
