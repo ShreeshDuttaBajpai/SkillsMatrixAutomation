@@ -9,10 +9,8 @@ import Cookies from 'universal-cookie';
 import { ButtonComponent } from '../../ButtonComponent/ButtonComponent';
 import { Redirect } from 'react-router-dom';
 
-const HomePageMainComponent = ({ run, myData }) => {
+const HomePageMainComponent = ({ continueWithMicrosoft, myData }) => {
   const { authSuccess } = useAuth();
-  // const navigate = useNavigate();
-
   <script
     type="text/javascript"
     src="https://alcdn.msauth.net/lib/1.3.0/js/msal.js"
@@ -46,7 +44,7 @@ const HomePageMainComponent = ({ run, myData }) => {
               <ButtonComponent
                 cname={css.button1}
                 value="Continue With Microsoft"
-                run={() => run()}
+                run={() => continueWithMicrosoft()}
               />
             )}
           </div>

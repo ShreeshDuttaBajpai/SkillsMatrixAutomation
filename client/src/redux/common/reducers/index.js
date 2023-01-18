@@ -18,7 +18,6 @@ const initialState = {
   newData:'',
   editopen: '',
   authSuccess: false,
-
 };
 
 // const decoded = await jwt_decode(userToken);
@@ -51,11 +50,6 @@ export const commonApi = (state = initialState, action) => {
 export const authUser = (state = initialState, action) => {
   switch (action.type)
   {
-    case types.CONTINUE_WITH_MICROSOFT:
-      return {
-        ...state,
-        authSuccess: true
-      }
     case types.MY_DATA:
       return {
         ...state,
@@ -64,6 +58,13 @@ export const authUser = (state = initialState, action) => {
           emp_name: action.payload.displayName,
           emp_designation: action.payload.jobTitle,
           emp_firstname: action.payload.givenName 
+        }
+      }
+    case types.AUTH_SUCCESS:
+      return {
+        ...state,
+        authSuccess: {
+          authSuccess : true
         }
       }
     default: return state

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import css from '../Navbar/Navbar.css';
 import navbarLogo from '../../assests/story-tracker.jpg';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -6,9 +6,12 @@ import { useAuth } from '../auth.context';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import jwt_Decode from 'jwt-decode';
 import con from '../constants';
+import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 const Navbar = () => {
-  const { authSuccess, userToken, logout, run } = useAuth();
+  const { authSuccess, userToken, myData, logout, continueWithMicrosoft } =
+    useAuth();
   let Emp_name = '';
   let Emp_id = '';
   let Emp_firstname = '';
@@ -19,6 +22,16 @@ const Navbar = () => {
     Emp_id = decoded_token.Emp_id;
     Emp_firstname = decoded_token.Emp_firstname;
   }
+  useEffect(() => {
+    console.log(myData);
+    if (myData)
+      axios.post('https://localhost:7040/api/Emp', myData).then(res => {
+        const token = res.data;
+        const cookies = new Cookies();
+        cookies.set('my_cookie', token);
+        window.location.reload();
+      });
+  }, [myData]);
 
   return (
     <div className={css.Navbar}>
@@ -73,7 +86,7 @@ const Navbar = () => {
             <div>
               <div
                 className={css.right_navbarHeadingsBeforeLogin}
-                onClick={run}
+                onClick={continueWithMicrosoft}
               >
                 {con.Signin}/{con.SignUp}
               </div>

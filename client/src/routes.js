@@ -21,7 +21,7 @@ const App = () => {
   let tokenData = cookies.get('my_cookie');
   if (tokenData) {
     const decoded_token = jwt_decode(tokenData);
-    // const Emp_designation = decoded_token.Emp_designation;
+    const Emp_designation = decoded_token.Emp_designation;
   }
 
   return <div>
