@@ -8,7 +8,7 @@ const AuthContext = createContext(null);
 
 export const AuthProvider = props => {
   const [userToken, setUserToken] = useState(props.tokenData);
-  const [authSuccess, setAuthSuccess] = useState();
+  const [authSuccess, setAuthSuccess] = useState(false);
   const [myData, setmyData] = useState();
 
   useEffect(() => {
@@ -23,16 +23,18 @@ export const AuthProvider = props => {
             } else setAuthSuccess(false);
           });
       } catch (error) {
+        console.log('gagan')
         setAuthSuccess(false);
       }
     };
     authUser();
   }, [userToken]);
 
-  const logout = async Emp_id => {
+  const logout = async() => {
     const cookies = new Cookies();
+    const decoded=await jwt_decode(userToken);
     cookies.remove('my_cookie');
-    await axios.delete(`https://localhost:7040/api/Emp/${Emp_id}`);
+    await axios.delete(`https://localhost:7040/api/Emp/${decoded.Emp_id}`);
     setAuthSuccess(false);
     window.location = "http://localhost:3000/"
   };
@@ -71,7 +73,7 @@ export const AuthProvider = props => {
 
   return (
     <AuthContext.Provider
-      value={{ userToken, setUserToken, authSuccess, logout, run, myData }}
+      value={{ userToken, setUserToken, authSuccess, run, logout, myData }}
     >
       {props.children}
     </AuthContext.Provider>

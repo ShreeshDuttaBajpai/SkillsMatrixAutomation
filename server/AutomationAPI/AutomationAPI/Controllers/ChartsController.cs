@@ -1,4 +1,4 @@
-﻿using AutomationAPI.Models;
+using AutomationAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;

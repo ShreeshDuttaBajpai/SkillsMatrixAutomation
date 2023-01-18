@@ -36,11 +36,7 @@ const mapDispatchToProps = dispatch => {
           }
         }
     }
-    const ButtonContainer = connect(
-        mapStateToProps,
-        mapDispatchToProps
-      )(HomePageMainComponent);
-      
+    const ButtonContainer = connect(mapStateToProps, mapDispatchToProps) (HomePageMainComponent);
       export default ButtonContainer;
       
 

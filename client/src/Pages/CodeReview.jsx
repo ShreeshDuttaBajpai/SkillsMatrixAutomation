@@ -7,9 +7,12 @@ import PopupComponent from '../components/PopupComponent/PopupComponent';
 import { useAuth } from '../components/auth.context';
 import jwt_decode from 'jwt-decode';
 import { CSVLink } from 'react-csv';
+import {
+  deleteReview,
+  updateReview
+} from '../services/CodeReview/codereviewService';
 
 function CodeReview(props) {
-
   const [open, setOpen] = useState();
   const [openActions, setOpenActions] = useState();
   const [selected, setSelected] = useState();
@@ -17,15 +20,15 @@ function CodeReview(props) {
   const [oldData, setOldData] = useState({});
   const [newData, setNewData] = useState({});
   const [editopen, setEditopen] = useState();
-const [getdata, setGetdata] = useState();
+  const [getdata, setGetdata] = useState();
 
   const handleEditopen = () => {
     setEditopen(!editopen);
   };
 
   console.log(oldData);
-  const { userToken } = useAuth();
-  const decoded = jwt_decode(userToken);
+  // const { userToken } = useAuth();
+  //  const decoded = jwt_decode(userToken);
 
   const handleOpenActions = () => {
     setOpenActions(!openActions);
@@ -39,29 +42,26 @@ const [getdata, setGetdata] = useState();
     });
   };
 
-  const handleRowDelete = oldData => {
-    console.log(oldData);
-     if (window.confirm('Are you sure you want to delete this Ticket?')) {
-    axios
-      .delete(`https://localhost:7040/api/User/${oldData.ticket_no}`)
-      .then(res => {
-        alert('Ticket Deleted successfully!!');
-        const dataDelete = [...data];
-        console.log(dataDelete);
-        setData(prev =>
-          prev.filter(obj => obj.ticket_no !== oldData.ticket_no)
-        );
-        window.location.reload();
-        //resolve();
-      });
+  const handleRowDelete = async oldData => {
+    if (window.confirm('Are you sure you want to delete this Ticket?')) {
+      const delrev = await deleteReview(`/User/${oldData.ticket_no}`).then(
+        res => {
+          alert('Ticket Deleted successfully!!');
+          const dataDelete = [...data];
+          console.log(dataDelete);
+          setData(prev =>
+            prev.filter(obj => obj.ticket_no !== oldData.ticket_no)
+          );
+          window.location.reload();
+          //resolve();
+        }
+      );
+      return delrev;
     }
   };
 
-  const handleRowUpdate = (newData, oldData) => {
-    console.log(newData);
-    console.log(oldData);
-    axios
-      .put(`https://localhost:7040/api/review/${oldData.ticket_no}`, newData)
+  const handleRowUpdate = async (newData, oldData) => {
+    const update = await updateReview(`/Review/${oldData.ticket_no}`, newData)
       .then(res => {
         alert('Ticket Edited successfully!!');
         const dataUpdate = [...data];
@@ -74,23 +74,24 @@ const [getdata, setGetdata] = useState();
       .catch(error => {
         console.log(error);
       });
+    return update;
   };
-
 
   return (
     <div className={css.codereviewhead}>
-      <div className={css.headers}>
-        <h3 className={css.dashboard}>Code Reviewer Dashboard</h3>
-        <div className={css.Actionsdiv}>
-          <div className={css.ActionsButton}>
-            <ButtonComponent
-              selected={selected}
-              cname={css.Actionsbutton}
-              value="Actions"
-              disable={true}
-              //run={handleOpenActions}
-            />
-          </div>
+      <div className={css.codereviewhead}>
+        <div className={css.headers}>
+          <h3 className={css.dashboard}>Code Reviewer Dashboard</h3>
+          <div className={css.Actionsdiv}>
+            <div className={css.ActionsButton}>
+              <ButtonComponent
+                selected={selected}
+                cname={css.Actionsbutton}
+                value="Actions"
+                disable={true}
+                //run={handleOpenActions}
+              />
+            </div>
 
           <div className={css.ActionsOptions}>
             {selected ? (
@@ -150,6 +151,7 @@ const [getdata, setGetdata] = useState();
         setOldData={setOldData}
         setNewData={setNewData}
       />
+    </div>
     </div>
   );
 }

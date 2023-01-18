@@ -1,7 +1,7 @@
 .tab{
     background-color: rgb(172, 219, 231);
     background-size: cover;
-    height: 88.8vh;
+    height: 88.9vh;
     padding-top: 1rem;
     justify-content: center;
   } 
@@ -12,7 +12,15 @@
   .app {
     display: flex;
     margin-left: 17rem;
+   
   }
+
+  canvas{
+    height: auto !important;
+    width: 75% !important;
+  
+  }
+
   .heads{
     display: flex;
     justify-content: center;
@@ -24,3 +32,39 @@
     box-sizing: 2px;
     text-align: center;
   }
+
+  /* .btn{
+    display: flex;
+    position: absolute;
+    justify-items: center;
+    justify-self: center;
+    margin-left: 10rem;
+  } */
+  /* .btn button{
+     margin-left: 1rem;
+  }
+  .complete{
+    background-color:  rgb(26, 230, 43,0.5);
+    padding: 5px;
+    width: 3vw;
+    height: 2vh;
+  
+  }
+
+  .incomplete{
+    background-color: rgba(245, 16, 16, 0.692);
+    padding: 5px;
+    width: 3vw;
+    height: 2vh;
+
+  }
+  .inprogress{
+    background-color:rgb(247, 180, 36,0.5);
+    padding: 5px;
+    width: 3vw;
+    height: 2vh;
+  }
+
+  .chart{
+    margin-top: 2rem;
+  } */

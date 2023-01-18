@@ -1,9 +1,20 @@
 export const ON_INIT = 'ON_INIT';
 export const TOGGLE_DESKTOP = 'LAYOUT_DESKTOP_TOGGLE_FULLSCREEN';
 export const INIT_GET_API_CALL = 'INIT_GET_API_CALL';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const USER_TOKEN = 'USER_TOKEN';
 export const REFRESH_DATA = 'REFRESH_DATA';
+export const MY_DATA = 'MY_DATA';
+export const OPEN = 'OPEN';
+export const OPEN_ACTIONS = 'OPEN_ACTIONS';
+export const SELECTED = 'SELECTED';
+export const DATA = 'DATA';
+export const OLD_DATA = 'OLD_DATA';
+export const NEW_DATA = 'NEW_DATA';
+export const EDIT_OPEN = 'EDIT_OPEN';
 
+export const RUN_FUNCTION = 'RUN_FUNCTION';
+export const LOGOUT_FUNCTION = 'LOGOUT_FUNCTION';
 
-export const LOGIN_ALERT_BOX = 'LOGIN_ALERT_BOX';
 // export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 // export const MY_DATA = 'MY_DATA';

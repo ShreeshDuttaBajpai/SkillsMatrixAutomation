@@ -24,7 +24,7 @@ import jwt_decode from 'jwt-decode';
 import { CSVLink } from 'react-csv';
 import cs from '../TableComponent/Tables.css';
 import { css } from '@emotion/react';
-// import {CodeReviewapi} from './../../services/TableService/tableService'
+import { CodeReviewapi } from './../../services/TableService/tableService';
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -52,6 +52,7 @@ const tableIcons = {
 
 const Tables = props => {
   const { userToken } = useAuth();
+  console.log(userToken, 'userToken');
   const decoded = jwt_decode(userToken);
   const api = axios.create({
     baseURL: `https://localhost:7040/api/${
@@ -59,9 +60,9 @@ const Tables = props => {
     }`
   });
 
-  const CodeReviewapi = axios.create({
-    baseURL: `https://localhost:7040/api/Review/${decoded.Emp_firstname}`
-  });
+  // const CodeReviewapi = axios.create({
+  //   baseURL: `https://localhost:7040/api/Review/${decoded.Emp_firstname}`
+  // });
 
   if (window.location.pathname === '/CodeReview') {
     var columns = [
@@ -204,17 +205,21 @@ const Tables = props => {
   const [iserror, setIserror] = useState(false);
   const [errorMessages, setErrorMessages] = useState([]);
 
-  console.log(props.data);
+  const getData = async () => {
+    const response = await CodeReviewapi(decoded);
+    console.log(props.response, 'gagan');
+    return response;
+  };
 
   useEffect(() => {
     if (window.location.pathname === '/CodeReview') {
-      CodeReviewapi.get('')
+      getData()
         .then(res => {
-          props.setData(res.data);
-          console.log(res.data);
+          props.setData(res);
+          console.log(res);
         })
         .catch(error => {
-          console.log('Error');
+          console.log('Error' + error);
         });
     } else {
       api
