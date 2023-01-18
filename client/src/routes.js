@@ -12,7 +12,8 @@ import CodeReview from './Pages/CodeReview';
 import ReportsPage from './Pages/ReportsPage';
 import Navbar from './components/Navbar/Navbar';
 // import HomePageContainer from "./components/HomePage/HomePageMainComponent/HomePageContainer";
-
+import ProtectedRoute from "./components/ProtectedRoute";
+import MainDashboardEntry from "./components/MainDashboardEntry"
 
 const store = configureStore();
 
@@ -25,7 +26,7 @@ const App = () => {
   }
 
   return <div>
-    { 
+    {
   <Provider store={store}>
   <AuthProvider tokenData={tokenData}>
     <Router>
@@ -33,9 +34,10 @@ const App = () => {
       <Navbar />
         <Switch store={store}>
           <Route exact path="/" component={MainPage} />
-          <Route path="/Table" component={TablePage} />
-          <Route path="/CodeReview" component={CodeReview} />
-          <Route path="/Reports" component={ReportsPage} />
+          <ProtectedRoute path="/Table" component={MainDashboardEntry} />
+          <ProtectedRoute path="/CodeReview" component={CodeReview} />
+          <ProtectedRoute path="/Reports" component={ReportsPage}/>
+
           <Route component={NoMatch} />
         </Switch>
       </div>

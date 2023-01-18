@@ -26,10 +26,6 @@ function CodeReview(props) {
     setEditopen(!editopen);
   };
 
-  const handleOpen = () => {
-    setOpen(!open);
-  };
-
   console.log(oldData);
   // const { userToken } = useAuth();
   //  const decoded = jwt_decode(userToken);
@@ -97,67 +93,65 @@ function CodeReview(props) {
               />
             </div>
 
-            <div className={css.ActionsOptions}>
-              {selected ? (
-                <ul className={css.menu}>
-                  <li className={css.menu_item}>
-                    <ButtonComponent
-                      cname={css.button1}
-                      value="Edit"
-                      run={handleEditopen}
-                      //disable={true}
-                      // run={() => {
-                      //   handleRowUpdate(newData, oldData);
-                      // }}
-                    />
-                    {editopen ? (
-                      <PopupComponent
-                        setNewData={setNewData}
-                        val1="Edit Ticket"
-                        val2={() => {
-                          handleRowUpdate(newData, oldData);
-                        }}
-                        code_deviation_count={oldData.code_deviation_count}
-                        bugs_count={oldData.bugs_count}
-                        remarks={oldData.remarks}
-                      />
-                    ) : null}
-                  </li>
-                  <li className={css.delete_button}>
-                    <ButtonComponent
-                      cname={css.button1}
-                      value="Delete"
-                      //disable={true}
-                      run={() => {
-                        handleRowDelete(oldData);
-                        //window.location.reload();
+          <div className={css.ActionsOptions}>
+            {selected ? (
+              <ul className={css.menu}>
+                <li className={css.menu_item}>
+                  <ButtonComponent
+                    cname={css.button1}
+                    value="Edit"
+                    run={handleEditopen}
+                    //disable={true}
+                    // run={() => {
+                    //   handleRowUpdate(newData, oldData);
+                    // }}
+                  />
+                  {editopen ? (
+                    <PopupComponent
+                      handleOpen={handleEditopen}
+                      setNewData={setNewData}
+                      val1="Edit Ticket"
+                      val2={() => {
+                        handleRowUpdate(newData, oldData);
                       }}
+                      code_deviation_count={oldData.code_deviation_count}
+                      bugs_count={oldData.bugs_count}
+                      remarks={oldData.remarks}
                     />
-                  </li>
-                </ul>
-              ) : null}
-            </div>
-          </div>
-          <div className={css.reports}>
-            {getdata && (
-              <CSVLink data={getdata} className={css.btn}>
-                <ButtonComponent
-                  cname={css.reports_button}
-                  value="Export Data"
-                />
-              </CSVLink>
-            )}
+                  ) : null}
+                </li>
+                <li className={css.delete_button}>
+                  <ButtonComponent
+                    cname={css.button1}
+                    value="Delete"
+                    //disable={true}
+                    run={() => {
+                      handleRowDelete(oldData);
+                      //window.location.reload();
+                    }}
+                  />
+                </li>
+              </ul>
+            ) : null}
           </div>
         </div>
-
-        <Table
-          data={getdata}
-          setData={setGetdata}
-          setSelected={setSelected}
-          setOldData={setOldData}
-          setNewData={setNewData}
-        />
+        <div className={css.reports}>
+          {getdata && (
+            <CSVLink data={getdata} className={css.btn}>
+              <ButtonComponent cname={css.reports_button} value="Export Data" />
+            </CSVLink>
+          )}
+        </div>
       </div>
+
+      <Table
+        data={getdata}
+        setData={setGetdata}
+        setSelected={setSelected}
+        setOldData={setOldData}
+        setNewData={setNewData}
+      />
+    </div>
     </div>
   );
 }

@@ -16,6 +16,55 @@ namespace AutomationAPI.Controllers
             _configuration = configuration;
         }
 
+
+        [HttpGet]
+        [Route("Name")]
+        public IActionResult GetName()
+        {
+
+            string queryName = $"select distinct Name from StoryTrackerDB" ;
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("MyConnectionString");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(queryName, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader); ;
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+            return new JsonResult(table);
+        }
+
+        [HttpGet]
+        [Route("Team")]
+        public IActionResult GetTeam()
+        {
+
+            string queryTeam = $"select distinct Team from StoryTrackerDB";
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("MyConnectionString");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(queryTeam, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader); ;
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+            return new JsonResult(table);
+        }
+
+
+
         [HttpGet]
         [Route("Name")]
         public IActionResult GetName()

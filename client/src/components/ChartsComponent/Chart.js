@@ -3,6 +3,7 @@ import { Bar, Pie } from "react-chartjs-2";
 import css from "../ChartsComponent/Chart.css"
 import { useEffect ,useState } from "react";
 import axios from "axios";
+import { ButtonComponent } from "../ButtonComponent/ButtonComponent";
 const options ={
     elements:{
         bar:{
@@ -27,26 +28,9 @@ const Horizontalchart = ()=>{
 
     const [team, setTeam] = useState();
     const[name,setName]=useState();
-const [firstCol, setFirstCol] = useState();
-const [secondCol, setSecondCol] = useState()
-const [data, setData] = useState({
-    labels :['Sunday','Monday','Tuesday','Wednesday' ,'Thursday'],
-    datasets:[
-        {
-            label:'Datasets 1',
-            data:[1,4,3,5,2.5],
-            borderColor: 'rgb(255,99,132)',
-            backgroundColor: 'rgb(255,99,132,0.5)',
-        },
-        {
-            label:'Datasets 2',
-            data:[5,2,3.5,1,4.5],
-            borderColor: 'rgb(53,162,235)',
-            backgroundColor: 'rgb(53,162,235,0.5)',
-        }
-    ]
-}
-)
+    const [firstCol, setFirstCol] = useState();
+    const [secondCol, setSecondCol] = useState()
+    const [data, setData] = useState({})
 useEffect(()=>{
     const fetchTeam=async ()=>{
         const url = `https://localhost:7040/api/User/Team`;
@@ -151,16 +135,26 @@ useEffect(()=>{
             // defaultValue={props.tickettype ? props.tickettype : ''}
             onChange={e => {
               setSecondCol(e.target.value);
-            } }
+            }}
           >
-            {name&&
+            {name &&
               name.map((val, index) => {
                 return <option key={index}>{val}</option>;
               })}
           </select>
         </div>
-        <div className={css.app} style={{ width: '60%', height: '60%' }}>
-          <Bar data={data} options={options} />
+        <div className={css.app} >
+          {/* <div className={css.btn}>
+            <button className={css.complete} />
+            <h6>=Completed</h6>
+            <button className={css.incomplete} />
+            <h6>=Incomplete</h6>
+            <button className={css.inprogress} />
+            <h6>=Inprogress</h6>
+          </div> */}
+          {/* <div className={css.chart}> */}
+            <Bar data={data} options={options} />
+          {/* </div> */}
         </div>
       </div>
     );

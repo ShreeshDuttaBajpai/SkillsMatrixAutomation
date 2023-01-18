@@ -30,10 +30,11 @@ export const AuthProvider = props => {
     authUser();
   }, [userToken]);
 
-  const logout = async Emp_id => {
+  const logout = async() => {
     const cookies = new Cookies();
+    const decoded=await jwt_decode(userToken);
     cookies.remove('my_cookie');
-    await axios.delete(`https://localhost:7040/api/Emp/${Emp_id}`);
+    await axios.delete(`https://localhost:7040/api/Emp/${decoded.Emp_id}`);
     setAuthSuccess(false);
     window.location = "http://localhost:3000/"
   };
