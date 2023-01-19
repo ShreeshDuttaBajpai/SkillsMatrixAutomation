@@ -23,7 +23,7 @@ export const AuthProvider = props => {
             } else setAuthSuccess(false);
           });
       } catch (error) {
-        console.log('gagan')
+        // console.log('gagan')
         setAuthSuccess(false);
       }
     };
@@ -65,7 +65,9 @@ export const AuthProvider = props => {
       return {
         emp_id: json.employeeId,
         emp_name: json.displayName,
-        emp_designation: json.jobTitle,
+        emp_designation:
+        // "Engineering Manager",
+        json.jobTitle,
         emp_firstname:json.givenName
       };
     });

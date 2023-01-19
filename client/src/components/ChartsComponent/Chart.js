@@ -4,23 +4,44 @@ import css from "../ChartsComponent/Chart.css"
 import { useEffect ,useState } from "react";
 import axios from "axios";
 import { ButtonComponent } from "../ButtonComponent/ButtonComponent";
-const options ={
-    elements:{
-        bar:{
-            borderWidth:2,
+const options = {
+  elements: {
+    bar: {
+      borderWidth: 2
+    }
+  },
+  scales: {
+        x: {
+            ticks: {
+                font: {
+                    size: 20 //this change the font size
+                      ,weight: 'bold'
+                }
+            }
         },
+         y: {
+            ticks: {
+                font: {
+                    size: 18 //this change the font size
+                }
+            }
+        }
     },
-    // responsive :true,
-    plugins:{
-        legend:{
-            position:'top',
-            display:false,
-        },
-        title:{
-            display:true,
-            text:'Data for the Users',
-        },
+  // responsive :true,
+  plugins: {
+    legend: {
+      position: 'top',
+      display: false
+
     },
+    title: {
+      display: true,
+      text: 'Data of the User',
+      font: {
+        size: 24
+      }
+    }
+  }
 };
 
 
@@ -100,7 +121,7 @@ useEffect(()=>{
                   ]
                 });
 
-                console.log('arrData', dataset1, dataset2);
+                console.log('arrData', dataset1);
             }).catch(e=>{
                 console.log("error",e)
             })
