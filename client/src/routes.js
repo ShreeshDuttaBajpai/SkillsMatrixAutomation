@@ -11,9 +11,8 @@ import TablePage from './Pages/TablePage'
 import CodeReview from './Pages/CodeReview';
 import ReportsPage from './Pages/ReportsPage';
 import Navbar from './components/Navbar/Navbar';
-// import HomePageContainer from "./components/HomePage/HomePageMainComponent/HomePageContainer";
 import ProtectedRoute from "./components/ProtectedRoute";
-import MainDashboardEntry from "./components/MainDashboardEntry"
+import MainDashboardEntry from "./components/MainDashboardEntry";
 
 const store = configureStore();
 

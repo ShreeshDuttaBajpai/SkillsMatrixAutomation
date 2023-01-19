@@ -1,14 +1,12 @@
-import TablePage from "../Pages/TablePage";
-import React from "react";
-import InactivityLogout from "./InactivityLogout";
-import CodeReview from "../Pages/CodeReview";
-import ReportsPage from "../Pages/ReportsPage";
+import TablePage from '../Pages/TablePage';
+import React from 'react';
+import InactivityLogout from './InactivityLogout';
 
 const MainDashboardEntry = () => {
-    return (
-      <InactivityLogout>
-        <TablePage />
-      </InactivityLogout>
-    );
-}
-export default MainDashboardEntry
+  return (
+    <InactivityLogout>
+      <TablePage />
+    </InactivityLogout>
+  );
+};
+export default MainDashboardEntry;

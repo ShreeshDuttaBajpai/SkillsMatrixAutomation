@@ -5,12 +5,10 @@ import { useAuth } from "./auth.context";
 function ProtectedRoute({ component: Component, ...restOfProps }) {
     const {userToken} = useAuth();
   return (
-
     <Route
       {...restOfProps}
       render={(props) =>
-        userToken ? <Component {...props}  />:{}
-        // : <Redirect to="/CodeReview" />
+        userToken ? <Component {...props}  /> : {}
       }
     />
   );

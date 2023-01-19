@@ -8,8 +8,9 @@ import { useAuth } from '../../auth.context';
 import Cookies from 'universal-cookie';
 import { ButtonComponent } from '../../ButtonComponent/ButtonComponent';
 import { Redirect } from 'react-router-dom';
+import { continueWithMicrosoft } from './homePageFunctions';
 
-const HomePageMainComponent = ({ continueWithMicrosoft, myData }) => {
+const HomePageMainComponent = ({ ContinueWithMicrosoft, myData }) => {
   const { authSuccess } = useAuth();
   <script
     type="text/javascript"
@@ -44,7 +45,7 @@ const HomePageMainComponent = ({ continueWithMicrosoft, myData }) => {
               <ButtonComponent
                 cname={css.button1}
                 value="Continue With Microsoft"
-                run={() => continueWithMicrosoft()}
+                run={() => ContinueWithMicrosoft()}
               />
             )}
           </div>
