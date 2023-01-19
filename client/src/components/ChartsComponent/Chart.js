@@ -80,10 +80,8 @@ useEffect(()=>{
     useEffect(()=>{
         const fetchdata=async ()=>{
             const url = `https://localhost:7040/api/Charts/${firstCol}/${secondCol}`;
-            //  const url = 'https://jsonplaceholder.typicode.com/comments';
             const labelset=[];
             const dataset1=[];
-            // const dataset2=[];
             await fetch(url).then((data)=>{
                 console.log("api data",data)
                 const res =data.json();
@@ -112,12 +110,6 @@ useEffect(()=>{
                         'rgb(247, 180, 36,0.5)'
                       ]
                     }
-                    // {
-                    //   label: 'Datasets ID',
-                    //   data: dataset2,
-                    //   borderColor: 'rgb(53,162,235)',
-                    //   backgroundColor: 'rgb(53,162,235,0.5)'
-                    // }
                   ]
                 });
 
@@ -165,17 +157,7 @@ useEffect(()=>{
           </select>
         </div>
         <div className={css.app} >
-          {/* <div className={css.btn}>
-            <button className={css.complete} />
-            <h6>=Completed</h6>
-            <button className={css.incomplete} />
-            <h6>=Incomplete</h6>
-            <button className={css.inprogress} />
-            <h6>=Inprogress</h6>
-          </div> */}
-          {/* <div className={css.chart}> */}
             <Bar data={data} options={options} />
-          {/* </div> */}
         </div>
       </div>
     );

@@ -13,8 +13,6 @@ import ReportsPage from './Pages/ReportsPage';
 import Navbar from './components/Navbar/Navbar';
 import ProtectedRoute from "./components/ProtectedRoute";
 import MainDashboardEntry from "./components/MainDashboardEntry";
-// import HomePageContainer from "./components/HomePage/HomePageMainComponent/HomePageContainer";
-
 
 const store = configureStore();
 
