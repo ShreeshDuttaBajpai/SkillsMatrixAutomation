@@ -30,7 +30,7 @@ const App = () => {
   <AuthProvider tokenData={tokenData}>
     <Router>
       <div>
-      <Navbar />
+      {/* <Navbar /> */}
         <Switch store={store}>
           <Route exact path="/" component={MainPage} />
           <ProtectedRoute path="/Table" component={MainDashboardEntry} />

@@ -3,47 +3,8 @@ import { Bar, Pie } from "react-chartjs-2";
 import css from "../ChartsComponent/Chart.css"
 import { useEffect ,useState } from "react";
 import axios from "axios";
-import { ButtonComponent } from "../ButtonComponent/ButtonComponent";
-const options = {
-  elements: {
-    bar: {
-      borderWidth: 2
-    }
-  },
-  scales: {
-        x: {
-            ticks: {
-                font: {
-                    size: 20 //this change the font size
-                      ,weight: 'bold'
-                }
-            }
-        },
-         y: {
-            ticks: {
-                font: {
-                    size: 18 //this change the font size
-                }
-            }
-        }
-    },
-  // responsive :true,
-  plugins: {
-    legend: {
-      position: 'top',
-      display: false
-
-    },
-    title: {
-      display: true,
-      text: 'Data of the User',
-      font: {
-        size: 24
-      }
-    }
-  }
-};
-
+import { options } from "./ChartConstant";
+import { Chartapi } from "../../services/Charts/ChartService";
 
 const Horizontalchart = ()=>{
 
@@ -53,13 +14,16 @@ const Horizontalchart = ()=>{
     const [secondCol, setSecondCol] = useState()
     const [data, setData] = useState({})
 useEffect(()=>{
-    const fetchTeam=async ()=>{
+    const fetchTeam=async (props)=>{
         const url = `https://localhost:7040/api/User/Team`;
         axios.get(url).then(res=>{
             console.log(res.data);
             setTeam(()=>res.data.map((val)=>val.team))
             setFirstCol(res.data[0].team)
         })
+        const response = await Chartapi(data);
+        console.log(props.response, 'chartsssssss');
+        return response;
     }
     fetchTeam();
 
@@ -73,9 +37,6 @@ useEffect(()=>{
     }
        fetchName();
 },[])
-
-
-
 
     useEffect(()=>{
         const fetchdata=async ()=>{
@@ -105,9 +66,9 @@ useEffect(()=>{
                         'rgb(247, 180, 36)'
                       ],
                       backgroundColor: [
-                        'rgb(26,230,43,0.5)',
-                        'rgba(243,27,27,0.5)',
-                        'rgb(247, 180, 36,0.5)'
+                        'rgb(26,230,43,0.8)',
+                        'rgba(243,27,27,0.8)',
+                        'rgb(247, 180, 36,0.8)'
                       ]
                     }
                   ]

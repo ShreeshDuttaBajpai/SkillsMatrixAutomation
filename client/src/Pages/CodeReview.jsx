@@ -11,6 +11,7 @@ import {
   deleteReview,
   updateReview
 } from '../services/CodeReview/codereviewService';
+import Navbar from '../components/Navbar/Navbar';
 
 function CodeReview(props) {
   const [open, setOpen] = useState();
@@ -79,6 +80,7 @@ function CodeReview(props) {
 
   return (
     <div className={css.codereviewhead}>
+      <Navbar />
       <div className={css.codereviewhead}>
         <div className={css.headers}>
           <h3 className={css.dashboard}>Code Reviewer Dashboard</h3>
@@ -93,65 +95,68 @@ function CodeReview(props) {
               />
             </div>
 
-          <div className={css.ActionsOptions}>
-            {selected ? (
-              <ul className={css.menu}>
-                <li className={css.menu_item}>
-                  <ButtonComponent
-                    cname={css.button1}
-                    value="Edit"
-                    run={handleEditopen}
-                    //disable={true}
-                    // run={() => {
-                    //   handleRowUpdate(newData, oldData);
-                    // }}
-                  />
-                  {editopen ? (
-                    <PopupComponent
-                      handleOpen={handleEditopen}
-                      setNewData={setNewData}
-                      val1="Edit Ticket"
-                      val2={() => {
-                        handleRowUpdate(newData, oldData);
-                      }}
-                      code_deviation_count={oldData.code_deviation_count}
-                      bugs_count={oldData.bugs_count}
-                      remarks={oldData.remarks}
+            <div className={css.ActionsOptions}>
+              {selected ? (
+                <ul className={css.menu}>
+                  <li className={css.menu_item}>
+                    <ButtonComponent
+                      cname={css.button1}
+                      value="Edit"
+                      run={handleEditopen}
+                      //disable={true}
+                      // run={() => {
+                      //   handleRowUpdate(newData, oldData);
+                      // }}
                     />
-                  ) : null}
-                </li>
-                <li className={css.delete_button}>
-                  <ButtonComponent
-                    cname={css.button1}
-                    value="Delete"
-                    //disable={true}
-                    run={() => {
-                      handleRowDelete(oldData);
-                      //window.location.reload();
-                    }}
-                  />
-                </li>
-              </ul>
-            ) : null}
+                    {editopen ? (
+                      <PopupComponent
+                        handleOpen={handleEditopen}
+                        setNewData={setNewData}
+                        val1="Edit Ticket"
+                        val2={() => {
+                          handleRowUpdate(newData, oldData);
+                        }}
+                        code_deviation_count={oldData.code_deviation_count}
+                        bugs_count={oldData.bugs_count}
+                        remarks={oldData.remarks}
+                      />
+                    ) : null}
+                  </li>
+                  <li className={css.delete_button}>
+                    <ButtonComponent
+                      cname={css.button1}
+                      value="Delete"
+                      //disable={true}
+                      run={() => {
+                        handleRowDelete(oldData);
+                        //window.location.reload();
+                      }}
+                    />
+                  </li>
+                </ul>
+              ) : null}
+            </div>
+          </div>
+          <div className={css.reports}>
+            {getdata && (
+              <CSVLink data={getdata} className={css.btn}>
+                <ButtonComponent
+                  cname={css.reports_button}
+                  value="Export Data"
+                />
+              </CSVLink>
+            )}
           </div>
         </div>
-        <div className={css.reports}>
-          {getdata && (
-            <CSVLink data={getdata} className={css.btn}>
-              <ButtonComponent cname={css.reports_button} value="Export Data" />
-            </CSVLink>
-          )}
-        </div>
-      </div>
 
-      <Table
-        data={getdata}
-        setData={setGetdata}
-        setSelected={setSelected}
-        setOldData={setOldData}
-        setNewData={setNewData}
-      />
-    </div>
+        <Table
+          data={getdata}
+          setData={setGetdata}
+          setSelected={setSelected}
+          setOldData={setOldData}
+          setNewData={setNewData}
+        />
+      </div>
     </div>
   );
 }
