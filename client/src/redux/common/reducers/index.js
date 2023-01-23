@@ -17,7 +17,7 @@ const initialState = {
   oldData:'',
   newData:'',
   editopen: '',
-  authSuccess: false,
+  authSuccess: false
 };
 
 // const decoded = await jwt_decode(userToken);
@@ -31,14 +31,14 @@ export const commonApi = (state = initialState, action) => {
         resContent: action.payload,
         apiResponse: 1
       });
-    // case types.MY_DATA:
-    //   return {
-    //     ...state,
-    //     myData: {
-    //       emp_id: json.employeeId,
-    //       emp_name: json.displayName,
-    //       emp_designation: json.jobTitle,
-    //       emp_firstname:json.givenName}}
+    case types.AUTH_SUCCESS:
+      return {
+        ...state, authSuccess:true
+      }
+    case types.USER_TOKEN:
+      return {
+        ...state, userToken
+      }
     case types.OPEN:
       return 
 

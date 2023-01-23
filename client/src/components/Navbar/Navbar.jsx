@@ -8,10 +8,10 @@ import jwt_Decode from 'jwt-decode';
 import con from '../constants';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import { continueWithMicrosoft } from '../HomePage/HomePageMainComponent/homePageFunctions';
 
-const Navbar = () => {
-  const { authSuccess, userToken, myData, logout, continueWithMicrosoft } =
-    useAuth();
+const Navbar = ({ Logout, ContinueWithMicrosoft }) => {
+  const { authSuccess, userToken, myData, logout } = useAuth();
   let Emp_name = '';
   let Emp_id = '';
   let Emp_firstname = '';
@@ -47,9 +47,6 @@ const Navbar = () => {
             </NavLink>
           </h3>
 
-          {/* <div className={css.headings}>
-            <NavLink to="/">{con.Home}</NavLink>
-          </div> */}
           {authSuccess === true ? (
             <div className="login-navlink">
               <div className={css.headings}>
@@ -74,7 +71,7 @@ const Navbar = () => {
                   <NavLink
                     to="/"
                     onClick={() => {
-                      logout(Emp_id);
+                      Logout(Emp_id);
                     }}
                   >
                     {con.Logout}
@@ -86,7 +83,7 @@ const Navbar = () => {
             <div>
               <div
                 className={css.right_navbarHeadingsBeforeLogin}
-                onClick={continueWithMicrosoft}
+                onClick={() => ContinueWithMicrosoft()}
               >
                 {con.Signin}/{con.SignUp}
               </div>

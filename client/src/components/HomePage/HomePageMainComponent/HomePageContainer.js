@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
   myData: state.authUser.myData,
   authSuccess :state.authUser.authSuccess
   });
-  console.log(myData);
+  // console.log(myData);
 const mapDispatchToProps = dispatch => (
   { ContinueWithMicrosoft: () => (continueWithMicrosoft(dispatch)) }
 )

@@ -13,6 +13,7 @@ import ReportsPage from './Pages/ReportsPage';
 import Navbar from './components/Navbar/Navbar';
 import ProtectedRoute from "./components/ProtectedRoute";
 import MainDashboardEntry from "./components/MainDashboardEntry";
+import NavbarContainer from "./components/Navbar/NavbarContainer";
 
 const store = configureStore();
 
@@ -29,14 +30,13 @@ const App = () => {
   <Provider store={store}>
   <AuthProvider tokenData={tokenData}>
     <Router>
-      <div>
-      <Navbar />
-        <Switch store={store}>
-          <Route exact path="/" component={MainPage} />
-          <ProtectedRoute path="/Table" component={MainDashboardEntry} />
-          <ProtectedRoute path="/CodeReview" component={CodeReview} />
-          <ProtectedRoute path="/Reports" component={ReportsPage}/>
-
+        <div>
+          <NavbarContainer />
+            <Switch>
+              <Route exact path="/" component={MainPage} />
+              <ProtectedRoute path="/Table" component={MainDashboardEntry} />
+              <ProtectedRoute path="/CodeReview" component={CodeReview} />
+              <ProtectedRoute path="/Reports" component={ReportsPage}/>
           <Route component={NoMatch} />
         </Switch>
       </div>

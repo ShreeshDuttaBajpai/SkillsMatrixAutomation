@@ -9,18 +9,17 @@ export const refreshData = payload => ({
   payload
 });
 
-export const userToken = payload => ({
-  type: types.USER_TOKEN,
-  payload
-});
-
-
 export const myData = payload => ({
   type: types.MY_DATA,
   payload
 });
 
 export const authSuccess = payload => ({
+  type: types.AUTH_SUCCESS,
+  payload
+});
+
+export const userToken = payload => ({
   type: types.AUTH_SUCCESS,
   payload
 });

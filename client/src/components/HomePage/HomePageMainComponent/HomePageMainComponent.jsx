@@ -8,7 +8,6 @@ import { useAuth } from '../../auth.context';
 import Cookies from 'universal-cookie';
 import { ButtonComponent } from '../../ButtonComponent/ButtonComponent';
 import { Redirect } from 'react-router-dom';
-import { continueWithMicrosoft } from './homePageFunctions';
 
 const HomePageMainComponent = ({ ContinueWithMicrosoft, myData }) => {
   const { authSuccess } = useAuth();
