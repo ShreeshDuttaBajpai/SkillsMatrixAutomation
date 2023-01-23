@@ -32,9 +32,11 @@ export const commonApi = (state = initialState, action) => {
       emp_name: json.displayName,
       emp_designation: json.jobTitle,
       emp_firstname:json.givenName}}
-    case types.DATA:
+    case types.REVIEW_DEL:
       return {...state,data:(prev =>
         prev.filter(obj => obj.ticket_no !== oldData.ticket_no))}
+    case types.REVIEW_UPD:
+      return {...state,data:([...dataUpdate])}
       case types.OLD_DATA:
         return{...state,oldData:rows[0]}
 

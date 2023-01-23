@@ -1,16 +1,16 @@
 import { connect } from "react-redux";
-import { datafunc, oldData } from "../../redux/common/actions";
+import { reviewdel } from "../../redux/common/actions";
 import { CodeReview } from "./CodeReview";
-import { deleteReview } from "../../services/CodeReview/codereviewService";
+import { deleteReview,updateReview } from "../../services/CodeReview/codereviewService";
 
 
-const mapStateToProps = (state,) => ({
+const mapStateToProps = (state) => ({
     data:state.commonApi.data,
 
 })
 
-const mapDispatchToProps = dispatch =>{
-    return{
+const mapDispatchToProps = dispatch =>(
+    {
         handleRowDelete:async(oldData)=>{
             if (window.confirm('Are you sure you want to delete this Ticket?')) {
                 const delrev = await deleteReview(`/User/${oldData.ticket_no}`).then(
@@ -18,15 +18,32 @@ const mapDispatchToProps = dispatch =>{
                     alert('Ticket Deleted successfully!!');
                     const dataDelete = [...data];
                     console.log(dataDelete);
-                    dispatch(datafunc());
+                    dispatch(reviewdel());
                     window.location.reload();
                     //resolve();
                   }
                 );
                 return delrev;
               }
-        }
+        },
+    
+    handleRowUpdate : async (newData, oldData) => {
+      const update = await updateReview(`/Review/${oldData.ticket_no}`, newData)
+        .then(res => {
+          alert('Ticket Edited successfully!!');
+          const dataUpdate = [...data];
+          console.log(dataUpdate);
+          const index = oldData.tableData.id;
+          console.log(index);
+          dataUpdate[index] = newData;
+          dispatch(reviewdel());
+        })
+        .catch(error => {
+          console.log(error);
+        });
+      return update;
     }
-}
+  }
+)
 const CodeReviewContainer=connect(mapStateToProps,mapDispatchToProps)(CodeReview);
 export default CodeReviewContainer;

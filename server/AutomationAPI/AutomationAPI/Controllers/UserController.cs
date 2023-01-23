@@ -16,12 +16,13 @@ namespace AutomationAPI.Controllers
             _configuration = configuration;
         }
 
+
         [HttpGet]
         [Route("Name")]
         public IActionResult GetName()
         {
 
-            string queryName = $"select distinct Name from StoryTrackerDB";
+            string queryName = $"select distinct Name from StoryTrackerDB" ;
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("MyConnectionString");
             SqlDataReader myReader;
@@ -61,6 +62,9 @@ namespace AutomationAPI.Controllers
             }
             return new JsonResult(table);
         }
+
+
+
 
 
         [HttpGet]

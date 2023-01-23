@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import Table from '../../components/TableComponent/Tables';
 import css from '../../components/CodeReviewComponent/CodeReview.css';
-import axios from 'axios';
 import { ButtonComponent } from '../../components/ButtonComponent/ButtonComponent';
 import PopupComponent from '../../components/PopupComponent/PopupComponent';
-import { useAuth } from '../../components/auth.context';
-import jwt_decode from 'jwt-decode';
 import { CSVLink } from 'react-csv';
 import {
   deleteReview,
   updateReview
 } from '../../services/CodeReview/codereviewService';
 
-export const CodeReview = (props, { handleRowDelete }) => {
+export const CodeReview = (props, { handleRowDelete, handleRowUpdate }) => {
   const [open, setOpen] = useState();
   const [openActions, setOpenActions] = useState();
   const [selected, setSelected] = useState();
@@ -34,14 +31,6 @@ export const CodeReview = (props, { handleRowDelete }) => {
     setOpenActions(!openActions);
   };
 
-  const postUser = async e => {
-    // e.preventDefault();
-    console.log(ticketDetails);
-    axios.post('https://localhost:7040/api/User', newData).then(res => {
-      alert('Ticket added successfully!!');
-    });
-  };
-
   // const handleRowDelete = async oldData => {
   //   if (window.confirm('Are you sure you want to delete this Ticket?')) {
   //     const delrev = await deleteReview(`/User/${oldData.ticket_no}`).then(
@@ -60,22 +49,22 @@ export const CodeReview = (props, { handleRowDelete }) => {
   //   }
   // };
 
-  const handleRowUpdate = async (newData, oldData) => {
-    const update = await updateReview(`/Review/${oldData.ticket_no}`, newData)
-      .then(res => {
-        alert('Ticket Edited successfully!!');
-        const dataUpdate = [...data];
-        console.log(dataUpdate);
-        const index = oldData.tableData.id;
-        console.log(index);
-        dataUpdate[index] = newData;
-        setData([...dataUpdate]);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    return update;
-  };
+  // const handleRowUpdate = async (newData, oldData) => {
+  //   const update = await updateReview(`/Review/${oldData.ticket_no}`, newData)
+  //     .then(res => {
+  //       alert('Ticket Edited successfully!!');
+  //       const dataUpdate = [...data];
+  //       console.log(dataUpdate);
+  //       const index = oldData.tableData.id;
+  //       console.log(index);
+  //       dataUpdate[index] = newData;
+  //       setData([...dataUpdate]);
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  //   return update;
+  // };
 
   return (
     <div className={css.codereviewhead}>
@@ -101,10 +90,6 @@ export const CodeReview = (props, { handleRowDelete }) => {
                       cname={css.button1}
                       value="Edit"
                       run={handleEditopen}
-                      //disable={true}
-                      // run={() => {
-                      //   handleRowUpdate(newData, oldData);
-                      // }}
                     />
                     {editopen ? (
                       <PopupComponent

@@ -1,7 +1,11 @@
 .tab{
     background-color: rgb(172, 219, 231);
     background-size: cover;
+<<<<<<< HEAD
     height: 90vh;
+=======
+    height: 88.8vh;
+>>>>>>> 8c7a6ae06c65ef36a4f899c07baec184c72a0167
     padding-top: 1rem;
     justify-content: center;
   } 

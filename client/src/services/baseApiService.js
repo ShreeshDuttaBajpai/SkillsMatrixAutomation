@@ -1,18 +1,16 @@
 import superagent from 'superagent';
 import axios from 'axios';
 
-const baseurl="https://localhost:7040/api";
-
 export const getApi = async (baseURL) => {
   const response = await axios.get(baseURL);
   console.log(response);
   return response;
 };
 export const putApi = async (apiURL,data) => {
-  const response = await axios.put(baseurl+apiURL,data);
+  const response = await axios.put(apiURL,data);
   return response;
 };
 export const delApi = async (apiURL) => {
-  const response = await axios.delete(baseurl+apiURL);
+  const response = await axios.delete(apiURL);
   return response;
 };

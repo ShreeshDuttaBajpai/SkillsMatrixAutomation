@@ -13,6 +13,8 @@ export const OLD_DATA = 'OLD_DATA';
 export const NEW_DATA = 'NEW_DATA';
 export const EDIT_OPEN = 'EDIT_OPEN';
 
+export const REVIEW_UPD='REVIEW_UPD';
+export const REVIEW_DEL='REVIEW_DEL';
 export const RUN_FUNCTION = 'RUN_FUNCTION';
 export const LOGOUT_FUNCTION = 'LOGOUT_FUNCTION';
 

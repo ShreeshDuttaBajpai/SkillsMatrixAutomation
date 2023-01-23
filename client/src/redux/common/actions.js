@@ -37,8 +37,13 @@ export const selected= payload => ({
   payload
 });
 
-export const datafunc= payload => ({
-  type: types.DATA,
+export const reviewdel= payload => ({
+  type: types.REVIEW_DEL,
+  payload
+});
+
+export const reviewupd= payload => ({
+  type: types.REVIEW_UPD,
   payload
 });
 
