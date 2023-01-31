@@ -1,10 +1,8 @@
 export const ON_INIT = 'ON_INIT';
 export const TOGGLE_DESKTOP = 'LAYOUT_DESKTOP_TOGGLE_FULLSCREEN';
 export const INIT_GET_API_CALL = 'INIT_GET_API_CALL';
-export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const USER_TOKEN = 'USER_TOKEN';
 export const REFRESH_DATA = 'REFRESH_DATA';
-export const MY_DATA = 'MY_DATA';
 export const OPEN = 'OPEN';
 export const OPEN_ACTIONS = 'OPEN_ACTIONS';
 export const SELECTED = 'SELECTED';
@@ -17,6 +15,7 @@ export const REVIEW_UPD='REVIEW_UPD';
 export const REVIEW_DEL='REVIEW_DEL';
 export const RUN_FUNCTION = 'RUN_FUNCTION';
 export const LOGOUT_FUNCTION = 'LOGOUT_FUNCTION';
-
-// export const AUTH_SUCCESS = 'AUTH_SUCCESS';
-// export const MY_DATA = 'MY_DATA';
+export const MY_DATA = 'MY_DATA';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const CONTINUE_WITH_MICROSOFT = 'CONTINUE_WITH_MICROSOFT';
+export const FETCH_TEAM='FETCH_TEAM';

@@ -14,12 +14,15 @@ export const userToken = payload => ({
   payload
 });
 
-export const authSuccess = () => ({
-  type: types.AUTH_SUCCESS,
+
+export const myData = payload => ({
+  type: types.MY_DATA,
+  payload
 });
 
-export const myData = () => ({
-  type: types.MY_DATA,
+export const authSuccess = payload => ({
+  type: types.AUTH_SUCCESS,
+  payload
 });
 
 export const open = payload => ({

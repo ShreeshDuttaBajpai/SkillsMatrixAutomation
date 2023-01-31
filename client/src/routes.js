@@ -7,44 +7,41 @@ import MainPage from './Pages/HomePage';
 import Cookies from 'universal-cookie';
 import { AuthProvider } from './components/auth.context';
 import jwt_decode from 'jwt-decode';
-import TablePage from '../src/Pages/TablePage';
+import TablePage from './Pages/TablePage'
+import CodeReviewPage from './Pages/CodeReviewPage';
 import ReportsPage from './Pages/ReportsPage';
 import Navbar from './components/Navbar/Navbar';
-import CodeReviewPage from './Pages/CodeReviewPage';
-// import TablesContainer from './components/TableComponent/TablesContainer';
-
-
+import ProtectedRoute from "./components/ProtectedRoute";
+import MainDashboardEntry from "./components/MainDashboardEntry";
 
 const store = configureStore();
 
-const cookies = new Cookies();
-let tokenData = cookies.get('my_cookie');
-
-if (tokenData) {
-  const decoded_token = jwt_decode(tokenData);
-  const Emp_designation = decoded_token.Emp_designation;
-}
-
 const App = () => {
-  
-  return (
-    <Provider store={store}>
-      <AuthProvider tokenData={tokenData}>
-        <Router>
-          <div>
-          <Navbar />
-            <Switch store={store}>
-              <Route exact path="/" component={MainPage} />
-              <Route path="/Table" component={TablePage} />
-              <Route path="/CodeReview" component={CodeReviewPage} />
-              <Route path="/Reports" component={ReportsPage} />
-              <Route component={NoMatch} />
-            </Switch>
-          </div>
-        </Router>
-      </AuthProvider>
-    </Provider>
-  );
-};
+  const cookies = new Cookies();
+  let tokenData = cookies.get('my_cookie');
+  if (tokenData) {
+    const decoded_token = jwt_decode(tokenData);
+    
+  }
 
+  return <div>
+    {
+  <Provider store={store}>
+  <AuthProvider tokenData={tokenData}>
+    <Router>
+      <div>
+      {/* <Navbar /> */}
+        <Switch store={store}>
+          <Route exact path="/" component={MainPage} />
+          <ProtectedRoute path="/Table" component={MainDashboardEntry} />
+          <ProtectedRoute path="/CodeReview" component={CodeReviewPage} />
+          <ProtectedRoute path="/Reports" component={ReportsPage}/>
+          
+          <Route component={NoMatch} />
+        </Switch>
+      </div>
+    </Router>
+  </AuthProvider>
+</Provider>}</div>;
+};
 export default App;

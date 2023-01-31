@@ -245,11 +245,6 @@ const Tables = props => {
       <Grid container spacing={1}>
         <Grid item xs={1}></Grid>
         <Grid item xs={10}>
-          {/* <div className={cs.reports}>
-            <CSVLink data={props.data} className={cs.btn}>
-              <button>Export Data</button>
-            </CSVLink>
-          </div> */}
           <div>
             {iserror && (
               <Alert severity="error">

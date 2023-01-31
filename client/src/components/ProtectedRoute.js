@@ -4,18 +4,11 @@ import { useAuth } from "./auth.context";
 
 function ProtectedRoute({ component: Component, ...restOfProps }) {
     const {userToken} = useAuth();
-    // if (!userToken || userToken === "") {
-    //     return <Navigate to="/login" />;
-    // } else {
-    //     if (authSuccess === false) return <Navigate to="/login" />;
-    //     else return children;
-    // }
   return (
-    
     <Route
       {...restOfProps}
       render={(props) =>
-        userToken ? <Component {...props}  /> : <Redirect to="/CodeReview" />
+        userToken ? <Component {...props}  /> : {}
       }
     />
   );

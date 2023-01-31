@@ -15,7 +15,11 @@ const initialState = {
   data:[],
   oldData:{},
   newData:'',
-  editopen:''
+  editopen:'',
+  team:'',
+  chartData:{},
+  firstCol:'',
+  secondcol:'',
 };
 
 export const commonApi = (state = initialState, action) => {
@@ -27,53 +31,41 @@ export const commonApi = (state = initialState, action) => {
         resContent: action.payload,
         apiResponse: 1
       });
-    case types.MY_DATA:
-      return  { ...state,myData:{emp_id: json.employeeId,
-      emp_name: json.displayName,
-      emp_designation: json.jobTitle,
-      emp_firstname:json.givenName}}
-    case types.REVIEW_DEL:
-      return {...state,data:(prev =>
-        prev.filter(obj => obj.ticket_no !== oldData.ticket_no))}
-    case types.REVIEW_UPD:
-      return {...state,data:([...dataUpdate])}
-      case types.OLD_DATA:
-        return{...state,oldData:rows[0]}
+   
 
     default:
       return state;
   }
 };
 
-// export const authUser = (state = initialState, action) => {
-//   switch (action.type) {
-//     case types.AUTH_SUCCESS:
-//       return action.payload;
-//     case types.REFRESH_DATA:
-//       return Object.assign({}, state, {
-//         resContent: action.payload,
-//         userToken:
-//       });
+export const authUser = (state = initialState, action) => {
+   switch (action.type)
+  {
+    case types.MY_DATA:
+    return {
+      ...state,
+      myData: {
+      emp_id: action.payload.employeeId,
+      emp_name: action.payload.displayName,
+      emp_designation: action.payload.jobTitle,
+      emp_firstname: action.payload.givenName
+    }}
+    case types.AUTH_SUCCESS:
+    return {
+      ...state,
+      authSuccess: {
+      authSuccess : true
+    }}
+    case types.REVIEW_DEL:
+      return {...state,data:(prev =>
+        prev.filter(obj => obj.ticket_no !== action.payload.ticket_no))}
+    case types.REVIEW_UPD:
+      return {...state,data:([action.payload])}
+      case types.OLD_DATA:
+        return{...state,oldData:rows[0]}
+    case types.FETCH_TEAM:
+      // return {...state,team:}
+    default: return state
+  }
+};
 
-//     default:
-//       return state;
-//   }
-// };
-
-// useEffect(() => {
-//   const authUser = async () => {
-//     try {
-//       const decoded = await jwt_decode(userToken);
-//       await axios
-//         .get(`https://localhost:7040/api/Emp/${decoded.Emp_id}`)
-//         .then(res => {
-//           if (res.status === 200) {
-//             setAuthSuccess(true);
-//           } else setAuthSuccess(false);
-//         });
-//     } catch (error) {
-//       setAuthSuccess(false);
-//     }
-//   };
-//   authUser();
-// }, [userToken]);

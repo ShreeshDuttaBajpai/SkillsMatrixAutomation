@@ -1,8 +1,9 @@
-
-﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Newtonsoft.Json;
 using System.Data;
+using System.Data.Common;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace AutomationAPI.Controllers
 {
@@ -10,6 +11,7 @@ namespace AutomationAPI.Controllers
     [ApiController]
     public class ChartsController : ControllerBase
     {
+
         private readonly IConfiguration _configuration;
         public ChartsController(IConfiguration configuration)
         {
@@ -18,6 +20,7 @@ namespace AutomationAPI.Controllers
 
         [HttpGet]
         [Route("{firstCol}/{secondCol}")]
+
         public JsonResult Get(string firstCol, string secondCol)
         {
             string query2 = $"select Status ,count(*) as valcount from StoryTrackerDB where " +

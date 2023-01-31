@@ -1,4 +1,4 @@
-.home {
+/* .home {
     font-size: 150%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -74,3 +74,86 @@
     display: flex;
     text-shadow: 1px 1px rgb(230, 221, 214);
 }
+
+
+ */
+
+
+
+
+
+ 
+
+ *{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    /* overflow: hidden; */
+}
+
+.wave{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 101%;
+	z-index: -1;
+    rotate: 0.2deg;
+}
+ .container{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap :7rem;
+    padding: 0 2rem;
+}
+
+.img{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+    size:5rem;
+}
+
+.login{
+	display: flex;
+	align-items: center;
+	text-align: center;
+}
+
+.img img{
+	width: 400px;
+}
+
+.forms{
+	width: 360px;
+}
+
+.login img{
+    height: 200px;
+    
+}
+
+.login h2{
+	margin: 15px 0;
+	color: #333;
+	text-transform: uppercase;
+	font-size: 2.9rem;
+}
+
+.button1{
+    background-color:#564ef7;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }

@@ -7,6 +7,7 @@ import { useAuth } from '../components/auth.context';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 import { CSVLink } from 'react-csv';
+import Navbar from '../components/Navbar/Navbar';
 // import TablesContainer from '../components/TableComponent/TablesContainer';
 
 function TablePage(props) {
@@ -90,6 +91,7 @@ function TablePage(props) {
 
   return (
     <div className={css.tab}>
+      <Navbar />
       <div className={css.headers}>
         <h3 className={css.dashboard}>
           {decoded.Emp_designation === 'Engineering Manager'

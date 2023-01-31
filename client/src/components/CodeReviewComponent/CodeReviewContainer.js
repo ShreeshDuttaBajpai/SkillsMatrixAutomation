@@ -5,8 +5,7 @@ import { deleteReview,updateReview } from "../../services/CodeReview/codereviewS
 
 
 const mapStateToProps = (state) => ({
-    data:state.commonApi.data,
-
+    data:state.authUser.data,
 })
 
 const mapDispatchToProps = dispatch =>(
@@ -16,9 +15,9 @@ const mapDispatchToProps = dispatch =>(
                 const delrev = await deleteReview(`/User/${oldData.ticket_no}`).then(
                   res => {
                     alert('Ticket Deleted successfully!!');
-                    const dataDelete = [...data];
-                    console.log(dataDelete);
-                    dispatch(reviewdel());
+                    // const dataDelete = [...data];
+                    // console.log(dataDelete);
+                    dispatch(reviewdel(oldData));
                     window.location.reload();
                     //resolve();
                   }
@@ -36,7 +35,7 @@ const mapDispatchToProps = dispatch =>(
           const index = oldData.tableData.id;
           console.log(index);
           dataUpdate[index] = newData;
-          dispatch(reviewdel());
+          dispatch(reviewdel(...dataUpdate));
         })
         .catch(error => {
           console.log(error);

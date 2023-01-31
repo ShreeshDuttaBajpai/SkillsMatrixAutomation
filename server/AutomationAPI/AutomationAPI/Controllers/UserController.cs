@@ -64,9 +64,6 @@ namespace AutomationAPI.Controllers
         }
 
 
-
-
-
         [HttpGet]
         [Route("{Emp_id}")]
         public IActionResult GetEmp(int Emp_id)

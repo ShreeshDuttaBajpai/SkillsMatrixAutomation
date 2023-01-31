@@ -23,22 +23,23 @@ export const AuthProvider = props => {
             } else setAuthSuccess(false);
           });
       } catch (error) {
-        console.log('gagan')
+        // console.log('gagan')
         setAuthSuccess(false);
       }
     };
     authUser();
   }, [userToken]);
 
-  const logout = async Emp_id => {
+  const logout = async() => {
     const cookies = new Cookies();
+    const decoded=await jwt_decode(userToken);
     cookies.remove('my_cookie');
-    await axios.delete(`https://localhost:7040/api/Emp/${Emp_id}`);
+    await axios.delete(`https://localhost:7040/api/Emp/${decoded.Emp_id}`);
     setAuthSuccess(false);
     window.location = "http://localhost:3000/"
   };
 
-  async function run() {
+  async function continueWithMicrosoft() {
     console.log('running...');
     const config = {
       auth: {
@@ -53,18 +54,20 @@ export const AuthProvider = props => {
     };
     let loginResponse = await client.loginPopup(request);
     let tokenResponse = await client.acquireTokenSilent(request);
-    let payload = await fetch('https://graph.microsoft.com/beta/me', {
+    let response = await fetch('https://graph.microsoft.com/beta/me', {
       headers: {
         Authorization: 'Bearer ' + tokenResponse.accessToken
       }
     });
-    let json = await payload.json();
+    let json = await response.json();
 
     setmyData(() => {
       return {
         emp_id: json.employeeId,
         emp_name: json.displayName,
-        emp_designation: json.jobTitle,
+        emp_designation:
+        // "Engineering Manager",
+        json.jobTitle,
         emp_firstname:json.givenName
       };
     });
@@ -72,7 +75,7 @@ export const AuthProvider = props => {
 
   return (
     <AuthContext.Provider
-      value={{ userToken, setUserToken, authSuccess, run, logout, myData }}
+      value={{ userToken, setUserToken, authSuccess, continueWithMicrosoft, logout, myData }}
     >
       {props.children}
     </AuthContext.Provider>

@@ -1,10 +1,11 @@
 import React from 'react';
-import Navbar from '../components/Navbar/Navbar';
 import Horizontalchart from '../components/ChartsComponent/Chart';
+import Navbar from '../components/Navbar/Navbar';
 
 function ReportsPage() {
   return (
     <div>
+      <Navbar />
       {/* <ReportsComponent/> */}
       <Horizontalchart />
     </div>

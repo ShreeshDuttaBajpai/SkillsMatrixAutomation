@@ -1,11 +1,15 @@
 .tab{
-    background-color: rgb(172, 219, 231);
+  background-image: linear-gradient(to right,  #7883e7 , rgb(196, 190, 247));
     background-size: cover;
+<<<<<<< HEAD
 <<<<<<< HEAD
     height: 90vh;
 =======
     height: 88.8vh;
 >>>>>>> 8c7a6ae06c65ef36a4f899c07baec184c72a0167
+=======
+    height: auto;
+>>>>>>> 2c4687ca80493e4a6e7e04d2e79f5caf9707c005
     padding-top: 1rem;
     justify-content: center;
   } 
@@ -16,7 +20,16 @@
   .app {
     display: flex;
     margin-left: 17rem;
+   
   }
+
+  canvas{
+    background-color: rgb(254, 255, 255);
+    height: auto !important;
+    width: 75% !important;
+    padding: 1rem;
+  }
+
   .heads{
     display: flex;
     justify-content: center;
@@ -28,3 +41,39 @@
     box-sizing: 2px;
     text-align: center;
   }
+
+  /* .btn{
+    display: flex;
+    position: absolute;
+    justify-items: center;
+    justify-self: center;
+    margin-left: 10rem;
+  } */
+  /* .btn button{
+     margin-left: 1rem;
+  }
+  .complete{
+    background-color:  rgb(26, 230, 43,0.5);
+    padding: 5px;
+    width: 3vw;
+    height: 2vh;
+  
+  }
+
+  .incomplete{
+    background-color: rgba(245, 16, 16, 0.692);
+    padding: 5px;
+    width: 3vw;
+    height: 2vh;
+
+  }
+  .inprogress{
+    background-color:rgb(247, 180, 36,0.5);
+    padding: 5px;
+    width: 3vw;
+    height: 2vh;
+  }
+
+  .chart{
+    margin-top: 2rem;
+  } */
