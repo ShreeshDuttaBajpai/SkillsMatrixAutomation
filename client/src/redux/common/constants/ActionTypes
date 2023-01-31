@@ -19,3 +19,4 @@ export const MY_DATA = 'MY_DATA';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const CONTINUE_WITH_MICROSOFT = 'CONTINUE_WITH_MICROSOFT';
 export const FETCH_TEAM='FETCH_TEAM';
+export const FIRST_COL='FIRST_COL';

@@ -6,21 +6,21 @@ import axios from 'axios';
 import { options } from './ChartConstant';
 import { Chartnameapi, Chartteamapi } from '../../services/Charts/ChartService';
 
-const Horizontalchart = () => {
+const Horizontalchart = ({ fetchTeam }) => {
   const [team, setTeam] = useState();
   const [name, setName] = useState();
   const [firstCol, setFirstCol] = useState();
   const [secondCol, setSecondCol] = useState();
   const [data, setData] = useState({});
   useEffect(() => {
-    const fetchTeam = async () => {
-      const url = await Chartteamapi().then(res => {
-        console.log(res.data);
-        setTeam(() => res.data.map(val => val.team));
-        setFirstCol(res.data[0].team);
-      });
-      return url;
-    };
+    // const fetchTeam = async () => {
+    //   const url = await Chartteamapi().then(res => {
+    //     console.log(res.data);
+    //     setTeam(() => res.data.map(val => val.team));
+    //     setFirstCol(res.data[0].team);
+    //   });
+    //   return url;
+    // };
     fetchTeam();
 
     const fetchName = async () => {

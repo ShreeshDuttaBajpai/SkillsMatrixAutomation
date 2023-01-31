@@ -64,3 +64,8 @@ export const editopen= payload => ({
   type: types.EDIT_OPEN,
   payload
 });
+
+export const setTeam=payload => ({
+  type:types.FETCH_TEAM,
+  payload
+});

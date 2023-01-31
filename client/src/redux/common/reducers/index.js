@@ -64,7 +64,9 @@ export const authUser = (state = initialState, action) => {
       case types.OLD_DATA:
         return{...state,oldData:rows[0]}
     case types.FETCH_TEAM:
-      // return {...state,team:}
+      return {...state,team:() => action.payload.chartData.map(val => val.team),
+        firstCol:action.payload.chartData[0].team
+      }
     default: return state
   }
 };
