@@ -21,9 +21,6 @@ import axios from 'axios';
 import Alert from '@material-ui/lab/Alert';
 import { useAuth } from '../auth.context';
 import jwt_decode from 'jwt-decode';
-import { CSVLink } from 'react-csv';
-import cs from '../TableComponent/Tables.css';
-import { css } from '@emotion/react';
 import { CodeReviewapi } from './../../services/TableService/tableService';
 
 const tableIcons = {
@@ -59,10 +56,6 @@ const Tables = props => {
       decoded.Emp_designation === 'Engineering Manager' ? 'Admin' : 'User'
     }`
   });
-
-  // const CodeReviewapi = axios.create({
-  //   baseURL: `https://localhost:7040/api/Review/${decoded.Emp_firstname}`
-  // });
 
   if (window.location.pathname === '/CodeReview') {
     var columns = [
@@ -201,7 +194,6 @@ const Tables = props => {
       { title: 'Code Reviewer', field: 'code_reviewer' }
     ];
   }
-  // const [data, setData] = useState([]); //table data
   const [iserror, setIserror] = useState(false);
   const [errorMessages, setErrorMessages] = useState([]);
 
@@ -245,11 +237,6 @@ const Tables = props => {
       <Grid container spacing={1}>
         <Grid item xs={1}></Grid>
         <Grid item xs={10}>
-          {/* <div className={cs.reports}>
-            <CSVLink data={props.data} className={cs.btn}>
-              <button>Export Data</button>
-            </CSVLink>
-          </div> */}
           <div>
             {iserror && (
               <Alert severity="error">

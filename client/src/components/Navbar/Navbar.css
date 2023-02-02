@@ -3,7 +3,7 @@
 
 .Navbar{
 
-    background: #222;
+    background: rgb(23, 7, 43);
     height: 70px;
     display: flex;
     color: aliceblue;
@@ -62,7 +62,7 @@
 }
 
 .headings a:hover{
-    color: #da0f32;
+    color: #b9a2c7;
 }
 
 .right_navbarHeadings{

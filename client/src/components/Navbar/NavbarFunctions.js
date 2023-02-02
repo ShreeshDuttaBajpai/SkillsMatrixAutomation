@@ -1,40 +1,30 @@
-import { authSuccess, userToken } from '../../redux/common/actions';
-// import * as Msal from 'msal';
-// import HomePageMainComponent from './HomePageMainComponent';
-
+import { auth_Success, user_Token } from '../../redux/common/actions';
+import axios from 'axios';
 import Cookies from 'universal-cookie';
 import jwt_decode from 'jwt-decode';
-// const decoded = await jwt_decode(userToken);
+const cookies = new Cookies();
 
-export const authorizeUser = () => {
-    useEffect(() => {
-    const authUser = async () => {
+  export const authUser = async (dispatch, userToken) => {
       try {
+        console.log(userToken);
         const decoded = await jwt_decode(userToken);
         await axios
           .get(`https://localhost:7040/api/Emp/${decoded.Emp_id}`)
           .then(res => {
             if (res.status === 200) {
-              dispatch(authSuccess);
+              dispatch(auth_Success(true));
             }
-            // else setAuthSuccess(false);
           });
       } catch (error) {
         console.log('gagan')
-        // dispatch(authSuccess===false);
       }
     };
-    authUser();
-  }, [userToken]);
-}
 
-export const logout = async () => {
-    // console.log('Shreesh!');
-    const cookies = new Cookies();
-    const decoded = await jwt_decode(userToken);
+
+export const logout = async (dispatch, Emp_id) => {
     cookies.remove('my_cookie');
-    await axios.delete(`https://localhost:7040/api/Emp/${decoded.Emp_id}`);
-    authSuccess(false);
+    await axios.delete(`https://localhost:7040/api/Emp/${Emp_id}`);
+    dispatch(user_Token());  
+    dispatch(auth_Success(false));
     window.location = "http://localhost:3000/"
 };
-    

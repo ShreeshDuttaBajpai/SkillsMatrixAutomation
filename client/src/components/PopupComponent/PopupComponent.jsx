@@ -197,7 +197,6 @@ function PopupComponent(props) {
                   <select
                     id="Ticket Type"
                     required
-                    // placeholder="Ticket Type"
                     defaultValue={props.tickettype ? props.tickettype : ''}
                     onChange={e => {
                       handleChangetickettype(e);

@@ -1,28 +1,28 @@
 import * as types from 'rootpath/redux/common/constants/ActionTypes';
 import Cookies from 'universal-cookie';
-// import jwt_decode from 'jwt-decode';
+import { userToken } from '../actions';
+import jwt_decode from 'jwt-decode';
 
 const cookies = new Cookies();
 let tokenData = cookies.get('my_cookie');
 
+
 const initialState = {
   apiResponse: 0,
   resContent: '',
-  userToken: tokenData,
   myData:'',
-  open:'',
   openActions:'',
   selected:'',
   data:'',
   oldData:'',
   newData:'',
   editopen: '',
-  authSuccess: false
+  authSuccess: false,
+  userToken: tokenData,
+  open:false
 };
 
-// const decoded = await jwt_decode(userToken);
-
-export const commonApi = (state = initialState, action) => {
+  export const commonApi = (state = initialState, action) => {
   switch (action.type) {
     case types.INIT_GET_API_CALL:
       return action.payload;
@@ -31,14 +31,7 @@ export const commonApi = (state = initialState, action) => {
         resContent: action.payload,
         apiResponse: 1
       });
-    case types.AUTH_SUCCESS:
-      return {
-        ...state, authSuccess:true
-      }
-    case types.USER_TOKEN:
-      return {
-        ...state, userToken
-      }
+    
     case types.OPEN:
       return 
 
@@ -51,22 +44,32 @@ export const authUser = (state = initialState, action) => {
   switch (action.type)
   {
     case types.MY_DATA:
-      return {
+      console.log(action.payload.displayName)
+      alert("Hi")
+      return Object.assign({}, state, {
         ...state,
         myData: {
           emp_id: action.payload.employeeId,
           emp_name: action.payload.displayName,
           emp_designation: action.payload.jobTitle,
-          emp_firstname: action.payload.givenName 
+          emp_firstname: 'Mudit'
         }
-      }
+      });
+    
     case types.AUTH_SUCCESS:
       return {
         ...state,
-        authSuccess: {
-          authSuccess : true
-        }
+        authSuccess: action.payload
       }
+    case types.OPEN:
+      return {
+        ...state,
+        open: action.payload
+      }
+    case types.USER_TOKEN:
+      return {
+        ...state, userToken:''
+      };
     default: return state
   }
 }

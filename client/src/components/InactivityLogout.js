@@ -1,5 +1,11 @@
-import { useAuth } from './auth.context';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import {logout} from './Navbar/NavbarFunctions'
+import { useDispatch } from 'react-redux';
+import { useSelector, useStore } from 'react-redux';
+import authUser from '../redux/common/reducers';
+import configureStore from './../store/main'
+
+const store = configureStore();
 
 const events = [
   'load',
@@ -10,12 +16,51 @@ const events = [
   'keypress'
 ];
 
+// const getcurrentstate = store.getState();
+// console.log(getcurrentstate);
+
+
+
 const InactivityLogout = ({ children }) => {
-  const { logout } = useAuth();
+
+  // const currentStates = () => {
+  //   console.log(store.getState());
+  // }
+  // // const { getState } = useStore();
+ 
+  // // unsubscribe();
+  // // console.log(unsubscribe);
+  // useEffect(() => {
+    
+  //  const unsubs = store.subscribe(currentStates);
+  //   return () => {
+  //     unsubs(); 
+  //   }
+  // }, [])
+  
+
+
+  // const current_State = store.getState();
+  // const [currentState, setCurrentState] = useState(current_State.authUser);
+  // const [myDataState, setMyDataState] = useState();
+  // console.log(currentState.authUser.myData);
+ 
+  // const state = getState();
+  // const myData = state.authUser.myData;
+  // console.log(myData);
+  // const authUser = useSelector((state) => state.authUser.myData);
+  // console.log(authUser);
+  // console.log(Emp_id);
+  // const dispatch = useDispatch();
   let timer;
+
+  const currentState = store.getState();
+  console.log(currentState);
 
   // this function sets the timer that logs out the user after 10 secs
   const handleLogoutTimer = () => {
+    // const dispatch = useDispatch();
+    
     timer = setTimeout(() => {
       // clears any pending timer.
       resetTimer();
@@ -24,10 +69,9 @@ const InactivityLogout = ({ children }) => {
         window.removeEventListener(item, resetTimer);
       });
       // logs out user
-      console.log('Hi');
       alert('You have been logged out due to inactivity!');
-      logout();
-    }, 100000); // 10000ms = 10secs. You can change the time.
+      logout(dispatch, Emp_id);
+    }, 1000000); // 10000ms = 10secs. You can change the time.
   };
 
   // this resets the timer if it exists.
@@ -35,9 +79,6 @@ const InactivityLogout = ({ children }) => {
     if (timer) clearTimeout(timer);
   };
 
-  // when component mounts, it adds an event listeners to the window
-  // each time any of the event is triggered, i.e on mouse move, click, scroll, keypress etc, the timer to logout user after 10 secs of inactivity resets.
-  // However, if none of the event is triggered within 10 secs, that is app is inactive, the app automatically logs out.
   useEffect(() => {
     Object.values(events).forEach(item => {
       window.addEventListener(item, () => {
@@ -46,14 +87,6 @@ const InactivityLogout = ({ children }) => {
       });
     });
   }, []);
-
-  // logs out user by clearing out auth token in localStorage and redirecting url to /signin page.
-  // const logoutAction = () => {
-  //   // localStorage.clear();
-  //   // window.location.pathname = "/signin";
-  //   const {logout} = useAuth();
-  //   logout();
-  // };
 
   return children;
 };

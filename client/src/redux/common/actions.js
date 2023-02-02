@@ -9,25 +9,21 @@ export const refreshData = payload => ({
   payload
 });
 
-export const myData = payload => ({
+export const my_Data = payload => ({
   type: types.MY_DATA,
   payload
 });
 
-export const authSuccess = payload => ({
+export const auth_Success = payload => ({
   type: types.AUTH_SUCCESS,
   payload
 });
 
-export const userToken = payload => ({
+export const user_Token = payload => ({
   type: types.AUTH_SUCCESS,
   payload
 });
 
-export const open = payload => ({
-  type: types.OPEN,
-  payload
-});
 
 export const openActions= payload => ({
   type: types.OPEN_ACTIONS,
@@ -39,18 +35,23 @@ export const selected= payload => ({
   payload
 });
 
-export const data= payload => ({
+export const data = payload => ({
   type: types.DATA,
   payload
 });
 
-export const oldData= payload => ({
+export const oldData = payload => ({
   type: types.OLD_DATA,
   payload
 });
 
-export const newData= payload => ({
+export const newData = payload => ({
   type: types.NEW_DATA,
+  payload
+});
+
+export const openToggle = payload => ({
+  type: types.OPEN,
   payload
 });
 

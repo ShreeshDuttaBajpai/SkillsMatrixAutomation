@@ -1,37 +1,30 @@
 import React, { useEffect } from 'react';
 import css from '../Navbar/Navbar.css';
 import navbarLogo from '../../assests/story-tracker.jpg';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { useAuth } from '../auth.context';
+import { NavLink } from 'react-router-dom';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import jwt_Decode from 'jwt-decode';
 import con from '../constants';
-import axios from 'axios';
-import Cookies from 'universal-cookie';
-import { continueWithMicrosoft } from '../HomePage/HomePageMainComponent/homePageFunctions';
 
-const Navbar = ({ Logout, ContinueWithMicrosoft }) => {
-  const { authSuccess, userToken, myData, logout } = useAuth();
+const Navbar = ({ logoutFunction, userToken, authSuccess, authorizeUser }) => {
   let Emp_name = '';
   let Emp_id = '';
   let Emp_firstname = '';
-
+  console.log(userToken);
   if (userToken) {
     const decoded_token = jwt_Decode(userToken);
+    console.log(decoded_token);
     Emp_name = decoded_token.Emp_name;
     Emp_id = decoded_token.Emp_id;
-    Emp_firstname = decoded_token.Emp_firstname;
+    Emp_firstname = decoded_token.Emp_firstName;
   }
+
   useEffect(() => {
-    console.log(myData);
-    if (myData)
-      axios.post('https://localhost:7040/api/Emp', myData).then(res => {
-        const token = res.data;
-        const cookies = new Cookies();
-        cookies.set('my_cookie', token);
-        window.location.reload();
-      });
-  }, [myData]);
+    if (userToken) {
+      console.log(userToken);
+      authorizeUser(userToken);
+    }
+  }, [userToken]);
 
   return (
     <div className={css.Navbar}>
@@ -71,7 +64,7 @@ const Navbar = ({ Logout, ContinueWithMicrosoft }) => {
                   <NavLink
                     to="/"
                     onClick={() => {
-                      Logout(Emp_id);
+                      logoutFunction(Emp_id);
                     }}
                   >
                     {con.Logout}
@@ -80,14 +73,7 @@ const Navbar = ({ Logout, ContinueWithMicrosoft }) => {
               </div>
             </div>
           ) : (
-            <div>
-              <div
-                className={css.right_navbarHeadingsBeforeLogin}
-                onClick={() => ContinueWithMicrosoft()}
-              >
-                {con.Signin}/{con.SignUp}
-              </div>
-            </div>
+            ''
           )}
         </div>
       </nav>

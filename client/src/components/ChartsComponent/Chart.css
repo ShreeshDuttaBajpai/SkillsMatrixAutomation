@@ -1,7 +1,7 @@
 .tab{
-    background-color: rgb(172, 219, 231);
+  background-image: linear-gradient(to right,  #7883e7 , rgb(196, 190, 247));
     background-size: cover;
-    height: 88.9vh;
+    height: auto;
     padding-top: 1rem;
     justify-content: center;
   } 
@@ -16,9 +16,10 @@
   }
 
   canvas{
+    background-color: rgb(254, 255, 255);
     height: auto !important;
     width: 75% !important;
-  
+    padding: 1rem;
   }
 
   .heads{

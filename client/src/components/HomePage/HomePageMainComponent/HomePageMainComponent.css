@@ -1,76 +1,72 @@
-.home {
-    font-size: 150%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 17rem;
-    padding-bottom: 10rem;
-    min-height: 585px !important;
-    max-height: 65px !important;
-    overflow: hidden;
-    padding: 0;
-    position: relative; 
+ *{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }
 
-.bgHomePicture{
-    opacity: 0.5;
-    width: 100%;
-    height: auto;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 17rem;
-    padding-bottom: 10rem;
-    overflow: hidden;
-    padding: 0;
-    position: relative;
+body{
+    font-family: 'Poppins', sans-serif;
 }
 
-
-.homeLogo{
-    background-image: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: rgb(27, 24, 20);
+.wave{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 101%;
+	z-index: -1;
+    rotate: 0.2deg;
+}
+ .container{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap :7rem;
+    padding: 0 2rem;
 }
 
-
- .button1{
-  background-color: #2d7191;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
+.img{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+    size:5rem;
 }
 
-.loginButton{
-    margin-top: 15px;
-    margin-left: .6rem;
+.login{
+	display: flex;
+	align-items: center;
+	text-align: center;
 }
 
-
-.pageContent{
-    position: absolute;
+.img img{
+	width: 400px;
 }
 
-.home.bgHomePicture{
-    width:100%;
+.forms{
+	width: 360px;
 }
 
-.welcomeMessage{
-    display: flex;
-    text-shadow: 1px 1px rgb(230, 221, 214);
+.login img{
+    height: 200px;
+    
 }
+
+.login h2{
+	margin: 15px 0;
+	color: #333;
+	text-transform: uppercase;
+	font-size: 2.9rem;
+}
+
+.button1{
+    background-color:#564ef7;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
