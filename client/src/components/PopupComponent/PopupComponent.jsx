@@ -1,46 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import css from '../PopupComponent/PopupComponent.css';
 import x from '../../assests/x.png';
-import jwt_decode from 'jwt-decode';
-import { useAuth } from '../auth.context';
-import { ButtonComponent } from '../ButtonComponent/ButtonComponent';
 
-function PopupComponent(props) {
-  // const [openActions, setOpenActions] = useState();
-  // const [selected, setSelected] = useState();
-  // const [popup, setpop] = useState(false);
-  const { userToken } = useAuth();
-  const userName = jwt_decode(userToken).Emp_name;
-  // const decodtoken = jwt_decode(userToken);
-
+const PopupComponent = props => {
   useEffect(() => {
     console.log(open);
   }, [open]);
 
-  const [ticketDetails, setticketDetails] = useState({
-    ticket_no: '',
-    client: 'CW',
-    team: 'CNS',
-    name: userName,
-    ticket_type: 'Story',
-    story_point: '',
-    start_date: '',
-    end_date: '',
-    hours: 0,
-    status: 'Completed',
-    code_reviewer: '',
-    code_deviation_count: '',
-    bug_count: '',
-    remarks: ''
-  });
+  // const [ticketDetails, setticketDetails] = useState({
+  //   ticket_no: '',
+  //   client: 'CW',
+  //   team: 'CNS',
+  //   name: userName,
+  //   ticket_type: 'Story',
+  //   story_point: '',
+  //   start_date: '',
+  //   end_date: '',
+  //   hours: 0,
+  //   status: 'Completed',
+  //   code_reviewer: '',
+  //   code_deviation_count: '',
+  //   bug_count: '',
+  //   remarks: ''
+  // });
 
-  useEffect(() => {}, [ticketDetails]);
+  useEffect(() => {}, [props.ticketDetails]);
 
-  const handleChangeticketno = e => {
-    props.setNewData(prev => {
-      return { ...prev, ticket_no: e.target.value };
-    });
-  };
+  // const handleChangeticketno = e => {
+  //   props.setNewData(prev => {
+  //     return { ...prev, ticket_no: e.target.value };
+  //   });
+  // };
 
   const handleChangetickettype = e => {
     props.setNewData(prev => {
@@ -128,9 +118,6 @@ function PopupComponent(props) {
               </button>
             </span>
           </div>
-          {/* onSubmit={postPassenger} */}
-          {/* {ticketList.map((singlepass, index) => (
-          <div key={index} className="form-content"> */}
           {window.location.pathname === '/CodeReview' ? (
             <>
               <span className={css.book_input}>
@@ -185,7 +172,10 @@ function PopupComponent(props) {
                     required
                     defaultValue={props.ticketno ? props.ticketno : ''}
                     onChange={e => {
-                      handleChangeticketno(e);
+                      props.handleChangeTicketDetails(
+                        e.target.value,
+                        'ticket_no'
+                      );
                     }}
                   />
                 </div>
@@ -199,7 +189,10 @@ function PopupComponent(props) {
                     required
                     defaultValue={props.tickettype ? props.tickettype : ''}
                     onChange={e => {
-                      handleChangetickettype(e);
+                      props.handleChangeTicketDetails(
+                        e.target.value,
+                        'ticket_type'
+                      );
                     }}
                   >
                     <option>Story</option>
@@ -341,6 +334,6 @@ function PopupComponent(props) {
       </div>
     </div>
   );
-}
+};
 
 export default PopupComponent;

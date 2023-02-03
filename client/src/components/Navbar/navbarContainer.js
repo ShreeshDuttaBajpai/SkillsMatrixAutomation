@@ -3,13 +3,11 @@ import { continueWithMicrosoft } from './../HomePage/HomePageMainComponent/homeP
 import { authUser, logout } from './NavbarFunctions';
 import Navbar from './Navbar';
 
-const mapStateToProps = state => {
-    console.log(state.authUser);
-    return ({
+const mapStateToProps = state => ({
     myData: state.authUser.myData,
     authSuccess: state.authUser.authSuccess,
     userToken: state.authUser.userToken
-})}
+});
 
 console.log(mapStateToProps);
 

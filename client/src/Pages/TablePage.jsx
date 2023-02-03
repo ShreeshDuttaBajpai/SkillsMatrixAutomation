@@ -9,6 +9,7 @@ import axios from 'axios';
 import { CSVLink } from 'react-csv';
 import Navbar from '../components/Navbar/Navbar';
 import NavbarContainer from '../components/Navbar/NavbarContainer';
+import PopupContainer from '../components/PopupComponent/PopupContainer';
 // import TablesContainer from '../components/TableComponent/TablesContainer';
 
 function TablePage(props) {
@@ -42,6 +43,7 @@ function TablePage(props) {
   const handleOpen = () => {
     setOpen(!open);
   };
+
   const handleEditOpen = () => {
     setEditOpen(!editOpen);
   };
@@ -76,6 +78,8 @@ function TablePage(props) {
     }
   };
   const handleRowUpdate = (newData, oldData) => {
+    console.log(oldData.ticket_no);
+    console.log(newData);
     axios
       .put(`https://localhost:7040/api/User/${oldData.ticket_no}`, newData)
       .then(res => {
@@ -120,7 +124,7 @@ function TablePage(props) {
                     run={handleEditOpen}
                   />
                   {editOpen ? (
-                    <PopupComponent
+                    <PopupContainer
                       ename={css.editopen}
                       handleOpen={handleEditOpen}
                       setNewData={setNewData}

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import {logout} from './Navbar/NavbarFunctions'
-import { useDispatch } from 'react-redux';
-import { useSelector, useStore } from 'react-redux';
-import authUser from '../redux/common/reducers';
 import configureStore from './../store/main'
+import { useDispatch } from "react-redux";
+import Cookies from 'universal-cookie';
+import jwt_decode from 'jwt-decode';
 
 const store = configureStore();
 
@@ -19,9 +19,13 @@ const events = [
 // const getcurrentstate = store.getState();
 // console.log(getcurrentstate);
 
-
-
 const InactivityLogout = ({ children }) => {
+    const cookies = new Cookies();
+    let tokenData = cookies.get('my_cookie');
+    const decoded_token = jwt_decode(tokenData);
+    const Emp_id = decoded_token.Emp_id;
+  
+    const dispatch = useDispatch();
 
   // const currentStates = () => {
   //   console.log(store.getState());
@@ -57,21 +61,18 @@ const InactivityLogout = ({ children }) => {
   const currentState = store.getState();
   console.log(currentState);
 
-  // this function sets the timer that logs out the user after 10 secs
   const handleLogoutTimer = () => {
-    // const dispatch = useDispatch();
+   
     
     timer = setTimeout(() => {
-      // clears any pending timer.
       resetTimer();
-      // Listener clean up. Removes the existing event listener from the window
       Object.values(events).forEach(item => {
         window.removeEventListener(item, resetTimer);
       });
       // logs out user
       alert('You have been logged out due to inactivity!');
       logout(dispatch, Emp_id);
-    }, 1000000); // 10000ms = 10secs. You can change the time.
+    }, 700000); // 10000ms = 10secs. You can change the time.
   };
 
   // this resets the timer if it exists.

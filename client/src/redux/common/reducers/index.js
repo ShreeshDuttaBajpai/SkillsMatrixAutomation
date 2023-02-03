@@ -5,7 +5,8 @@ import jwt_decode from 'jwt-decode';
 
 const cookies = new Cookies();
 let tokenData = cookies.get('my_cookie');
-
+const userName = tokenData ? jwt_decode(tokenData).Emp_name : '';
+console.log(userName);
 
 const initialState = {
   apiResponse: 0,
@@ -19,7 +20,23 @@ const initialState = {
   editopen: '',
   authSuccess: false,
   userToken: tokenData,
-  open:false
+  open: false,
+  ticketDetails:{
+    ticket_no: '',
+    client: 'CW',
+    team: 'CNS',
+    name: userName,
+    ticket_type: 'Story',
+    story_point: '',
+    start_date: '',
+    end_date: '',
+    hours: 0,
+    status: 'Completed',
+    code_reviewer: '',
+    code_deviation_count: '',
+    bug_count: '',
+    remarks: ''
+  }
 };
 
   export const commonApi = (state = initialState, action) => {
@@ -60,6 +77,14 @@ export const authUser = (state = initialState, action) => {
       return {
         ...state,
         authSuccess: action.payload
+      }
+    case types.TICKET_DETAILS:
+      console.log(action.payload.ticketkey+ " "+action.payload.value );
+      return {
+        ...state,
+        ticketDetails: { ...state.ticketDetails,
+          [action.payload.ticketkey]: action.payload.value
+        }
       }
     case types.OPEN:
       return {

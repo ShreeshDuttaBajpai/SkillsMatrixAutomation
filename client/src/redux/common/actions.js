@@ -50,6 +50,11 @@ export const newData = payload => ({
   payload
 });
 
+// export const setNewData = payload => ({
+//   type: types.TICKET_DETAILS,
+//   payload
+// });
+
 export const openToggle = payload => ({
   type: types.OPEN,
   payload
