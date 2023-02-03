@@ -5,19 +5,25 @@ import { NavLink } from 'react-router-dom';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import jwt_Decode from 'jwt-decode';
 import con from '../constants';
+import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 const Navbar = ({ logoutFunction, userToken, authSuccess, authorizeUser }) => {
+  const decoded_token = jwt_Decode(userToken);
+  console.log(decoded_token);
+  console.log(authSuccess);
   let Emp_name = '';
   let Emp_id = '';
   let Emp_firstname = '';
   console.log(userToken);
-  if (userToken) {
-    const decoded_token = jwt_Decode(userToken);
+  if (userToken)
+    //const decoded_token = jwt_Decode(userToken);
     console.log(decoded_token);
-    Emp_name = decoded_token.Emp_name;
-    Emp_id = decoded_token.Emp_id;
-    Emp_firstname = decoded_token.Emp_firstName;
-  }
+  Emp_name = decoded_token.Emp_name;
+  Emp_id = decoded_token.Emp_id;
+  Emp_firstname = decoded_token.Emp_firstname;
+
+  console.log(Emp_firstname);
 
   useEffect(() => {
     if (userToken) {

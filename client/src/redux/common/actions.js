@@ -35,8 +35,13 @@ export const selected= payload => ({
   payload
 });
 
-export const data = payload => ({
-  type: types.DATA,
+export const reviewdel= payload => ({
+  type: types.REVIEW_DEL,
+  payload
+});
+
+export const reviewupd = payload => ({
+  type: types.REVIEW_UPD,
   payload
 });
 
@@ -62,5 +67,44 @@ export const openToggle = payload => ({
 
 export const editopen= payload => ({
   type: types.EDIT_OPEN,
+  payload
+});
+
+export const setTeam=payload => ({
+  type:types.FETCH_TEAM,
+  payload
+});
+
+export const setName = payload => ({
+  type:types.FETCH_NAME,
+  payload
+})
+
+export const fetchData = payload => ({
+  type:types.FETCH_DATA,
+  payload
+})
+
+export const handleChangeFirst=payload => ({
+  type:types.HANDLECHANGE_FIRST,
+  payload
+})
+
+export const handleChangeSec=payload => ({
+  type:types.HANDLECHANGE_SEC,
+  payload
+})
+export const tabledel= payload =>({
+  type: types.TableDel,
+  payload
+})
+
+export const tableupd =payload =>({
+  type: types.TableUpd,
+  payload
+})
+
+export const toggleOpen =payload => ({
+  type: types.OPEN,
   payload
 });

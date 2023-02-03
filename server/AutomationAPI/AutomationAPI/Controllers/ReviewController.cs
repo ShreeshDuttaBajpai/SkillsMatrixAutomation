@@ -36,11 +36,12 @@ namespace AutomationAPI.Controllers
             }
             return new JsonResult(table);
         }
-        [HttpPut("{ticket}")]
-        public JsonResult Put(string ticket, [FromBody] StoryTrackerDB us)
+        [HttpPost]
+        public JsonResult Post([FromBody] CodeReview cr)
         {
-            string query1 = $"update dbo.StoryTrackerDB set Code_deviation_count='" + us.Code_deviation_count +
-                "',Bugs_count='" + us.Bugs_count + "',Remarks='" + us.Remarks + "' where Ticket_no = '"+ticket+"'";
+            string query1 = $"insert into dbo.CodeReview values('" + cr.Ticket_no + "'," +
+                "'" + cr.Name + "', '" + cr.Code_reviewer_name + "','" + cr.Code_deviation_count + "','" + cr.Bugs_count + "'," +
+                " " + cr.Remarks + "')";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("MyConnectionString");
             SqlDataReader myReader;
@@ -55,8 +56,9 @@ namespace AutomationAPI.Controllers
                     myCon.Close();
                 }
             }
-            return new JsonResult("Updated Successfully");
+            return new JsonResult("Added Successfully");
         }
+
         [HttpPut("{ticket}")]
         public JsonResult Put(string ticket, [FromBody] StoryTrackerDB us)
         {

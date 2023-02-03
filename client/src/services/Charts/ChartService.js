@@ -1,23 +1,19 @@
 import { getApi } from '../baseApiService';
 
-export const Chartapi = async () => {
+export const Chartteamapi = async () => {
   const TeamURL = `https://localhost:7040/api/User/Team`;
   const response = await getApi(TeamURL)
-    .then(res => {
-    //   if (res && res.data) return res.data;
-    //   else return [];
-     setTeam(() => res.data.map(val => val.team));
-     setFirstCol(res.data[0].team);
-     return setTeam() ,setFirstCol();
-    })
-    .catch(error => {
-      return error;
-    });
-  console.log(response);
   return response;
-//    axios.get(url).then(res => {
-//      console.log(res.data);
-//      setTeam(() => res.data.map(val => val.team));
-//      setFirstCol(res.data[0].team);
-//    });
-};
+}
+
+export const Chartnameapi = async () => {
+  const TeamURL = `https://localhost:7040/api/User/Name`;
+  const response = await getApi(TeamURL)
+  return response;
+}
+
+export const Chartapi = async (url) => {
+  const TeamURL = `https://localhost:7040/api/Charts`;
+  const response = await getApi(TeamURL+url).then(res => {return res.data})
+  return response;
+}

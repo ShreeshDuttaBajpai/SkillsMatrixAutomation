@@ -1,24 +1,14 @@
 import React, { useState } from 'react';
-import Table from '../components/TableComponent/Tables';
-import css from '../../src/Pages/CodeReview.css';
-import axios from 'axios';
-import { ButtonComponent } from '../components/ButtonComponent/ButtonComponent';
-import PopupComponent from '../components/PopupComponent/PopupComponent';
-import { useAuth } from '../components/auth.context';
-import jwt_decode from 'jwt-decode';
+import Table from '../../components/TableComponent/Tables';
+import css from '../../components/CodeReviewComponent/CodeReview.css';
+import { ButtonComponent } from '../../components/ButtonComponent/ButtonComponent';
+import PopupComponent from '../../components/PopupComponent/PopupComponent';
 import { CSVLink } from 'react-csv';
-import {
-  deleteReview,
-  updateReview
-} from '../services/CodeReview/codereviewService';
-import Navbar from '../components/Navbar/Navbar';
-import NavbarContainer from '../components/Navbar/NavbarContainer';
 
-function CodeReview(props) {
+export const CodeReview = ({ handleRowDelete, handleRowUpdate }) => {
   const [open, setOpen] = useState();
   const [openActions, setOpenActions] = useState();
   const [selected, setSelected] = useState();
-  const [data, setData] = useState([]);
   const [oldData, setOldData] = useState({});
   const [newData, setNewData] = useState({});
   const [editopen, setEditopen] = useState();
@@ -36,52 +26,8 @@ function CodeReview(props) {
     setOpenActions(!openActions);
   };
 
-  const postUser = async e => {
-    // e.preventDefault();
-    console.log(ticketDetails);
-    axios.post('https://localhost:7040/api/User', newData).then(res => {
-      alert('Ticket added successfully!!');
-    });
-  };
-
-  const handleRowDelete = async oldData => {
-    if (window.confirm('Are you sure you want to delete this Ticket?')) {
-      const delrev = await deleteReview(`/User/${oldData.ticket_no}`).then(
-        res => {
-          alert('Ticket Deleted successfully!!');
-          const dataDelete = [...data];
-          console.log(dataDelete);
-          setData(prev =>
-            prev.filter(obj => obj.ticket_no !== oldData.ticket_no)
-          );
-          window.location.reload();
-          //resolve();
-        }
-      );
-      return delrev;
-    }
-  };
-
-  const handleRowUpdate = async (newData, oldData) => {
-    const update = await updateReview(`/Review/${oldData.ticket_no}`, newData)
-      .then(res => {
-        alert('Ticket Edited successfully!!');
-        const dataUpdate = [...data];
-        console.log(dataUpdate);
-        const index = oldData.tableData.id;
-        console.log(index);
-        dataUpdate[index] = newData;
-        setData([...dataUpdate]);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    return update;
-  };
-
   return (
     <div className={css.codereviewhead}>
-      <NavbarContainer />
       <div className={css.codereviewhead}>
         <div className={css.headers}>
           <h3 className={css.dashboard}>Code Reviewer Dashboard</h3>
@@ -104,10 +50,6 @@ function CodeReview(props) {
                       cname={css.button1}
                       value="Edit"
                       run={handleEditopen}
-                      //disable={true}
-                      // run={() => {
-                      //   handleRowUpdate(newData, oldData);
-                      // }}
                     />
                     {editopen ? (
                       <PopupComponent
@@ -160,6 +102,4 @@ function CodeReview(props) {
       </div>
     </div>
   );
-}
-
-export default CodeReview;
+};

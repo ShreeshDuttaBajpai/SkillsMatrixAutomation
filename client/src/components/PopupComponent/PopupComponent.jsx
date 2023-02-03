@@ -103,6 +103,7 @@ const PopupComponent = props => {
           className={css.form_popup}
           id="myForm"
           onSubmit={e => {
+            // e.preventDefault();
             props.val2();
           }}
         >
