@@ -25,10 +25,10 @@ export const continueWithMicrosoft = async (dispatch) => {
             });
             let json = await response.json();
             console.log(json);
-            dispatch(myData(json)); 
-            console.log(myData);       
+            dispatch(myData(json));
+            console.log(myData);
 }
-          
+
 export const authUser = async () => {
             try {
             const decoded = await jwt_decode(userToken);

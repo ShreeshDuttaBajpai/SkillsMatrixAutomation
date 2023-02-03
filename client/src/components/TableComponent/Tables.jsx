@@ -25,6 +25,7 @@ import { CSVLink } from 'react-csv';
 import cs from '../TableComponent/Tables.css';
 import { css } from '@emotion/react';
 import { CodeReviewapi } from './../../services/TableService/tableService';
+import { display } from '@mui/system';
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -52,6 +53,7 @@ const tableIcons = {
 
 const Tables = props => {
   const { userToken } = useAuth();
+  const rawData = [];
   console.log(userToken, 'userToken');
   const decoded = jwt_decode(userToken);
   const api = axios.create({
@@ -240,6 +242,69 @@ const Tables = props => {
     }
   }, []);
 
+//   const handleRowUpdate = (newData, oldData, resolve) => {
+//     //validation
+//     let errorList = [];
+//     if (newData.first_name === '') {
+//       errorList.push('Please enter first name');
+//     }
+//     if (newData.last_name === '') {
+//       errorList.push('Please enter last name');
+//     }
+//     if (newData.email === '' || validateEmail(newData.email) === false) {
+//       errorList.push('Please enter a valid email');
+//     }
+
+//     if (errorList.length < 1) {
+//       api
+//         .patch('/users/' + newData.id, newData)
+//         .then(res => {
+//           const dataUpdate = [...data];
+//           const index = oldData.tableData.id;
+//           dataUpdate[index] = newData;
+//           setData([...dataUpdate]);
+//           resolve();
+//           setIserror(false);
+//           setErrorMessages([]);
+//         })
+//         .catch(error => {
+//           setErrorMessages(['Update failed! Server error']);
+//           setIserror(true);
+//           resolve();
+//         });
+//     } else {
+//       setErrorMessages(errorList);
+//       setIserror(true);
+//       resolve();
+//     }
+//   };
+//  const handleRowDelete = (oldData, resolve) => {
+//    api
+//      .delete('/users/' + oldData.id)
+//      .then(res => {
+//        const dataDelete = [...data];
+//        const index = oldData.tableData.id;
+//        dataDelete.splice(index, 1);
+//        setData([...dataDelete]);
+//        resolve();
+//      })
+//      .catch(error => {
+//        setErrorMessages(['Delete failed! Server error']);
+//        setIserror(true);
+//        resolve();
+//      });
+//  };
+  const [hoveringOver, setHoveringOver] = useState('');
+
+  // This is the only downside.. very hacky
+  const [, setForceUpdate] = useState(0);
+  const forceUpdate = () => setForceUpdate(old => old + 1);
+
+  const handleRowHover = (event, propsData) =>
+    setHoveringOver(propsData.data.tableData.id);
+  const handleRowHoverLeave = (event, propsData) => setHoveringOver('');
+
+
   return (
     <div className="App" style={{ marginTop: '60px' }}>
       <Grid container spacing={1}>
@@ -280,6 +345,24 @@ const Tables = props => {
               showTextRowsSelected: false,
               selection: true
             }}
+            // actions={[
+            //   rowData => {
+            //     return hoveringOver !== '' &&
+            //       rowData.tableData.id === hoveringOver
+            //       ? { icon: Edit, hidden: false, onClick: handleEditClick }
+            //       : { icon: Edit, hidden: true, onClick: () => {} };
+            //   }
+            // ]}
+            // editable={{
+            //   onRowUpdate: (newData, oldData) =>
+            //     new Promise(resolve => {
+            //       handleRowUpdate(newData, oldData, resolve);
+            //     }),
+            //   onRowDelete: oldData =>
+            //     new Promise(resolve => {
+            //       handleRowDelete(oldData, resolve);
+            //     })
+            // }}
             onSelectionChange={rows => {
               if (rows.length === 1) {
                 props.setSelected(true);

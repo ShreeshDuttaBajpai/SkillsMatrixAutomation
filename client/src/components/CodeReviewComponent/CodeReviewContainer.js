@@ -25,7 +25,7 @@ const mapDispatchToProps = dispatch =>(
                 return delrev;
               }
         },
-    
+
     handleRowUpdate : async (newData, oldData) => {
       const update = await updateReview(`/Review/${oldData.ticket_no}`, newData)
         .then(res => {

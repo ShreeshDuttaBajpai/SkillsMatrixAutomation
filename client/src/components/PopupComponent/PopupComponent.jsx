@@ -12,10 +12,6 @@ function PopupComponent(props) {
   const userName = jwt_decode(userToken).Emp_name;
   // const decodtoken = jwt_decode(userToken);
 
-  useEffect(() => {
-    console.log(open);
-  }, [open]);
-
   const [ticketDetails, setticketDetails] = useState({
     ticket_no: '',
     client: 'CW',

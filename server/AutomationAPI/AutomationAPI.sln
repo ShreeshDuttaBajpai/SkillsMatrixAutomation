@@ -1,13 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.4.33110.190
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32630.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationAPI", "AutomationAPI\AutomationAPI.csproj", "{F46DA2A0-6883-40E2-85CD-7C85AB8AA2B8}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeControl.Tests", "EmployeeContol.Tests\EmployeeControl.Tests.csproj", "{5684B07B-2895-4261-BE64-B1A1B0C3A4ED}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeX.Tests", "EmployeeX.Tests\EmployeeX.Tests.csproj", "{8182C2E5-6B5B-44B9-836B-429FB4C723CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +15,6 @@ Global
 		{F46DA2A0-6883-40E2-85CD-7C85AB8AA2B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F46DA2A0-6883-40E2-85CD-7C85AB8AA2B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F46DA2A0-6883-40E2-85CD-7C85AB8AA2B8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5684B07B-2895-4261-BE64-B1A1B0C3A4ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5684B07B-2895-4261-BE64-B1A1B0C3A4ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5684B07B-2895-4261-BE64-B1A1B0C3A4ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5684B07B-2895-4261-BE64-B1A1B0C3A4ED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8182C2E5-6B5B-44B9-836B-429FB4C723CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8182C2E5-6B5B-44B9-836B-429FB4C723CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8182C2E5-6B5B-44B9-836B-429FB4C723CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8182C2E5-6B5B-44B9-836B-429FB4C723CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

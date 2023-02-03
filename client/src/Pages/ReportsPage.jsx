@@ -6,9 +6,9 @@ import Navbar from '../components/Navbar/Navbar';
 function ReportsPage() {
   return (
     <div>
-      <Navbar />
       {/* <ReportsComponent/> */}
       {/* <Horizontalchart /> */}
+      <Navbar />
       <ChartsContainer />
     </div>
   );

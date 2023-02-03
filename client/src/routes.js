@@ -21,7 +21,7 @@ const App = () => {
   let tokenData = cookies.get('my_cookie');
   if (tokenData) {
     const decoded_token = jwt_decode(tokenData);
-    
+
   }
 
   return <div>
@@ -34,9 +34,9 @@ const App = () => {
         <Switch store={store}>
           <Route exact path="/" component={MainPage} />
           <ProtectedRoute path="/Table" component={MainDashboardEntry} />
-          <ProtectedRoute path="/CodeReview" component={CodeReviewPage} />
-          <ProtectedRoute path="/Reports" component={ReportsPage}/>
-          
+          <Route path="/CodeReview" component={CodeReviewPage} />
+          <Route path="/Reports" component={ReportsPage} />
+
           <Route component={NoMatch} />
         </Switch>
       </div>

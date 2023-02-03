@@ -23,9 +23,10 @@ const initialState = {
   firstCol:'',
   secondCol:'',
   authSuccess: false,
+  openForm: false,
+  getdata: '',
+  editForm:false,
 };
-
-// const decoded = await jwt_decode(userToken);
 
 export const commonApi = (state = initialState, action) => {
   switch (action.type) {
@@ -103,3 +104,32 @@ export const authUser = (state = initialState, action) => {
   }
 };
 
+export const tableUser = (state = initialState, action) => {
+   switch (action.type) {
+     case types.TableDel:
+       return {
+         ...state,
+         data: prev =>
+           prev.filter(obj => obj.ticket_no !== action.payload.ticket_no)
+       };
+
+     case types.TableUpd:
+       return { ...state, data: [action.payload] };
+
+     case types.OPEN:
+       // console.log(openForm);
+       return {
+         ...state,
+         openForm: !action.payload
+       };
+
+     case types.EDIT_OPEN:
+       return {
+         ...state,
+         editForm: !action.payload
+       };
+
+     default:
+       return state;
+   }
+};

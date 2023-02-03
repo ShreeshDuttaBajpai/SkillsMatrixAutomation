@@ -25,10 +25,7 @@ export const authSuccess = payload => ({
   payload
 });
 
-export const open = payload => ({
-  type: types.OPEN,
-  payload
-});
+
 
 export const openActions= payload => ({
   type: types.OPEN_ACTIONS,
@@ -89,3 +86,17 @@ export const handleChangeSec=payload => ({
   type:types.HANDLECHANGE_SEC,
   payload
 })
+export const tabledel= payload =>({
+  type: types.TableDel,
+  payload
+})
+
+export const tableupd =payload =>({
+  type: types.TableUpd,
+  payload
+})
+
+export const toggleOpen =payload => ({
+  type: types.OPEN,
+  payload
+});
