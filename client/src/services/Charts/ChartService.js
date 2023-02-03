@@ -14,6 +14,6 @@ export const Chartnameapi = async () => {
 
 export const Chartapi = async (url) => {
   const TeamURL = `https://localhost:7040/api/Charts`;
-  const response = await getApi(TeamURL+url)
+  const response = await getApi(TeamURL+url).then(res => {return res.data})
   return response;
 }

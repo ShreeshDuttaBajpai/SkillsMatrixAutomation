@@ -1,7 +1,7 @@
 .tab{
   background-image: linear-gradient(to right,  #7883e7 , rgb(196, 190, 247));
     background-size: cover;
-    height: 90vh;
+    height: auto;
     padding-top: 1rem;
     justify-content: center;
   } 

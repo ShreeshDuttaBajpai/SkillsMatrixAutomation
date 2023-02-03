@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { reviewdel } from "../../redux/common/actions";
+import { reviewdel, reviewupd } from "../../redux/common/actions";
 import { CodeReview } from "./CodeReview";
 import { deleteReview,updateReview } from "../../services/CodeReview/codereviewService";
 
@@ -35,7 +35,7 @@ const mapDispatchToProps = dispatch =>(
           const index = oldData.tableData.id;
           console.log(index);
           dataUpdate[index] = newData;
-          dispatch(reviewdel(...dataUpdate));
+          dispatch(reviewupd(...dataUpdate));
         })
         .catch(error => {
           console.log(error);

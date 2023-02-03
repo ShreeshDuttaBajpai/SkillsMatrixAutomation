@@ -1,5 +1,6 @@
 import React from 'react';
-import Horizontalchart from '../components/ChartsComponent/Chart';
+// import Horizontalchart from '../components/ChartsComponent/Chart';
+import ChartsContainer from '../components/ChartsComponent/ChartsContainer';
 import Navbar from '../components/Navbar/Navbar';
 
 function ReportsPage() {
@@ -7,7 +8,8 @@ function ReportsPage() {
     <div>
       <Navbar />
       {/* <ReportsComponent/> */}
-      <Horizontalchart />
+      {/* <Horizontalchart /> */}
+      <ChartsContainer />
     </div>
   );
 }

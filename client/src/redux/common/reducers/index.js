@@ -1,5 +1,6 @@
 import * as types from 'rootpath/redux/common/constants/ActionTypes';
 import Cookies from 'universal-cookie';
+// import jwt_decode from 'jwt-decode';
 
 const cookies = new Cookies();
 let tokenData = cookies.get('my_cookie');
@@ -17,10 +18,14 @@ const initialState = {
   newData:'',
   editopen:'',
   team:'',
+  name:'',
   chartData:{},
   firstCol:'',
-  secondcol:'',
+  secondCol:'',
+  authSuccess: false,
 };
+
+// const decoded = await jwt_decode(userToken);
 
 export const commonApi = (state = initialState, action) => {
   switch (action.type) {
@@ -30,9 +35,7 @@ export const commonApi = (state = initialState, action) => {
       return Object.assign({}, state, {
         resContent: action.payload,
         apiResponse: 1
-      });
-   
-
+      });  
     default:
       return state;
   }
@@ -64,9 +67,38 @@ export const authUser = (state = initialState, action) => {
       case types.OLD_DATA:
         return{...state,oldData:rows[0]}
     case types.FETCH_TEAM:
-      return {...state,team:() => action.payload.chartData.map(val => val.team),
-        firstCol:action.payload.chartData[0].team
+      console.log(action.payload)
+      return {...state,team:action.payload.map(val => val.team),
+        firstCol:action.payload[0].team
       }
+    case types.FETCH_NAME:
+      return {...state,name: action.payload.map(val => val.name),
+        secondCol:(action.payload[0].name)}
+    case types.FETCH_DATA:
+      return {...state, chartData:{
+        labels: action.payload.labelset,
+        datasets: [
+          {
+            label: 'Total Tickets ',
+            data: action.payload.dataset1,
+            borderColor: [
+              'rgb(26, 230, 43)',
+              'rgb(243, 27, 27)',
+              'rgb(247, 180, 36)'
+            ],
+            backgroundColor: [
+              'rgb(26,230,43,0.8)',
+              'rgba(243,27,27,0.8)',
+              'rgb(247, 180, 36,0.8)'
+            ]
+          }
+        ]
+      }}
+    case types.HANDLECHANGE_FIRST:
+      return {...state, firstCol:action.payload}
+      case types.HANDLECHANGE_SEC:
+        return {...state, secondCol:action.payload}
+    
     default: return state
   }
 };
