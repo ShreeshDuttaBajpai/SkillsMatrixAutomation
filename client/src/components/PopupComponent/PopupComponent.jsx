@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import css from '../PopupComponent/PopupComponent.css';
 import x from '../../assests/x.png';
 
@@ -7,94 +7,7 @@ const PopupComponent = props => {
     console.log(open);
   }, [open]);
 
-  // const [ticketDetails, setticketDetails] = useState({
-  //   ticket_no: '',
-  //   client: 'CW',
-  //   team: 'CNS',
-  //   name: userName,
-  //   ticket_type: 'Story',
-  //   story_point: '',
-  //   start_date: '',
-  //   end_date: '',
-  //   hours: 0,
-  //   status: 'Completed',
-  //   code_reviewer: '',
-  //   code_deviation_count: '',
-  //   bug_count: '',
-  //   remarks: ''
-  // });
-
   useEffect(() => {}, [props.ticketDetails]);
-
-  // const handleChangeticketno = e => {
-  //   props.setNewData(prev => {
-  //     return { ...prev, ticket_no: e.target.value };
-  //   });
-  // };
-
-  const handleChangetickettype = e => {
-    props.setNewData(prev => {
-      return { ...prev, ticket_type: e.target.value };
-    });
-  };
-
-  const handleChangeteam = e => {
-    props.setNewData(prev => {
-      return { ...prev, team: e.target.value };
-    });
-  };
-
-  const handleChangestorypoints = e => {
-    props.setNewData(prev => {
-      return { ...prev, story_point: e.target.value };
-    });
-  };
-
-  const handleChangestartdate = e => {
-    props.setNewData(prev => {
-      return { ...prev, start_date: e.target.value };
-    });
-  };
-  const handleChangeenddate = e => {
-    props.setNewData(prev => {
-      return { ...prev, end_date: e.target.value };
-    });
-  };
-
-  const handleChangehours = e => {
-    props.setNewData(prev => {
-      return { ...prev, hours: e.target.value };
-    });
-  };
-
-  const handleChangestatus = e => {
-    console.log(e.target.value);
-    props.setNewData(prev => {
-      return { ...prev, status: e.target.value };
-    });
-  };
-  const handleChangecodereveiwer = e => {
-    props.setNewData(prev => {
-      return { ...prev, code_reviewer: e.target.value };
-    });
-  };
-
-  const handleChangecode_deviation_count = e => {
-    props.setNewData(prev => {
-      return { ...prev, code_deviation_count: e.target.value };
-    });
-  };
-  const handleChangebugs_count = e => {
-    props.setNewData(prev => {
-      return { ...prev, bugs_count: e.target.value };
-    });
-  };
-
-  const handleChangeremarks = e => {
-    props.setNewData(prev => {
-      return { ...prev, remarks: e.target.value };
-    });
-  };
 
   return (
     <div className={props.ename}>
@@ -130,7 +43,10 @@ const PopupComponent = props => {
                     placeholder="code_deviation_count"
                     defaultValue={props.code_deviation_count}
                     onChange={e => {
-                      handleChangecode_deviation_count(e);
+                      props.handleChangeTicketDetails(
+                        e.target.value,
+                        'code_deviation_count'
+                      );
                     }}
                   />
                 </div>
@@ -142,7 +58,10 @@ const PopupComponent = props => {
                     placeholder="BugsCount"
                     defaultValue={props.bugs_count}
                     onChange={e => {
-                      handleChangebugs_count(e);
+                      props.handleChangeTicketDetails(
+                        e.target.value,
+                        'bugs_count'
+                      );
                     }}
                   />
                 </div>
@@ -154,7 +73,7 @@ const PopupComponent = props => {
                   placeholder="remarks"
                   defaultValue={props.remarks}
                   onChange={e => {
-                    handleChangeremarks(e);
+                    props.handleChangeTicketDetails(e.target.value, 'remarks');
                   }}
                 />
               </div>
@@ -211,13 +130,12 @@ const PopupComponent = props => {
                     <span className={css.color}>*</span>
                   </h6>
                   <select
-                    // type="number"
                     id="Team"
                     placeholder="Team"
                     required
                     defaultValue={props.team ? props.team : ''}
                     onChange={e => {
-                      handleChangeteam(e);
+                      props.handleChangeTicketDetails(e.target.value, 'team');
                     }}
                   >
                     <option>CNS</option>
@@ -240,13 +158,15 @@ const PopupComponent = props => {
                     required
                     defaultValue={props.storypoints ? props.storypoints : ''}
                     onChange={e => {
-                      handleChangestorypoints(e);
+                      props.handleChangeTicketDetails(
+                        e.target.value,
+                        'story_point'
+                      );
                     }}
                   />
                 </div>
               </span>
 
-              {/* <div className={css.Dates}> */}
               <span className={css.book_input}>
                 <div className={css.nextline}>
                   <h6>
@@ -257,10 +177,12 @@ const PopupComponent = props => {
                     type="Date"
                     id="Start Date"
                     placeholder="Start Date"
-                    // required
                     defaultValue={props.startdate ? props.startdate : ''}
                     onChange={e => {
-                      handleChangestartdate(e);
+                      props.handleChangeTicketDetails(
+                        e.target.value,
+                        'start_date'
+                      );
                     }}
                   ></input>
                 </div>
@@ -272,12 +194,14 @@ const PopupComponent = props => {
                     placeholder="End Date"
                     defaultValue={props.enddate ? props.enddate : ''}
                     onChange={e => {
-                      handleChangeenddate(e);
+                      props.handleChangeTicketDetails(
+                        e.target.value,
+                        'end_date'
+                      );
                     }}
                   ></input>
                 </div>
               </span>
-              {/* </div> */}
 
               <span className={css.book_input}>
                 <div className={css.nextline}>
@@ -288,7 +212,7 @@ const PopupComponent = props => {
                     placeholder="Hours"
                     defaultValue={props.hours}
                     onChange={e => {
-                      handleChangehours(e);
+                      props.handleChangeTicketDetails(e.target.value, 'hours');
                     }}
                   />
                 </div>
@@ -302,7 +226,7 @@ const PopupComponent = props => {
                     placeholder="Status"
                     defaultValue={props.status ? props.status : ''}
                     onChange={e => {
-                      handleChangestatus(e);
+                      props.handleChangeTicketDetails(e.target.value, 'status');
                     }}
                   >
                     <option>Completed</option>
@@ -312,7 +236,6 @@ const PopupComponent = props => {
                 </div>
               </span>
 
-              {/* <span className={css.book_input}> */}
               <div className={css.next}>
                 <h6>CodeReviewer</h6>
                 <input
@@ -320,14 +243,15 @@ const PopupComponent = props => {
                   placeholder="CodeReviewer"
                   defaultValue={props.codereviewer ? props.codereviewer : ''}
                   onChange={e => {
-                    handleChangecodereveiwer(e);
+                    props.handleChangeTicketDetails(
+                      e.target.value,
+                      'code_reviewer'
+                    );
                   }}
                 />
               </div>
             </>
           )}
-          {/* </div>
-        ))} */}
           <div className={css.submitadd_btn}>
             <button type="submit">Save</button>
           </div>

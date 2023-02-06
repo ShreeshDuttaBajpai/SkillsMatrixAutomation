@@ -22,7 +22,7 @@ const initialState = {
   authSuccess: false,
   userToken: tokenData,
   open: false,
-  ticketDetails:{
+  ticketDetails: {
     ticket_no: '',
     client: 'CW',
     team: 'CNS',
@@ -36,7 +36,8 @@ const initialState = {
     code_reviewer: '',
     code_deviation_count: '',
     bug_count: '',
-    remarks: '',
+    remarks: ''
+  },
   team:'',
   name:'',
   chartData:{},
@@ -44,8 +45,7 @@ const initialState = {
   secondCol:'',
   openForm: false,
   getdata: '',
-  editForm:false,
-  }
+  editForm:false
 };
 
   export const commonApi = (state = initialState, action) => {
@@ -83,6 +83,12 @@ export const authUser = (state = initialState, action) => {
         ...state,
         authSuccess: action.payload
       }
+    case types.OLD_DATA:
+      return {
+        ...state,
+        ticketDetails: {...action.payload
+        }
+      }
     case types.TICKET_DETAILS:
       console.log(action.payload.ticketkey+ " "+action.payload.value );
       return {
@@ -106,8 +112,6 @@ export const authUser = (state = initialState, action) => {
         prev.filter(obj => obj.ticket_no !== action.payload.ticket_no))}
     case types.REVIEW_UPD:
       return {...state,data:([action.payload])}
-      case types.OLD_DATA:
-        return{...state,oldData:rows[0]}
     case types.FETCH_TEAM:
       console.log(action.payload)
       return {...state,team:action.payload.map(val => val.team),

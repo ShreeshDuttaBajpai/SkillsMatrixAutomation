@@ -7,6 +7,8 @@ const mapStateToProps = state => ({
   data: state.tableUser.data,
   openForm: state.tableUser.openForm,
   editForm: state.tableUser.editForm,
+  ticketDetails: state.authUser.ticketDetails,
+  userToken: state.authUser.userToken
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -15,26 +17,24 @@ const mapDispatchToProps = dispatch => ({
       const deluser = await deleteUser(`/User/${oldData.ticket_no}`).then(
         res => {
           alert('Ticket Deleted successfully!!');
-          // const dataDelete = [...data];
-          // console.log(dataDelete);
           dispatch(tabledel(oldData));
           window.location.reload();
-          //resolve();
+   
         }
       );
       return deluser;
     }
   },
 
-  handleRowUpdate: async (newData, oldData) => {
-    const update = await updateUser(`/User/${oldData.ticket_no}`, newData)
+  handleRowUpdate: async (ticketDetails) => {
+    const update = await updateUser(`/User/${ticketDetails.ticket_no}`, ticketDetails)
       .then(res => {
         alert('Ticket Edited successfully!!');
         const dataUpdate = [...data];
         console.log(dataUpdate);
         const index = oldData.tableData.id;
         console.log(index);
-        dataUpdate[index] = newData;
+        dataUpdate[index] = ticketDetails;
         dispatch(tableupd(...dataUpdate));
       })
       .catch(error => {
@@ -47,10 +47,11 @@ const mapDispatchToProps = dispatch => ({
     dispatch(toggleOpen(openForm))
   },
 
- handleEditOpen:(editForm)=>{
-  console.log(editForm);
-  dispatch(editopen(editForm))
- },
+  handleEditOpen:(editForm)=>{
+    console.log(editForm);
+    dispatch(editopen(editForm))
+  }
+  
 });
 
 const UserContainer = connect(

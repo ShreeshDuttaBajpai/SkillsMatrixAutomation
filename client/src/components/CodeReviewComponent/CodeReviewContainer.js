@@ -5,7 +5,8 @@ import { deleteReview,updateReview } from "../../services/CodeReview/codereviewS
 
 
 const mapStateToProps = (state) => ({
-    data:state.authUser.data,
+  data: state.authUser.data,
+  ticketDetails: state.authUser.ticketDetails
 })
 
 const mapDispatchToProps = dispatch =>(
@@ -26,15 +27,15 @@ const mapDispatchToProps = dispatch =>(
               }
         },
 
-    handleRowUpdate : async (newData, oldData) => {
-      const update = await updateReview(`/Review/${oldData.ticket_no}`, newData)
+    handleRowUpdate : async (ticketDetails) => {
+      const update = await updateReview(`/Review/${ticketDetails.ticket_no}`, ticketDetails)
         .then(res => {
           alert('Ticket Edited successfully!!');
           const dataUpdate = [...data];
           console.log(dataUpdate);
-          const index = oldData.tableData.id;
+          const index = ticketDetails.tableData.id;
           console.log(index);
-          dataUpdate[index] = newData;
+          dataUpdate[index] = ticketDetails;
           dispatch(reviewupd(...dataUpdate));
         })
         .catch(error => {

@@ -4,8 +4,15 @@ import css from '../../components/CodeReviewComponent/CodeReview.css';
 import { ButtonComponent } from '../../components/ButtonComponent/ButtonComponent';
 import PopupComponent from '../../components/PopupComponent/PopupComponent';
 import { CSVLink } from 'react-csv';
+import PopupContainer from '../PopupComponent/PopupContainer';
+import TablesContainer from '../TableComponent/TablesContainer';
 
-export const CodeReview = ({ handleRowDelete, handleRowUpdate }) => {
+export const CodeReview = ({
+  handleRowDelete,
+  handleRowUpdate,
+  oldSelectedData,
+  ticketDetails
+}) => {
   const [open, setOpen] = useState();
   const [openActions, setOpenActions] = useState();
   const [selected, setSelected] = useState();
@@ -52,16 +59,18 @@ export const CodeReview = ({ handleRowDelete, handleRowUpdate }) => {
                       run={handleEditopen}
                     />
                     {editopen ? (
-                      <PopupComponent
+                      <PopupContainer
                         handleOpen={handleEditopen}
                         setNewData={setNewData}
                         val1="Edit Ticket"
                         val2={() => {
-                          handleRowUpdate(newData, oldData);
+                          handleRowUpdate(ticketDetails);
                         }}
-                        code_deviation_count={oldData.code_deviation_count}
-                        bugs_count={oldData.bugs_count}
-                        remarks={oldData.remarks}
+                        code_deviation_count={
+                          ticketDetails.code_deviation_count
+                        }
+                        bugs_count={ticketDetails.bugs_count}
+                        remarks={ticketDetails.remarks}
                       />
                     ) : null}
                   </li>
@@ -71,7 +80,7 @@ export const CodeReview = ({ handleRowDelete, handleRowUpdate }) => {
                       value="Delete"
                       //disable={true}
                       run={() => {
-                        handleRowDelete(oldData);
+                        handleRowDelete(ticketDetails);
                         //window.location.reload();
                       }}
                     />
@@ -92,11 +101,11 @@ export const CodeReview = ({ handleRowDelete, handleRowUpdate }) => {
           </div>
         </div>
 
-        <Table
+        <TablesContainer
           data={getdata}
           setData={setGetdata}
           setSelected={setSelected}
-          setOldData={setOldData}
+          setOldData={oldSelectedData}
           setNewData={setNewData}
         />
       </div>

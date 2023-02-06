@@ -45,20 +45,20 @@ export const reviewupd = payload => ({
   payload
 });
 
-export const oldData = payload => ({
-  type: types.OLD_DATA,
-  payload
-});
+// export const oldData = payload => ({
+//   type: types.OLD_DATA,
+//   payload
+// });
 
 export const newData = payload => ({
   type: types.NEW_DATA,
   payload
 });
 
-// export const setNewData = payload => ({
-//   type: types.TICKET_DETAILS,
-//   payload
-// });
+export const setNewData = payload => ({
+  type: types.TICKET_DETAILS,
+  payload
+});
 
 export const openToggle = payload => ({
   type: types.OPEN,
@@ -106,5 +106,10 @@ export const tableupd =payload =>({
 
 export const toggleOpen =payload => ({
   type: types.OPEN,
+  payload
+});
+
+export const oldSelectedData =payload => ({
+  type: types.OLD_DATA,
   payload
 });

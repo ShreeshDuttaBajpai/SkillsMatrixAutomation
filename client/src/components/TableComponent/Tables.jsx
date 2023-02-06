@@ -49,10 +49,11 @@ const tableIcons = {
 };
 
 const Tables = props => {
-  const { userToken } = useAuth();
+  // const { userToken } = useAuth();
   const rawData = [];
-  console.log(userToken, 'userToken');
-  const decoded = jwt_decode(userToken);
+  console.log(props.userToken, 'userToken');
+  const decoded = jwt_decode(props.userToken);
+  console.log(decoded);
   const api = axios.create({
     baseURL: `https://localhost:7040/api/${
       decoded.Emp_designation === 'Engineering Manager' ? 'Admin' : 'User'
@@ -234,58 +235,58 @@ const Tables = props => {
     }
   }, []);
 
-//   const handleRowUpdate = (newData, oldData, resolve) => {
-//     //validation
-//     let errorList = [];
-//     if (newData.first_name === '') {
-//       errorList.push('Please enter first name');
-//     }
-//     if (newData.last_name === '') {
-//       errorList.push('Please enter last name');
-//     }
-//     if (newData.email === '' || validateEmail(newData.email) === false) {
-//       errorList.push('Please enter a valid email');
-//     }
+  //   const handleRowUpdate = (newData, oldData, resolve) => {
+  //     //validation
+  //     let errorList = [];
+  //     if (newData.first_name === '') {
+  //       errorList.push('Please enter first name');
+  //     }
+  //     if (newData.last_name === '') {
+  //       errorList.push('Please enter last name');
+  //     }
+  //     if (newData.email === '' || validateEmail(newData.email) === false) {
+  //       errorList.push('Please enter a valid email');
+  //     }
 
-//     if (errorList.length < 1) {
-//       api
-//         .patch('/users/' + newData.id, newData)
-//         .then(res => {
-//           const dataUpdate = [...data];
-//           const index = oldData.tableData.id;
-//           dataUpdate[index] = newData;
-//           setData([...dataUpdate]);
-//           resolve();
-//           setIserror(false);
-//           setErrorMessages([]);
-//         })
-//         .catch(error => {
-//           setErrorMessages(['Update failed! Server error']);
-//           setIserror(true);
-//           resolve();
-//         });
-//     } else {
-//       setErrorMessages(errorList);
-//       setIserror(true);
-//       resolve();
-//     }
-//   };
-//  const handleRowDelete = (oldData, resolve) => {
-//    api
-//      .delete('/users/' + oldData.id)
-//      .then(res => {
-//        const dataDelete = [...data];
-//        const index = oldData.tableData.id;
-//        dataDelete.splice(index, 1);
-//        setData([...dataDelete]);
-//        resolve();
-//      })
-//      .catch(error => {
-//        setErrorMessages(['Delete failed! Server error']);
-//        setIserror(true);
-//        resolve();
-//      });
-//  };
+  //     if (errorList.length < 1) {
+  //       api
+  //         .patch('/users/' + newData.id, newData)
+  //         .then(res => {
+  //           const dataUpdate = [...data];
+  //           const index = oldData.tableData.id;
+  //           dataUpdate[index] = newData;
+  //           setData([...dataUpdate]);
+  //           resolve();
+  //           setIserror(false);
+  //           setErrorMessages([]);
+  //         })
+  //         .catch(error => {
+  //           setErrorMessages(['Update failed! Server error']);
+  //           setIserror(true);
+  //           resolve();
+  //         });
+  //     } else {
+  //       setErrorMessages(errorList);
+  //       setIserror(true);
+  //       resolve();
+  //     }
+  //   };
+  //  const handleRowDelete = (oldData, resolve) => {
+  //    api
+  //      .delete('/users/' + oldData.id)
+  //      .then(res => {
+  //        const dataDelete = [...data];
+  //        const index = oldData.tableData.id;
+  //        dataDelete.splice(index, 1);
+  //        setData([...dataDelete]);
+  //        resolve();
+  //      })
+  //      .catch(error => {
+  //        setErrorMessages(['Delete failed! Server error']);
+  //        setIserror(true);
+  //        resolve();
+  //      });
+  //  };
   const [hoveringOver, setHoveringOver] = useState('');
 
   // This is the only downside.. very hacky
@@ -295,7 +296,6 @@ const Tables = props => {
   const handleRowHover = (event, propsData) =>
     setHoveringOver(propsData.data.tableData.id);
   const handleRowHoverLeave = (event, propsData) => setHoveringOver('');
-
 
   return (
     <div className="App" style={{ marginTop: '60px' }}>
@@ -358,7 +358,7 @@ const Tables = props => {
             onSelectionChange={rows => {
               if (rows.length === 1) {
                 props.setSelected(true);
-                props.setOldData(rows[0]);
+                props.oldSelectedData(rows[0]);
                 props.setNewData(rows[0]);
               } else {
                 props.setSelected(false);

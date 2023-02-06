@@ -1,22 +1,24 @@
 import { connect } from 'react-redux';
-import { useAuth } from '../auth.context';
 import jwt_decode from 'jwt-decode';
 import Tables from './Tables';
-import TablePage from '../../Pages/TablePage';
+import { oldSelectedData } from '../../redux/common/actions';
 
-const { userToken } = useAuth();
-const decoded = jwt_decode(userToken);
+const mapStateToProps = state => ({
+    ticketDetails: state.authUser.ticketDetails,
+    userToken: state.authUser.userToken
+});
 
 const mapDispatchToProps = dispatch => {
     return {
-        dashboard : () => {
+        dashboard: () => {
+            const decoded = jwt_decode(userToken);
             decoded.Emp_designation === 'Engineering Manager' ? 'Admin Dashboard' : 'User Dashboard'
+        },
+        oldSelectedData: (rows) => {
+            dispatch(oldSelectedData(rows))
         }
     }
 }
 
-const TablesContainer=connect(
-    undefined,
-    mapDispatchToProps
-)(Tables);
+const TablesContainer=connect (mapStateToProps, mapDispatchToProps) (Tables);
 export default TablesContainer;
