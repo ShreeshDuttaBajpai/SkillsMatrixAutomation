@@ -69,15 +69,7 @@ const Tables = props => {
       {
         title: 'Team',
         field: 'team',
-        width: '30%',
-        lookup: {
-          CNS: 'CNS',
-          'Mobile Team': 'Mobile Team',
-          'Partner Service': 'Partner Service',
-          Contact: 'Contact',
-          CP: 'CP',
-          'Event Bridge': 'Event Bridge'
-        }
+        width: '30%'
       },
       {
         title: 'Name',
@@ -102,23 +94,12 @@ const Tables = props => {
           whiteSpace: 'nowrap',
           overflow: 'hidden',
           maxWidth: 150
-        },
-        lookup: {
-          Story: 'Story',
-          Bug: 'Bug',
-          Task: 'Task',
-          'Sub-Task': 'Sub-Task'
         }
       },
 
       {
         title: 'Status',
         field: 'status',
-        lookup: {
-          Completed: 'Completed',
-          Incomplete: 'Incomplete',
-          InProgress: 'InProgress'
-        },
         width: '25%'
       },
       { title: 'Code Reviewer', field: 'code_reviewer' },
@@ -137,15 +118,7 @@ const Tables = props => {
       {
         title: 'Team',
         field: 'team',
-        width: '30%',
-        lookup: {
-          CNS: 'CNS',
-          'Mobile Team': 'Mobile Team',
-          'Partner Service': 'Partner Service',
-          Contact: 'Contact',
-          CP: 'CP',
-          'Event Bridge': 'Event Bridge'
-        }
+        width: '30%'
       },
       {
         title: 'Name',
@@ -170,12 +143,6 @@ const Tables = props => {
           whiteSpace: 'nowrap',
           overflow: 'hidden',
           maxWidth: 150
-        },
-        lookup: {
-          Story: 'Story',
-          Bug: 'Bug',
-          Task: 'Task',
-          'Sub-Task': 'Sub-Task'
         }
       },
       { title: 'Story Point', field: 'story_point' },
@@ -185,11 +152,6 @@ const Tables = props => {
       {
         title: 'Status',
         field: 'status',
-        lookup: {
-          Completed: 'Completed',
-          InProgress: 'InProgress',
-          Incomplete: 'Incomplete'
-        },
         width: '20%'
       },
       { title: 'Code Reviewer', field: 'code_reviewer' }
