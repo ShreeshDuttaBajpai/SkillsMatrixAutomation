@@ -5,7 +5,7 @@ import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 import { CSVLink } from 'react-csv';
 import { setNewData } from '../../redux/common/actions';
-import NavbarContainer from '../Navbar/NavbarContainer';
+// import NavbarContainer from '../Navbar/NavbarContainer';
 import PopupContainer from '../PopupComponent/PopupContainer';
 import TablesContainer from '../TableComponent/TablesContainer';
 
@@ -17,12 +17,12 @@ const UserComponent = ({
   handleEditOpen,
   editForm,
   ticketDetails,
-  userToken,
+  // userToken,
   oldSelectedData
 }) => {
-  const userName = jwt_decode(userToken).Emp_name;
-  const decoded = jwt_decode(userToken);
-  console.log(userName);
+  // const userName = jwt_decode(userToken).Emp_name;
+  // const decoded = jwt_decode(userToken);
+  // console.log(userName);
   const [getdata, setGetdata] = useState();
   const [selected, setSelected] = useState();
 
@@ -35,12 +35,14 @@ const UserComponent = ({
 
   return (
     <div className={css.tab}>
-      <NavbarContainer />
+      {/* <NavbarContainer /> */}
       <div className={css.headers}>
         <h3 className={css.dashboard}>
-          {decoded.Emp_designation === 'Engineering Manager'
-            ? 'Admin Dashboard'
-            : 'User Dashboard'}
+          {
+            // decoded.Emp_designation === 'Engineering Manager'
+            // ? 'Admin Dashboard'
+            'User Dashboard'
+          }
         </h3>
 
         <div className={css.Actionsdiv}>

@@ -4,21 +4,23 @@ import Tables from './Tables';
 import { oldSelectedData } from '../../redux/common/actions';
 
 const mapStateToProps = state => ({
-    ticketDetails: state.authUser.ticketDetails,
-    userToken: state.authUser.userToken
+  ticketDetails: state.authUser.ticketDetails
+  // userToken: state.authUser.userToken
 });
 
 const mapDispatchToProps = dispatch => {
-    return {
-        dashboard: () => {
-            const decoded = jwt_decode(userToken);
-            decoded.Emp_designation === 'Engineering Manager' ? 'Admin Dashboard' : 'User Dashboard'
-        },
-        oldSelectedData: (rows) => {
-            dispatch(oldSelectedData(rows))
-        }
+  return {
+    dashboard: () => {
+      const decoded = jwt_decode(userToken);
+      decoded.Emp_designation === 'Engineering Manager'
+        ? 'Admin Dashboard'
+        : 'User Dashboard';
+    },
+    oldSelectedData: rows => {
+      dispatch(oldSelectedData(rows));
     }
-}
+  };
+};
 
-const TablesContainer=connect (mapStateToProps, mapDispatchToProps) (Tables);
+const TablesContainer = connect(mapStateToProps, mapDispatchToProps)(Tables);
 export default TablesContainer;

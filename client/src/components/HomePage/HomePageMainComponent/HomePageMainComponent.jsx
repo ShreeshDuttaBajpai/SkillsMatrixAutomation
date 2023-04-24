@@ -11,26 +11,26 @@ import grade from '../../../assests/grades.svg';
 import avatar from '../../../assests/avatar2.svg';
 
 const HomePageMainComponent = props => {
-  const { authSuccess } = useAuth();
+  // const { authSuccess } = useAuth();
   <script
     type="text/javascript"
     src="https://alcdn.msauth.net/lib/1.3.0/js/msal.js"
   ></script>;
 
-  useEffect(() => {
-    if (props.myData)
-      axios.post('https://localhost:7040/api/Emp', props.myData).then(res => {
-        const token = res.data;
-        const cookies = new Cookies();
-        cookies.set('my_cookie', token);
-        // window.location.reload();
-        window.location = 'http://localhost:3000/Table';
-      });
-  }, [props.myData]);
+  // useEffect(() => {
+  //   if (props.myData)
+  //     axios.post('https://localhost:7040/api/Emp', props.myData).then(res => {
+  //       const token = res.data;
+  //       const cookies = new Cookies();
+  //       cookies.set('my_cookie', token);
+  //       // window.location.reload();
+  //       window.location = 'http://localhost:3000/Table';
+  //     });
+  // }, [props.myData]);
 
-  useEffect(() => {
-    props.myData;
-  }, [props.myData]);
+  // useEffect(() => {
+  //   props.myData;
+  // }, [props.myData]);
 
   return (
     <div className={css.homes}>
@@ -44,15 +44,15 @@ const HomePageMainComponent = props => {
             <img src={avatar} />
             <h2>Welcome!</h2>
             <div className={css.loginButton}>
-              {authSuccess === true ? (
+              {/* {authSuccess === true ? (
                 <Redirect to="/Table" />
-              ) : (
-                <ButtonComponent
-                  cname={css.button1}
-                  value="Continue With Microsoft"
-                  run={() => props.ContinueWithMicrosoft()}
-                />
-              )}
+              ) : ( */}
+              <ButtonComponent
+                cname={css.button1}
+                value="Continue With Microsoft"
+                // run={() => props.ContinueWithMicrosoft()}
+              />
+              {/* )} */}
             </div>
           </div>
         </div>

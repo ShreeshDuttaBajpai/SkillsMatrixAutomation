@@ -1,11 +1,11 @@
 import React from 'react';
 import ChartsContainer from '../components/ChartsComponent/ChartsContainer';
-import NavbarContainer from '../components/Navbar/NavbarContainer.js';
+// import NavbarContainer from '../components/Navbar/NavbarContainer.js';
 
 function ReportsPage() {
   return (
     <div>
-      <NavbarContainer />
+      {/* <NavbarContainer /> */}
       <ChartsContainer />
     </div>
   );

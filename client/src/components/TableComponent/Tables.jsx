@@ -51,13 +51,11 @@ const tableIcons = {
 const Tables = props => {
   // const { userToken } = useAuth();
   const rawData = [];
-  console.log(props.userToken, 'userToken');
-  const decoded = jwt_decode(props.userToken);
-  console.log(decoded);
+  // console.log(props.userToken, 'userToken');
+  // const decoded = jwt_decode(props.userToken);
+  // console.log(decoded);
   const api = axios.create({
-    baseURL: `https://localhost:7040/api/${
-      decoded.Emp_designation === 'Engineering Manager' ? 'Admin' : 'User'
-    }`
+    baseURL: `https://localhost:44325/`
   });
 
   if (window.location.pathname === '/CodeReview') {
@@ -84,7 +82,7 @@ const Tables = props => {
       {
         title: 'Name',
         field: 'name',
-        initialEditValue: decoded.Emp_name,
+        initialEditValue: 'decoded.Emp_name',
         editable: 'never',
         cellStyle: {
           textOverflow: 'ellipsis',
@@ -152,7 +150,7 @@ const Tables = props => {
       {
         title: 'Name',
         field: 'name',
-        initialEditValue: decoded.Emp_name,
+        initialEditValue: 'decoded.Emp_name',
         editable: 'never',
         cellStyle: {
           textOverflow: 'ellipsis',
@@ -200,39 +198,33 @@ const Tables = props => {
   const [iserror, setIserror] = useState(false);
   const [errorMessages, setErrorMessages] = useState([]);
 
-  const getData = async () => {
-    const response = await CodeReviewapi(decoded);
-    console.log(props.response, 'gagan');
-    return response;
-  };
+  // const getData = async () => {
+  //   const response = await CodeReviewapi(decoded);
+  //   console.log(props.response, 'gagan');
+  //   return response;
+  // };
 
   useEffect(() => {
-    if (window.location.pathname === '/CodeReview') {
-      getData()
-        .then(res => {
-          props.setData(res);
-          console.log(res);
-        })
-        .catch(error => {
-          console.log('Error' + error);
-        });
-    } else {
-      api
-        .get(
-          `/${
-            decoded.Emp_designation === 'Engineering Manager'
-              ? ''
-              : decoded.Emp_id
-          }`
-        )
-        .then(res => {
-          props.setData(res.data);
-          console.log(res.data);
-        })
-        .catch(error => {
-          console.log('Error');
-        });
-    }
+    // if (window.location.pathname === '/CodeReview') {
+    //   getData()
+    //     .then(res => {
+    //       props.setData(res);
+    //       console.log(res);
+    //     })
+    //     .catch(error => {
+    //       console.log('Error' + error);
+    //     });
+    // } else {
+    api
+      .get(`storytracker`)
+      .then(res => {
+        props.setData(res.data);
+        console.log(res.data);
+      })
+      .catch(error => {
+        console.log('Error');
+      });
+    // }
   }, []);
 
   //   const handleRowUpdate = (newData, oldData, resolve) => {

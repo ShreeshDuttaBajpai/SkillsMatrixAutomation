@@ -1,14 +1,22 @@
 import { connect } from 'react-redux';
-import { editopen, tabledel, tableupd, toggleOpen } from '../../redux/common/actions';
-import { deleteUser, updateUser } from '../../services/UserServices/UserService';
+import {
+  editopen,
+  tabledel,
+  tableupd,
+  toggleOpen
+} from '../../redux/common/actions';
+import {
+  deleteUser,
+  updateUser
+} from '../../services/UserServices/UserService';
 import UserComponent from './UserComponent';
 
 const mapStateToProps = state => ({
   data: state.tableUser.data,
   openForm: state.tableUser.openForm,
   editForm: state.tableUser.editForm,
-  ticketDetails: state.authUser.ticketDetails,
-  userToken: state.authUser.userToken
+  ticketDetails: state.authUser.ticketDetails
+  // userToken: state.authUser.userToken
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -19,15 +27,17 @@ const mapDispatchToProps = dispatch => ({
           alert('Ticket Deleted successfully!!');
           dispatch(tabledel(oldData));
           window.location.reload();
-   
         }
       );
       return deluser;
     }
   },
 
-  handleRowUpdate: async (ticketDetails) => {
-    const update = await updateUser(`/User/${ticketDetails.ticket_no}`, ticketDetails)
+  handleRowUpdate: async ticketDetails => {
+    const update = await updateUser(
+      `/User/${ticketDetails.ticket_no}`,
+      ticketDetails
+    )
       .then(res => {
         alert('Ticket Edited successfully!!');
         const dataUpdate = [...data];
@@ -43,15 +53,14 @@ const mapDispatchToProps = dispatch => ({
     return update;
   },
 
-  handleOpen: (openForm)=>{
-    dispatch(toggleOpen(openForm))
+  handleOpen: openForm => {
+    dispatch(toggleOpen(openForm));
   },
 
-  handleEditOpen:(editForm)=>{
+  handleEditOpen: editForm => {
     console.log(editForm);
-    dispatch(editopen(editForm))
+    dispatch(editopen(editForm));
   }
-  
 });
 
 const UserContainer = connect(

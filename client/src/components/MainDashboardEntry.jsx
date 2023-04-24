@@ -4,9 +4,9 @@ import InactivityLogout from './InactivityLogout';
 
 const MainDashboardEntry = () => {
   return (
-    <InactivityLogout>
-      <TablePage />
-    </InactivityLogout>
+    // <InactivityLogout>
+    <TablePage />
+    // </InactivityLogout>
   );
 };
 export default MainDashboardEntry;

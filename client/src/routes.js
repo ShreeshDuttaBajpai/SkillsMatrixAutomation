@@ -6,13 +6,13 @@ import MainPage from './Pages/HomePage';
 import Cookies from 'universal-cookie';
 import { AuthProvider } from './components/auth.context';
 import jwt_decode from 'jwt-decode';
-import TablePage from './Pages/TablePage'
+import TablePage from './Pages/TablePage';
 import CodeReviewPage from './Pages/CodeReviewPage';
 import ReportsPage from './Pages/ReportsPage';
 import Navbar from './components/Navbar/Navbar';
-import ProtectedRoute from "./components/ProtectedRoute";
-import MainDashboardEntry from "./components/MainDashboardEntry";
-import configureStore from './store/main'
+import ProtectedRoute from './components/ProtectedRoute';
+import MainDashboardEntry from './components/MainDashboardEntry';
+import configureStore from './store/main';
 
 const store = configureStore();
 
@@ -25,24 +25,32 @@ const App = () => {
     const Emp_id = decoded_token.Emp_id;
   }
 
-  return <div>
-    {
-  <Provider store={store}>
-  <AuthProvider tokenData={tokenData}>
-    <Router>
-      <div>
-      {/* <Navbar /> */}
-        <Switch>
-          <Route exact path="/" component={MainPage} />
-          <ProtectedRoute path="/Table" component={MainDashboardEntry} />
-          <Route path="/CodeReview" component={CodeReviewPage} />
-          <Route path="/Reports" component={ReportsPage} />
+  return (
+    <div>
+      {
+        <Provider store={store}>
+          {/* <AuthProvider tokenData={tokenData}> */}
+          <Router>
+            <div>
+              {/* <Navbar /> */}
+              <Switch>
+                <Route exact path="/" component={MainPage} />
+                <Route path="/Table" component={MainDashboardEntry} />
+                {/* <ProtectedRoute
+                    path="/Table"
+                    component={MainDashboardEntry}
+                  /> */}
+                <Route path="/CodeReview" component={CodeReviewPage} />
+                <Route path="/Reports" component={ReportsPage} />
 
-          <Route component={NoMatch} />
-        </Switch>
-      </div>
-    </Router>
-  </AuthProvider>
-</Provider>}</div>;
+                <Route component={NoMatch} />
+              </Switch>
+            </div>
+          </Router>
+          {/* </AuthProvider> */}
+        </Provider>
+      }
+    </div>
+  );
 };
 export default App;
