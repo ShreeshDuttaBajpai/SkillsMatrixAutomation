@@ -27,7 +27,7 @@ public class EntityFrameworkCoreStoryTrackerDbSchemaMigrator
          */
 
         await _serviceProvider
-            .GetRequiredService<StoryTrackerDbContext>()
+            .GetRequiredService<SkillsMatrixDbContext>()
             .Database
             .MigrateAsync();
     }

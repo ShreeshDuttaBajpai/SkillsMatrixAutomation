@@ -353,6 +353,34 @@ namespace Abp.StoryTracker.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CategoryMaster",
+                columns: table => new
+                {
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CategoryMaster", x => x.CategoryId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ClientMaster",
+                columns: table => new
+                {
+                    ClientId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClientName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ClientDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ClientMaster", x => x.ClientId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "OpenIddictApplications",
                 columns: table => new
                 {
@@ -665,6 +693,52 @@ namespace Abp.StoryTracker.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SkillsSubCategory",
+                columns: table => new
+                {
+                    SubCategoryId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClientIdFK = table.Column<int>(type: "int", nullable: true),
+                    CategoryIdFK = table.Column<int>(type: "int", nullable: true),
+                    SubCategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SubCategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SkillsSubCategory", x => x.SubCategoryId);
+                    table.ForeignKey(
+                        name: "FK_SkillsSubCategory_CategoryMaster_CategoryIdFK",
+                        column: x => x.CategoryIdFK,
+                        principalTable: "CategoryMaster",
+                        principalColumn: "CategoryId");
+                    table.ForeignKey(
+                        name: "FK_SkillsSubCategory_ClientMaster_ClientIdFK",
+                        column: x => x.ClientIdFK,
+                        principalTable: "ClientMaster",
+                        principalColumn: "ClientId");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TeamMaster",
+                columns: table => new
+                {
+                    TeamId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClientIdFK = table.Column<int>(type: "int", nullable: true),
+                    TeamName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TeamDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TeamMaster", x => x.TeamId);
+                    table.ForeignKey(
+                        name: "FK_TeamMaster_ClientMaster_ClientIdFK",
+                        column: x => x.ClientIdFK,
+                        principalTable: "ClientMaster",
+                        principalColumn: "ClientId");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "OpenIddictAuthorizations",
                 columns: table => new
                 {
@@ -717,6 +791,32 @@ namespace Abp.StoryTracker.Migrations
                         principalTable: "AbpEntityChanges",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SkillsMatrix",
+                columns: table => new
+                {
+                    EmployeeId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TeamIdFK = table.Column<int>(type: "int", nullable: true),
+                    SubCategoryIdFK = table.Column<int>(type: "int", nullable: true),
+                    ClientExpectedScore = table.Column<int>(type: "int", nullable: false),
+                    Score = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SkillsMatrix", x => x.EmployeeId);
+                    table.ForeignKey(
+                        name: "FK_SkillsMatrix_SkillsSubCategory_SubCategoryIdFK",
+                        column: x => x.SubCategoryIdFK,
+                        principalTable: "SkillsSubCategory",
+                        principalColumn: "SubCategoryId");
+                    table.ForeignKey(
+                        name: "FK_SkillsMatrix_TeamMaster_TeamIdFK",
+                        column: x => x.TeamIdFK,
+                        principalTable: "TeamMaster",
+                        principalColumn: "TeamId");
                 });
 
             migrationBuilder.CreateTable(
@@ -981,6 +1081,31 @@ namespace Abp.StoryTracker.Migrations
                 name: "IX_OpenIddictTokens_ReferenceId",
                 table: "OpenIddictTokens",
                 column: "ReferenceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SkillsMatrix_SubCategoryIdFK",
+                table: "SkillsMatrix",
+                column: "SubCategoryIdFK");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SkillsMatrix_TeamIdFK",
+                table: "SkillsMatrix",
+                column: "TeamIdFK");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SkillsSubCategory_CategoryIdFK",
+                table: "SkillsSubCategory",
+                column: "CategoryIdFK");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SkillsSubCategory_ClientIdFK",
+                table: "SkillsSubCategory",
+                column: "ClientIdFK");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TeamMaster_ClientIdFK",
+                table: "TeamMaster",
+                column: "ClientIdFK");
         }
 
         /// <inheritdoc />
@@ -1056,6 +1181,9 @@ namespace Abp.StoryTracker.Migrations
                 name: "OpenIddictTokens");
 
             migrationBuilder.DropTable(
+                name: "SkillsMatrix");
+
+            migrationBuilder.DropTable(
                 name: "StoryTrackerTable");
 
             migrationBuilder.DropTable(
@@ -1077,10 +1205,22 @@ namespace Abp.StoryTracker.Migrations
                 name: "OpenIddictAuthorizations");
 
             migrationBuilder.DropTable(
+                name: "SkillsSubCategory");
+
+            migrationBuilder.DropTable(
+                name: "TeamMaster");
+
+            migrationBuilder.DropTable(
                 name: "AbpAuditLogs");
 
             migrationBuilder.DropTable(
                 name: "OpenIddictApplications");
+
+            migrationBuilder.DropTable(
+                name: "CategoryMaster");
+
+            migrationBuilder.DropTable(
+                name: "ClientMaster");
         }
     }
 }

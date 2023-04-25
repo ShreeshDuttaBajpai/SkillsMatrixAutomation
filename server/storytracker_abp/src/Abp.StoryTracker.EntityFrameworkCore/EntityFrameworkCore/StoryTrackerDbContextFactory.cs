@@ -8,18 +8,18 @@ namespace Abp.StoryTracker.EntityFrameworkCore;
 
 /* This class is needed for EF Core console commands
  * (like Add-Migration and Update-Database commands) */
-public class StoryTrackerDbContextFactory : IDesignTimeDbContextFactory<StoryTrackerDbContext>
+public class StoryTrackerDbContextFactory : IDesignTimeDbContextFactory<SkillsMatrixDbContext>
 {
-    public StoryTrackerDbContext CreateDbContext(string[] args)
+    public SkillsMatrixDbContext CreateDbContext(string[] args)
     {
         StoryTrackerEfCoreEntityExtensionMappings.Configure();
 
         var configuration = BuildConfiguration();
 
-        var builder = new DbContextOptionsBuilder<StoryTrackerDbContext>()
+        var builder = new DbContextOptionsBuilder<SkillsMatrixDbContext>()
             .UseSqlServer(configuration.GetConnectionString("Default"));
 
-        return new StoryTrackerDbContext(builder.Options);
+        return new SkillsMatrixDbContext(builder.Options);
     }
 
     private static IConfigurationRoot BuildConfiguration()

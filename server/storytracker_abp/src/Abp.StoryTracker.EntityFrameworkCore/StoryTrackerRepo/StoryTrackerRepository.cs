@@ -14,9 +14,9 @@ using Volo.Abp.ObjectMapping;
 
 namespace Abp.StoryTracker.StoryTrackerRepo
 {
-    public class StoryTrackerRepository : DapperRepository<StoryTrackerDbContext>, IStoryTrackerRepository
+    public class StoryTrackerRepository : DapperRepository<SkillsMatrixDbContext>, IStoryTrackerRepository
     {
-        public StoryTrackerRepository(IDbContextProvider<StoryTrackerDbContext> dbContextProvider) : base(dbContextProvider)
+        public StoryTrackerRepository(IDbContextProvider<SkillsMatrixDbContext> dbContextProvider) : base(dbContextProvider)
         {
         }
 

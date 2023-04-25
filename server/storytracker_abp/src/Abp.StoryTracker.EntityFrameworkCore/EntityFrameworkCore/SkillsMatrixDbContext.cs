@@ -20,8 +20,8 @@ namespace Abp.StoryTracker.EntityFrameworkCore;
 [ReplaceDbContext(typeof(IIdentityDbContext))]
 [ReplaceDbContext(typeof(ITenantManagementDbContext))]
 [ConnectionStringName("Default")]
-public class StoryTrackerDbContext :
-    AbpDbContext<StoryTrackerDbContext>,
+public class SkillsMatrixDbContext :
+    AbpDbContext<SkillsMatrixDbContext>,
     IIdentityDbContext,
     ITenantManagementDbContext
 {
@@ -52,10 +52,16 @@ public class StoryTrackerDbContext :
     public DbSet<Tenant> Tenants { get; set; }
     public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
     public DbSet<StoryTrackerModel> StoryTrackerModels { get; set; }
+    public DbSet<ClientMasterModel> ClientMasterModels { get; set; }
+    public DbSet<CategoryMasterModel> CategoryMasterModels { get; set; }
+    public DbSet<TeamMasterModel> TeamMasterModels { get; set; }
+    public DbSet<SkillsMatrixModel> SkillsMatrixModels { get; set; }
+    public DbSet<SkillsSubCategoryModel> SkillsSubCategoryModels { get; set; }
+
 
     #endregion
 
-    public StoryTrackerDbContext(DbContextOptions<StoryTrackerDbContext> options)
+    public SkillsMatrixDbContext(DbContextOptions<SkillsMatrixDbContext> options)
         : base(options)
     {
 
@@ -87,9 +93,35 @@ public class StoryTrackerDbContext :
         //    //...
         //});
 
+
+        builder.Entity<CategoryMasterModel>(entity =>
+        {
+            entity.ToTable("CategoryMaster");
+        });
+
+        builder.Entity<ClientMasterModel>(entity =>
+        {
+            entity.ToTable("ClientMaster");
+        });
+
+        builder.Entity<SkillsSubCategoryModel>(entity =>
+        {
+            entity.ToTable("SkillsSubCategory");
+        });
+
         builder.Entity<StoryTrackerModel>(entity =>
         {
-            entity.ToTable("StoryTrackerTable");
+            entity.ToTable("StoryTracker");
+        });
+
+        builder.Entity<TeamMasterModel>(entity =>
+        {
+            entity.ToTable("TeamMaster");
+        });
+
+        builder.Entity<SkillsMatrixModel>(entity =>
+        {
+            entity.ToTable("SkillsMatrix");
         });
     }
 }

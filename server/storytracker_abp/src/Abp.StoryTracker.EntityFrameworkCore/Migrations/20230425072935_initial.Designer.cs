@@ -12,8 +12,8 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace Abp.StoryTracker.Migrations
 {
-    [DbContext(typeof(StoryTrackerDbContext))]
-    [Migration("20230424060906_initial")]
+    [DbContext(typeof(SkillsMatrixDbContext))]
+    [Migration("20230425072935_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -26,6 +26,108 @@ namespace Abp.StoryTracker.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Abp.StoryTracker.Models.CategoryMasterModel", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
+
+                    b.Property<string>("CategoryDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("CategoryMaster", (string)null);
+                });
+
+            modelBuilder.Entity("Abp.StoryTracker.Models.ClientMasterModel", b =>
+                {
+                    b.Property<int>("ClientId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClientId"));
+
+                    b.Property<string>("ClientDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClientName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ClientId");
+
+                    b.ToTable("ClientMaster", (string)null);
+                });
+
+            modelBuilder.Entity("Abp.StoryTracker.Models.SkillsMatrixModel", b =>
+                {
+                    b.Property<int>("EmployeeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeId"));
+
+                    b.Property<int>("ClientExpectedScore")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Score")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SubCategoryIdFK")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TeamIdFK")
+                        .HasColumnType("int");
+
+                    b.HasKey("EmployeeId");
+
+                    b.HasIndex("SubCategoryIdFK");
+
+                    b.HasIndex("TeamIdFK");
+
+                    b.ToTable("SkillsMatrix", (string)null);
+                });
+
+            modelBuilder.Entity("Abp.StoryTracker.Models.SkillsSubCategoryModel", b =>
+                {
+                    b.Property<int>("SubCategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SubCategoryId"));
+
+                    b.Property<int?>("CategoryIdFK")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ClientIdFK")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SubCategoryDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SubCategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SubCategoryId");
+
+                    b.HasIndex("CategoryIdFK");
+
+                    b.HasIndex("ClientIdFK");
+
+                    b.ToTable("SkillsSubCategory", (string)null);
+                });
 
             modelBuilder.Entity("Abp.StoryTracker.Models.StoryTrackerModel", b =>
                 {
@@ -62,6 +164,32 @@ namespace Abp.StoryTracker.Migrations
                     b.HasKey("Ticket_no");
 
                     b.ToTable("StoryTrackerTable", (string)null);
+                });
+
+            modelBuilder.Entity("Abp.StoryTracker.Models.TeamMasterModel", b =>
+                {
+                    b.Property<int>("TeamId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TeamId"));
+
+                    b.Property<int?>("ClientIdFK")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TeamDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TeamName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TeamId");
+
+                    b.HasIndex("ClientIdFK");
+
+                    b.ToTable("TeamMaster", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>
@@ -1686,6 +1814,45 @@ namespace Abp.StoryTracker.Migrations
                     b.HasKey("TenantId", "Name");
 
                     b.ToTable("AbpTenantConnectionStrings", (string)null);
+                });
+
+            modelBuilder.Entity("Abp.StoryTracker.Models.SkillsMatrixModel", b =>
+                {
+                    b.HasOne("Abp.StoryTracker.Models.SkillsSubCategoryModel", "SkillsSubCategoryModel")
+                        .WithMany()
+                        .HasForeignKey("SubCategoryIdFK");
+
+                    b.HasOne("Abp.StoryTracker.Models.TeamMasterModel", "TeamMasterModel")
+                        .WithMany()
+                        .HasForeignKey("TeamIdFK");
+
+                    b.Navigation("SkillsSubCategoryModel");
+
+                    b.Navigation("TeamMasterModel");
+                });
+
+            modelBuilder.Entity("Abp.StoryTracker.Models.SkillsSubCategoryModel", b =>
+                {
+                    b.HasOne("Abp.StoryTracker.Models.CategoryMasterModel", "CategoryMasterModel")
+                        .WithMany()
+                        .HasForeignKey("CategoryIdFK");
+
+                    b.HasOne("Abp.StoryTracker.Models.ClientMasterModel", "ClientMasterModel")
+                        .WithMany()
+                        .HasForeignKey("ClientIdFK");
+
+                    b.Navigation("CategoryMasterModel");
+
+                    b.Navigation("ClientMasterModel");
+                });
+
+            modelBuilder.Entity("Abp.StoryTracker.Models.TeamMasterModel", b =>
+                {
+                    b.HasOne("Abp.StoryTracker.Models.ClientMasterModel", "ClientMasterModel")
+                        .WithMany()
+                        .HasForeignKey("ClientIdFK");
+
+                    b.Navigation("ClientMasterModel");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLogAction", b =>
