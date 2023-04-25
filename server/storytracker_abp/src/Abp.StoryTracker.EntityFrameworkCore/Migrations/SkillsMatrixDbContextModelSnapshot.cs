@@ -160,7 +160,7 @@ namespace Abp.StoryTracker.Migrations
 
                     b.HasKey("Ticket_no");
 
-                    b.ToTable("StoryTrackerTable", (string)null);
+                    b.ToTable("StoryTracker", (string)null);
                 });
 
             modelBuilder.Entity("Abp.StoryTracker.Models.TeamMasterModel", b =>

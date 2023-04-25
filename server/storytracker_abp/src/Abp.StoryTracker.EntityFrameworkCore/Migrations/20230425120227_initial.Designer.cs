@@ -13,7 +13,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Abp.StoryTracker.Migrations
 {
     [DbContext(typeof(SkillsMatrixDbContext))]
-    [Migration("20230425072935_initial")]
+    [Migration("20230425120227_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -163,7 +163,7 @@ namespace Abp.StoryTracker.Migrations
 
                     b.HasKey("Ticket_no");
 
-                    b.ToTable("StoryTrackerTable", (string)null);
+                    b.ToTable("StoryTracker", (string)null);
                 });
 
             modelBuilder.Entity("Abp.StoryTracker.Models.TeamMasterModel", b =>

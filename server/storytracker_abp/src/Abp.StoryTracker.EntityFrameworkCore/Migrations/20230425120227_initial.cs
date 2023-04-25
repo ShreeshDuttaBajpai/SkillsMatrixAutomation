@@ -441,7 +441,7 @@ namespace Abp.StoryTracker.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "StoryTrackerTable",
+                name: "StoryTracker",
                 columns: table => new
                 {
                     Ticket_no = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -457,7 +457,7 @@ namespace Abp.StoryTracker.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StoryTrackerTable", x => x.Ticket_no);
+                    table.PrimaryKey("PK_StoryTracker", x => x.Ticket_no);
                 });
 
             migrationBuilder.CreateTable(
@@ -1184,7 +1184,7 @@ namespace Abp.StoryTracker.Migrations
                 name: "SkillsMatrix");
 
             migrationBuilder.DropTable(
-                name: "StoryTrackerTable");
+                name: "StoryTracker");
 
             migrationBuilder.DropTable(
                 name: "AbpEntityChanges");

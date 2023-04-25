@@ -1,0 +1,39 @@
+.clientTeamsDetailsDiv {
+    background-color: aquamarine;
+    margin: 15px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.clientDetailsDiv {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+}
+.clientSpan {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.editClientBtn {
+    background-color: #564ef7;
+    border: none;
+    color: white;
+    padding: 6px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.teamsDetailsDiv {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
