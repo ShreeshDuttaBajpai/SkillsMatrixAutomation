@@ -15,5 +15,7 @@ namespace Abp.StoryTracker.Models
         public string ClientName { get; set; }
         [Required]
         public string ClientDescription { get; set; }
+        public DateTime CreatedOnDateTime { get; set; }
+        public DateTime ModifiedOnDateTime { get; set; }
     }
 }

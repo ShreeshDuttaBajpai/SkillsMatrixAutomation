@@ -51,7 +51,7 @@ public class SkillsMatrixDbContext :
     // Tenant Management
     public DbSet<Tenant> Tenants { get; set; }
     public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
-    public DbSet<StoryTrackerModel> StoryTrackerModels { get; set; }
+    //public DbSet<StoryTrackerModel> StoryTrackerModels { get; set; }
     public DbSet<ClientMasterModel> ClientMasterModels { get; set; }
     public DbSet<CategoryMasterModel> CategoryMasterModels { get; set; }
     public DbSet<TeamMasterModel> TeamMasterModels { get; set; }
@@ -109,10 +109,10 @@ public class SkillsMatrixDbContext :
             entity.ToTable("SkillsSubCategory");
         });
 
-        builder.Entity<StoryTrackerModel>(entity =>
-        {
-            entity.ToTable("StoryTracker");
-        });
+        //builder.Entity<StoryTrackerModel>(entity =>
+        //{
+        //    entity.ToTable("StoryTracker");
+        //});
 
         builder.Entity<TeamMasterModel>(entity =>
         {

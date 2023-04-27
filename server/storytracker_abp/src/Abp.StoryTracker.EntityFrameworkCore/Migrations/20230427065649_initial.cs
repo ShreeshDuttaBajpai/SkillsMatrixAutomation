@@ -359,7 +359,9 @@ namespace Abp.StoryTracker.Migrations
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedOnDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOnDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -373,7 +375,9 @@ namespace Abp.StoryTracker.Migrations
                     ClientId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ClientName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ClientDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ClientDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedOnDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOnDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -438,26 +442,6 @@ namespace Abp.StoryTracker.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OpenIddictScopes", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "StoryTrackerTable",
-                columns: table => new
-                {
-                    Ticket_no = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Team = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Ticket_type = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Story_point = table.Column<int>(type: "int", nullable: false),
-                    Start_date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    End_date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Hours = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Code_reviewer = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StoryTrackerTable", x => x.Ticket_no);
                 });
 
             migrationBuilder.CreateTable(
@@ -701,7 +685,11 @@ namespace Abp.StoryTracker.Migrations
                     ClientIdFK = table.Column<int>(type: "int", nullable: true),
                     CategoryIdFK = table.Column<int>(type: "int", nullable: true),
                     SubCategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SubCategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    SubCategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SubCategoryFunction = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ClientExpectedScore = table.Column<int>(type: "int", nullable: false),
+                    CreatedOnDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOnDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -726,7 +714,9 @@ namespace Abp.StoryTracker.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ClientIdFK = table.Column<int>(type: "int", nullable: true),
                     TeamName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TeamDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    TeamDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedOnDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOnDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -797,12 +787,12 @@ namespace Abp.StoryTracker.Migrations
                 name: "SkillsMatrix",
                 columns: table => new
                 {
-                    EmployeeId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
                     TeamIdFK = table.Column<int>(type: "int", nullable: true),
                     SubCategoryIdFK = table.Column<int>(type: "int", nullable: true),
-                    ClientExpectedScore = table.Column<int>(type: "int", nullable: false),
-                    Score = table.Column<int>(type: "int", nullable: false)
+                    EmpScore = table.Column<int>(type: "int", nullable: false),
+                    CreatedOnDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOnDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1182,9 +1172,6 @@ namespace Abp.StoryTracker.Migrations
 
             migrationBuilder.DropTable(
                 name: "SkillsMatrix");
-
-            migrationBuilder.DropTable(
-                name: "StoryTrackerTable");
 
             migrationBuilder.DropTable(
                 name: "AbpEntityChanges");

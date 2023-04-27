@@ -11,6 +11,7 @@ namespace Abp.StoryTracker.Models
     public class SkillsMatrixModel
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int EmployeeId { get; set; }
 
         public int? TeamIdFK { get; set; }
@@ -22,8 +23,9 @@ namespace Abp.StoryTracker.Models
         public SkillsSubCategoryModel? SkillsSubCategoryModel { get; set; }
 
         [Required]
-        public int ClientExpectedScore { get; set; }
-        [Required]
-        public int Score { get; set; }
+        public int EmpScore { get; set; }
+
+        public DateTime CreatedOnDateTime { get; set; }
+        public DateTime ModifiedOnDateTime { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using Abp.StoryTracker.EntityFrameworkCore;
 using Abp.StoryTracker.Models;
 using Abp.StoryTracker.SkillsMatrixRepoInterface;
 using Abp.StoryTracker.SkillsMatrixServiceInterface;
-using Abp.StoryTracker.StoryTrackerRepoInterface;
+//using Abp.StoryTracker.StoryTrackerRepoInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -84,19 +84,19 @@ namespace Abp.StoryTracker.SkillsMatrixService
         }
 
 
-        public async Task<List<StoryTrackerApplicationContractsModel>> GetStoryTrackerListAsync()
-        {
-            var domainResult = await skillMatrixRepository.GetStoryTrackerListAsync();
-            var applicationResult = new List<StoryTrackerApplicationContractsModel>();
-            foreach (var item in domainResult)
-            {
-                var applicationStory = objectMapper.Map<StoryTrackerModel, StoryTrackerApplicationContractsModel>(item);
-                applicationResult.Add(applicationStory);
-            }
-            //List<string> strings = new List<string>() { "sadgdsa" };
-            //return strings;
-            return applicationResult;
-        }
+        //public async Task<List<StoryTrackerApplicationContractsModel>> GetStoryTrackerListAsync()
+        //{
+        //    var domainResult = await skillMatrixRepository.GetStoryTrackerListAsync();
+        //    var applicationResult = new List<StoryTrackerApplicationContractsModel>();
+        //    foreach (var item in domainResult)
+        //    {
+        //        var applicationStory = objectMapper.Map<StoryTrackerModel, StoryTrackerApplicationContractsModel>(item);
+        //        applicationResult.Add(applicationStory);
+        //    }
+        //    //List<string> strings = new List<string>() { "sadgdsa" };
+        //    //return strings;
+        //    return applicationResult;
+        //}
 
 
         public async Task<List<TeamMasterApplicationContractsModel>> GetTeamListAsync()

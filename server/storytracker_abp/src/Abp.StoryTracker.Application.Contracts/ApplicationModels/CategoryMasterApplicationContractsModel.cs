@@ -15,5 +15,7 @@ namespace Abp.StoryTracker.ApplicationModels
         public string CategoryName { get; set; }
         [Required]
         public string CategoryDescription { get; set; }
+        public DateTime CreatedOnDateTime { get; set; }
+        public DateTime ModifiedOnDateTime { get; set; }
     }
 }

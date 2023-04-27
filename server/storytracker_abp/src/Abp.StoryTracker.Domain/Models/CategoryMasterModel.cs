@@ -10,6 +10,7 @@ namespace Abp.StoryTracker.Models
 {
     public class CategoryMasterModel
     {
+        
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CategoryId { get; set; }
@@ -17,5 +18,7 @@ namespace Abp.StoryTracker.Models
         public string CategoryName { get; set; }
         [Required]
         public string CategoryDescription { get; set; }
+        public DateTime CreatedOnDateTime { get; set; }
+        public DateTime ModifiedOnDateTime { get; set; }
     }
 }

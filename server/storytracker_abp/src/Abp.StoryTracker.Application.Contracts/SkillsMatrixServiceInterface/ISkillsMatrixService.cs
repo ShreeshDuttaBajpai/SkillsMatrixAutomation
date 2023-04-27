@@ -14,7 +14,6 @@ namespace Abp.StoryTracker.SkillsMatrixServiceInterface
         Task<List<TeamMasterApplicationContractsModel>> GetClientTeamListAsync(int clientId);
         Task<List<SkillsMatrixApplicationContractsModel>> GetSkillsMatrixListAsync();
         Task<List<SkillsSubCategoryApplicationContractsModel>> GetSkillsSubCategoryListAsync();
-        Task<List<StoryTrackerApplicationContractsModel>> GetStoryTrackerListAsync();
         Task<List<TeamMasterApplicationContractsModel>> GetTeamListAsync();
     }
 }

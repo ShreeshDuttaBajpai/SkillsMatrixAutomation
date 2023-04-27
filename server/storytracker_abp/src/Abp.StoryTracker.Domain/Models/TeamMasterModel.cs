@@ -11,6 +11,7 @@ namespace Abp.StoryTracker.Models
     public class TeamMasterModel
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TeamId { get; set; }
         public int? ClientIdFK { get; set; }
         [ForeignKey(nameof(ClientIdFK))]
@@ -19,5 +20,7 @@ namespace Abp.StoryTracker.Models
         public string TeamName { get; set; }
         [Required]
         public string TeamDescription { get; set; }
+        public DateTime CreatedOnDateTime { get; set; }
+        public DateTime ModifiedOnDateTime { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Abp.StoryTracker.EntityFrameworkCore;
 using Abp.StoryTracker.Models;
 using Abp.StoryTracker.SkillsMatrixRepoInterface;
-using Abp.StoryTracker.StoryTrackerRepoInterface;
+//using Abp.StoryTracker.StoryTrackerRepoInterface;
 using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -60,13 +60,13 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
             return result;
         }
 
-        public async Task<List<StoryTrackerModel>> GetStoryTrackerListAsync()
-        {
-            var dbConnection = await GetDbConnectionAsync();
-            var result = (await dbConnection.QueryAsync<StoryTrackerModel>("select * from StoryTrackerTable",
-                transaction: await GetDbTransactionAsync())).ToList();
-            return result;
-        }
+        //public async Task<List<StoryTrackerModel>> GetStoryTrackerListAsync()
+        //{
+        //    var dbConnection = await GetDbConnectionAsync();
+        //    var result = (await dbConnection.QueryAsync<StoryTrackerModel>("select * from StoryTrackerTable",
+        //        transaction: await GetDbTransactionAsync())).ToList();
+        //    return result;
+        //}
 
         public async Task<List<TeamMasterModel>> GetTeamListAsync()
         {

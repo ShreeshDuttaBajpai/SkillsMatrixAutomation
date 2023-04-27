@@ -13,7 +13,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Abp.StoryTracker.Migrations
 {
     [DbContext(typeof(SkillsMatrixDbContext))]
-    [Migration("20230425072935_initial")]
+    [Migration("20230427065649_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -43,6 +43,12 @@ namespace Abp.StoryTracker.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreatedOnDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ModifiedOnDateTime")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("CategoryId");
 
                     b.ToTable("CategoryMaster", (string)null);
@@ -64,6 +70,12 @@ namespace Abp.StoryTracker.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreatedOnDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ModifiedOnDateTime")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("ClientId");
 
                     b.ToTable("ClientMaster", (string)null);
@@ -72,16 +84,16 @@ namespace Abp.StoryTracker.Migrations
             modelBuilder.Entity("Abp.StoryTracker.Models.SkillsMatrixModel", b =>
                 {
                     b.Property<int>("EmployeeId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeId"));
+                    b.Property<DateTime>("CreatedOnDateTime")
+                        .HasColumnType("datetime2");
 
-                    b.Property<int>("ClientExpectedScore")
+                    b.Property<int>("EmpScore")
                         .HasColumnType("int");
 
-                    b.Property<int>("Score")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("ModifiedOnDateTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("SubCategoryIdFK")
                         .HasColumnType("int");
@@ -109,10 +121,23 @@ namespace Abp.StoryTracker.Migrations
                     b.Property<int?>("CategoryIdFK")
                         .HasColumnType("int");
 
+                    b.Property<int>("ClientExpectedScore")
+                        .HasColumnType("int");
+
                     b.Property<int?>("ClientIdFK")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("CreatedOnDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ModifiedOnDateTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("SubCategoryDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SubCategoryFunction")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -129,43 +154,6 @@ namespace Abp.StoryTracker.Migrations
                     b.ToTable("SkillsSubCategory", (string)null);
                 });
 
-            modelBuilder.Entity("Abp.StoryTracker.Models.StoryTrackerModel", b =>
-                {
-                    b.Property<string>("Ticket_no")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Code_reviewer")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("End_date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Hours")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Start_date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Story_point")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Team")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Ticket_type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Ticket_no");
-
-                    b.ToTable("StoryTrackerTable", (string)null);
-                });
-
             modelBuilder.Entity("Abp.StoryTracker.Models.TeamMasterModel", b =>
                 {
                     b.Property<int>("TeamId")
@@ -176,6 +164,12 @@ namespace Abp.StoryTracker.Migrations
 
                     b.Property<int?>("ClientIdFK")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedOnDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ModifiedOnDateTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("TeamDescription")
                         .IsRequired()

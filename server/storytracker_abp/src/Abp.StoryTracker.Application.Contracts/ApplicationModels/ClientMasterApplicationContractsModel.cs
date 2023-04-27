@@ -8,6 +8,7 @@ namespace Abp.StoryTracker.ApplicationModels
 {
     public class ClientMasterApplicationContractsModel
     {
+       
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ClientId { get; set; }
@@ -15,5 +16,7 @@ namespace Abp.StoryTracker.ApplicationModels
         public string ClientName { get; set; }
         [Required]
         public string ClientDescription { get; set; }
+        public DateTime CreatedOnDateTime { get; set; }
+        public DateTime ModifiedOnDateTime { get; set; }
     }
 }
