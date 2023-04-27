@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import css from "../PopupComponent/PopupComponent.css";
-import x from "../../assests/x.png";
 
 const PopupComponent = ({ client }) => {
     return (

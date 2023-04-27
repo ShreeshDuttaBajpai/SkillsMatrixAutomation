@@ -1,23 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,500&display=swap");
 
-
-.Navbar{
-
-    background: rgb(23, 7, 43);
+.Navbar {
+    background: rgba(23, 7, 43, 0.897);
     height: 70px;
     display: flex;
     color: aliceblue;
     position: sticky;
 }
 
-.logoImage{
+.logoImage {
     height: 40px;
     width: 45px;
     border-radius: 60%;
 }
 
-.navbarBrand, 
-.navbarBrand a{
+.navbarBrand,
+.navbarBrand a {
     margin-top: 6px;
     margin-right: 10px;
     margin-left: 0.5rem;
@@ -28,14 +26,14 @@
     text-transform: uppercase;
 }
 
-.Left_Navbar_Headings{
-    margin-left: 50px;
+.Left_Navbar_Headings {
+    margin-left: 25px;
     display: flex;
     align-items: center;
-    width:100%;
+    width: 100%;
 }
 
-.NavbarItems{
+.NavbarItems {
     justify-content: space-between;
     width: 100%;
     display: flex;
@@ -43,13 +41,13 @@
     cursor: pointer;
     text-transform: uppercase;
     color: white;
-    font-size: 17px; 
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    margin-top: 4px; 
+    font-size: 17px;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    margin-top: 4px;
 }
 
 .headings,
-.headings a{
+.headings a {
     display: inline;
     color: white;
     cursor: pointer;
@@ -58,22 +56,21 @@
     margin-right: 6px;
     margin-left: 6px;
     text-align: justify;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
-.headings a:hover{
+.headings a:hover {
     color: #b9a2c7;
 }
 
-.right_navbarHeadings{
+.right_navbarHeadings {
     display: inline-flex;
     margin-left: 27.3rem;
     position: absolute;
     justify-content: end;
 }
 
-
-.right_navbarHeadingsBeforeLogin{
+.right_navbarHeadingsBeforeLogin {
     display: inline-flex;
     margin-left: 56rem;
 }

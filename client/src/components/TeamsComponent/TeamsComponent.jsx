@@ -5,7 +5,7 @@ const TeamsComponent = ({ team }) => {
     return (
         <div className={css.teamsDiv}>
             <span className={css.teamSpan}>
-                {team.teamId}: {team.teamName} - {team.teamDescription}
+                {team.teamName} - {team.teamDescription}
             </span>
         </div>
     );
