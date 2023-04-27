@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Abp.StoryTracker.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class init1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -444,20 +444,20 @@ namespace Abp.StoryTracker.Migrations
                 name: "StoryTracker",
                 columns: table => new
                 {
-                    Ticket_no = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Ticketno = table.Column<string>(name: "Ticket_no", type: "nvarchar(450)", nullable: false),
                     Team = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Ticket_type = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Story_point = table.Column<int>(type: "int", nullable: false),
-                    Start_date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    End_date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Tickettype = table.Column<string>(name: "Ticket_type", type: "nvarchar(max)", nullable: true),
+                    Storypoint = table.Column<int>(name: "Story_point", type: "int", nullable: false),
+                    Startdate = table.Column<DateTime>(name: "Start_date", type: "datetime2", nullable: false),
+                    Enddate = table.Column<DateTime>(name: "End_date", type: "datetime2", nullable: false),
                     Hours = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Code_reviewer = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Codereviewer = table.Column<string>(name: "Code_reviewer", type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StoryTracker", x => x.Ticket_no);
+                    table.PrimaryKey("PK_StoryTracker", x => x.Ticketno);
                 });
 
             migrationBuilder.CreateTable(

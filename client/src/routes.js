@@ -13,6 +13,7 @@ import Navbar from './components/Navbar/Navbar';
 import ProtectedRoute from './components/ProtectedRoute';
 import MainDashboardEntry from './components/MainDashboardEntry';
 import configureStore from './store/main';
+import ClientsCard from './components/ClientsCard/ClientsCard';
 
 const store = configureStore();
 
@@ -36,6 +37,7 @@ const App = () => {
               <Switch>
                 <Route exact path="/" component={MainPage} />
                 <Route path="/Table" component={MainDashboardEntry} />
+                <Route path="/card" component={ClientsCard} />
                 {/* <ProtectedRoute
                     path="/Table"
                     component={MainDashboardEntry}
