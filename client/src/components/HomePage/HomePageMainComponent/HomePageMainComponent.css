@@ -18,6 +18,9 @@ body {
 }
 .clientsContainerDiv {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .addClientBtn {
     background-color: #564ef7;
@@ -30,6 +33,7 @@ body {
     font-size: 16px;
     cursor: pointer;
     border-radius: 10px;
+    margin-top: 20px;
 }
 button {
     transition: 0.2s ease all;

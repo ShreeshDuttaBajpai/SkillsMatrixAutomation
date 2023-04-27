@@ -19,8 +19,7 @@ const ClientsComponent = ({ client }) => {
         <div className={css.clientTeamsDetailsDiv}>
             <div className={css.clientDetailsDiv}>
                 <span className={css.clientSpan}>
-                    {client.clientId}: {client.clientName} -{" "}
-                    {client.clientDescription}
+                    {client.clientName} - {client.clientDescription}
                     <ButtonComponent
                         handleClick={() =>
                             handleEditPopupOpen(setEditPopupOpen)

@@ -6,9 +6,6 @@ import { useAuth } from "../../auth.context";
 import Cookies from "universal-cookie";
 import { ButtonComponent } from "../../ButtonComponent/ButtonComponent";
 import { Redirect } from "react-router-dom";
-import wave from "../../../assests/wave3.png";
-import grade from "../../../assests/grades.svg";
-import avatar from "../../../assests/avatar2.svg";
 import { getClientsList } from "../../ClientsComponent/ClientsComponentFunctions";
 import ClientsComponent from "../../ClientsComponent/ClientsComponent";
 

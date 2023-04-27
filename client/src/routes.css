@@ -1,0 +1,6 @@
+.appContainerDiv {
+    background-color: rgb(247, 246, 229);
+}
+.mainContainerDiv {
+    display: flex;
+}
