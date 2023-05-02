@@ -6,22 +6,26 @@ using System.Text;
 
 namespace Abp.StoryTracker.ApplicationModels
 {
-    public class TeamMasterApplicationContractsModel
+    public class SubCategoryMasterApplicationContractsModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public int ClientId { get; set; }
+        public int? ClientId { get; set; }
         [ForeignKey(nameof(ClientId))]
         public ClientMasterApplicationContractsModel? ClientMasterApplicationContractsModel { get; set; }
 
+        public int? CategoryId { get; set; }
+        [ForeignKey(nameof(CategoryId))]
+        public CategoryMasterApplicationContractsModel? CategoryMasterApplicationContractsModel { get; set; }
+
         [Required]
         [Column(TypeName = "varchar(50)")]
-        public string TeamName { get; set; }
+        public string SubCategoryName { get; set; }
         [Required]
         [Column(TypeName = "varchar(250)")]
-        public string TeamDescription { get; set; }
+        public string SubCategoryDescription { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime CreatedOn { get; set; }
         [Column(TypeName = "datetime")]
