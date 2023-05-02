@@ -13,6 +13,7 @@ import Navbar from './components/Navbar/Navbar';
 import ProtectedRoute from './components/ProtectedRoute';
 import MainDashboardEntry from './components/MainDashboardEntry';
 import configureStore from './store/main';
+import LoginPage from './Pages/LoginPage';
 
 const store = configureStore();
 
@@ -34,7 +35,7 @@ const App = () => {
             <div>
               {/* <Navbar /> */}
               <Switch>
-                <Route exact path="/" component={MainPage} />
+                <Route exact path="/" component={LoginPage} />
                 <Route path="/Table" component={MainDashboardEntry} />
                 {/* <ProtectedRoute
                     path="/Table"
