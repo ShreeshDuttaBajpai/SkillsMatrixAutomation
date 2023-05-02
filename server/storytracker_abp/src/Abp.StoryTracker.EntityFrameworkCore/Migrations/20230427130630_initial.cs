@@ -356,32 +356,33 @@ namespace Abp.StoryTracker.Migrations
                 name: "CategoryMaster",
                 columns: table => new
                 {
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedOnDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedOnDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    CategoryFunction = table.Column<string>(type: "varchar(50)", nullable: false),
+                    CategoryName = table.Column<string>(type: "varchar(50)", nullable: false),
+                    CategoryDescription = table.Column<string>(type: "varchar(250)", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CategoryMaster", x => x.CategoryId);
+                    table.PrimaryKey("PK_CategoryMaster", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "ClientMaster",
                 columns: table => new
                 {
-                    ClientId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ClientName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ClientDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedOnDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedOnDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    ClientName = table.Column<string>(type: "varchar(50)", nullable: false),
+                    ClientDescription = table.Column<string>(type: "varchar(250)", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ClientMaster", x => x.ClientId);
+                    table.PrimaryKey("PK_ClientMaster", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -677,55 +678,54 @@ namespace Abp.StoryTracker.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SkillsSubCategory",
+                name: "SubCategoryMaster",
                 columns: table => new
                 {
-                    SubCategoryId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ClientIdFK = table.Column<int>(type: "int", nullable: true),
-                    CategoryIdFK = table.Column<int>(type: "int", nullable: true),
-                    SubCategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SubCategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SubCategoryFunction = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ClientExpectedScore = table.Column<int>(type: "int", nullable: false),
-                    CreatedOnDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedOnDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    ClientId = table.Column<int>(type: "int", nullable: true),
+                    CategoryId = table.Column<int>(type: "int", nullable: true),
+                    SubCategoryName = table.Column<string>(type: "varchar(50)", nullable: false),
+                    SubCategoryDescription = table.Column<string>(type: "varchar(250)", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SkillsSubCategory", x => x.SubCategoryId);
+                    table.PrimaryKey("PK_SubCategoryMaster", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SkillsSubCategory_CategoryMaster_CategoryIdFK",
-                        column: x => x.CategoryIdFK,
+                        name: "FK_SubCategoryMaster_CategoryMaster_CategoryId",
+                        column: x => x.CategoryId,
                         principalTable: "CategoryMaster",
-                        principalColumn: "CategoryId");
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_SkillsSubCategory_ClientMaster_ClientIdFK",
-                        column: x => x.ClientIdFK,
+                        name: "FK_SubCategoryMaster_ClientMaster_ClientId",
+                        column: x => x.ClientId,
                         principalTable: "ClientMaster",
-                        principalColumn: "ClientId");
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "TeamMaster",
                 columns: table => new
                 {
-                    TeamId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ClientIdFK = table.Column<int>(type: "int", nullable: true),
-                    TeamName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TeamDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedOnDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedOnDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    ClientId = table.Column<int>(type: "int", nullable: false),
+                    TeamName = table.Column<string>(type: "varchar(50)", nullable: false),
+                    TeamDescription = table.Column<string>(type: "varchar(250)", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TeamMaster", x => x.TeamId);
+                    table.PrimaryKey("PK_TeamMaster", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TeamMaster_ClientMaster_ClientIdFK",
-                        column: x => x.ClientIdFK,
+                        name: "FK_TeamMaster_ClientMaster_ClientId",
+                        column: x => x.ClientId,
                         principalTable: "ClientMaster",
-                        principalColumn: "ClientId");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -788,25 +788,52 @@ namespace Abp.StoryTracker.Migrations
                 columns: table => new
                 {
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
-                    TeamIdFK = table.Column<int>(type: "int", nullable: true),
-                    SubCategoryIdFK = table.Column<int>(type: "int", nullable: true),
-                    EmpScore = table.Column<int>(type: "int", nullable: false),
-                    CreatedOnDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedOnDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    TeamId = table.Column<int>(type: "int", nullable: true),
+                    SubCategoryId = table.Column<int>(type: "int", nullable: true),
+                    EmployeeScore = table.Column<int>(type: "int", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SkillsMatrix", x => x.EmployeeId);
                     table.ForeignKey(
-                        name: "FK_SkillsMatrix_SkillsSubCategory_SubCategoryIdFK",
-                        column: x => x.SubCategoryIdFK,
-                        principalTable: "SkillsSubCategory",
-                        principalColumn: "SubCategoryId");
+                        name: "FK_SkillsMatrix_SubCategoryMaster_SubCategoryId",
+                        column: x => x.SubCategoryId,
+                        principalTable: "SubCategoryMaster",
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_SkillsMatrix_TeamMaster_TeamIdFK",
-                        column: x => x.TeamIdFK,
+                        name: "FK_SkillsMatrix_TeamMaster_TeamId",
+                        column: x => x.TeamId,
                         principalTable: "TeamMaster",
-                        principalColumn: "TeamId");
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SubCategoryMapping",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TeamId = table.Column<int>(type: "int", nullable: true),
+                    SubCategoryId = table.Column<int>(type: "int", nullable: true),
+                    ClientExpectedScore = table.Column<int>(type: "int", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SubCategoryMapping", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SubCategoryMapping_SubCategoryMaster_SubCategoryId",
+                        column: x => x.SubCategoryId,
+                        principalTable: "SubCategoryMaster",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_SubCategoryMapping_TeamMaster_TeamId",
+                        column: x => x.TeamId,
+                        principalTable: "TeamMaster",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -1073,29 +1100,39 @@ namespace Abp.StoryTracker.Migrations
                 column: "ReferenceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SkillsMatrix_SubCategoryIdFK",
+                name: "IX_SkillsMatrix_SubCategoryId",
                 table: "SkillsMatrix",
-                column: "SubCategoryIdFK");
+                column: "SubCategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SkillsMatrix_TeamIdFK",
+                name: "IX_SkillsMatrix_TeamId",
                 table: "SkillsMatrix",
-                column: "TeamIdFK");
+                column: "TeamId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SkillsSubCategory_CategoryIdFK",
-                table: "SkillsSubCategory",
-                column: "CategoryIdFK");
+                name: "IX_SubCategoryMapping_SubCategoryId",
+                table: "SubCategoryMapping",
+                column: "SubCategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SkillsSubCategory_ClientIdFK",
-                table: "SkillsSubCategory",
-                column: "ClientIdFK");
+                name: "IX_SubCategoryMapping_TeamId",
+                table: "SubCategoryMapping",
+                column: "TeamId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TeamMaster_ClientIdFK",
+                name: "IX_SubCategoryMaster_CategoryId",
+                table: "SubCategoryMaster",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SubCategoryMaster_ClientId",
+                table: "SubCategoryMaster",
+                column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TeamMaster_ClientId",
                 table: "TeamMaster",
-                column: "ClientIdFK");
+                column: "ClientId");
         }
 
         /// <inheritdoc />
@@ -1174,6 +1211,9 @@ namespace Abp.StoryTracker.Migrations
                 name: "SkillsMatrix");
 
             migrationBuilder.DropTable(
+                name: "SubCategoryMapping");
+
+            migrationBuilder.DropTable(
                 name: "AbpEntityChanges");
 
             migrationBuilder.DropTable(
@@ -1192,7 +1232,7 @@ namespace Abp.StoryTracker.Migrations
                 name: "OpenIddictAuthorizations");
 
             migrationBuilder.DropTable(
-                name: "SkillsSubCategory");
+                name: "SubCategoryMaster");
 
             migrationBuilder.DropTable(
                 name: "TeamMaster");

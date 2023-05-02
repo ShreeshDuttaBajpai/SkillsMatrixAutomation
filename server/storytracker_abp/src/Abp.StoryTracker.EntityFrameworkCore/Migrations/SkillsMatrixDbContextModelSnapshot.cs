@@ -26,54 +26,58 @@ namespace Abp.StoryTracker.Migrations
 
             modelBuilder.Entity("Abp.StoryTracker.Models.CategoryMasterModel", b =>
                 {
-                    b.Property<int>("CategoryId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CategoryDescription")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(250)");
+
+                    b.Property<string>("CategoryFunction")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(50)");
 
-                    b.Property<DateTime>("CreatedOnDateTime")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime");
 
-                    b.Property<DateTime>("ModifiedOnDateTime")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("datetime");
 
-                    b.HasKey("CategoryId");
+                    b.HasKey("Id");
 
                     b.ToTable("CategoryMaster", (string)null);
                 });
 
             modelBuilder.Entity("Abp.StoryTracker.Models.ClientMasterModel", b =>
                 {
-                    b.Property<int>("ClientId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClientId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClientDescription")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(250)");
 
                     b.Property<string>("ClientName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(50)");
 
-                    b.Property<DateTime>("CreatedOnDateTime")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime");
 
-                    b.Property<DateTime>("ModifiedOnDateTime")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("datetime");
 
-                    b.HasKey("ClientId");
+                    b.HasKey("Id");
 
                     b.ToTable("ClientMaster", (string)null);
                 });
@@ -83,102 +87,127 @@ namespace Abp.StoryTracker.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedOnDateTime")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime");
 
-                    b.Property<int>("EmpScore")
+                    b.Property<int>("EmployeeScore")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ModifiedOnDateTime")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("datetime");
 
-                    b.Property<int?>("SubCategoryIdFK")
+                    b.Property<int?>("SubCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TeamIdFK")
+                    b.Property<int?>("TeamId")
                         .HasColumnType("int");
 
                     b.HasKey("EmployeeId");
 
-                    b.HasIndex("SubCategoryIdFK");
+                    b.HasIndex("SubCategoryId");
 
-                    b.HasIndex("TeamIdFK");
+                    b.HasIndex("TeamId");
 
                     b.ToTable("SkillsMatrix", (string)null);
                 });
 
-            modelBuilder.Entity("Abp.StoryTracker.Models.SkillsSubCategoryModel", b =>
+            modelBuilder.Entity("Abp.StoryTracker.Models.SubCategoryMappingModel", b =>
                 {
-                    b.Property<int>("SubCategoryId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SubCategoryId"));
-
-                    b.Property<int?>("CategoryIdFK")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ClientExpectedScore")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ClientIdFK")
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("datetime");
+
+                    b.Property<int?>("SubCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedOnDateTime")
-                        .HasColumnType("datetime2");
+                    b.Property<int?>("TeamId")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ModifiedOnDateTime")
-                        .HasColumnType("datetime2");
+                    b.HasKey("Id");
+
+                    b.HasIndex("SubCategoryId");
+
+                    b.HasIndex("TeamId");
+
+                    b.ToTable("SubCategoryMapping", (string)null);
+                });
+
+            modelBuilder.Entity("Abp.StoryTracker.Models.SubCategoryMasterModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("SubCategoryDescription")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SubCategoryFunction")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(250)");
 
                     b.Property<string>("SubCategoryName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(50)");
 
-                    b.HasKey("SubCategoryId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CategoryIdFK");
+                    b.HasIndex("CategoryId");
 
-                    b.HasIndex("ClientIdFK");
+                    b.HasIndex("ClientId");
 
-                    b.ToTable("SkillsSubCategory", (string)null);
+                    b.ToTable("SubCategoryMaster", (string)null);
                 });
 
             modelBuilder.Entity("Abp.StoryTracker.Models.TeamMasterModel", b =>
                 {
-                    b.Property<int>("TeamId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TeamId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ClientIdFK")
+                    b.Property<int>("ClientId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedOnDateTime")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime");
 
-                    b.Property<DateTime>("ModifiedOnDateTime")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("TeamDescription")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(250)");
 
                     b.Property<string>("TeamName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(50)");
 
-                    b.HasKey("TeamId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ClientIdFK");
+                    b.HasIndex("ClientId");
 
                     b.ToTable("TeamMaster", (string)null);
                 });
@@ -1809,28 +1838,43 @@ namespace Abp.StoryTracker.Migrations
 
             modelBuilder.Entity("Abp.StoryTracker.Models.SkillsMatrixModel", b =>
                 {
-                    b.HasOne("Abp.StoryTracker.Models.SkillsSubCategoryModel", "SkillsSubCategoryModel")
+                    b.HasOne("Abp.StoryTracker.Models.SubCategoryMasterModel", "SkillsSubCategoryModel")
                         .WithMany()
-                        .HasForeignKey("SubCategoryIdFK");
+                        .HasForeignKey("SubCategoryId");
 
                     b.HasOne("Abp.StoryTracker.Models.TeamMasterModel", "TeamMasterModel")
                         .WithMany()
-                        .HasForeignKey("TeamIdFK");
+                        .HasForeignKey("TeamId");
 
                     b.Navigation("SkillsSubCategoryModel");
 
                     b.Navigation("TeamMasterModel");
                 });
 
-            modelBuilder.Entity("Abp.StoryTracker.Models.SkillsSubCategoryModel", b =>
+            modelBuilder.Entity("Abp.StoryTracker.Models.SubCategoryMappingModel", b =>
+                {
+                    b.HasOne("Abp.StoryTracker.Models.SubCategoryMasterModel", "SubCategoryMasterModel")
+                        .WithMany()
+                        .HasForeignKey("SubCategoryId");
+
+                    b.HasOne("Abp.StoryTracker.Models.TeamMasterModel", "TeamMasterModel")
+                        .WithMany()
+                        .HasForeignKey("TeamId");
+
+                    b.Navigation("SubCategoryMasterModel");
+
+                    b.Navigation("TeamMasterModel");
+                });
+
+            modelBuilder.Entity("Abp.StoryTracker.Models.SubCategoryMasterModel", b =>
                 {
                     b.HasOne("Abp.StoryTracker.Models.CategoryMasterModel", "CategoryMasterModel")
                         .WithMany()
-                        .HasForeignKey("CategoryIdFK");
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("Abp.StoryTracker.Models.ClientMasterModel", "ClientMasterModel")
                         .WithMany()
-                        .HasForeignKey("ClientIdFK");
+                        .HasForeignKey("ClientId");
 
                     b.Navigation("CategoryMasterModel");
 
@@ -1841,7 +1885,9 @@ namespace Abp.StoryTracker.Migrations
                 {
                     b.HasOne("Abp.StoryTracker.Models.ClientMasterModel", "ClientMasterModel")
                         .WithMany()
-                        .HasForeignKey("ClientIdFK");
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ClientMasterModel");
                 });

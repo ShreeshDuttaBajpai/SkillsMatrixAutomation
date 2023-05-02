@@ -1,11 +1,8 @@
-
+select * from TeamMaster
 ------------ INSERT INTO TABLE CLIENT MASTER QUERIES -------------
 
 INSERT INTO dbo.ClientMaster
-           ([ClientName]
-           ,[ClientDescription]
-           ,[CreatedOnDateTime]
-           ,[ModifiedOnDateTime])
+         
      VALUES
            ('CW'
            ,'ConnectWise'
@@ -15,10 +12,6 @@ GO
 
 
 INSERT INTO dbo.ClientMaster
-           ([ClientName]
-           ,[ClientDescription]
-           ,[CreatedOnDateTime]
-           ,[ModifiedOnDateTime])
      VALUES
            ('ML'
            ,'MeridianLink'
@@ -27,10 +20,6 @@ INSERT INTO dbo.ClientMaster
 GO
 
 INSERT INTO dbo.ClientMaster
-           ([ClientName]
-           ,[ClientDescription]
-           ,[CreatedOnDateTime]
-           ,[ModifiedOnDateTime])
      VALUES
            ('Mercel'
            ,'Mercel'
@@ -43,11 +32,6 @@ GO
 
 
 INSERT INTO dbo.TeamMaster
-           ([ClientIdFK]
-           ,[TeamName]
-           ,[TeamDescription]
-           ,[CreatedOnDateTime]
-           ,[ModifiedOnDateTime])
      VALUES
            (1
            ,'CNS'
@@ -58,11 +42,7 @@ GO
 
 
 INSERT INTO dbo.TeamMaster
-           ([ClientIdFK]
-           ,[TeamName]
-           ,[TeamDescription]
-           ,[CreatedOnDateTime]
-           ,[ModifiedOnDateTime])
+          
      VALUES
            (1
            ,'CES'
@@ -72,11 +52,7 @@ INSERT INTO dbo.TeamMaster
 GO
 
 INSERT INTO dbo.TeamMaster
-           ([ClientIdFK]
-           ,[TeamName]
-           ,[TeamDescription]
-           ,[CreatedOnDateTime]
-           ,[ModifiedOnDateTime])
+           
      VALUES
            (1
            ,'Mobile Team'
@@ -86,11 +62,7 @@ INSERT INTO dbo.TeamMaster
 GO
 
 INSERT INTO dbo.TeamMaster
-           ([ClientIdFK]
-           ,[TeamName]
-           ,[TeamDescription]
-           ,[CreatedOnDateTime]
-           ,[ModifiedOnDateTime])
+          
      VALUES
            (2
            ,'CP-IP'
@@ -100,11 +72,7 @@ INSERT INTO dbo.TeamMaster
 GO
 
 INSERT INTO dbo.TeamMaster
-           ([ClientIdFK]
-           ,[TeamName]
-           ,[TeamDescription]
-           ,[CreatedOnDateTime]
-           ,[ModifiedOnDateTime])
+          
      VALUES
            (2
            ,'Events Bridge'
@@ -114,11 +82,7 @@ INSERT INTO dbo.TeamMaster
 GO
 
 INSERT INTO dbo.TeamMaster
-           ([ClientIdFK]
-           ,[TeamName]
-           ,[TeamDescription]
-           ,[CreatedOnDateTime]
-           ,[ModifiedOnDateTime])
+         
      VALUES
            (3
            ,'Company&Sites'
@@ -128,11 +92,7 @@ INSERT INTO dbo.TeamMaster
 GO
 
 INSERT INTO dbo.TeamMaster
-           ([ClientIdFK]
-           ,[TeamName]
-           ,[TeamDescription]
-           ,[CreatedOnDateTime]
-           ,[ModifiedOnDateTime])
+          
      VALUES
            (3
            ,'Partner Service'
@@ -148,12 +108,10 @@ GO
 
 
 INSERT INTO dbo.CategoryMaster
-           ([CategoryName]
-           ,[CategoryDescription]
-           ,[CreatedOnDateTime]
-           ,[ModifiedOnDateTime])
+ 
      VALUES
-           ('MS Technologies & Framework'
+           ('Developer'
+		   ,'MS Technologies & Framework'
            ,'MS Technologies & Framework'
            ,'2023-03-20'
            ,'2023-04-30')
@@ -161,12 +119,10 @@ GO
 
 
 INSERT INTO dbo.CategoryMaster
-           ([CategoryName]
-           ,[CategoryDescription]
-           ,[CreatedOnDateTime]
-           ,[ModifiedOnDateTime])
+
      VALUES
-           ('UI'
+           ('Developer'
+		   ,'UI'
            ,'User Interface'
            ,'2023-01-17'
            ,'2023-04-22')
@@ -175,12 +131,10 @@ GO
 
 
 INSERT INTO dbo.CategoryMaster
-           ([CategoryName]
-           ,[CategoryDescription]
-           ,[CreatedOnDateTime]
-           ,[ModifiedOnDateTime])
+
      VALUES
-           ('Java Technologies & Framework'
+           ('Developer'
+		   ,'Java Technologies & Framework'
            ,'Java Technologies & Framework'
            ,'2022-02-17'
            ,'2023-03-02')
@@ -188,12 +142,10 @@ GO
 
 
 INSERT INTO dbo.CategoryMaster
-           ([CategoryName]
-           ,[CategoryDescription]
-           ,[CreatedOnDateTime]
-           ,[ModifiedOnDateTime])
+
      VALUES
-           ('Database'
+           ('Developer'
+		   ,'Database'
            ,'Database'
            ,'2023-01-17'
            ,'2023-04-22')
@@ -210,107 +162,60 @@ GO
 
 
 
-INSERT INTO dbo.SkillsSubCategory
-           ([ClientIdFK]
-           ,[CategoryIdFK]
-           ,[SubCategoryName]
-           ,[SubCategoryDescription]
-		   ,[SubCategoryFunction]
-		   ,[ClientExpectedScore]
-		   ,[CreatedOnDateTime]
-           ,[ModifiedOnDateTime])
+INSERT INTO dbo.SubCategoryMaster
+
      VALUES
            (1
-		   ,1
+		   ,3
            ,'Java'
 		   ,'Java'
-		   ,'Developer'
-		   ,3
            ,'2023-01-17'
            ,'2023-04-22')
 GO
 
 
 
-INSERT INTO dbo.SkillsSubCategory
-           ([ClientIdFK]
-           ,[CategoryIdFK]
-           ,[SubCategoryName]
-           ,[SubCategoryDescription]
-		   ,[SubCategoryFunction]
-		   ,[ClientExpectedScore]
-		   ,[CreatedOnDateTime]
-           ,[ModifiedOnDateTime])
+INSERT INTO dbo.SubCategoryMaster
      VALUES
            (1
-		   ,2
+		   ,3
            ,'JDK'
 		   ,'Java Developer Kit'
-		   ,'Developer'
-		   ,3
            ,'2023-01-17'
            ,'2023-04-22')
 GO
 
 
-INSERT INTO dbo.SkillsSubCategory
-           ([ClientIdFK]
-           ,[CategoryIdFK]
-           ,[SubCategoryName]
-           ,[SubCategoryDescription]
-		   ,[SubCategoryFunction]
-		   ,[ClientExpectedScore]
-		   ,[CreatedOnDateTime]
-           ,[ModifiedOnDateTime])
+INSERT INTO dbo.SubCategoryMaster
+         
      VALUES
            (2
 		   ,3
            ,'MongoDB'
 		   ,'Mongo Database'
-		   ,'Developer'
-		   ,3
            ,'2023-01-17'
            ,'2023-04-22')
 GO
 
 
-INSERT INTO dbo.SkillsSubCategory
-           ([ClientIdFK]
-           ,[CategoryIdFK]
-           ,[SubCategoryName]
-           ,[SubCategoryDescription]
-		   ,[SubCategoryFunction]
-		   ,[ClientExpectedScore]
-		   ,[CreatedOnDateTime]
-           ,[ModifiedOnDateTime])
+INSERT INTO dbo.SubCategoryMaster
      VALUES
            (1
-		   ,3
+		   ,6
            ,'MongoDB'
 		   ,'Mongo Database'
-		   ,'Developer'
-		   ,3
            ,'2023-01-17'
            ,'2023-04-22')
 GO
 
 
-INSERT INTO dbo.SkillsSubCategory
-           ([ClientIdFK]
-           ,[CategoryIdFK]
-           ,[SubCategoryName]
-           ,[SubCategoryDescription]
-		   ,[SubCategoryFunction]
-		   ,[ClientExpectedScore]
-		   ,[CreatedOnDateTime]
-           ,[ModifiedOnDateTime])
+INSERT INTO dbo.SubCategoryMaster
+     
      VALUES
            (3
-		   ,3
+		   ,5
            ,'MongoDB'
 		   ,'Mongo Database'
-		   ,'Developer'
-		   ,3
            ,'2023-01-17'
            ,'2023-04-22')
 GO
@@ -319,22 +224,13 @@ GO
 
 
 
-INSERT INTO dbo.SkillsSubCategory
-           ([ClientIdFK]
-           ,[CategoryIdFK]
-           ,[SubCategoryName]
-           ,[SubCategoryDescription]
-		   ,[SubCategoryFunction]
-		   ,[ClientExpectedScore]
-		   ,[CreatedOnDateTime]
-           ,[ModifiedOnDateTime])
+INSERT INTO dbo.SubCategoryMaster
+         
      VALUES
            (3
 		   ,3
            ,'MySQL'
 		   ,'SQL Server'
-		   ,'Developer'
-		   ,3
            ,'2023-01-17'
            ,'2023-04-22')
 GO
@@ -350,12 +246,7 @@ GO
 
 
 INSERT INTO dbo.SkillsMatrix
-           ([EmployeeId]
-           ,[TeamIdFK]
-           ,[SubCategoryIdFK]
-		   ,[EmpScore]
-		   ,[CreatedOnDateTime]
-           ,[ModifiedOnDateTime])
+
      VALUES
            (908
 		   ,1
@@ -367,12 +258,7 @@ GO
 
 
 INSERT INTO dbo.SkillsMatrix
-           ([EmployeeId]
-           ,[TeamIdFK]
-           ,[SubCategoryIdFK]
-		   ,[EmpScore]
-		   ,[CreatedOnDateTime]
-           ,[ModifiedOnDateTime])
+          
      VALUES
            (909
 		   ,2

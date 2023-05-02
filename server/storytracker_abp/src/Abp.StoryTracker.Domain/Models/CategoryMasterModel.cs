@@ -13,12 +13,19 @@ namespace Abp.StoryTracker.Models
         
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int CategoryId { get; set; }
+        public int Id { get; set; }
         [Required]
+        [Column(TypeName = "varchar(50)")]
+        public string CategoryFunction { get; set; }
+        [Required]
+        [Column(TypeName = "varchar(50)")]
         public string CategoryName { get; set; }
         [Required]
+        [Column(TypeName = "varchar(250)")]
         public string CategoryDescription { get; set; }
-        public DateTime CreatedOnDateTime { get; set; }
-        public DateTime ModifiedOnDateTime { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime CreatedOn { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime ModifiedOn { get; set; }
     }
 }

@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Repositories.Dapper;
 using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.Users;
 
 namespace Abp.StoryTracker.SkillsMatrixRepo
 {
@@ -39,7 +40,7 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
         public async Task<List<TeamMasterModel>> GetClientTeamListAsync(int clientId)
         {
             var dbConnection = await GetDbConnectionAsync();
-            var result = (await dbConnection.QueryAsync<TeamMasterModel>("select * from TeamMaster where ClientIdFK=" + clientId + "",
+            var result = (await dbConnection.QueryAsync<TeamMasterModel>("select * from TeamMaster where ClientId=" + clientId + "",
                 transaction: await GetDbTransactionAsync())).ToList();
             return result;
         }
@@ -52,10 +53,10 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
             return result;
         }
 
-        public async Task<List<SkillsSubCategoryModel>> GetSkillsSubCategoryListAsync()
+        public async Task<List<SubCategoryMasterModel>> GetSubCategoryListAsync()
         {
             var dbConnection = await GetDbConnectionAsync();
-            var result = (await dbConnection.QueryAsync<SkillsSubCategoryModel>("select * from SkillsSubCategory",
+            var result = (await dbConnection.QueryAsync<SubCategoryMasterModel>("select * from SkillsSubCategory",
                 transaction: await GetDbTransactionAsync())).ToList();
             return result;
         }
@@ -72,6 +73,22 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
         {
             var dbConnection = await GetDbConnectionAsync();
             var result = (await dbConnection.QueryAsync<TeamMasterModel>("select * from TeamMaster",
+                transaction: await GetDbTransactionAsync())).ToList();
+            return result;
+        }
+
+        public async Task<List<ClientMasterModel>> PostClientListAsync(string PostClientName, string PostClientDescription, DateTime PostClientCreatedOn, DateTime PostClientModifiedOn)
+        {
+            var dbConnection = await GetDbConnectionAsync();
+            var result = (await dbConnection.QueryAsync<ClientMasterModel>(" INSERT INTO dbo.ClientMaster VALUES ("+PostClientName+ ", "+ PostClientDescription + ", "+ PostClientCreatedOn + ", "+ PostClientModifiedOn + ")",
+                transaction: await GetDbTransactionAsync())).ToList();
+            return result;
+        }
+
+        public async Task<List<SubCategoryMasterModel>> GetSubCategoryAndCategoryListAsync(int categoryId)
+        {
+            var dbConnection = await GetDbConnectionAsync();
+            var result = (await dbConnection.QueryAsync<SubCategoryMasterModel>("select * from SubCategoryMaster where CategoryId=" + categoryId + "",
                 transaction: await GetDbTransactionAsync())).ToList();
             return result;
         }

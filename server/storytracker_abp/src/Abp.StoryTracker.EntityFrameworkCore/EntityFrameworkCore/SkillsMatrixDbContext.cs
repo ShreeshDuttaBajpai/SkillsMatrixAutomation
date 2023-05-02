@@ -56,7 +56,7 @@ public class SkillsMatrixDbContext :
     public DbSet<CategoryMasterModel> CategoryMasterModels { get; set; }
     public DbSet<TeamMasterModel> TeamMasterModels { get; set; }
     public DbSet<SkillsMatrixModel> SkillsMatrixModels { get; set; }
-    public DbSet<SkillsSubCategoryModel> SkillsSubCategoryModels { get; set; }
+    public DbSet<SubCategoryMasterModel> SkillsSubCategoryModels { get; set; }
 
 
     #endregion
@@ -94,34 +94,38 @@ public class SkillsMatrixDbContext :
         //});
 
 
-        builder.Entity<CategoryMasterModel>(entity =>
-        {
-            entity.ToTable("CategoryMaster");
-        });
-
         builder.Entity<ClientMasterModel>(entity =>
         {
             entity.ToTable("ClientMaster");
         });
 
-        builder.Entity<SkillsSubCategoryModel>(entity =>
-        {
-            entity.ToTable("SkillsSubCategory");
-        });
-
-        //builder.Entity<StoryTrackerModel>(entity =>
-        //{
-        //    entity.ToTable("StoryTracker");
-        //});
 
         builder.Entity<TeamMasterModel>(entity =>
         {
             entity.ToTable("TeamMaster");
         });
 
+
+        builder.Entity<CategoryMasterModel>(entity =>
+        {
+            entity.ToTable("CategoryMaster");
+        });
+
+
+        builder.Entity<SubCategoryMasterModel>(entity =>
+        {
+            entity.ToTable("SubCategoryMaster");
+        });
+
+
         builder.Entity<SkillsMatrixModel>(entity =>
         {
             entity.ToTable("SkillsMatrix");
+        });
+
+        builder.Entity<SubCategoryMappingModel>(entity =>
+        {
+            entity.ToTable("SubCategoryMapping");
         });
     }
 }

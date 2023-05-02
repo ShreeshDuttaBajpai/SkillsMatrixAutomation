@@ -58,6 +58,9 @@ public class Program
             app.MapClientMasterEndpoints();
             app.MapTeamMasterEndpoints();
             app.MapTeamMasterandClientsEndpoints();
+            app.MapCategoryMasterEndpoints();
+            app.MapSubCategoryMasterAndCategoryEndpoints();
+            app.MapSubCategoryMasterEndpoints();
             await app.InitializeApplicationAsync();
             await app.RunAsync();
             return 0;

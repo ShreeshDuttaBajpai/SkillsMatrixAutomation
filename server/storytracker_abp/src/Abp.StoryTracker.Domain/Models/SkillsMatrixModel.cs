@@ -14,18 +14,19 @@ namespace Abp.StoryTracker.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int EmployeeId { get; set; }
 
-        public int? TeamIdFK { get; set; }
-        [ForeignKey(nameof(TeamIdFK))]
+        public int? TeamId { get; set; }
+        [ForeignKey(nameof(TeamId))]
         public TeamMasterModel? TeamMasterModel { get; set; }
 
-        public int? SubCategoryIdFK { get; set; }
-        [ForeignKey(nameof(SubCategoryIdFK))]
-        public SkillsSubCategoryModel? SkillsSubCategoryModel { get; set; }
+        public int? SubCategoryId { get; set; }
+        [ForeignKey(nameof(SubCategoryId))]
+        public SubCategoryMasterModel? SkillsSubCategoryModel { get; set; }
 
         [Required]
-        public int EmpScore { get; set; }
-
-        public DateTime CreatedOnDateTime { get; set; }
-        public DateTime ModifiedOnDateTime { get; set; }
+        public int EmployeeScore { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime CreatedOn { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime ModifiedOn { get; set; }
     }
 }
