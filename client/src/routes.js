@@ -15,6 +15,7 @@ import MainDashboardEntry from "./components/MainDashboardEntry";
 import configureStore from "./store/main";
 import css from "./routes.css";
 import SidebarContainer from "./components/Sidebar/SidebarContainer";
+import ClientScorePage from "./Pages/ClientScorePage";
 
 const store = configureStore();
 
@@ -46,6 +47,10 @@ const App = () => {
                                     <Route
                                         path="/category"
                                         component={MainDashboardEntry}
+                                    />
+                                    <Route
+                                        path="/client-score"
+                                        component={ClientScorePage}
                                     />
                                     {/* <ProtectedRoute
                     path="/Table"

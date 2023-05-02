@@ -1,6 +1,9 @@
-import { faLaptopCode, faSitemap } from "@fortawesome/free-solid-svg-icons";
+import {
+    faLaptopCode,
+    faPenToSquare,
+    faSitemap
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import fontawesome from "@fortawesome/fontawesome";
 import React from "react";
 import css from "./SidebarComponent.css";
 import { NavLink } from "react-router-dom";
@@ -12,9 +15,9 @@ const SidebarComponent = () => {
     const path = window.location.pathname;
     const [activeLocation, setActiveLocation] = useState({
         home: path === "/",
-        category: path === "/category"
+        category: path === "/category",
+        clientScore: path === "/client-score"
     });
-    fontawesome.library.add(faSitemap, faLaptopCode);
     return (
         <div className={css.sidebarContainerDiv}>
             <div className={css.brandLogoDiv}>
@@ -25,6 +28,7 @@ const SidebarComponent = () => {
                 />
             </div>
             <NavLink
+                title="Client Master"
                 to="/"
                 exact
                 className={css.sidebarNavItem}
@@ -39,9 +43,10 @@ const SidebarComponent = () => {
                     )
                 }
             >
-                <FontAwesomeIcon icon="fa-solid fa-sitemap" />
+                <FontAwesomeIcon icon={faSitemap} />
             </NavLink>
             <NavLink
+                title="Category Master"
                 to="/category"
                 className={css.sidebarNavItem}
                 activeClassName={
@@ -55,7 +60,24 @@ const SidebarComponent = () => {
                     )
                 }
             >
-                <FontAwesomeIcon icon="fa-solid fa-laptop-code" />
+                <FontAwesomeIcon icon={faLaptopCode} />
+            </NavLink>
+            <NavLink
+                title="Client Expected Score Mapping"
+                to="/client-score"
+                className={css.sidebarNavItem}
+                activeClassName={
+                    activeLocation.clientScore ? css.sidebarActiveNavItem : ""
+                }
+                onClick={() =>
+                    handleNavItemClick(
+                        activeLocation,
+                        setActiveLocation,
+                        "clientScore"
+                    )
+                }
+            >
+                <FontAwesomeIcon icon={faPenToSquare} />
             </NavLink>
         </div>
     );

@@ -1,13 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import css from "../Navbar/Navbar.css";
-import navbarLogo from "../../assets/story-tracker.jpg";
-import { NavLink } from "react-router-dom";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import jwt_Decode from "jwt-decode";
 import constants from "../constants";
-import axios from "axios";
-import Cookies from "universal-cookie";
-import BhavnaLogo from "../../assets/bhavna-logo.png";
 
 const Navbar = () => {
     return (

@@ -1,0 +1,13 @@
+.dataListUl {
+    list-style: none;
+    padding: 0;
+}
+.dataListLi {
+    color: blue;
+    font-size: 18px;
+    cursor: pointer;
+    width: max-content;
+}
+.selectedDataItem {
+    color: grey;
+}
