@@ -17,5 +17,6 @@ public class StoryTrackerApplicationAutoMapperProfile : Profile
         CreateMap<SubCategoryMasterModel, SubCategoryMasterApplicationContractsModel>();
         CreateMap<TeamMasterModel, TeamMasterApplicationContractsModel>();
         CreateMap<SubCategoryMappingModel, SubCategoryMappingApplicationContractsModel>();
+        CreateMap<EmployeeDetailsModel, EmployeeDetailsApplicationContractsModel>();
     }
 }

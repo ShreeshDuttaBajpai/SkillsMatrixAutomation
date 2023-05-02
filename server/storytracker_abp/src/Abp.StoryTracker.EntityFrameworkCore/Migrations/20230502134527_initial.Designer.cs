@@ -13,7 +13,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Abp.StoryTracker.Migrations
 {
     [DbContext(typeof(SkillsMatrixDbContext))]
-    [Migration("20230427130630_initial")]
+    [Migration("20230502134527_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -83,6 +83,25 @@ namespace Abp.StoryTracker.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ClientMaster", (string)null);
+                });
+
+            modelBuilder.Entity("Abp.StoryTracker.Models.EmployeeDetailsModel", b =>
+                {
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EmployeeName")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<int?>("TeamId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EmployeeId");
+
+                    b.HasIndex("TeamId");
+
+                    b.ToTable("EmployeeDetails", (string)null);
                 });
 
             modelBuilder.Entity("Abp.StoryTracker.Models.SkillsMatrixModel", b =>
@@ -1837,6 +1856,15 @@ namespace Abp.StoryTracker.Migrations
                     b.HasKey("TenantId", "Name");
 
                     b.ToTable("AbpTenantConnectionStrings", (string)null);
+                });
+
+            modelBuilder.Entity("Abp.StoryTracker.Models.EmployeeDetailsModel", b =>
+                {
+                    b.HasOne("Abp.StoryTracker.Models.TeamMasterModel", "TeamMasterModel")
+                        .WithMany()
+                        .HasForeignKey("TeamId");
+
+                    b.Navigation("TeamMasterModel");
                 });
 
             modelBuilder.Entity("Abp.StoryTracker.Models.SkillsMatrixModel", b =>

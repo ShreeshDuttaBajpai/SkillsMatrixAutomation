@@ -784,6 +784,24 @@ namespace Abp.StoryTracker.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "EmployeeDetails",
+                columns: table => new
+                {
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    TeamId = table.Column<int>(type: "int", nullable: true),
+                    EmployeeName = table.Column<string>(type: "varchar(50)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeeDetails", x => x.EmployeeId);
+                    table.ForeignKey(
+                        name: "FK_EmployeeDetails_TeamMaster_TeamId",
+                        column: x => x.TeamId,
+                        principalTable: "TeamMaster",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SkillsMatrix",
                 columns: table => new
                 {
@@ -1070,6 +1088,11 @@ namespace Abp.StoryTracker.Migrations
                 column: "UserName");
 
             migrationBuilder.CreateIndex(
+                name: "IX_EmployeeDetails_TeamId",
+                table: "EmployeeDetails",
+                column: "TeamId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OpenIddictApplications_ClientId",
                 table: "OpenIddictApplications",
                 column: "ClientId");
@@ -1200,6 +1223,9 @@ namespace Abp.StoryTracker.Migrations
 
             migrationBuilder.DropTable(
                 name: "AbpUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "EmployeeDetails");
 
             migrationBuilder.DropTable(
                 name: "OpenIddictScopes");

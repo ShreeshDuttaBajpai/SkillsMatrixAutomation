@@ -1,0 +1,11 @@
+.ulStyles {
+    list-style: none;
+    padding: 0;
+}
+
+.ulStyles li input {
+    margin-left: 20px;
+}
+.subCategoryUl {
+    padding-left: 2rem;
+}

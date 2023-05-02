@@ -19,6 +19,7 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
     {
         public SkillsMatrixRepository(IDbContextProvider<SkillsMatrixDbContext> dbContextProvider) : base(dbContextProvider)
         {
+
         }
 
         public async Task<List<CategoryMasterModel>> GetCategoryListAsync()
