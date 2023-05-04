@@ -13,7 +13,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Abp.StoryTracker.Migrations
 {
     [DbContext(typeof(SkillsMatrixDbContext))]
-    [Migration("20230502134527_initial")]
+    [Migration("20230503103616_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -176,9 +176,6 @@ namespace Abp.StoryTracker.Migrations
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ClientId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime");
 
@@ -196,8 +193,6 @@ namespace Abp.StoryTracker.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("ClientId");
 
                     b.ToTable("SubCategoryMaster", (string)null);
                 });
@@ -1903,13 +1898,7 @@ namespace Abp.StoryTracker.Migrations
                         .WithMany()
                         .HasForeignKey("CategoryId");
 
-                    b.HasOne("Abp.StoryTracker.Models.ClientMasterModel", "ClientMasterModel")
-                        .WithMany()
-                        .HasForeignKey("ClientId");
-
                     b.Navigation("CategoryMasterModel");
-
-                    b.Navigation("ClientMasterModel");
                 });
 
             modelBuilder.Entity("Abp.StoryTracker.Models.TeamMasterModel", b =>

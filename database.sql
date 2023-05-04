@@ -165,8 +165,7 @@ GO
 INSERT INTO dbo.SubCategoryMaster
 
      VALUES
-           (1
-		   ,3
+           (3
            ,'Java'
 		   ,'Java'
            ,'2023-01-17'
@@ -177,8 +176,7 @@ GO
 
 INSERT INTO dbo.SubCategoryMaster
      VALUES
-           (1
-		   ,3
+           (3
            ,'JDK'
 		   ,'Java Developer Kit'
            ,'2023-01-17'
@@ -189,8 +187,7 @@ GO
 INSERT INTO dbo.SubCategoryMaster
          
      VALUES
-           (2
-		   ,3
+           (3
            ,'MongoDB'
 		   ,'Mongo Database'
            ,'2023-01-17'
@@ -200,8 +197,7 @@ GO
 
 INSERT INTO dbo.SubCategoryMaster
      VALUES
-           (1
-		   ,6
+           (6
            ,'MongoDB'
 		   ,'Mongo Database'
            ,'2023-01-17'
@@ -212,8 +208,7 @@ GO
 INSERT INTO dbo.SubCategoryMaster
      
      VALUES
-           (3
-		   ,5
+           (5
            ,'MongoDB'
 		   ,'Mongo Database'
            ,'2023-01-17'
@@ -228,7 +223,6 @@ INSERT INTO dbo.SubCategoryMaster
          
      VALUES
            (3
-		   ,3
            ,'MySQL'
 		   ,'SQL Server'
            ,'2023-01-17'

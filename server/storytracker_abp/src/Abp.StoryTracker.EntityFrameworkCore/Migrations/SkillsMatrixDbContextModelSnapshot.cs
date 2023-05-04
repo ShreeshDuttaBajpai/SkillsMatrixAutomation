@@ -173,9 +173,6 @@ namespace Abp.StoryTracker.Migrations
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ClientId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime");
 
@@ -193,8 +190,6 @@ namespace Abp.StoryTracker.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("ClientId");
 
                     b.ToTable("SubCategoryMaster", (string)null);
                 });
@@ -1900,13 +1895,7 @@ namespace Abp.StoryTracker.Migrations
                         .WithMany()
                         .HasForeignKey("CategoryId");
 
-                    b.HasOne("Abp.StoryTracker.Models.ClientMasterModel", "ClientMasterModel")
-                        .WithMany()
-                        .HasForeignKey("ClientId");
-
                     b.Navigation("CategoryMasterModel");
-
-                    b.Navigation("ClientMasterModel");
                 });
 
             modelBuilder.Entity("Abp.StoryTracker.Models.TeamMasterModel", b =>

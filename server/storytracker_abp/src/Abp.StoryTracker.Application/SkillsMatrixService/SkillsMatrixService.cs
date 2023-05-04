@@ -34,8 +34,6 @@ namespace Abp.StoryTracker.SkillsMatrixService
                 var applicationStory = objectMapper.Map<SkillsMatrixModel, SkillsMatrixApplicationContractsModel>(item);
                 applicationResult.Add(applicationStory);
             }
-            //List<string> strings = new List<string>() { "sadgdsa" };
-            //return strings;
             return applicationResult;
         }
 
@@ -48,8 +46,6 @@ namespace Abp.StoryTracker.SkillsMatrixService
                 var applicationStory = objectMapper.Map<CategoryMasterModel, CategoryMasterApplicationContractsModel>(item);
                 applicationResult.Add(applicationStory);
             }
-            //List<string> strings = new List<string>() { "sadgdsa" };
-            //return strings;
             return applicationResult;
         }
 
@@ -63,25 +59,8 @@ namespace Abp.StoryTracker.SkillsMatrixService
                 var applicationStory = objectMapper.Map<ClientMasterModel, ClientMasterApplicationContractsModel>(item);
                 applicationResult.Add(applicationStory);
             }
-            //List<string> strings = new List<string>() { "sadgdsa" };
-            //return strings;
             return applicationResult;
         }
-
-
-        //public async task<list<subcategorymasterapplicationcontractsmodel>> getsubcategoryandcategorylistasync(int categoryid)
-        //{
-        //    var domainresult = await skillmatrixrepository.getsubcategoryandcategorylistasync(categoryid);
-        //    var applicationresult = new list<subcategorymasterapplicationcontractsmodel>();
-        //    foreach (var item in domainresult)
-        //    {
-        //        var applicationstory = objectmapper.map<subcategorymastermodel, subcategorymasterapplicationcontractsmodel>(item);
-        //        applicationresult.add(applicationstory);
-        //    }
-        //    //list<string> strings = new list<string>() { "sadgdsa" };
-        //    //return strings;
-        //    return applicationresult;
-        //}
 
 
         public async Task<List<SubCategoryMasterApplicationContractsModel>> GetSubCategoryListAsync()
@@ -106,8 +85,6 @@ namespace Abp.StoryTracker.SkillsMatrixService
                 var applicationStory = objectMapper.Map<TeamMasterModel, TeamMasterApplicationContractsModel>(item);
                 applicationResult.Add(applicationStory);
             }
-            //List<string> strings = new List<string>() { "sadgdsa" };
-            //return strings;
             return applicationResult;
         }
 
@@ -120,25 +97,9 @@ namespace Abp.StoryTracker.SkillsMatrixService
                 var applicationStory = objectMapper.Map<TeamMasterModel, TeamMasterApplicationContractsModel>(item);
                 applicationResult.Add(applicationStory);
             }
-            //List<string> strings = new List<string>() { "sadgdsa" };
-            //return strings;
             return applicationResult;
         }
 
-
-        public async Task<List<ClientMasterApplicationContractsModel>> PostClientListAsync(string postClientName, string postClientDescription, DateTime postClientCreatedOn, DateTime postClientModifiedOn)
-        {
-            var domainResult = await skillMatrixRepository.PostClientListAsync( postClientName, postClientDescription, postClientCreatedOn, postClientModifiedOn);
-            var applicationResult = new List<ClientMasterApplicationContractsModel>();
-            foreach (var item in domainResult)
-            {
-                var applicationStory = objectMapper.Map<ClientMasterModel, ClientMasterApplicationContractsModel>(item);
-                applicationResult.Add(applicationStory);
-            }
-            //List<string> strings = new List<string>() { "sadgdsa" };
-            //return strings;
-            return applicationResult;
-        }
 
         public async Task<List<SubCategoryMasterApplicationContractsModel>> GetSubCategoryAndCategoryListAsync(int categoryId)
         {
@@ -149,9 +110,65 @@ namespace Abp.StoryTracker.SkillsMatrixService
                 var applicationStory = objectMapper.Map<SubCategoryMasterModel, SubCategoryMasterApplicationContractsModel>(item);
                 applicationResult.Add(applicationStory);
             }
-            //List<string> strings = new List<string>() { "sadgdsa" };
-            //return strings;
             return applicationResult;
+        }
+
+
+        public async Task<List<SubCategoryMappingApplicationContractsModel>> GetSubCategoryMappingListAsync()
+        {
+            var domainResult = await skillMatrixRepository.GetSubCategoryMappingListAsync();
+            var applicationResult = new List<SubCategoryMappingApplicationContractsModel>();
+            foreach (var item in domainResult)
+            {
+                var applicationStory = objectMapper.Map<SubCategoryMappingModel, SubCategoryMappingApplicationContractsModel>(item);
+                applicationResult.Add(applicationStory);
+            }
+            return applicationResult;
+        }
+
+
+        public async Task<List<EmployeeDetailsApplicationContractsModel>> GetEmployeeDetailsListAsync()
+        {
+            var domainResult = await skillMatrixRepository.GetEmployeeDetailsListAsync();
+            var applicationResult = new List<EmployeeDetailsApplicationContractsModel>();
+            foreach (var item in domainResult)
+            {
+                var applicationStory = objectMapper.Map<EmployeeDetailsModel, EmployeeDetailsApplicationContractsModel>(item);
+                applicationResult.Add(applicationStory);
+            }
+            return applicationResult;
+        }
+
+
+        public async Task PostClientListAsync(ClientMasterApplicationContractsModel postClient)
+        {
+            var postClientData = objectMapper.Map<ClientMasterApplicationContractsModel, ClientMasterModel>(postClient);
+            await skillMatrixRepository.PostClientListAsync(postClientData);
+        }
+
+        public async Task PostTeamListAsync(TeamMasterApplicationContractsModel postTeam)
+        {
+            var postTeamData = objectMapper.Map<TeamMasterApplicationContractsModel, TeamMasterModel>(postTeam);
+            await skillMatrixRepository.PostTeamListAsync(postTeamData);
+        }
+
+        public async Task PostCategoryListAsync(CategoryMasterApplicationContractsModel postCategory)
+        {
+            var postCategoryData = objectMapper.Map<CategoryMasterApplicationContractsModel, CategoryMasterModel>(postCategory);
+            await skillMatrixRepository.PostCategoryListAsync(postCategoryData);
+        }
+
+
+        //public async Task PostSubCategoryMappingListAsync(Object obj)
+        //{
+        //    var postSubCategoryMappingData = objectMapper.Map<SubCategoryMappingApplicationContractsModel, SubCategoryMappingModel>(obj);
+        //    await skillMatrixRepository.PostSubCategoryMappingListAsync(obj);
+        //}
+
+        public async Task PutSubCategoryMappingListAsync(SubCategoryMappingApplicationContractsModel putSubCategoryMapping)
+        {
+            var putSubCategoryMappingData = objectMapper.Map<SubCategoryMappingApplicationContractsModel, SubCategoryMappingModel>(putSubCategoryMapping);
+            await skillMatrixRepository.PutSubCategoryMappingListAsync(putSubCategoryMappingData);
         }
     }
 }

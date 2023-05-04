@@ -683,7 +683,6 @@ namespace Abp.StoryTracker.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ClientId = table.Column<int>(type: "int", nullable: true),
                     CategoryId = table.Column<int>(type: "int", nullable: true),
                     SubCategoryName = table.Column<string>(type: "varchar(50)", nullable: false),
                     SubCategoryDescription = table.Column<string>(type: "varchar(250)", nullable: false),
@@ -697,11 +696,6 @@ namespace Abp.StoryTracker.Migrations
                         name: "FK_SubCategoryMaster_CategoryMaster_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "CategoryMaster",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_SubCategoryMaster_ClientMaster_ClientId",
-                        column: x => x.ClientId,
-                        principalTable: "ClientMaster",
                         principalColumn: "Id");
                 });
 
@@ -1146,11 +1140,6 @@ namespace Abp.StoryTracker.Migrations
                 name: "IX_SubCategoryMaster_CategoryId",
                 table: "SubCategoryMaster",
                 column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SubCategoryMaster_ClientId",
-                table: "SubCategoryMaster",
-                column: "ClientId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TeamMaster_ClientId",
