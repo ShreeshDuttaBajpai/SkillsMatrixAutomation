@@ -60,6 +60,7 @@ public class Program
             app.MapSubCategoryMasterEndpoints();
             app.MapPostCategoryMasterEndpoints();
             app.MapGetSubCategoryMappingEndpoints();
+            app.MapPostSubCategoryMasterEndpoints();
             app.MapPostSubCategoryMappingEndpoints();
             app.MapEmployeeDetailsEndpoints();
             app.MapPutSubCategoryMappingEndpoints();

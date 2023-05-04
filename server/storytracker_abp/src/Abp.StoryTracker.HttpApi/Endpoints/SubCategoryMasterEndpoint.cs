@@ -1,4 +1,5 @@
-﻿using Abp.StoryTracker.SkillsMatrixServiceInterface;
+﻿using Abp.StoryTracker.ApplicationModels;
+using Abp.StoryTracker.SkillsMatrixServiceInterface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,16 @@ namespace Abp.StoryTracker.Endpoints
             {
                 var result = await skillsMatrixService.GetSubCategoryAndCategoryListAsync(CategoryId);
                 return (result);
+            }).WithTags("SkillsMatrix");
+            return app;
+        }
+
+
+        public static WebApplication MapPostSubCategoryMasterEndpoints(this WebApplication app)
+        {
+            _ = app.MapPost("/postSubCategoryMaster", async ([FromServices] ISkillsMatrixService skillsMatrixService, [FromBody] SubCategoryMasterApplicationContractsModel postSubCategory) =>
+            {
+                await skillsMatrixService.PostSubCategoryListAsync(postSubCategory);
             }).WithTags("SkillsMatrix");
             return app;
         }
