@@ -113,12 +113,32 @@ export const oldSelectedData = payload => ({
     payload
 });
 
-export const fetchClients = payload => ({
-    type: types.FETCH_CLIENTS,
+export const setClients = payload => ({
+    type: types.SET_CLIENTS,
     payload
 });
 
-export const fetchClientTeams = payload => ({
-    type: types.FETCH_CLIENT_TEAMS,
+export const setClientTeams = payload => ({
+    type: types.SET_CLIENT_TEAMS,
+    payload
+});
+
+export const setCategories = payload => ({
+    type: types.SET_CATEGORIES,
+    payload
+});
+
+export const setSubCategories = payload => ({
+    type: types.SET_SUB_CATEGORIES,
+    payload
+});
+
+export const setExpectedScoreMappings = payload => ({
+    type: types.SET_SCORE_MAPPINGS,
+    payload
+});
+
+export const setTeamEmployees = payload => ({
+    type: types.SET_TEAM_EMPLOYEES,
     payload
 });

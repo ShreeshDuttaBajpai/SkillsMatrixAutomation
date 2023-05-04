@@ -16,6 +16,7 @@ import configureStore from "./store/main";
 import css from "./routes.css";
 import SidebarContainer from "./components/Sidebar/SidebarContainer";
 import ClientScorePage from "./Pages/ClientScorePage";
+import EmployeeScorePage from "./Pages/EmployeeScorePage";
 
 const store = configureStore();
 
@@ -63,6 +64,10 @@ const App = () => {
                                     <Route
                                         path="/Reports"
                                         component={ReportsPage}
+                                    />
+                                    <Route
+                                        path="/employee-score"
+                                        component={EmployeeScorePage}
                                     />
 
                                     <Route component={NoMatch} />

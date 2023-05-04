@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
 import css from "./ExpectedScoreMapping.css";
 import cx from "classnames";
-import { DataListContainer } from "../DataListComponent/DataListContainer";
-import CategoryComponent from "../Categories/CategoryComponent";
+import AccordionContainer from "../AccordionComponent/AccordionContainer";
+import { handleScoreSave } from "./ExpectedScoreMappingFunctions";
 
 const ExpectedScoreMappingComponent = ({
     clients,
     teams,
+    categories,
+    expectedScoreMappings,
+    fetchCategoriesList,
     fetchClientList,
     fetchClientTeamsList
 }) => {
     const [selectedClient, setSelectedClient] = useState();
     const [selectedTeam, setSelectedTeam] = useState();
+    const [isAnyAccordionOpen, setIsAnyAccordionOpen] = useState(false);
     useEffect(() => {
         fetchClientList();
     }, [fetchClientList]);
@@ -19,17 +23,49 @@ const ExpectedScoreMappingComponent = ({
     useEffect(() => {
         setSelectedTeam();
         selectedClient !== undefined && fetchClientTeamsList(selectedClient);
-    }, [selectedClient]);
+    }, [selectedClient, fetchClientTeamsList]);
+
+    useEffect(() => {
+        fetchCategoriesList();
+    }, [fetchCategoriesList]);
 
     return (
         <div className={css.expectedScoreContainerDiv}>
-            <div className={css.accordionBtnDiv}>
-                <button className={css.accordionBtn}>
-                    Clients
-                    <br />
-                    <em>None selected</em>
-                </button>
+            <div className={css.dependentContainer}>
+                <AccordionContainer
+                    accordionTitle={"Clients"}
+                    accordionData={clients}
+                    selectedItem={selectedClient}
+                    setSelectedItem={setSelectedClient}
+                    isAnyAccordionOpen={isAnyAccordionOpen}
+                    setIsAnyAccordionOpen={setIsAnyAccordionOpen}
+                />
+                <AccordionContainer
+                    accordionTitle={"Teams"}
+                    accordionData={teams}
+                    selectedItem={selectedTeam}
+                    setSelectedItem={setSelectedTeam}
+                    isAnyAccordionOpen={isAnyAccordionOpen}
+                    setIsAnyAccordionOpen={setIsAnyAccordionOpen}
+                />
             </div>
+            <AccordionContainer
+                accordionTitle={"Categories"}
+                accordionData={categories}
+                selectedItem={selectedTeam}
+                setSelectedItem={setSelectedTeam}
+                isAnyAccordionOpen={isAnyAccordionOpen}
+                setIsAnyAccordionOpen={setIsAnyAccordionOpen}
+            />
+            <button
+                className={css.mappingsSaveBtn}
+                onClick={() =>
+                    handleScoreSave(selectedTeam, expectedScoreMappings)
+                }
+            >
+                Save Mappings
+            </button>
+            {/*  <div className={css.expectedScoreContainerDiv}>
             <div className={css.accordionBtnDiv}>
                 <button className={css.accordionBtn}>
                     Teams
@@ -37,7 +73,7 @@ const ExpectedScoreMappingComponent = ({
                     <em>None selected</em>
                 </button>
             </div>
-            {/* <div className={css.clientListDiv}>
+            <div className={css.clientListDiv}>
                 <h3>Clients</h3>
                 <ul className={css.dataListUl}>
                     {clients.map((client, index) => {
@@ -89,7 +125,8 @@ const ExpectedScoreMappingComponent = ({
             />
             <div className={css.categoryScoringDiv}>
                 <CategoryComponent />
-            </div> */}
+            </div>
+        </div>*/}
         </div>
     );
 };
