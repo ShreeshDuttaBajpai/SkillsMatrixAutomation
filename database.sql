@@ -165,8 +165,7 @@ GO
 INSERT INTO dbo.SubCategoryMaster
 
      VALUES
-           (1
-		   ,3
+           (3
            ,'Java'
 		   ,'Java'
            ,'2023-01-17'
@@ -177,8 +176,7 @@ GO
 
 INSERT INTO dbo.SubCategoryMaster
      VALUES
-           (1
-		   ,3
+           (3
            ,'JDK'
 		   ,'Java Developer Kit'
            ,'2023-01-17'
@@ -189,8 +187,7 @@ GO
 INSERT INTO dbo.SubCategoryMaster
          
      VALUES
-           (2
-		   ,3
+           (3
            ,'MongoDB'
 		   ,'Mongo Database'
            ,'2023-01-17'
@@ -200,8 +197,7 @@ GO
 
 INSERT INTO dbo.SubCategoryMaster
      VALUES
-           (1
-		   ,6
+           (6
            ,'MongoDB'
 		   ,'Mongo Database'
            ,'2023-01-17'
@@ -212,8 +208,7 @@ GO
 INSERT INTO dbo.SubCategoryMaster
      
      VALUES
-           (3
-		   ,5
+           (5
            ,'MongoDB'
 		   ,'Mongo Database'
            ,'2023-01-17'
@@ -228,7 +223,6 @@ INSERT INTO dbo.SubCategoryMaster
          
      VALUES
            (3
-		   ,3
            ,'MySQL'
 		   ,'SQL Server'
            ,'2023-01-17'
@@ -250,7 +244,7 @@ INSERT INTO dbo.SkillsMatrix
      VALUES
            (908
 		   ,1
-           ,4
+           ,2
 		   ,3
            ,'2023-01-17'
            ,'2023-04-22')
@@ -267,4 +261,127 @@ INSERT INTO dbo.SkillsMatrix
            ,'2023-02-28'
            ,'2023-04-20')
 GO
+
+
+
+
+------------	INSERT INTO TABLE SUB-CATEGORY MAPPING QUERIES	------------
+
+
+INSERT INTO dbo.SubCategoryMapping
+          
+     VALUES
+           (1
+		   ,1
+           ,4
+           ,'2023-02-28'
+           ,'2023-04-20')
+GO
+
+
+INSERT INTO dbo.SubCategoryMapping
+          
+     VALUES
+           (1
+		   ,2
+           ,4
+           ,'2023-02-28'
+           ,'2023-04-20')
+GO
+
+INSERT INTO dbo.SubCategoryMapping
+          
+     VALUES
+           (1
+		   ,3
+           ,4
+           ,'2023-02-28'
+           ,'2023-04-20')
+GO
+
+INSERT INTO dbo.SubCategoryMapping
+          
+     VALUES
+           (1
+		   ,6
+           ,3
+           ,'2023-02-28'
+           ,'2023-04-20')
+GO
+
+
+INSERT INTO dbo.SubCategoryMapping
+          
+     VALUES
+           (2
+		   ,1
+           ,3
+           ,'2023-02-28'
+           ,'2023-04-20')
+GO
+
+INSERT INTO dbo.SubCategoryMapping
+          
+     VALUES
+           (2
+		   ,2
+           ,3
+           ,'2023-02-28'
+           ,'2023-04-20')
+GO
+
+INSERT INTO dbo.SubCategoryMapping
+          
+     VALUES
+           (2
+		   ,3
+           ,4
+           ,'2023-02-28'
+           ,'2023-04-20')
+GO
+
+INSERT INTO dbo.SubCategoryMapping
+          
+     VALUES
+           (2
+		   ,6
+           ,4
+           ,'2023-02-28'
+           ,'2023-04-20')
+GO
+
+
+
+------------	INSERT INTO TABLE SUB-CATEGORY MAPPING QUERIES	------------
+
+
+
+INSERT INTO dbo.EmployeeDetails
+          
+     VALUES
+           (908
+		   ,7
+           ,'Shreesh Dutta Bajpai'
+           )
+GO
+
+
+INSERT INTO dbo.EmployeeDetails
+          
+     VALUES
+           (909
+		   ,5
+           ,'Naina Upadhyay'
+           )
+GO
+
+INSERT INTO dbo.EmployeeDetails
+          
+     VALUES
+           (910
+		   ,1
+           ,'Devesh Kumar Singh'
+           )
+GO
+
 

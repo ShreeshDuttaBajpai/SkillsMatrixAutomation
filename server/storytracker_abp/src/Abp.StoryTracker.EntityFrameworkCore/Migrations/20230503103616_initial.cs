@@ -446,6 +446,7 @@ namespace Abp.StoryTracker.Migrations
                 });
 
             migrationBuilder.CreateTable(
+<<<<<<< HEAD:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230425120227_initial.cs
 <<<<<<<< HEAD:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230425120227_initial.cs
                 name: "StoryTracker",
                 columns: table => new
@@ -469,6 +470,8 @@ namespace Abp.StoryTracker.Migrations
             migrationBuilder.CreateTable(
 ========
 >>>>>>>> 95e812f006aff4ebb032aeed2fb6867e83f183ac:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230427130630_initial.cs
+=======
+>>>>>>> e011979503b539a3dc4d49b036b0eb3dc21dc600:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230503103616_initial.cs
                 name: "AbpAuditLogActions",
                 columns: table => new
                 {
@@ -706,7 +709,6 @@ namespace Abp.StoryTracker.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ClientId = table.Column<int>(type: "int", nullable: true),
                     CategoryId = table.Column<int>(type: "int", nullable: true),
                     SubCategoryName = table.Column<string>(type: "varchar(50)", nullable: false),
                     SubCategoryDescription = table.Column<string>(type: "varchar(250)", nullable: false),
@@ -720,11 +722,6 @@ namespace Abp.StoryTracker.Migrations
                         name: "FK_SubCategoryMaster_CategoryMaster_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "CategoryMaster",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_SubCategoryMaster_ClientMaster_ClientId",
-                        column: x => x.ClientId,
-                        principalTable: "ClientMaster",
                         principalColumn: "Id");
                 });
 
@@ -804,6 +801,24 @@ namespace Abp.StoryTracker.Migrations
                         principalTable: "AbpEntityChanges",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EmployeeDetails",
+                columns: table => new
+                {
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    TeamId = table.Column<int>(type: "int", nullable: true),
+                    EmployeeName = table.Column<string>(type: "varchar(50)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeeDetails", x => x.EmployeeId);
+                    table.ForeignKey(
+                        name: "FK_EmployeeDetails_TeamMaster_TeamId",
+                        column: x => x.TeamId,
+                        principalTable: "TeamMaster",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -1093,6 +1108,11 @@ namespace Abp.StoryTracker.Migrations
                 column: "UserName");
 
             migrationBuilder.CreateIndex(
+                name: "IX_EmployeeDetails_TeamId",
+                table: "EmployeeDetails",
+                column: "TeamId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OpenIddictApplications_ClientId",
                 table: "OpenIddictApplications",
                 column: "ClientId");
@@ -1146,11 +1166,6 @@ namespace Abp.StoryTracker.Migrations
                 name: "IX_SubCategoryMaster_CategoryId",
                 table: "SubCategoryMaster",
                 column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SubCategoryMaster_ClientId",
-                table: "SubCategoryMaster",
-                column: "ClientId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TeamMaster_ClientId",
@@ -1225,6 +1240,9 @@ namespace Abp.StoryTracker.Migrations
                 name: "AbpUserTokens");
 
             migrationBuilder.DropTable(
+                name: "EmployeeDetails");
+
+            migrationBuilder.DropTable(
                 name: "OpenIddictScopes");
 
             migrationBuilder.DropTable(
@@ -1234,11 +1252,15 @@ namespace Abp.StoryTracker.Migrations
                 name: "SkillsMatrix");
 
             migrationBuilder.DropTable(
+<<<<<<< HEAD:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230425120227_initial.cs
 <<<<<<<< HEAD:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230425120227_initial.cs
                 name: "StoryTracker");
 ========
                 name: "SubCategoryMapping");
 >>>>>>>> 95e812f006aff4ebb032aeed2fb6867e83f183ac:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230427130630_initial.cs
+=======
+                name: "SubCategoryMapping");
+>>>>>>> e011979503b539a3dc4d49b036b0eb3dc21dc600:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230503103616_initial.cs
 
             migrationBuilder.DropTable(
                 name: "AbpEntityChanges");

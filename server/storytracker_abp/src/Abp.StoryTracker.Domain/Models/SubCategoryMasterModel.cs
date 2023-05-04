@@ -14,9 +14,9 @@ namespace Abp.StoryTracker.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public int? ClientId { get; set; }
-        [ForeignKey(nameof(ClientId))]
-        public ClientMasterModel? ClientMasterModel { get; set; }
+        //public int? ClientId { get; set; }
+        //[ForeignKey(nameof(ClientId))]
+        //public ClientMasterModel? ClientMasterModel { get; set; }
 
         public int? CategoryId { get; set; }
         [ForeignKey(nameof(CategoryId))]

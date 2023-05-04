@@ -14,9 +14,17 @@ namespace Abp.StoryTracker.SkillsMatrixRepoInterface
         Task<List<ClientMasterModel>> GetClientListAsync();
         Task<List<SkillsMatrixModel>> GetSkillsMatrixListAsync();
         Task<List<SubCategoryMasterModel>> GetSubCategoryListAsync();
+        Task<List<EmployeeDetailsModel>> GetEmployeeDetailsListAsync();
         Task<List<SubCategoryMasterModel>> GetSubCategoryAndCategoryListAsync(int categoryId);
+        Task<List<EmployeeDetailsModel>> GetEmployeeDetailsTeamWiseListAsync(int teamId);
         Task<List<TeamMasterModel>> GetTeamListAsync();
         Task<List<TeamMasterModel>> GetClientTeamListAsync(int clientId);
-        Task<List<ClientMasterModel>> PostClientListAsync(string postClientName, string postClientDescription, DateTime postClientCreatedOn, DateTime postClientModifiedOn);
+        Task<List<SubCategoryMappingModel>> GetSubCategoryMappingListAsync();
+        Task<List<ClientMasterModel>> PostClientListAsync(ClientMasterModel postClient);
+        Task<List<TeamMasterModel>> PostTeamListAsync(TeamMasterModel postTeam);
+        Task<List<CategoryMasterModel>> PostCategoryListAsync(CategoryMasterModel postCategory);
+        Task<List<SubCategoryMappingModel>> PostSubCategoryMappingListAsync(Object obj);
+        Task<List<SubCategoryMappingModel>> PutSubCategoryMappingListAsync(SubCategoryMappingModel putSubCategoryMapping); 
+        
     }
 }

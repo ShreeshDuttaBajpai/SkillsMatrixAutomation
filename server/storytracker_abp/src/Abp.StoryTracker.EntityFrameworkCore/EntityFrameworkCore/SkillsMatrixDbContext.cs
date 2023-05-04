@@ -57,6 +57,7 @@ public class SkillsMatrixDbContext :
     public DbSet<TeamMasterModel> TeamMasterModels { get; set; }
     public DbSet<SkillsMatrixModel> SkillsMatrixModels { get; set; }
     public DbSet<SubCategoryMasterModel> SkillsSubCategoryModels { get; set; }
+    public DbSet<EmployeeDetailsModel> EmployeeDetailsModels { get; set; }
 
 
     #endregion
@@ -126,6 +127,12 @@ public class SkillsMatrixDbContext :
         builder.Entity<SubCategoryMappingModel>(entity =>
         {
             entity.ToTable("SubCategoryMapping");
+        });
+
+
+        builder.Entity<EmployeeDetailsModel>(entity =>
+        {
+            entity.ToTable("EmployeeDetails");
         });
     }
 }
