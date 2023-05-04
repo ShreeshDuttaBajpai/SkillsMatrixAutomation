@@ -114,6 +114,19 @@ namespace Abp.StoryTracker.SkillsMatrixService
         }
 
 
+        public async Task<List<EmployeeDetailsApplicationContractsModel>> GetEmployeeDetailsTeamWiseListAsync(int teamId)
+        {
+            var domainResult = await skillMatrixRepository.GetEmployeeDetailsTeamWiseListAsync(teamId);
+            var applicationResult = new List<EmployeeDetailsApplicationContractsModel>();
+            foreach (var item in domainResult)
+            {
+                var applicationStory = objectMapper.Map<EmployeeDetailsModel, EmployeeDetailsApplicationContractsModel>(item);
+                applicationResult.Add(applicationStory);
+            }
+            return applicationResult;
+        }
+
+
         public async Task<List<SubCategoryMappingApplicationContractsModel>> GetSubCategoryMappingListAsync()
         {
             var domainResult = await skillMatrixRepository.GetSubCategoryMappingListAsync();
@@ -138,7 +151,7 @@ namespace Abp.StoryTracker.SkillsMatrixService
             }
             return applicationResult;
         }
-
+        
 
         public async Task PostClientListAsync(ClientMasterApplicationContractsModel postClient)
         {
@@ -159,11 +172,11 @@ namespace Abp.StoryTracker.SkillsMatrixService
         }
 
 
-        //public async Task PostSubCategoryMappingListAsync(Object obj)
-        //{
-        //    var postSubCategoryMappingData = objectMapper.Map<SubCategoryMappingApplicationContractsModel, SubCategoryMappingModel>(obj);
-        //    await skillMatrixRepository.PostSubCategoryMappingListAsync(obj);
-        //}
+        public async Task PostSubCategoryMappingListAsync(Object obj)
+        {
+            //var postSubCategoryMappingData = objectMapper.Map<SubCategoryMappingApplicationContractsModel, SubCategoryMappingModel>(obj);
+            await skillMatrixRepository.PostSubCategoryMappingListAsync(obj);
+        }
 
         public async Task PutSubCategoryMappingListAsync(SubCategoryMappingApplicationContractsModel putSubCategoryMapping)
         {

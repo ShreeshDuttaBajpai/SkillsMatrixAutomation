@@ -25,14 +25,14 @@ namespace Abp.StoryTracker.Endpoints
 
 
 
-        //public static WebApplication MapPostSubCategoryMappingEndpoints(this WebApplication app)
-        //{
-        //    _ = app.MapPost("/PostSubCategoryMapping", async ([FromServices] ISkillsMatrixService skillsMatrixService, [FromBody] Object obj) =>
-        //    {
-        //        await skillsMatrixService.PostSubCategoryMappingListAsync(obj);
-        //    }).WithTags("SkillsMatrix");
-        //    return app;
-        //}
+        public static WebApplication MapPostSubCategoryMappingEndpoints(this WebApplication app)
+        {
+            _ = app.MapPost("/PostSubCategoryMapping", async ([FromServices] ISkillsMatrixService skillsMatrixService, [FromBody] Object obj) =>
+            {
+                await skillsMatrixService.PostSubCategoryMappingListAsync(obj);
+            }).WithTags("SkillsMatrix");
+            return app;
+        }
 
 
         public static WebApplication MapPutSubCategoryMappingEndpoints(this WebApplication app)

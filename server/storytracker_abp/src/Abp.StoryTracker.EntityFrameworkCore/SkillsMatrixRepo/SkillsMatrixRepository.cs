@@ -97,6 +97,15 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
             return result;
         }
 
+        public async Task<List<EmployeeDetailsModel>> GetEmployeeDetailsTeamWiseListAsync(int teamId)
+        {
+            var dbConnection = await GetDbConnectionAsync();
+            var result = (await dbConnection.QueryAsync<EmployeeDetailsModel>("select * from EmployeeDetails where TeamId=" + teamId + "",
+                transaction: await GetDbTransactionAsync())).ToList();
+            return result;
+        }
+
+
         public async Task<List<ClientMasterModel>> PostClientListAsync(ClientMasterModel postClient)
         {
             var dbConnection = await GetDbConnectionAsync();
@@ -126,23 +135,23 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
             return result;
         }
 
-        //public async Task<List<SubCategoryMappingModel>> PostSubCategoryMappingListAsync(Object obj)
-        //{
-        //    var dbConnection = await GetDbConnectionAsync();
-        //    List<SubCategoryMappingModel> listOfPostMapping = new List<SubCategoryMappingModel>();
-        //    var mode = new SubCategoryMappingModel();
-        //    foreach (var item in obj.scores)
-        //    {
+        public async Task<List<SubCategoryMappingModel>> PostSubCategoryMappingListAsync(Object obj)
+        {
+            var dbConnection = await GetDbConnectionAsync();
+            List<SubCategoryMappingModel> listOfPostMapping = new List<SubCategoryMappingModel>();
+            var mode = new SubCategoryMappingModel();
+            //foreach (var item in obj.scores)
+            //{
 
-        //    }
-        //    var query = "INSERT INTO dbo.SubCategoryMapping VALUES ('" + postSubCategoryMapping.TeamId + "', '" + postSubCategoryMapping.SubCategoryId + "', '" + postSubCategoryMapping.ClientExpectedScore + "' , '" + postSubCategoryMapping.CreatedOn + "', '" + postSubCategoryMapping.ModifiedOn + "')";
-        //    var result = (await dbConnection.QueryAsync<SubCategoryMappingModel>(query,
-        //    transaction: await GetDbTransactionAsync())).ToList();
-        //    // var query = "INSERT INTO dbo.SubCategoryMapping VALUES ('" + postSubCategoryMapping.TeamId + "', '" + postSubCategoryMapping.SubCategoryId + "', '" + postSubCategoryMapping.ClientExpectedScore + "' , '" + postSubCategoryMapping.CreatedOn + "', '" + postSubCategoryMapping.ModifiedOn + "')";
-        //    // var result = (await dbConnection.QueryAsync<SubCategoryMappingModel>(query,
-        //    //   transaction: await GetDbTransactionAsync())).ToList();
-        //    return result;
-        //}
+            //}
+            //var query = "INSERT INTO dbo.SubCategoryMapping VALUES ('" + postSubCategoryMapping.TeamId + "', '" + postSubCategoryMapping.SubCategoryId + "', '" + postSubCategoryMapping.ClientExpectedScore + "' , '" + postSubCategoryMapping.CreatedOn + "', '" + postSubCategoryMapping.ModifiedOn + "')";
+            //var result = (await dbConnection.QueryAsync<SubCategoryMappingModel>(query,
+            //transaction: await GetDbTransactionAsync())).ToList();
+            // var query = "INSERT INTO dbo.SubCategoryMapping VALUES ('" + postSubCategoryMapping.TeamId + "', '" + postSubCategoryMapping.SubCategoryId + "', '" + postSubCategoryMapping.ClientExpectedScore + "' , '" + postSubCategoryMapping.CreatedOn + "', '" + postSubCategoryMapping.ModifiedOn + "')";
+            // var result = (await dbConnection.QueryAsync<SubCategoryMappingModel>(query,
+            //   transaction: await GetDbTransactionAsync())).ToList();
+            return null;
+        }
 
 
 
