@@ -3,9 +3,26 @@ import { ButtonComponent } from "../ButtonComponent/ButtonComponent";
 import TeamsComponent from "../TeamsComponent/TeamsComponent";
 import css from "./CardsComponent.css";
 import { getClientsTeamsList } from "./CardsComponentFunction";
+import DrawerComponent from "../DrawerComponent/DrawerComponent";
 
 const CardsComponent = ({ client }) => {
     const [teams, setTeams] = useState([]);
+    const [showDrawer, setShowDrawer] = useState(false);
+    const [form1Visible, setForm1Visible] = useState(false);
+    const showDrawerStyle = {
+        position: "absolute",
+        right: "0",
+        transition: "0.4s",
+        top: "0",
+        left: "0"
+    };
+    const hideDrawerStyle = {
+        position: "absolute",
+        left: "100vw",
+        top: "0",
+        transition: "0.4s"
+    };
+
     useEffect(async () => {
         setTeams(await getClientsTeamsList(client.clientId));
     }, []);
@@ -21,6 +38,11 @@ const CardsComponent = ({ client }) => {
                     <ButtonComponent
                         cname={css.add_button}
                         value={"Add Team"}
+                        handleClick={() => {
+                            console.log(client.clientName);
+                            setShowDrawer(!showDrawer);
+                            setForm1Visible(!form1Visible);
+                        }}
                     />
                 </div>
                 <hr />
@@ -30,6 +52,13 @@ const CardsComponent = ({ client }) => {
                             return <TeamsComponent key={index} team={team} />;
                         })}
                 </p>
+            </div>
+            <div style={showDrawer ? showDrawerStyle : hideDrawerStyle}>
+                <DrawerComponent
+                    showDrawer={showDrawer}
+                    setShowDrawer={setShowDrawer}
+                    form1Visible={setForm1Visible}
+                />
             </div>
         </div>
     );
