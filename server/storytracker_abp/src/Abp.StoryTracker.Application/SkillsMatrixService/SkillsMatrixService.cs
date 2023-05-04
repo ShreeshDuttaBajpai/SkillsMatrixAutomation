@@ -3,11 +3,15 @@ using Abp.StoryTracker.EntityFrameworkCore;
 using Abp.StoryTracker.Models;
 using Abp.StoryTracker.SkillsMatrixRepoInterface;
 using Abp.StoryTracker.SkillsMatrixServiceInterface;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 //using Abp.StoryTracker.StoryTrackerRepoInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Volo.Abp.ObjectMapping;
 
@@ -171,11 +175,32 @@ namespace Abp.StoryTracker.SkillsMatrixService
             await skillMatrixRepository.PostCategoryListAsync(postCategoryData);
         }
 
-
-        public async Task PostSubCategoryMappingListAsync(Object obj)
+        public async Task PostSubCategoryListAsync(SubCategoryMasterApplicationContractsModel postSubCategory)
         {
-            //var postSubCategoryMappingData = objectMapper.Map<SubCategoryMappingApplicationContractsModel, SubCategoryMappingModel>(obj);
-            await skillMatrixRepository.PostSubCategoryMappingListAsync(obj);
+            var postSubCategoryData = objectMapper.Map<SubCategoryMasterApplicationContractsModel, SubCategoryMasterModel>(postSubCategory);
+            await skillMatrixRepository.PostSubCategoryMasterListAsync(postSubCategoryData);
+        }
+
+
+        public async Task PostSubCategoryMappingListAsync(PostSubCategoryMappingApplicationContractsModel postSubCategoryMapping)
+        {
+            List<SubCategoryMappingApplicationContractsModel> listOfPostSubCategoryMapping = new List<SubCategoryMappingApplicationContractsModel>();
+            foreach (var item in postSubCategoryMapping.scores)
+            {
+                var mode = new SubCategoryMappingApplicationContractsModel();
+                mode.TeamId = postSubCategoryMapping.teamId;
+                mode.SubCategoryId = item.subCategoryId;
+                mode.ClientExpectedScore = item.expectedClientScore;
+                //var postSubCategoryMappingData = objectMapper.Map<PostSubCategoryMappingApplicationContractsModel, SubCategoryMappingModel>(postSubCategoryMapping);
+                //await skillMatrixRepository.PostSubCategoryMappingListAsync(postSubCategoryMappingData);
+                listOfPostSubCategoryMapping.Add(mode);
+            }
+            foreach(var postItem in listOfPostSubCategoryMapping)
+            {
+                var postSubCategoryMappingData = objectMapper.Map<SubCategoryMappingApplicationContractsModel, SubCategoryMappingModel>(postItem);
+
+                await skillMatrixRepository.PostSubCategoryMappingListAsync(postSubCategoryMappingData);
+            }
         }
 
         public async Task PutSubCategoryMappingListAsync(SubCategoryMappingApplicationContractsModel putSubCategoryMapping)

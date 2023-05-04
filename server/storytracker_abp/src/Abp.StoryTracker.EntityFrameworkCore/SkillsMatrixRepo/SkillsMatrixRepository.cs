@@ -135,24 +135,23 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
             return result;
         }
 
-        public async Task<List<SubCategoryMappingModel>> PostSubCategoryMappingListAsync(Object obj)
+        public async Task<List<SubCategoryMappingModel>> PostSubCategoryMappingListAsync(SubCategoryMappingModel postSubCategoryMapping)
         {
             var dbConnection = await GetDbConnectionAsync();
-            List<SubCategoryMappingModel> listOfPostMapping = new List<SubCategoryMappingModel>();
-            var mode = new SubCategoryMappingModel();
-            //foreach (var item in obj.scores)
-            //{
-
-            //}
-            //var query = "INSERT INTO dbo.SubCategoryMapping VALUES ('" + postSubCategoryMapping.TeamId + "', '" + postSubCategoryMapping.SubCategoryId + "', '" + postSubCategoryMapping.ClientExpectedScore + "' , '" + postSubCategoryMapping.CreatedOn + "', '" + postSubCategoryMapping.ModifiedOn + "')";
-            //var result = (await dbConnection.QueryAsync<SubCategoryMappingModel>(query,
-            //transaction: await GetDbTransactionAsync())).ToList();
-            // var query = "INSERT INTO dbo.SubCategoryMapping VALUES ('" + postSubCategoryMapping.TeamId + "', '" + postSubCategoryMapping.SubCategoryId + "', '" + postSubCategoryMapping.ClientExpectedScore + "' , '" + postSubCategoryMapping.CreatedOn + "', '" + postSubCategoryMapping.ModifiedOn + "')";
-            // var result = (await dbConnection.QueryAsync<SubCategoryMappingModel>(query,
-            //   transaction: await GetDbTransactionAsync())).ToList();
-            return null;
+            var query = "INSERT INTO dbo.SubCategoryMapping VALUES ('" + postSubCategoryMapping.TeamId + "', '" + postSubCategoryMapping.SubCategoryId + "', '" + postSubCategoryMapping.ClientExpectedScore + "' , '" + DateTime.Now + "', '" + DateTime.Now + "')";
+            var result = (await dbConnection.QueryAsync<SubCategoryMappingModel>(query,
+            transaction: await GetDbTransactionAsync())).ToList();
+            return result;
         }
 
+        public async Task<List<SubCategoryMasterModel>> PostSubCategoryMasterListAsync(SubCategoryMasterModel postSubCategoryMaster)
+        {
+            var dbConnection = await GetDbConnectionAsync();
+            var query = "INSERT INTO dbo.SubCategoryMaster VALUES ('" + postSubCategoryMaster.CategoryId + "', '" + postSubCategoryMaster.SubCategoryName + "', '" + postSubCategoryMaster.SubCategoryDescription + "' , '" + DateTime.Now + "', '" + DateTime.Now + "')";
+            var result = (await dbConnection.QueryAsync<SubCategoryMasterModel>(query,
+            transaction: await GetDbTransactionAsync())).ToList();
+            return result;
+        }
 
 
         public async Task<List<SubCategoryMappingModel>> PutSubCategoryMappingListAsync(SubCategoryMappingModel putSubCategoryMapping)
