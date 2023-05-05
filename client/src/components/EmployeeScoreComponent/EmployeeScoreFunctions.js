@@ -3,6 +3,7 @@ import {
     TeamEmployeesListApi
 } from "../../services/MasterService/MasterService";
 
+import { PostEmployeeScore } from "../../services/EmployeeScoreService/EmployeeScoreService";
 export const getTeamEmployeesList = async teamId => {
     const result = await TeamEmployeesListApi(teamId);
     console.log(result);
@@ -45,10 +46,17 @@ export const handleEmployeeScoreChange = (
     }
 };
 
-export const handleScoreSave = (selectedEmployee, employeeScoringArr) => {
+export const handleScoreSave = async (selectedEmployee, employeeScoringArr) => {
     const employeeScoringObject = {
         employeeId: selectedEmployee,
         scores: employeeScoringArr
     };
     console.log(employeeScoringObject);
+    await PostEmployeeScore(employeeScoringObject);
 };
+
+// export const handleScoreSave = async (selectedTeam, expectedScoreMappings) => {
+//     const teamScores = { teamId: selectedTeam, scores: expectedScoreMappings };
+//     console.log(teamScores);
+//     await PostScoreMappings(teamScores);
+// };
