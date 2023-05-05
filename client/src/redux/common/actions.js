@@ -142,3 +142,8 @@ export const setTeamEmployees = payload => ({
     type: types.SET_TEAM_EMPLOYEES,
     payload
 });
+
+export const setSkillMatrixData = payload => ({
+    type: types.SET_SKILL_MATRIX_DATA,
+    payload
+});

@@ -446,32 +446,6 @@ namespace Abp.StoryTracker.Migrations
                 });
 
             migrationBuilder.CreateTable(
-<<<<<<< HEAD:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230425120227_initial.cs
-<<<<<<<< HEAD:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230425120227_initial.cs
-                name: "StoryTracker",
-                columns: table => new
-                {
-                    Ticket_no = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Team = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Ticket_type = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Story_point = table.Column<int>(type: "int", nullable: false),
-                    Start_date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    End_date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Hours = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Code_reviewer = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StoryTracker", x => x.Ticket_no);
-                });
-
-            migrationBuilder.CreateTable(
-========
->>>>>>>> 95e812f006aff4ebb032aeed2fb6867e83f183ac:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230427130630_initial.cs
-=======
->>>>>>> e011979503b539a3dc4d49b036b0eb3dc21dc600:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230503103616_initial.cs
                 name: "AbpAuditLogActions",
                 columns: table => new
                 {
@@ -1240,20 +1214,6 @@ namespace Abp.StoryTracker.Migrations
                 name: "SkillsMatrix");
 
             migrationBuilder.DropTable(
-<<<<<<< HEAD:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230503103616_initial.cs
-<<<<<<< HEAD:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230425120227_initial.cs
-<<<<<<<< HEAD:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230425120227_initial.cs
-                name: "StoryTracker");
-========
-                name: "SubCategoryMapping");
->>>>>>>> 95e812f006aff4ebb032aeed2fb6867e83f183ac:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230427130630_initial.cs
-=======
-                name: "SubCategoryMapping");
->>>>>>> e011979503b539a3dc4d49b036b0eb3dc21dc600:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230503103616_initial.cs
-
-            migrationBuilder.DropTable(
-=======
->>>>>>> 8510d656199bce5689a4599e90d6529e151078c5:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230505061144_initial.cs
                 name: "AbpEntityChanges");
 
             migrationBuilder.DropTable(

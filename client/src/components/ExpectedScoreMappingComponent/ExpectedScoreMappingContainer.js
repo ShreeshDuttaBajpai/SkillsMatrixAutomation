@@ -2,13 +2,15 @@ import { connect } from "react-redux";
 import {
     setCategories,
     setClients,
-    setClientTeams
+    setClientTeams,
+    setExpectedScoreMappings
 } from "../../redux/common/actions";
 import ExpectedScoreMappingComponent from "./ExpectedScoreMappingComponent";
 import {
     getCategoriesList,
     getClientsList,
-    getClientsTeamsList
+    getClientsTeamsList,
+    getTeamExpectedScores
 } from "./ExpectedScoreMappingFunctions";
 
 const mapStateToProps = state => {
@@ -16,7 +18,7 @@ const mapStateToProps = state => {
         clients: state.skillMatrixOps.clients || [],
         teams: state.skillMatrixOps.teams || [],
         categories: state.skillMatrixOps.categories || [],
-        expectedScoreMappings: state.skillMatrixOps.expectedScoreMappings || []
+        expectedScoreMappings: state.skillMatrixOps.expectedScoreMappings || {}
     };
 };
 
@@ -33,6 +35,11 @@ const mapDispatchToProps = dispatch => {
         fetchCategoriesList: async () => {
             const categories = await getCategoriesList();
             dispatch(setCategories(categories));
+        },
+        fetchExpectedScore: async teamId => {
+            const scores = await getTeamExpectedScores(teamId);
+            console.log(scores);
+            dispatch(setExpectedScoreMappings(scores));
         }
     };
 };

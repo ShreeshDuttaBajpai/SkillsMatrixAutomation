@@ -1,17 +1,10 @@
-import { SubCategoryListApi } from "../../services/MasterService/MasterService";
-
-export const getSubCategoriesList = async () => {
-    const result = await SubCategoryListApi();
-    console.log(result);
-    return result;
-};
 export const handleExpectedScoreChange = (
     event,
     subCatId,
     expectedScoreMappings,
-    setExpectedScoreMappings
+    setExpectedScoreMappings,
+    setSubCategoryScore
 ) => {
-    console.log(expectedScoreMappings);
     const updatedScoreMapping = expectedScoreMappings;
     if (updatedScoreMapping.length > 0) {
         const isExisted = updatedScoreMapping.findIndex(
@@ -21,25 +14,34 @@ export const handleExpectedScoreChange = (
             updatedScoreMapping[isExisted].expectedClientScore = Number(
                 event.target.value
             );
-            setExpectedScoreMappings(updatedScoreMapping);
+            // setExpectedScoreMappings(updatedScoreMapping);
         } else {
             updatedScoreMapping.push({
                 subCategoryId: subCatId,
                 expectedClientScore: Number(event.target.value)
             });
-            setExpectedScoreMappings(updatedScoreMapping);
+            // setExpectedScoreMappings(updatedScoreMapping);
         }
     } else {
         updatedScoreMapping.push({
             subCategoryId: subCatId,
             expectedClientScore: Number(event.target.value)
         });
-        setExpectedScoreMappings(updatedScoreMapping);
     }
-};
-export const getScoreForSubCategoryId = (expectedScoreMappings, subCatId) => {
-    const scoreObj = expectedScoreMappings.find(
-        score => score.subCategoryId === subCatId
+    setExpectedScoreMappings(updatedScoreMapping);
+    setSubCategoryScore(
+        updatedScoreMapping.find(score => score.subCategoryId === subCatId)
+            .expectedClientScore
     );
+};
+
+export const getScoreForSubCategoryId = (expectedScoreMappings, subCatId) => {
+    console.log(expectedScoreMappings);
+    const scoreObj = expectedScoreMappings.find(score => {
+        console.log(subCatId);
+        console.log(score.subCategoryId);
+        return score.subCategoryId === subCatId;
+    });
+    scoreObj && console.log(scoreObj, scoreObj.expectedClientScore);
     return scoreObj ? scoreObj.expectedClientScore : 0;
 };

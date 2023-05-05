@@ -158,6 +158,28 @@ namespace Abp.StoryTracker.SkillsMatrixService
         }
 
 
+        public async Task<List<ScoresSubCategoryMappingApllicationContractsModel>> GetTeamSubCategoryMappingListAsync(int teamId)
+        {
+            var domainResult = await skillMatrixRepository.GetTeamSubCategoryMappingListAsync(teamId);
+            //var applicationResult = new PostSubCategoryMappingApplicationContractsModel();
+            //if (domainResult.Count > 0)
+            //{
+            //    applicationResult.teamId = (int)domainResult[0].TeamId;
+                var scoringObjList = new List<ScoresSubCategoryMappingApllicationContractsModel>();
+                foreach (var item in domainResult)
+                {
+                    var applicationStory = objectMapper.Map<SubCategoryMappingModel, SubCategoryMappingApplicationContractsModel>(item);
+                    var scoringObj = new ScoresSubCategoryMappingApllicationContractsModel();
+                    scoringObj.subCategoryId = (int)applicationStory.SubCategoryId;
+                    scoringObj.expectedClientScore = applicationStory.ClientExpectedScore;
+                    scoringObjList.Add(scoringObj);
+                }
+            //    applicationResult.scores = scoringObjList;
+            //}
+            return scoringObjList;
+        }
+
+
         public async Task<List<EmployeeDetailsApplicationContractsModel>> GetEmployeeDetailsListAsync()
         {
             var domainResult = await skillMatrixRepository.GetEmployeeDetailsListAsync();

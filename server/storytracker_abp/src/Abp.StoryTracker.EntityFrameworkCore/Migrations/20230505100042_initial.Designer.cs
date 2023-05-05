@@ -13,19 +13,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Abp.StoryTracker.Migrations
 {
     [DbContext(typeof(SkillsMatrixDbContext))]
-<<<<<<< HEAD:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230503103616_initial.Designer.cs
-<<<<<<< HEAD:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230425120227_initial.Designer.cs
-<<<<<<<< HEAD:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230425120227_initial.Designer.cs
-    [Migration("20230425120227_initial")]
-========
-    [Migration("20230427130630_initial")]
->>>>>>>> 95e812f006aff4ebb032aeed2fb6867e83f183ac:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230427130630_initial.Designer.cs
-=======
-    [Migration("20230503103616_initial")]
->>>>>>> e011979503b539a3dc4d49b036b0eb3dc21dc600:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230503103616_initial.Designer.cs
-=======
-    [Migration("20230505061144_initial")]
->>>>>>> 8510d656199bce5689a4599e90d6529e151078c5:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230505061144_initial.Designer.cs
+    [Migration("20230505100042_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -199,54 +187,7 @@ namespace Abp.StoryTracker.Migrations
 
                     b.HasIndex("CategoryId");
 
-<<<<<<< HEAD:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230425120227_initial.Designer.cs
-                    b.HasIndex("ClientId");
-
-<<<<<<<< HEAD:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230425120227_initial.Designer.cs
-                    b.ToTable("SkillsSubCategory", (string)null);
-                });
-
-            modelBuilder.Entity("Abp.StoryTracker.Models.StoryTrackerModel", b =>
-                {
-                    b.Property<string>("Ticket_no")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Code_reviewer")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("End_date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Hours")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Start_date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Story_point")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Team")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Ticket_type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Ticket_no");
-
-                    b.ToTable("StoryTracker", (string)null);
-========
                     b.ToTable("SubCategoryMaster", (string)null);
->>>>>>>> 95e812f006aff4ebb032aeed2fb6867e83f183ac:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230427130630_initial.Designer.cs
-=======
-                    b.ToTable("SubCategoryMaster", (string)null);
->>>>>>> e011979503b539a3dc4d49b036b0eb3dc21dc600:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230503103616_initial.Designer.cs
                 });
 
             modelBuilder.Entity("Abp.StoryTracker.Models.TeamMasterModel", b =>

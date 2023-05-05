@@ -1,7 +1,8 @@
 import {
     faLaptopCode,
     faPenToSquare,
-    faSitemap
+    faSitemap,
+    faTableList
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
@@ -16,7 +17,8 @@ const SidebarComponent = () => {
     const [activeLocation, setActiveLocation] = useState({
         home: path === "/",
         category: path === "/category",
-        clientScore: path === "/client-score"
+        clientScore: path === "/client-score",
+        skillMatrix: path === "/skill-matrix"
     });
     return (
         <div className={css.sidebarContainerDiv}>
@@ -78,6 +80,23 @@ const SidebarComponent = () => {
                 }
             >
                 <FontAwesomeIcon icon={faPenToSquare} />
+            </NavLink>
+            <NavLink
+                title="Skill Matrix Table Page"
+                to="/skill-matrix"
+                className={css.sidebarNavItem}
+                activeClassName={
+                    activeLocation.skillMatrix ? css.sidebarActiveNavItem : ""
+                }
+                onClick={() =>
+                    handleNavItemClick(
+                        activeLocation,
+                        setActiveLocation,
+                        "skillMatrix"
+                    )
+                }
+            >
+                <FontAwesomeIcon icon={faTableList} />
             </NavLink>
         </div>
     );

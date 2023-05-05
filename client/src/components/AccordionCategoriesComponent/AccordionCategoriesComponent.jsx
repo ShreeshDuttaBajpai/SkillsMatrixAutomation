@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import css from "./AccordionCategoriesComponent.css";
-import { handleExpectedScoreChange } from "./AccordionCategoriesFunctions";
+import {
+    getScoreForSubCategoryId,
+    handleExpectedScoreChange
+} from "./AccordionCategoriesFunctions";
+import SubCategoryExpectedScoreContainer from "../SubCategoryExpectedScoreComponent/SubCategoryExpectedScoreContainer";
 
 const AccordionCategoriesComponent = ({
     categories,
@@ -9,6 +13,7 @@ const AccordionCategoriesComponent = ({
     fetchSubCategoriesList,
     setExpectedScoreMappings
 }) => {
+    console.log(expectedScoreMappings);
     useEffect(() => {
         fetchSubCategoriesList();
     }, [fetchSubCategoriesList]);
@@ -25,28 +30,19 @@ const AccordionCategoriesComponent = ({
                                         subCategory.categoryId === category.id
                                 )
                                 .map(subCategory => (
-                                    <li
+                                    <SubCategoryExpectedScoreContainer
+                                        expectedScoreObj={
+                                            expectedScoreMappings.length > 0
+                                                ? expectedScoreMappings.find(
+                                                      score =>
+                                                          score.subCategoryId ===
+                                                          subCategory.id
+                                                  )
+                                                : 0
+                                        }
+                                        subCategory={subCategory}
                                         key={subCategory.id}
-                                        className={css.subCategoryLi}
-                                    >
-                                        {subCategory.subCategoryName}
-                                        <select
-                                            onChange={e =>
-                                                handleExpectedScoreChange(
-                                                    e,
-                                                    subCategory.id,
-                                                    expectedScoreMappings,
-                                                    setExpectedScoreMappings
-                                                )
-                                            }
-                                        >
-                                            <option value={0}>0</option>
-                                            <option value={1}>1</option>
-                                            <option value={2}>2</option>
-                                            <option value={3}>3</option>
-                                            <option value={4}>4</option>
-                                        </select>
-                                    </li>
+                                    />
                                 ))}
                         </ul>
                     )}

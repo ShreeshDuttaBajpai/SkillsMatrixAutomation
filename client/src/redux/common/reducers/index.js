@@ -55,7 +55,139 @@ const skillMatrixState = {
     categories: [],
     subCategories: [],
     expectedScoreMappings: [],
-    teamEmployees: []
+    teamEmployees: [],
+    skillMatrixData: [
+        {
+            client: "CW",
+            team: "CPL",
+            employeeId: 909,
+            employeeName: "Naina Upadhyay",
+            category: "MS Tech",
+            subCategory: "C#",
+            expectedScore: "3",
+            employeeScore: "2"
+        },
+        {
+            client: "CW",
+            team: "CPL",
+            employeeId: 909,
+            employeeName: "Naina Upadhyay",
+            category: "MS Tech",
+            subCategory: ".Net",
+            expectedScore: "2",
+            employeeScore: "4"
+        },
+        {
+            client: "CW",
+            team: "CPL",
+            employeeId: 909,
+            employeeName: "Naina Upadhyay",
+            category: "MS Tech",
+            subCategory: ".NetCore",
+            expectedScore: "3",
+            employeeScore: "3"
+        },
+        {
+            client: "CW",
+            team: "PSA",
+            employeeId: 784,
+            employeeName: "Gagan Narang",
+            category: "UI",
+            subCategory: "React",
+            expectedScore: "3",
+            employeeScore: "4"
+        },
+        {
+            client: "CW",
+            team: "PSA",
+            employeeId: 784,
+            employeeName: "Gagan Narang",
+            category: "UI",
+            subCategory: "React",
+            expectedScore: "3",
+            employeeScore: "4"
+        },
+        {
+            client: "CW",
+            team: "PSA",
+            employeeId: 784,
+            employeeName: "Gagan Narang",
+            category: "UI",
+            subCategory: "React",
+            expectedScore: "3",
+            employeeScore: "4"
+        },
+        {
+            client: "CW",
+            team: "PSA",
+            employeeId: 784,
+            employeeName: "Gagan Narang",
+            category: "UI",
+            subCategory: "React",
+            expectedScore: "3",
+            employeeScore: "4"
+        },
+        {
+            client: "CW",
+            team: "PSA",
+            employeeId: 784,
+            employeeName: "Gagan Narang",
+            category: "UI",
+            subCategory: "React",
+            expectedScore: "3",
+            employeeScore: "4"
+        },
+        {
+            client: "CW",
+            team: "PSA",
+            employeeId: 784,
+            employeeName: "Gagan Narang",
+            category: "UI",
+            subCategory: "React",
+            expectedScore: "3",
+            employeeScore: "4"
+        },
+        {
+            client: "CW",
+            team: "PSA",
+            employeeId: 784,
+            employeeName: "Gagan Narang",
+            category: "UI",
+            subCategory: "React",
+            expectedScore: "3",
+            employeeScore: "4"
+        },
+        {
+            client: "CW",
+            team: "PSA",
+            employeeId: 784,
+            employeeName: "Gagan Narang",
+            category: "UI",
+            subCategory: "React",
+            expectedScore: "3",
+            employeeScore: "4"
+        },
+        {
+            client: "CW",
+            team: "PSA",
+            employeeId: 784,
+            employeeName: "Gagan Narang",
+            category: "UI",
+            subCategory: "React",
+            expectedScore: "3",
+            employeeScore: "4"
+        },
+        {
+            client: "CW",
+            team: "PSA",
+            employeeId: 784,
+            employeeName: "Gagan Narang",
+            category: "UI",
+            subCategory: "React",
+            expectedScore: "3",
+            employeeScore: "4"
+        }
+    ]
 };
 
 export const commonApi = (state = initialState, action) => {
@@ -219,6 +351,8 @@ export const skillMatrixOps = (state = skillMatrixState, action) => {
             return { ...state, expectedScoreMappings: action.payload };
         case types.SET_TEAM_EMPLOYEES:
             return { ...state, teamEmployees: action.payload };
+        case types.SET_SKILL_MATRIX_DATA:
+            return { ...state, skillMatrixData: action.payload };
         default:
             return state;
     }

@@ -11,7 +11,8 @@ const ExpectedScoreMappingComponent = ({
     expectedScoreMappings,
     fetchCategoriesList,
     fetchClientList,
-    fetchClientTeamsList
+    fetchClientTeamsList,
+    fetchExpectedScore
 }) => {
     const [selectedClient, setSelectedClient] = useState();
     const [selectedTeam, setSelectedTeam] = useState();
@@ -28,6 +29,10 @@ const ExpectedScoreMappingComponent = ({
     useEffect(() => {
         fetchCategoriesList();
     }, [fetchCategoriesList]);
+
+    useEffect(() => {
+        selectedTeam && fetchExpectedScore(selectedTeam);
+    }, [selectedTeam]);
 
     return (
         <div className={css.expectedScoreContainerDiv}>

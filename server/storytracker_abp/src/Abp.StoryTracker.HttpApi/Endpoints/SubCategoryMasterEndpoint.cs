@@ -17,7 +17,7 @@ namespace Abp.StoryTracker.Endpoints
         {
             _ = app.MapGet("/SubCategoryMaster", async ([FromServices] ISkillsMatrixService skillsMatrixService) =>
             {
-                var result = await skillsMatrixService.GetCategoryListAsync();
+                var result = await skillsMatrixService.GetSubCategoryListAsync();
                 return (result);
             }).WithTags("SkillsMatrix");
             return app;
