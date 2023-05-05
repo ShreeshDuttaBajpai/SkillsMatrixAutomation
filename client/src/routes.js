@@ -43,11 +43,11 @@ const App = () => {
                                     <Route
                                         exact
                                         path="/"
-                                        component={ClientsCardContainer}
+                                        component={()=>(<ClientsCardContainer addbutton={"Add CLient"}/>)}
                                     />
                                     <Route
                                         path="/category"
-                                        component={ClientsCardContainer}
+                                        component={()=>(<ClientsCardContainer addbutton={"Add Category"}/>)}
                                     />
                                     <Route
                                         path="/client-score"

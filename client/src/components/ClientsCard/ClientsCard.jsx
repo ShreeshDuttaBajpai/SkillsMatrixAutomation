@@ -5,6 +5,7 @@ import DrawerComponent from "../DrawerComponent/DrawerComponent";
 import CardsContainer from "../CardsComponent/CardsContainer";
 
 const ClientsCard = ({
+    addbutton,
     fetchClientList,
     clients,
     fetchCategoryList,
@@ -42,7 +43,7 @@ const ClientsCard = ({
             <div>
                 <ButtonComponent
                     cname={css.add_button}
-                    value={"Add Client"}
+                    value={addbutton}
                     handleClick={() => {
                         setShowDrawer(!showDrawer);
                         setForm2Visible(!form2Visible);
