@@ -29,6 +29,20 @@ namespace Abp.StoryTracker.SkillsMatrixService
         }
 
 
+
+        public async Task<List<GetSkillsMatrixJoinTablesApplicationContractsModel>> GetSkillsMatrixJoinTablesListAsync()
+        {
+            var domainResult = await skillMatrixRepository.GetSkillsMatrixJoinTablesListAsync();
+            var applicationResult = new List<GetSkillsMatrixJoinTablesApplicationContractsModel>();
+            foreach (var item in domainResult)
+            {
+                var applicationStory = objectMapper.Map<GetSkillsMatrixJoinTablesModel, GetSkillsMatrixJoinTablesApplicationContractsModel>(item);
+                applicationResult.Add(applicationStory);
+            }
+            return applicationResult;
+        }
+        
+
         public async Task<List<SkillsMatrixApplicationContractsModel>> GetSkillsMatrixListAsync()
         {
             var domainResult = await skillMatrixRepository.GetSkillsMatrixListAsync();

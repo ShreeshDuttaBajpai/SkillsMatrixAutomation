@@ -29,6 +29,8 @@ public class StoryTrackerApplicationAutoMapperProfile : Profile
 
 
         CreateMap<PostSubCategoryMappingApplicationContractsModel, SubCategoryMappingModel>();
+        CreateMap<GetSkillsMatrixJoinTablesModel, GetSkillsMatrixJoinTablesApplicationContractsModel>();
+        CreateMap<GetSkillsMatrixJoinTablesApplicationContractsModel, GetSkillsMatrixJoinTablesModel>();
 
     }
 }

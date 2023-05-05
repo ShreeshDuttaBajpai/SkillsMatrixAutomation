@@ -796,31 +796,6 @@ namespace Abp.StoryTracker.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SkillsMatrix",
-                columns: table => new
-                {
-                    EmployeeId = table.Column<int>(type: "int", nullable: false),
-                    TeamId = table.Column<int>(type: "int", nullable: true),
-                    SubCategoryId = table.Column<int>(type: "int", nullable: true),
-                    EmployeeScore = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime", nullable: false),
-                    ModifiedOn = table.Column<DateTime>(type: "datetime", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.ForeignKey(
-                        name: "FK_SkillsMatrix_SubCategoryMaster_SubCategoryId",
-                        column: x => x.SubCategoryId,
-                        principalTable: "SubCategoryMaster",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_SkillsMatrix_TeamMaster_TeamId",
-                        column: x => x.TeamId,
-                        principalTable: "TeamMaster",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "SubCategoryMapping",
                 columns: table => new
                 {
@@ -885,6 +860,25 @@ namespace Abp.StoryTracker.Migrations
                         name: "FK_OpenIddictTokens_OpenIddictAuthorizations_AuthorizationId",
                         column: x => x.AuthorizationId,
                         principalTable: "OpenIddictAuthorizations",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SkillsMatrix",
+                columns: table => new
+                {
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    SubCategoryId = table.Column<int>(type: "int", nullable: true),
+                    EmployeeScore = table.Column<int>(type: "int", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.ForeignKey(
+                        name: "FK_SkillsMatrix_SubCategoryMapping_SubCategoryId",
+                        column: x => x.SubCategoryId,
+                        principalTable: "SubCategoryMapping",
                         principalColumn: "Id");
                 });
 
@@ -1121,11 +1115,6 @@ namespace Abp.StoryTracker.Migrations
                 column: "SubCategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SkillsMatrix_TeamId",
-                table: "SkillsMatrix",
-                column: "TeamId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_SubCategoryMapping_SubCategoryId",
                 table: "SubCategoryMapping",
                 column: "SubCategoryId");
@@ -1225,9 +1214,6 @@ namespace Abp.StoryTracker.Migrations
                 name: "SkillsMatrix");
 
             migrationBuilder.DropTable(
-                name: "SubCategoryMapping");
-
-            migrationBuilder.DropTable(
                 name: "AbpEntityChanges");
 
             migrationBuilder.DropTable(
@@ -1246,16 +1232,19 @@ namespace Abp.StoryTracker.Migrations
                 name: "OpenIddictAuthorizations");
 
             migrationBuilder.DropTable(
-                name: "SubCategoryMaster");
-
-            migrationBuilder.DropTable(
-                name: "TeamMaster");
+                name: "SubCategoryMapping");
 
             migrationBuilder.DropTable(
                 name: "AbpAuditLogs");
 
             migrationBuilder.DropTable(
                 name: "OpenIddictApplications");
+
+            migrationBuilder.DropTable(
+                name: "SubCategoryMaster");
+
+            migrationBuilder.DropTable(
+                name: "TeamMaster");
 
             migrationBuilder.DropTable(
                 name: "CategoryMaster");

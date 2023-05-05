@@ -55,6 +55,20 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
             return result;
         }
 
+
+
+        public async Task<List<GetSkillsMatrixJoinTablesModel>> GetSkillsMatrixJoinTablesListAsync()
+        {
+            var dbConnection = await GetDbConnectionAsync();
+            var query = "SELECT\r\n\tClientMaster.ClientName,\r\n\tTeamMaster.TeamName,\r\n\tSkillsMatrix.EmployeeId,\r\n\tEmployeeDetails.EmployeeName,\r\n\tCategoryMaster.CategoryName,\r\n\tSubCategoryMaster.SubCategoryName,\r\n\tSubCategoryMapping.ClientExpectedScore,\r\n\tSkillsMatrix.EmployeeScore\r\nFROM SkillsMatrix\r\ninner JOIN EmployeeDetails\r\nON EmployeeDetails.EmployeeId = SkillsMatrix.EmployeeId\r\ninner JOIN SubCategoryMapping\r\nON SkillsMatrix.SubCategoryId = SubCategoryMapping.Id\r\ninner JOIN TeamMaster\r\nON EmployeeDetails.TeamId=TeamMaster.Id\r\ninner JOIN ClientMaster\r\nON TeamMaster.ClientId=ClientMaster.Id\r\ninner JOIN SubCategoryMaster\r\nON SubCategoryMapping.SubCategoryId = SubCategoryMaster.Id\r\nJOIN CategoryMaster\r\nON SubCategoryMaster.CategoryId = CategoryMaster.Id\r\n";
+            var result = (await dbConnection.QueryAsync<GetSkillsMatrixJoinTablesModel>(query,
+                transaction: await GetDbTransactionAsync())).ToList();
+            return result;
+        }
+
+
+
+        
         public async Task<List<SubCategoryMasterModel>> GetSubCategoryListAsync()
         {
             var dbConnection = await GetDbConnectionAsync();

@@ -1854,11 +1854,11 @@ namespace Abp.StoryTracker.Migrations
 
             modelBuilder.Entity("Abp.StoryTracker.Models.SkillsMatrixModel", b =>
                 {
-                    b.HasOne("Abp.StoryTracker.Models.SubCategoryMasterModel", "SkillsSubCategoryModel")
+                    b.HasOne("Abp.StoryTracker.Models.SubCategoryMappingModel", "SubCategoryMappingModel")
                         .WithMany()
                         .HasForeignKey("SubCategoryId");
 
-                    b.Navigation("SkillsSubCategoryModel");
+                    b.Navigation("SubCategoryMappingModel");
                 });
 
             modelBuilder.Entity("Abp.StoryTracker.Models.SubCategoryMappingModel", b =>
