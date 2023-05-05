@@ -42,7 +42,7 @@ const AccordionComponent = ({
                 }
             >
                 <span>&gt;</span>
-                <span>{accordionTitle}</span>
+                <span className={css.accordionTitleSpan}>{accordionTitle}</span>
                 <span>
                     {accordionTitle !== "Categories" &&
                         (selectedItem

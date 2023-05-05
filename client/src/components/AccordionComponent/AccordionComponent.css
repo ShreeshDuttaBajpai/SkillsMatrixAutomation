@@ -17,6 +17,11 @@
 .accordionContainer span {
     cursor: pointer;
 }
+.accordionTitleSpan {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 20px;
+}
 .btnDisabled {
     opacity: 0.5;
     pointer-events: none;
@@ -45,7 +50,7 @@
     background-color: #ededed;
     position: absolute;
     visibility: hidden;
-    top: 65px;
+    top: 72px;
     left: 0;
     z-index: 1;
 }

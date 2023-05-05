@@ -14,7 +14,10 @@
     width: 40%;
 }
 .mappingsSaveBtn {
-    margin-top: 200px;
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
+    /* margin-top: 200px; */
     width: max-content;
     padding: 10px 15px;
     align-self: center;
@@ -30,4 +33,5 @@
     font-weight: 400;
     letter-spacing: -0.022em;
     line-height: 1.47059;
+    z-index: 3;
 }

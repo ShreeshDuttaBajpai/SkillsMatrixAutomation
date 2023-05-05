@@ -34,14 +34,3 @@ export const handleExpectedScoreChange = (
             .expectedClientScore
     );
 };
-
-export const getScoreForSubCategoryId = (expectedScoreMappings, subCatId) => {
-    console.log(expectedScoreMappings);
-    const scoreObj = expectedScoreMappings.find(score => {
-        console.log(subCatId);
-        console.log(score.subCategoryId);
-        return score.subCategoryId === subCatId;
-    });
-    scoreObj && console.log(scoreObj, scoreObj.expectedClientScore);
-    return scoreObj ? scoreObj.expectedClientScore : 0;
-};

@@ -32,12 +32,17 @@ const AccordionCategoriesComponent = ({
                                 .map(subCategory => (
                                     <SubCategoryExpectedScoreContainer
                                         expectedScoreObj={
-                                            expectedScoreMappings.length > 0
+                                            expectedScoreMappings.length > 0 &&
+                                            expectedScoreMappings.find(
+                                                score =>
+                                                    score.subCategoryId ===
+                                                    subCategory.id
+                                            )
                                                 ? expectedScoreMappings.find(
                                                       score =>
                                                           score.subCategoryId ===
                                                           subCategory.id
-                                                  )
+                                                  ).expectedClientScore
                                                 : 0
                                         }
                                         subCategory={subCategory}

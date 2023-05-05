@@ -1,9 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import css from "./SubCategoryExpectedScoreComponent.css";
-import {
-    getScoreForSubCategoryId,
-    handleExpectedScoreChange
-} from "./SubCategoryExpectedScoreFunctions";
+import { handleExpectedScoreChange } from "./SubCategoryExpectedScoreFunctions";
 
 const SubCategoryExpectedScoreComponent = ({
     subCategory,
@@ -11,17 +8,10 @@ const SubCategoryExpectedScoreComponent = ({
     setExpectedScoreMappings,
     expectedScoreObj
 }) => {
-    console.log(expectedScoreObj);
-    console.log(expectedScoreMappings);
-    const [subCategoryScore, setSubCategoryScore] = useState(
-        expectedScoreObj !== undefined
-            ? expectedScoreObj.expectedClientScore
-            : 0
-    );
-    console.log(subCategoryScore);
-    console.log(
-        getScoreForSubCategoryId(expectedScoreMappings, subCategory.id)
-    );
+    const [subCategoryScore, setSubCategoryScore] = useState(expectedScoreObj);
+    useEffect(() => {
+        setSubCategoryScore(expectedScoreObj);
+    }, [expectedScoreObj]);
     return (
         <li key={subCategory.id} className={css.subCategoryLi}>
             {subCategory.subCategoryName}

@@ -15,7 +15,7 @@
 }
 .skillMatrixGridHeader {
     display: flex;
-    font-weight: 600;
+    font-weight: 500;
     color: black;
 }
 .skillMatrixGridHeader > .skillMatrixGridItem {
