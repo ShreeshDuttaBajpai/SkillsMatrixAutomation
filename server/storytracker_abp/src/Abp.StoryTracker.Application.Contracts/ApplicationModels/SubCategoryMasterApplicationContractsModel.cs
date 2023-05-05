@@ -17,8 +17,8 @@ namespace Abp.StoryTracker.ApplicationModels
         //public ClientMasterApplicationContractsModel? ClientMasterApplicationContractsModel { get; set; }
 
         public int? CategoryId { get; set; }
-        [ForeignKey(nameof(CategoryId))]
-        public CategoryMasterApplicationContractsModel? CategoryMasterApplicationContractsModel { get; set; }
+        //[ForeignKey(nameof(CategoryId))]
+        //public CategoryMasterApplicationContractsModel? CategoryMasterApplicationContractsModel { get; set; }
 
         [Required]
         [Column(TypeName = "varchar(50)")]

@@ -154,10 +154,22 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
         {
             var dbConnection = await GetDbConnectionAsync();
 
-            var query = "INSERT INTO dbo.SkillsMatrix VALUES ('" + postSkillMatrix.EmployeeId + "', '" + postSkillMatrix.SubCategoryId + "', '" + postSkillMatrix.EmployeeScore + "' , '" + DateTime.Now + "', '" + DateTime.Now + "')";
-            var result = (await dbConnection.QueryAsync<SkillsMatrixModel>(query,
+            var query2 = "Select * from dbo. SkillsMatrix where EmployeeId=" + postSkillMatrix.EmployeeId + " and SubCategoryId=" + postSkillMatrix.SubCategoryId + "";
+            var result2 = (await dbConnection.QueryAsync<SkillsMatrixModel>(query2,
             transaction: await GetDbTransactionAsync())).ToList();
-            return result;
+
+            var query3 = "UPDATE dbo.SkillsMatrix set EmployeeScore = " + postSkillMatrix.EmployeeScore + " where EmployeeId=" + postSkillMatrix.EmployeeId + " and SubCategoryId=" + postSkillMatrix.SubCategoryId + "";
+            var result3 = (await dbConnection.QueryAsync<SkillsMatrixModel>(query3,
+                transaction: await GetDbTransactionAsync())).ToList();
+
+            if (result2.Count() == 0)
+            {
+                var query = "INSERT INTO dbo.SkillsMatrix VALUES ('" + postSkillMatrix.EmployeeId + "', '" + postSkillMatrix.SubCategoryId + "', '" + postSkillMatrix.EmployeeScore + "' , '" + DateTime.Now + "', '" + DateTime.Now + "')";
+                var result = (await dbConnection.QueryAsync<SkillsMatrixModel>(query,
+                transaction: await GetDbTransactionAsync())).ToList();
+                return result;
+            }
+            else return result3;
         }
 
 

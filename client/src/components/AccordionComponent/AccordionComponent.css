@@ -1,0 +1,57 @@
+.accordionDiv {
+    width: 48%;
+    background-color: #ededed;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+}
+.accordionDiv.categoryBox {
+    margin-top: 40px;
+    width: 100%;
+}
+.accordionContainer {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.accordionContainer span {
+    cursor: pointer;
+}
+.btnDisabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+.dataListUl {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.dataListLi {
+    color: #333;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+}
+.dataListLi:hover {
+    background-color: #f1f1f1;
+}
+.selectedDataItem {
+    background-color: #f3f3f3;
+}
+.accordionBody {
+    width: 100%;
+    border: 1px solid #eee;
+    background-color: #ededed;
+    position: absolute;
+    visibility: hidden;
+    top: 65px;
+    left: 0;
+    z-index: 1;
+}
+.accordionActiveBody {
+    visibility: visible;
+}
+.disableAccordionEvent {
+    pointer-events: none;
+}

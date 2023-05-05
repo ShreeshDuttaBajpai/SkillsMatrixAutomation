@@ -51,7 +51,11 @@ const initialState = {
 
 const skillMatrixState = {
     clients: [],
-    teams: []
+    teams: [],
+    categories: [],
+    subCategories: [],
+    expectedScoreMappings: [],
+    teamEmployees: []
 };
 
 export const commonApi = (state = initialState, action) => {
@@ -203,10 +207,18 @@ export const tableUser = (state = initialState, action) => {
 
 export const skillMatrixOps = (state = skillMatrixState, action) => {
     switch (action.type) {
-        case types.FETCH_CLIENTS:
+        case types.SET_CLIENTS:
             return { ...state, clients: action.payload };
-        case types.FETCH_CLIENT_TEAMS:
+        case types.SET_CLIENT_TEAMS:
             return { ...state, teams: action.payload };
+        case types.SET_CATEGORIES:
+            return { ...state, categories: action.payload };
+        case types.SET_SUB_CATEGORIES:
+            return { ...state, subCategories: action.payload };
+        case types.SET_SCORE_MAPPINGS:
+            return { ...state, expectedScoreMappings: action.payload };
+        case types.SET_TEAM_EMPLOYEES:
+            return { ...state, teamEmployees: action.payload };
         default:
             return state;
     }
