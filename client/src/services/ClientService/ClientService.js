@@ -1,4 +1,4 @@
-import { getApi } from "../baseApiService";
+import { getApi, postApi } from "../baseApiService";
 
 export const ClientListApi = async () => {
     const baseURL = "https://localhost:44325/clientmaster";
@@ -27,3 +27,25 @@ export const ClientTeamsApi = async clientId => {
     console.log(response);
     return response;
 };
+
+export const ClientPostApi = async(data) => {
+    const baseURL = "https://localhost:44325/postClientMaster";
+    const response=await postApi(baseURL,data).then(res => {
+        alert('Client added successfully!!')})
+        .catch(error => {
+            return error;
+        });
+    console.log(response);
+    return response;
+}
+
+export const TeamPostApi = async(data) => {
+    const baseURL = "https://localhost:44325/postTeamMaster";
+    const response=await postApi(baseURL,data).then(res => {
+        alert('Team added successfully!!')})
+        .catch(error => {
+            return error;
+        });
+    console.log(response);
+    return response;
+}

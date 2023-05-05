@@ -17,3 +17,7 @@ export const delApi = async (apiURL) => {
   return response;
 };
 
+export const postApi = async(baseURL,data) => {
+  const reponse = await axios.post(baseURL,data);
+  return reponse;
+}

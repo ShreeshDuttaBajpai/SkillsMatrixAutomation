@@ -1,0 +1,15 @@
+.expectedScoreContainerDiv {
+    width: 100%;
+    display: flex;
+    margin-top: 30px;
+    justify-content: space-around;
+}
+.categoryScoringDiv {
+    width: 40%;
+}
+.accordionBtnDiv {
+    width: 40%;
+}
+.accordionBtn {
+    width: 100%;
+}

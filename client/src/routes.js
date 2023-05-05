@@ -10,12 +10,13 @@ import TablePage from "./Pages/TablePage";
 import CodeReviewPage from "./Pages/CodeReviewPage";
 import ReportsPage from "./Pages/ReportsPage";
 import Navbar from "./components/Navbar/Navbar";
-import ProtectedRoute from "./components/ProtectedRoute";
-import MainDashboardEntry from "./components/MainDashboardEntry";
 import configureStore from "./store/main";
 import css from "./routes.css";
 import SidebarContainer from "./components/Sidebar/SidebarContainer";
+import ClientScorePage from "./Pages/ClientScorePage";
 import ClientsCard from "./components/ClientsCard/ClientsCard";
+import HomePage from "./Pages/HomePage";
+import ClientsCardContainer from "./components/ClientsCard/ClientsCardContainer";
 
 const store = configureStore();
 
@@ -42,11 +43,15 @@ const App = () => {
                                     <Route
                                         exact
                                         path="/"
-                                        component={ClientsCard}
+                                        component={ClientsCardContainer}
                                     />
                                     <Route
                                         path="/category"
-                                        component={MainDashboardEntry}
+                                        component={ClientsCardContainer}
+                                    />
+                                    <Route
+                                        path="/client-score"
+                                        component={ClientScorePage}
                                     />
                                     {/* <ProtectedRoute
                     path="/Table"

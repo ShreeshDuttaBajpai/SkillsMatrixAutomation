@@ -2,11 +2,16 @@ import React, { useEffect, useState } from "react";
 import { ButtonComponent } from "../ButtonComponent/ButtonComponent";
 import TeamsComponent from "../TeamsComponent/TeamsComponent";
 import css from "./CardsComponent.css";
-import { getClientsTeamsList } from "./CardsComponentFunction";
+import {
+    getCategoryList,
+    getClientsTeamsList,
+    getSubCategoryList
+} from "./CardsComponentFunction";
 import DrawerComponent from "../DrawerComponent/DrawerComponent";
 
-const CardsComponent = ({ client }) => {
+const CardsComponent = ({ client, fetchClientTeamsList, getClient }) => {
     const [teams, setTeams] = useState([]);
+    const [category, setCategory] = useState([]);
     const [showDrawer, setShowDrawer] = useState(false);
     const [form1Visible, setForm1Visible] = useState(false);
     const showDrawerStyle = {
@@ -23,10 +28,21 @@ const CardsComponent = ({ client }) => {
         transition: "0.4s"
     };
 
+    console.log(client);
+
+    // useEffect(() => {
+    //     fetchClientTeamsList(client.id);
+    // }, [fetchClientTeamsList]);
+
     useEffect(async () => {
-        setTeams(await getClientsTeamsList(client.clientId));
+        setTeams(await getClientsTeamsList(client.id));
+        console.log(client);
     }, []);
 
+    useEffect(async () => {
+        setCategory(await getSubCategoryList(client.id));
+        console.log(client);
+    }, []);
     return (
         <div className={css.card_column}>
             <div className={css.card}>
@@ -42,6 +58,7 @@ const CardsComponent = ({ client }) => {
                             console.log(client.clientName);
                             setShowDrawer(!showDrawer);
                             setForm1Visible(!form1Visible);
+                            getClient(client);
                         }}
                     />
                 </div>
@@ -49,6 +66,7 @@ const CardsComponent = ({ client }) => {
                 <p className={css.teamlist}>
                     {teams.length > 0 &&
                         teams.map((team, index) => {
+                            console.log(team);
                             return <TeamsComponent key={index} team={team} />;
                         })}
                 </p>
@@ -57,7 +75,9 @@ const CardsComponent = ({ client }) => {
                 <DrawerComponent
                     showDrawer={showDrawer}
                     setShowDrawer={setShowDrawer}
-                    form1Visible={setForm1Visible}
+                    form1Visible={form1Visible}
+                    setForm1Visible={setForm1Visible}
+                    parentid={client.id}
                 />
             </div>
         </div>

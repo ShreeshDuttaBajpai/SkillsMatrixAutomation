@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { ButtonComponent } from "../ButtonComponent/ButtonComponent";
-import CardsComponent from "../CardsComponent/CardsComponent";
-import { getClientsList } from "../CardsComponent/CardsComponentFunction";
 import css from "./ClientsCard.css";
 import DrawerComponent from "../DrawerComponent/DrawerComponent";
+import CardsContainer from "../CardsComponent/CardsContainer";
 
-const ClientsCard = props => {
-    useEffect(async () => {
-        setClients(await getClientsList());
-    }, []);
-    const [clients, setClients] = useState([]);
+const ClientsCard = ({
+    fetchClientList,
+    clients,
+    fetchCategoryList,
+    category
+}) => {
+    useEffect(() => {
+        fetchClientList();
+    }, [fetchClientList]);
+    useEffect(() => {
+        fetchCategoryList();
+    }, [fetchCategoryList]);
     const [showDrawer, setShowDrawer] = useState(false);
     const [form2Visible, setForm2Visible] = useState(false);
     const showDrawerStyle = {
@@ -26,6 +32,11 @@ const ClientsCard = props => {
         transition: "0.4s"
     };
 
+    useEffect(() => {
+        console.log("hello");
+        console.log(form2Visible);
+    }, [form2Visible]);
+
     return (
         <div className={css.card_container}>
             <div>
@@ -41,17 +52,19 @@ const ClientsCard = props => {
             <div className={css.card_row}>
                 {clients.length > 0 &&
                     clients.map((client, index) => {
-                        return <CardsComponent key={index} client={client} />;
+                        return <CardsContainer key={index} client={client} />;
                     })}
             </div>
-            <div style={showDrawer ? showDrawerStyle : hideDrawerStyle}>
-                <DrawerComponent
-                    showDrawer={showDrawer}
-                    setShowDrawer={setShowDrawer}
-                    setForm2Visible={setForm2Visible}
-                    form2Visible={form2Visible}
-                />
-            </div>
+            {form2Visible && (
+                <div style={showDrawer ? showDrawerStyle : hideDrawerStyle}>
+                    <DrawerComponent
+                        showDrawer={showDrawer}
+                        setShowDrawer={setShowDrawer}
+                        setForm2Visible={setForm2Visible}
+                        form2Visible={form2Visible}
+                    />
+                </div>
+            )}
         </div>
     );
 };

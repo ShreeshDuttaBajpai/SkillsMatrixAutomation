@@ -9,19 +9,22 @@ namespace Abp.StoryTracker.ApplicationModels
     public class SkillsMatrixApplicationContractsModel
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int EmployeeId { get; set; }
 
-        public int? TeamIdFK { get; set; }
-        [ForeignKey(nameof(TeamIdFK))]
-        public TeamMasterApplicationContractsModel? TeamMasterApplicationModel { get; set; }
+        public int? TeamId { get; set; }
+        [ForeignKey(nameof(TeamId))]
+        public TeamMasterApplicationContractsModel? TeamMasterApplicationContractsModel { get; set; }
 
-        public int? SubCategoryIdFK { get; set; }
-        [ForeignKey(nameof(SubCategoryIdFK))]
-        public SkillsSubCategoryApplicationContractsModel? SkillsSubCategoryApplicationModel { get; set; }
+        public int? SubCategoryId { get; set; }
+        [ForeignKey(nameof(SubCategoryId))]
+        public SubCategoryMasterApplicationContractsModel? SubCategoryApplicationContractsModel { get; set; }
 
         [Required]
-        public int ClientExpectedScore { get; set; }
-        [Required]
-        public int Score { get; set; }
+        public int EmployeeScore { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime CreatedOn { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime ModifiedOn { get; set; }
     }
 }

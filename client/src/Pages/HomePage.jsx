@@ -1,12 +1,13 @@
-import React from 'react';
-import HomePageContainer from '../components/HomePage/HomePageMainComponent/HomePageContainer';
+import React from "react";
+// import HomePageContainer from '../components/HomePage/HomePageMainComponent/HomePageContainer';
+import ClientsCardContainer from "../components/ClientsCard/ClientsCardContainer";
 
 const HomePage = () => {
-  return (
-    <>
-      <HomePageContainer />
-    </>
-  );
+    return (
+        <>
+            <ClientsCardContainer />
+        </>
+    );
 };
 
 export default HomePage;
