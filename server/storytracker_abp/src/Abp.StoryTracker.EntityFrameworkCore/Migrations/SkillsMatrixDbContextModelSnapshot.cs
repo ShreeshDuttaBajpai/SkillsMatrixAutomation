@@ -103,11 +103,11 @@ namespace Abp.StoryTracker.Migrations
 
             modelBuilder.Entity("Abp.StoryTracker.Models.SkillsMatrixModel", b =>
                 {
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
 
                     b.Property<int>("EmployeeScore")
                         .HasColumnType("int");
@@ -118,14 +118,7 @@ namespace Abp.StoryTracker.Migrations
                     b.Property<int?>("SubCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TeamId")
-                        .HasColumnType("int");
-
-                    b.HasKey("EmployeeId");
-
                     b.HasIndex("SubCategoryId");
-
-                    b.HasIndex("TeamId");
 
                     b.ToTable("SkillsMatrix", (string)null);
                 });
@@ -1861,17 +1854,11 @@ namespace Abp.StoryTracker.Migrations
 
             modelBuilder.Entity("Abp.StoryTracker.Models.SkillsMatrixModel", b =>
                 {
-                    b.HasOne("Abp.StoryTracker.Models.SubCategoryMasterModel", "SkillsSubCategoryModel")
+                    b.HasOne("Abp.StoryTracker.Models.SubCategoryMappingModel", "SubCategoryMappingModel")
                         .WithMany()
                         .HasForeignKey("SubCategoryId");
 
-                    b.HasOne("Abp.StoryTracker.Models.TeamMasterModel", "TeamMasterModel")
-                        .WithMany()
-                        .HasForeignKey("TeamId");
-
-                    b.Navigation("SkillsSubCategoryModel");
-
-                    b.Navigation("TeamMasterModel");
+                    b.Navigation("SubCategoryMappingModel");
                 });
 
             modelBuilder.Entity("Abp.StoryTracker.Models.SubCategoryMappingModel", b =>

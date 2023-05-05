@@ -55,6 +55,19 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
             return result;
         }
 
+
+
+        public async Task<List<GetSkillsMatrixJoinTablesModel>> GetSkillsMatrixJoinTablesListAsync()
+        {
+            var dbConnection = await GetDbConnectionAsync();
+            var query = "SELECT\r\n\tClientMaster.ClientName,\r\n\tTeamMaster.TeamName,\r\n\tSkillsMatrix.EmployeeId,\r\n\tEmployeeDetails.EmployeeName,\r\n\tCategoryMaster.CategoryName,\r\n\tSubCategoryMaster.SubCategoryName,\r\n\tSubCategoryMapping.ClientExpectedScore,\r\n\tSkillsMatrix.EmployeeScore\r\nFROM SkillsMatrix\r\ninner JOIN EmployeeDetails\r\nON EmployeeDetails.EmployeeId = SkillsMatrix.EmployeeId\r\ninner JOIN SubCategoryMapping\r\nON SkillsMatrix.SubCategoryId = SubCategoryMapping.SubCategoryId and SubCategoryMapping.TeamId=EmployeeDetails.TeamId\r\ninner JOIN TeamMaster\r\nON EmployeeDetails.TeamId=TeamMaster.Id\r\ninner JOIN ClientMaster\r\nON TeamMaster.ClientId=ClientMaster.Id\r\ninner JOIN SubCategoryMaster\r\nON SubCategoryMapping.SubCategoryId = SubCategoryMaster.Id \r\nJOIN CategoryMaster\r\nON SubCategoryMaster.CategoryId = CategoryMaster.Id";
+            var result = (await dbConnection.QueryAsync<GetSkillsMatrixJoinTablesModel>(query,
+                transaction: await GetDbTransactionAsync())).ToList();
+            return result;
+        }
+
+
+        
         public async Task<List<SubCategoryMasterModel>> GetSubCategoryListAsync()
         {
             var dbConnection = await GetDbConnectionAsync();
@@ -135,13 +148,52 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
             return result;
         }
 
+
+
+        public async Task<List<SkillsMatrixModel>> PostSkillMatrixListAsync(SkillsMatrixModel postSkillMatrix)
+        {
+            var dbConnection = await GetDbConnectionAsync();
+
+            var query = "INSERT INTO dbo.SkillsMatrix VALUES ('" + postSkillMatrix.EmployeeId + "', '" + postSkillMatrix.SubCategoryId + "', '" + postSkillMatrix.EmployeeScore + "' , '" + DateTime.Now + "', '" + DateTime.Now + "')";
+            var result = (await dbConnection.QueryAsync<SkillsMatrixModel>(query,
+            transaction: await GetDbTransactionAsync())).ToList();
+            return result;
+        }
+
+
+
         public async Task<List<SubCategoryMappingModel>> PostSubCategoryMappingListAsync(SubCategoryMappingModel postSubCategoryMapping)
         {
             var dbConnection = await GetDbConnectionAsync();
-            var query = "INSERT INTO dbo.SubCategoryMapping VALUES ('" + postSubCategoryMapping.TeamId + "', '" + postSubCategoryMapping.SubCategoryId + "', '" + postSubCategoryMapping.ClientExpectedScore + "' , '" + DateTime.Now + "', '" + DateTime.Now + "')";
-            var result = (await dbConnection.QueryAsync<SubCategoryMappingModel>(query,
+            var query2 = "Select * from dbo. SubCategoryMapping where TeamId=" + postSubCategoryMapping.TeamId + " and SubCategoryId=" + postSubCategoryMapping.SubCategoryId + "";
+            //if (postSubCategoryMapping.SubCategoryId == query2.) { }
+            
+            
+            var result2 = (await dbConnection.QueryAsync<SubCategoryMappingModel>(query2,
             transaction: await GetDbTransactionAsync())).ToList();
-            return result;
+
+
+            var query3 = "UPDATE dbo.SubCategoryMapping set ClientExpectedScore = " + postSubCategoryMapping.ClientExpectedScore + " where TeamId=" + postSubCategoryMapping.TeamId + " and SubCategoryId=" + postSubCategoryMapping.SubCategoryId + "";
+            var result3 = (await dbConnection.QueryAsync<SubCategoryMappingModel>(query3,
+                transaction: await GetDbTransactionAsync())).ToList();
+            // return result3;
+
+
+            if (result2.Count() == 0)
+            {
+                var query = "INSERT INTO dbo.SubCategoryMapping VALUES ('" + postSubCategoryMapping.TeamId + "', '" + postSubCategoryMapping.SubCategoryId + "', '" + postSubCategoryMapping.ClientExpectedScore + "' , '" + DateTime.Now + "', '" + DateTime.Now + "')";
+                var result = (await dbConnection.QueryAsync<SubCategoryMappingModel>(query,
+                transaction: await GetDbTransactionAsync())).ToList();
+                return result;
+            }
+            else
+                return result3;
+            {
+            //    var query = "UPDATE dbo.SubCategoryMapping set ClientExpectedScore = " + postSubCategoryMapping.ClientExpectedScore + " where TeamId=" + postSubCategoryMapping.TeamId + " and SubCategoryId=" + postSubCategoryMapping.SubCategoryId + "";
+            //    var result = (await dbConnection.QueryAsync<SubCategoryMappingModel>(query,
+            //        transaction: await GetDbTransactionAsync())).ToList();
+            //    return result;
+            }
         }
 
         public async Task<List<SubCategoryMasterModel>> PostSubCategoryMasterListAsync(SubCategoryMasterModel postSubCategoryMaster)

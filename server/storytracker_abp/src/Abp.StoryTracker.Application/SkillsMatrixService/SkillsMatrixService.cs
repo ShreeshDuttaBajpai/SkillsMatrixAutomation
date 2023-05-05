@@ -29,6 +29,20 @@ namespace Abp.StoryTracker.SkillsMatrixService
         }
 
 
+
+        public async Task<List<GetSkillsMatrixJoinTablesApplicationContractsModel>> GetSkillsMatrixJoinTablesListAsync()
+        {
+            var domainResult = await skillMatrixRepository.GetSkillsMatrixJoinTablesListAsync();
+            var applicationResult = new List<GetSkillsMatrixJoinTablesApplicationContractsModel>();
+            foreach (var item in domainResult)
+            {
+                var applicationStory = objectMapper.Map<GetSkillsMatrixJoinTablesModel, GetSkillsMatrixJoinTablesApplicationContractsModel>(item);
+                applicationResult.Add(applicationStory);
+            }
+            return applicationResult;
+        }
+        
+
         public async Task<List<SkillsMatrixApplicationContractsModel>> GetSkillsMatrixListAsync()
         {
             var domainResult = await skillMatrixRepository.GetSkillsMatrixListAsync();
@@ -202,6 +216,30 @@ namespace Abp.StoryTracker.SkillsMatrixService
                 await skillMatrixRepository.PostSubCategoryMappingListAsync(postSubCategoryMappingData);
             }
         }
+
+
+
+        public async Task PostSkillMatrixListAsync(PostSkillMatrixApplicationContractsModel postSkillMatrix)
+        {
+            List<SkillsMatrixApplicationContractsModel> listOfPostSkillsMatrixMapping = new List<SkillsMatrixApplicationContractsModel>();
+            foreach (var item in postSkillMatrix.scores)
+            {
+                var mode = new SkillsMatrixApplicationContractsModel();
+                mode.EmployeeId = postSkillMatrix.employeeId;
+                mode.SubCategoryId = item.subCategoryId;
+                mode.EmployeeScore = item.employeeScore;
+                //var postSubCategoryMappingData = objectMapper.Map<PostSubCategoryMappingApplicationContractsModel, SubCategoryMappingModel>(postSubCategoryMapping);
+                //await skillMatrixRepository.PostSubCategoryMappingListAsync(postSubCategoryMappingData);
+                listOfPostSkillsMatrixMapping.Add(mode);
+            }
+            foreach (var postItem in listOfPostSkillsMatrixMapping)
+            {
+                var postSkillsMatrixData = objectMapper.Map<SkillsMatrixApplicationContractsModel, SkillsMatrixModel>(postItem);
+                await skillMatrixRepository.PostSkillMatrixListAsync(postSkillsMatrixData);
+            }
+        }
+
+
 
         public async Task PutSubCategoryMappingListAsync(SubCategoryMappingApplicationContractsModel putSubCategoryMapping)
         {
