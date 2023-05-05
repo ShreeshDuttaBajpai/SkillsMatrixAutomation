@@ -20,7 +20,7 @@ namespace Abp.StoryTracker.Models
 
         public int? SubCategoryId { get; set; }
         [ForeignKey(nameof(SubCategoryId))]
-        public SubCategoryMasterModel? SkillsSubCategoryModel { get; set; }
+        public SubCategoryMappingModel? SubCategoryMappingModel { get; set; }
 
         [Required]
         public int EmployeeScore { get; set; }
