@@ -1,0 +1,53 @@
+.skillMatrixPageContainer {
+    padding-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.skillMatrixGridContainer {
+    margin-top: 20px;
+    border: 1px solid rgb(145, 144, 144);
+    height: fit-content;
+    max-width: 80vw;
+    max-height: 60vh;
+    overflow: scroll;
+}
+.skillMatrixGridHeader {
+    display: flex;
+    font-weight: 600;
+    color: black;
+}
+.skillMatrixGridHeader > .skillMatrixGridItem {
+    padding: 10px;
+    background-color: #ededed;
+}
+.skillMatrixGridContainer,
+.skillMatrixGridBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.skillMatrixGridRow {
+    display: flex;
+    color: #333;
+}
+.skillMatrixGridRow > .skillMatrixGridItem {
+    padding: 5px;
+}
+.skillMatrixGridItem {
+    min-width: 175px;
+    width: 12.5%;
+    max-width: 12.5%;
+    text-align: center;
+    border-right: 1px solid rgb(156, 156, 156);
+    border-bottom: 1px solid rgb(156, 156, 156);
+}
+.skillMatrixGridHeader,
+.skillMatrixGridRow {
+    width: 100%;
+}
+.removeBorderRight {
+    border-right: 0;
+}

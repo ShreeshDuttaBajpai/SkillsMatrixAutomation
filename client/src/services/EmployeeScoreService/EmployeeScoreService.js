@@ -5,6 +5,7 @@ export const PostEmployeeScore = async employeeScoringObject => {
     await postApi(baseURL, employeeScoringObject)
         .then(() => {
             console.log("Data inserted successfully");
+            alert("Posted Successfully!!!");
         })
         .catch(error => {
             console.log(error);

@@ -1,4 +1,4 @@
-import { postApi } from "../baseApiService";
+import { getApi, postApi } from "../baseApiService";
 
 export const PostScoreMappings = async scoreMappings => {
     const baseURL = "https://localhost:44325/PostSubCategoryMapping";
@@ -9,4 +9,32 @@ export const PostScoreMappings = async scoreMappings => {
         .catch(error => {
             console.log(error);
         });
+};
+
+export const GetSkillMatrixData = async () => {
+    const baseURL = "";
+    // https://localhost:44325/SkillsMatrix";
+    const response = await getApi(baseURL)
+        .then(res => {
+            if (res.data.length > 0) return res.data;
+            else return [];
+        })
+        .catch(error => {
+            return error;
+        });
+    console.log(res.data);
+    return response;
+};
+
+export const TeamExpectedScoresListApi = async teamId => {
+    const baseURL = `https://localhost:44325/GetTeamSubCategoryMapping?teamId=${teamId}`;
+    const response = await getApi(baseURL)
+        .then(res => {
+            if (res.data !== null) return res.data;
+            else return [];
+        })
+        .catch(error => {
+            return error;
+        });
+    return response;
 };

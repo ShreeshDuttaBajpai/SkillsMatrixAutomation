@@ -71,7 +71,7 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
         public async Task<List<SubCategoryMasterModel>> GetSubCategoryListAsync()
         {
             var dbConnection = await GetDbConnectionAsync();
-            var result = (await dbConnection.QueryAsync<SubCategoryMasterModel>("select * from SkillsSubCategory",
+            var result = (await dbConnection.QueryAsync<SubCategoryMasterModel>("select * from SubCategoryMaster",
                 transaction: await GetDbTransactionAsync())).ToList();
             return result;
         }
@@ -98,6 +98,14 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
         {
             var dbConnection = await GetDbConnectionAsync();
             var result = (await dbConnection.QueryAsync<SubCategoryMappingModel>("select * from SubCategoryMapping",
+                transaction: await GetDbTransactionAsync())).ToList();
+            return result;
+        }
+
+        public async Task<List<SubCategoryMappingModel>> GetTeamSubCategoryMappingListAsync(int teamId)
+        {
+            var dbConnection = await GetDbConnectionAsync();
+            var result = (await dbConnection.QueryAsync<SubCategoryMappingModel>($"select * from SubCategoryMapping where TeamId={teamId}",
                 transaction: await GetDbTransactionAsync())).ToList();
             return result;
         }

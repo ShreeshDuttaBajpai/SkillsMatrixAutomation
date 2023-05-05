@@ -8,24 +8,24 @@ namespace Abp.StoryTracker.ApplicationModels
 {
     public class SubCategoryMappingApplicationContractsModel
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public int? TeamId { get; set; }
-        [ForeignKey(nameof(TeamId))]
-        public TeamMasterApplicationContractsModel? TeamMasterApplicationContractsModel { get; set; }
+        //[ForeignKey(nameof(TeamId))]
+        //public TeamMasterApplicationContractsModel? TeamMasterApplicationContractsModel { get; set; }
 
         public int? SubCategoryId { get; set; }
-        [ForeignKey(nameof(SubCategoryId))]
-        public SubCategoryMasterApplicationContractsModel? SubCategoryMasterApplicationContractsModel { get; set; }
+        //[ForeignKey(nameof(SubCategoryId))]
+        //public SubCategoryMasterApplicationContractsModel? SubCategoryMasterApplicationContractsModel { get; set; }
 
-        [Required]
+        //[Required]
         public int ClientExpectedScore { get; set; }
 
-        [Column(TypeName = "datetime")]
+        //[Column(TypeName = "datetime")]
         public DateTime CreatedOn { get; set; }
-        [Column(TypeName = "datetime")]
+        //[Column(TypeName = "datetime")]
         public DateTime ModifiedOn { get; set; }
     }
 }

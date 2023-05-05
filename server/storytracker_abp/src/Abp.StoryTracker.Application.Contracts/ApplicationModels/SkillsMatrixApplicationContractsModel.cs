@@ -13,16 +13,16 @@ namespace Abp.StoryTracker.ApplicationModels
         //public int EmployeeId { get; set; }
 
         public int? EmployeeId { get; set; }
-        [ForeignKey(nameof(EmployeeId))]
-        public EmployeeDetailsApplicationContractsModel? EmployeeDetailsApplicationContractsModel { get; set; }
+        //[ForeignKey(nameof(EmployeeId))]
+        //public EmployeeDetailsApplicationContractsModel? EmployeeDetailsApplicationContractsModel { get; set; }
 
         //public int? TeamId { get; set; }
         //[ForeignKey(nameof(TeamId))]
         //public TeamMasterApplicationContractsModel? TeamMasterApplicationContractsModel { get; set; }
 
         public int? SubCategoryId { get; set; }
-        [ForeignKey(nameof(SubCategoryId))]
-        public SubCategoryMappingApplicationContractsModel? SubCategoryMappingApplicationContractsModel { get; set; }
+        //[ForeignKey(nameof(SubCategoryId))]
+        //public SubCategoryMappingApplicationContractsModel? SubCategoryMappingApplicationContractsModel { get; set; }
 
         [Required]
         public int EmployeeScore { get; set; }
