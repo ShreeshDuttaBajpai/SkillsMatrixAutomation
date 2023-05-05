@@ -27,7 +27,9 @@ namespace Abp.StoryTracker.SkillsMatrixServiceInterface
         Task PostCategoryListAsync(CategoryMasterApplicationContractsModel postCategory);
         Task PostSubCategoryListAsync(SubCategoryMasterApplicationContractsModel postSubCategory);
         Task PostSubCategoryMappingListAsync(PostSubCategoryMappingApplicationContractsModel postSubCategoryMapping);
+        Task PostSkillMatrixListAsync(PostSkillMatrixApplicationContractsModel postSkillMatrix);
 
+     
         Task PutSubCategoryMappingListAsync(SubCategoryMappingApplicationContractsModel putSubCategoryMapping);
     }
 }

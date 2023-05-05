@@ -243,7 +243,6 @@ INSERT INTO dbo.SkillsMatrix
 
      VALUES
            (908
-		   ,1
            ,2
 		   ,3
            ,'2023-01-17'
@@ -255,7 +254,6 @@ INSERT INTO dbo.SkillsMatrix
           
      VALUES
            (909
-		   ,2
            ,6
 		   ,3
            ,'2023-02-28'

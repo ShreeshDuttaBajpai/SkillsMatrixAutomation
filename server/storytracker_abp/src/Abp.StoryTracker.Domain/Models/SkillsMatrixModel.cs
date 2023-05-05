@@ -14,9 +14,9 @@ namespace Abp.StoryTracker.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int EmployeeId { get; set; }
 
-        public int? TeamId { get; set; }
-        [ForeignKey(nameof(TeamId))]
-        public TeamMasterModel? TeamMasterModel { get; set; }
+        //public int? TeamId { get; set; }
+        //[ForeignKey(nameof(TeamId))]
+        //public TeamMasterModel? TeamMasterModel { get; set; }
 
         public int? SubCategoryId { get; set; }
         [ForeignKey(nameof(SubCategoryId))]

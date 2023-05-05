@@ -65,6 +65,7 @@ public class Program
             app.MapEmployeeDetailsEndpoints();
             app.MapPutSubCategoryMappingEndpoints();
             app.MapEmployeeDetailsTeamWiseEndpoints();
+            app.MapPostSkillMatrixEndpoints();
             await app.InitializeApplicationAsync();
             await app.RunAsync();
             return 0;

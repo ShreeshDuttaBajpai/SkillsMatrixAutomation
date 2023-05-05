@@ -808,7 +808,6 @@ namespace Abp.StoryTracker.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SkillsMatrix", x => x.EmployeeId);
                     table.ForeignKey(
                         name: "FK_SkillsMatrix_SubCategoryMaster_SubCategoryId",
                         column: x => x.SubCategoryId,

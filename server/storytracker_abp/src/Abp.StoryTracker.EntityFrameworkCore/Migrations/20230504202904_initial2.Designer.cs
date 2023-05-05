@@ -13,8 +13,8 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Abp.StoryTracker.Migrations
 {
     [DbContext(typeof(SkillsMatrixDbContext))]
-    [Migration("20230503103616_initial")]
-    partial class initial
+    [Migration("20230504202904_initial2")]
+    partial class initial2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -106,11 +106,11 @@ namespace Abp.StoryTracker.Migrations
 
             modelBuilder.Entity("Abp.StoryTracker.Models.SkillsMatrixModel", b =>
                 {
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
 
                     b.Property<int>("EmployeeScore")
                         .HasColumnType("int");
@@ -121,14 +121,7 @@ namespace Abp.StoryTracker.Migrations
                     b.Property<int?>("SubCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TeamId")
-                        .HasColumnType("int");
-
-                    b.HasKey("EmployeeId");
-
                     b.HasIndex("SubCategoryId");
-
-                    b.HasIndex("TeamId");
 
                     b.ToTable("SkillsMatrix", (string)null);
                 });
@@ -1868,13 +1861,7 @@ namespace Abp.StoryTracker.Migrations
                         .WithMany()
                         .HasForeignKey("SubCategoryId");
 
-                    b.HasOne("Abp.StoryTracker.Models.TeamMasterModel", "TeamMasterModel")
-                        .WithMany()
-                        .HasForeignKey("TeamId");
-
                     b.Navigation("SkillsSubCategoryModel");
-
-                    b.Navigation("TeamMasterModel");
                 });
 
             modelBuilder.Entity("Abp.StoryTracker.Models.SubCategoryMappingModel", b =>
