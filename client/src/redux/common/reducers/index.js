@@ -188,7 +188,10 @@ const skillMatrixState = {
             employeeScore: "4"
         }
     ],
-    employeeScores: []
+    employeeScores: [],
+    category: [],
+    subcategory: [],
+    client: {}
 };
 
 export const commonApi = (state = initialState, action) => {
@@ -356,6 +359,8 @@ export const skillMatrixOps = (state = skillMatrixState, action) => {
             return { ...state, skillMatrixData: action.payload };
         case types.SET_EMPLOYEE_SCORES:
             return { ...state, employeeScores: action.payload };
+        case types.POST_TEAMS:
+            return { ...state, teams: action.payload };
         case types.POST_TEAMS:
             return { ...state, teams: action.payload };
         case types.FETCH_CATEGORY:
