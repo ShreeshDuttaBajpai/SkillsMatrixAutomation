@@ -10,6 +10,7 @@
     border-radius: 5px;
     float: right;
     margin: 17px;
+    margin-top: 30px;
 }
 .card_container{
     display: flex;

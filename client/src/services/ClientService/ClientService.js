@@ -10,7 +10,6 @@ export const ClientListApi = async () => {
         .catch(error => {
             return error;
         });
-    console.log(response);
     return response;
 };
 
@@ -24,7 +23,6 @@ export const ClientTeamsApi = async clientId => {
         .catch(error => {
             return error;
         });
-    console.log(response);
     return response;
 };
 
@@ -35,7 +33,6 @@ export const ClientPostApi = async(data) => {
         .catch(error => {
             return error;
         });
-    console.log(response);
     return response;
 }
 
@@ -46,6 +43,5 @@ export const TeamPostApi = async(data) => {
         .catch(error => {
             return error;
         });
-    console.log(response);
     return response;
 }

@@ -142,3 +142,8 @@ export const getClient=payload=>({
     type:types.CLIENT,
     payload
 })
+
+export const postSubCategory=payload=>({
+    type:types.POST_SUBCATEGORY,
+    payload
+})
