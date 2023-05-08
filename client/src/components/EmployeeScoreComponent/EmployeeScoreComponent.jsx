@@ -25,7 +25,6 @@ const EmployeeScoreComponent = ({
     const [selectedTeam, setSelectedTeam] = useState();
     const [selectedEmployee, setSelectedEmployee] = useState();
     const [selectedCategory, setSelectedCategory] = useState();
-    // const [employeeScoringArray, setEmployeeScoringArray] = useState([]);
     useEffect(() => {
         selectedEmployee &&
             categories.length > 0 &&
@@ -77,27 +76,32 @@ const EmployeeScoreComponent = ({
                     setIsAnyAccordionOpen={setIsAnyAccordionOpen}
                     selectedItem={selectedTeam}
                     setSelectedItem={setSelectedTeam}
+                    isAccordionDisabled={
+                        selectedClient === undefined || teams.length === 0
+                    }
                 />
             </div>
             <div className={css.employeeListContainer}>
-                {selectedTeam &&
-                    employees.map(employee => {
-                        return (
-                            <div
-                                className={cx(css.employeePaper, {
-                                    [css.selectedDataItem]:
-                                        selectedEmployee === employee.employeeId
-                                })}
-                                key={employee.employeeId}
-                                onClick={() => {
-                                    setSelectedCategory();
-                                    setSelectedEmployee(employee.employeeId);
-                                }}
-                            >
-                                {employee.employeeName}
-                            </div>
-                        );
-                    })}
+                {selectedTeam && employees.length > 0
+                    ? employees.map(employee => {
+                          return (
+                              <div
+                                  className={cx(css.employeePaper, {
+                                      [css.selectedDataItem]:
+                                          selectedEmployee ===
+                                          employee.employeeId
+                                  })}
+                                  key={employee.employeeId}
+                                  onClick={() => {
+                                      setSelectedCategory();
+                                      setSelectedEmployee(employee.employeeId);
+                                  }}
+                              >
+                                  {employee.employeeName}
+                              </div>
+                          );
+                      })
+                    : "No employees to display"}
             </div>
             <div className={css.scoreGridContainer}>
                 <ul className={css.categoryListUl}>
@@ -150,10 +154,14 @@ const EmployeeScoreComponent = ({
                 </ul>
             </div>
             <button
-                className={css.scoresSaveBtn}
+                className={cx(css.scoresSaveBtn, {
+                    [css.scoresSaveBtnDisabled]:
+                        !selectedClient || !selectedTeam || !selectedEmployee
+                })}
                 onClick={() =>
                     handleScoreSave(selectedEmployee, employeeScores)
                 }
+                disabled={!selectedClient || !selectedTeam || !selectedEmployee}
             >
                 Save Scores
             </button>

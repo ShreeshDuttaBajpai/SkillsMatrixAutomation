@@ -3,7 +3,11 @@ import {
     getClientsList,
     getClientsTeamsList
 } from "../CardsComponent/CardsComponentFunction";
-import { fetchClientTeams, fetchClients } from "../../redux/common/actions";
+import {
+    fetchClientTeams,
+    fetchClients,
+    setClientTeams
+} from "../../redux/common/actions";
 import CardsComponent from "./CardsComponent";
 import { getClient } from "../../redux/common/actions";
 
@@ -17,7 +21,7 @@ const mapDispatchToProps = dispatch => {
         fetchClientTeamsList: async clientId => {
             const teams = await getClientsTeamsList(clientId);
             console.log(teams);
-            dispatch(fetchClientTeams(teams));
+            dispatch(setClientTeams(teams));
         },
         getClient: async client => {
             dispatch(getClient(client));

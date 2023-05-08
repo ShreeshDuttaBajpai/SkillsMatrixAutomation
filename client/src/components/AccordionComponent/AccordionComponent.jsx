@@ -19,9 +19,11 @@ const AccordionComponent = ({
     selectedItem,
     setSelectedItem,
     isAnyAccordionOpen,
-    setIsAnyAccordionOpen
+    setIsAnyAccordionOpen,
+    isAccordionDisabled
 }) => {
-    const isDisabled = accordionTitle === "Teams" && accordionData.length === 0;
+    console.log(isAccordionDisabled);
+    const isDisabled = isAccordionDisabled || false;
     const [isAccordionOpen, setIsAccordionOpen] = useState(false);
     return (
         <div
@@ -30,7 +32,7 @@ const AccordionComponent = ({
             })}
         >
             <div
-                className={cx(css.accordionContainer, {
+                className={cx(css.accordionTitleContainer, {
                     [css.btnDisabled]: isDisabled,
                     [css.disableAccordionEvent]: isAccordionEventDisabled(
                         isAnyAccordionOpen,

@@ -122,7 +122,6 @@ public class SkillsMatrixDbContext :
         builder.Entity<SkillsMatrixModel>(entity =>
         {
             entity.ToTable("SkillsMatrix");
-            entity.HasNoKey();
         });
 
         builder.Entity<SubCategoryMappingModel>(entity =>
