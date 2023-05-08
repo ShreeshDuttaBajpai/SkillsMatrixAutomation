@@ -12,6 +12,17 @@ namespace Abp.StoryTracker.ApplicationModels
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         //public int EmployeeId { get; set; }
 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
+
+        //public int? EmployeeId { get; set; }
+        //[ForeignKey(nameof(EmployeeId))]
+        //public EmployeeDetailsModel? EmployeeDetailsModel { get; set; }
+
+
+
         public int? EmployeeId { get; set; }
         //[ForeignKey(nameof(EmployeeId))]
         //public EmployeeDetailsApplicationContractsModel? EmployeeDetailsApplicationContractsModel { get; set; }

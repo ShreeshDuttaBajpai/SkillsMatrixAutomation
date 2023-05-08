@@ -383,3 +383,32 @@ INSERT INTO dbo.EmployeeDetails
 GO
 
 
+
+
+----------	SKILLMATRIX JOIN TABLES	--------------
+
+
+
+
+SELECT
+	ClientMaster.ClientName,
+	TeamMaster.TeamName,
+	SkillsMatrix.EmployeeId,
+	EmployeeDetails.EmployeeName,
+	CategoryMaster.CategoryName,
+	SubCategoryMaster.SubCategoryName,
+	SubCategoryMapping.ClientExpectedScore,
+	SkillsMatrix.EmployeeScore
+FROM SkillsMatrix
+inner JOIN EmployeeDetails
+ON EmployeeDetails.EmployeeId = SkillsMatrix.EmployeeId
+inner JOIN SubCategoryMapping
+ON SkillsMatrix.SubCategoryId = SubCategoryMapping.SubCategoryId and SubCategoryMapping.TeamId=EmployeeDetails.TeamId
+inner JOIN TeamMaster
+ON EmployeeDetails.TeamId=TeamMaster.Id
+inner JOIN ClientMaster
+ON TeamMaster.ClientId=ClientMaster.Id
+inner JOIN SubCategoryMaster
+ON SubCategoryMapping.SubCategoryId = SubCategoryMaster.Id 
+JOIN CategoryMaster
+ON SubCategoryMaster.CategoryId = CategoryMaster.Id

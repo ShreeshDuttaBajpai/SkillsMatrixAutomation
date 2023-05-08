@@ -353,6 +353,14 @@ export const skillMatrixOps = (state = skillMatrixState, action) => {
             return { ...state, teamEmployees: action.payload };
         case types.SET_SKILL_MATRIX_DATA:
             return { ...state, skillMatrixData: action.payload };
+        case types.POST_TEAMS:
+            return { ...state, teams: action.payload };
+        case types.FETCH_CATEGORY:
+            return { ...state, category: action.payload };
+        case types.FETCH_SUBCATEGORY:
+            return { ...state, subcategory: action.payload };
+        case types.CLIENT:
+            return { ...state, client: action.payload };
         default:
             return state;
     }

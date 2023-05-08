@@ -11,8 +11,14 @@ namespace Abp.StoryTracker.Models
     public class SkillsMatrixModel
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int EmployeeId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
+
+        public int? EmployeeId { get; set; }
+        [ForeignKey(nameof(EmployeeId))]
+        public EmployeeDetailsModel? EmployeeDetailsModel { get; set; }
+ 
 
         //public int? TeamId { get; set; }
         //[ForeignKey(nameof(TeamId))]

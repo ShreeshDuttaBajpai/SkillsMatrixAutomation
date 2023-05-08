@@ -106,17 +106,25 @@ namespace Abp.StoryTracker.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime");
 
-                    b.Property<int>("EmployeeId")
+                    b.Property<int?>("EmployeeId")
                         .HasColumnType("int");
 
                     b.Property<int>("EmployeeScore")
                         .HasColumnType("int");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("ModifiedOn")
                         .HasColumnType("datetime");
 
                     b.Property<int?>("SubCategoryId")
                         .HasColumnType("int");
+
+                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("SubCategoryId");
 
@@ -1854,9 +1862,15 @@ namespace Abp.StoryTracker.Migrations
 
             modelBuilder.Entity("Abp.StoryTracker.Models.SkillsMatrixModel", b =>
                 {
+                    b.HasOne("Abp.StoryTracker.Models.EmployeeDetailsModel", "EmployeeDetailsModel")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId");
+
                     b.HasOne("Abp.StoryTracker.Models.SubCategoryMappingModel", "SubCategoryMappingModel")
                         .WithMany()
                         .HasForeignKey("SubCategoryId");
+
+                    b.Navigation("EmployeeDetailsModel");
 
                     b.Navigation("SubCategoryMappingModel");
                 });

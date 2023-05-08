@@ -161,23 +161,64 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
         public async Task<List<SkillsMatrixModel>> PostSkillMatrixListAsync(SkillsMatrixModel postSkillMatrix)
         {
             var dbConnection = await GetDbConnectionAsync();
+            
 
             var query2 = "Select * from dbo. SkillsMatrix where EmployeeId=" + postSkillMatrix.EmployeeId + " and SubCategoryId=" + postSkillMatrix.SubCategoryId + "";
             var result2 = (await dbConnection.QueryAsync<SkillsMatrixModel>(query2,
             transaction: await GetDbTransactionAsync())).ToList();
 
-            var query3 = "UPDATE dbo.SkillsMatrix set EmployeeScore = " + postSkillMatrix.EmployeeScore + " where EmployeeId=" + postSkillMatrix.EmployeeId + " and SubCategoryId=" + postSkillMatrix.SubCategoryId + "";
-            var result3 = (await dbConnection.QueryAsync<SkillsMatrixModel>(query3,
-                transaction: await GetDbTransactionAsync())).ToList();
+            var query5 = "select TeamId from EmployeeDetails where EmployeeId=" + postSkillMatrix.EmployeeId + "";
+            var result5 = (await dbConnection.QueryAsync<EmployeeDetailsModel>(query5,
+            transaction: await GetDbTransactionAsync())).ToList();
 
-            if (result2.Count() == 0)
+            var query4 = "Select * from dbo.SubCategoryMapping where SubCategoryId=" + postSkillMatrix.SubCategoryId + " and TeamId=" + result5[0].TeamId + "";
+            var result4 = (await dbConnection.QueryAsync<SubCategoryMappingModel>(query4,
+            transaction: await GetDbTransactionAsync())).ToList();
+
+
+            if (result2.Count() == 1)
+            {
+                var query3 = "UPDATE dbo.SkillsMatrix set EmployeeScore = " + postSkillMatrix.EmployeeScore + " where EmployeeId=" + postSkillMatrix.EmployeeId + " and SubCategoryId=" + postSkillMatrix.SubCategoryId + "";
+                var result3 = (await dbConnection.QueryAsync<SkillsMatrixModel>(query3,
+                    transaction: await GetDbTransactionAsync())).ToList();
+                return result3;
+            }
+
+            //var result5 = "select * from EmployeeDetails where TeamId=" + postSkillMatrix.SubCategoryId + "";
+            //var result5 = (await dbConnection.QueryAsync<SkillsMatrixModel>(query2,
+            //transaction: await GetDbTransactionAsync())).ToList();
+
+            else if (result2.Count() == 0 && result4.Count() == 1)
             {
                 var query = "INSERT INTO dbo.SkillsMatrix VALUES ('" + postSkillMatrix.EmployeeId + "', '" + postSkillMatrix.SubCategoryId + "', '" + postSkillMatrix.EmployeeScore + "' , '" + DateTime.Now + "', '" + DateTime.Now + "')";
                 var result = (await dbConnection.QueryAsync<SkillsMatrixModel>(query,
                 transaction: await GetDbTransactionAsync())).ToList();
                 return result;
             }
-            else return result3;
+            //var query5 = "select TeamId from EmployeeDetails where EmployeeId=" + postSkillMatrix.EmployeeId + "";
+            //var result5 = (await dbConnection.QueryAsync<EmployeeDetailsModel>(query5,
+            //transaction: await GetDbTransactionAsync())).ToList();
+
+            //var query4 = "Select * from dbo.SubCategoryMapping where SubCategoryId=" + postSkillMatrix.SubCategoryId + " and TeamId=" + result5[0].TeamId +"";
+            //var result4 = (await dbConnection.QueryAsync<SubCategoryMappingModel>(query4,
+            //transaction: await GetDbTransactionAsync())).ToList();
+
+            //if (result2.Count() == 0 && result4.Count() == 1)
+            //{
+            //    var query = "INSERT INTO dbo.SkillsMatrix VALUES ('" + postSkillMatrix.EmployeeId + "', '" + postSkillMatrix.SubCategoryId + "', '" + postSkillMatrix.EmployeeScore + "' , '" + DateTime.Now + "', '" + DateTime.Now + "')";
+            //    var result = (await dbConnection.QueryAsync<SkillsMatrixModel>(query,
+            //    transaction: await GetDbTransactionAsync())).ToList();
+            //    return result;
+            //}
+            //else if (result2.Count() == 1)
+            //{
+            //    var query3 = "UPDATE dbo.SkillsMatrix set EmployeeScore = " + postSkillMatrix.EmployeeScore + " where EmployeeId=" + postSkillMatrix.EmployeeId + " and SubCategoryId=" + postSkillMatrix.SubCategoryId + "";
+            //    var result3 = (await dbConnection.QueryAsync<SkillsMatrixModel>(query3,
+            //        transaction: await GetDbTransactionAsync())).ToList();
+            //    return result3;
+            //}
+            else
+                return null;
         }
 
 
@@ -192,27 +233,20 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
             var result2 = (await dbConnection.QueryAsync<SubCategoryMappingModel>(query2,
             transaction: await GetDbTransactionAsync())).ToList();
 
-
-            var query3 = "UPDATE dbo.SubCategoryMapping set ClientExpectedScore = " + postSubCategoryMapping.ClientExpectedScore + " where TeamId=" + postSubCategoryMapping.TeamId + " and SubCategoryId=" + postSubCategoryMapping.SubCategoryId + "";
-            var result3 = (await dbConnection.QueryAsync<SubCategoryMappingModel>(query3,
-                transaction: await GetDbTransactionAsync())).ToList();
-            // return result3;
-
-
             if (result2.Count() == 0)
             {
                 var query = "INSERT INTO dbo.SubCategoryMapping VALUES ('" + postSubCategoryMapping.TeamId + "', '" + postSubCategoryMapping.SubCategoryId + "', '" + postSubCategoryMapping.ClientExpectedScore + "' , '" + DateTime.Now + "', '" + DateTime.Now + "')";
                 var result = (await dbConnection.QueryAsync<SubCategoryMappingModel>(query,
-                transaction: await GetDbTransactionAsync())).ToList();
+                    transaction: await GetDbTransactionAsync())).ToList();
                 return result;
             }
             else
-                return result3;
+                
             {
-            //    var query = "UPDATE dbo.SubCategoryMapping set ClientExpectedScore = " + postSubCategoryMapping.ClientExpectedScore + " where TeamId=" + postSubCategoryMapping.TeamId + " and SubCategoryId=" + postSubCategoryMapping.SubCategoryId + "";
-            //    var result = (await dbConnection.QueryAsync<SubCategoryMappingModel>(query,
-            //        transaction: await GetDbTransactionAsync())).ToList();
-            //    return result;
+                var query3 = "UPDATE dbo.SubCategoryMapping set ClientExpectedScore = " + postSubCategoryMapping.ClientExpectedScore + " where TeamId=" + postSubCategoryMapping.TeamId + " and SubCategoryId=" + postSubCategoryMapping.SubCategoryId + "";
+                var result3 = (await dbConnection.QueryAsync<SubCategoryMappingModel>(query3,
+                    transaction: await GetDbTransactionAsync())).ToList();
+                return result3;
             }
         }
 

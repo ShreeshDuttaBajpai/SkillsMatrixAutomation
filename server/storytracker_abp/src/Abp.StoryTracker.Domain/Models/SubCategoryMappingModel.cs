@@ -10,7 +10,7 @@ namespace Abp.StoryTracker.Models
 {
     public class SubCategoryMappingModel
     {
-        [Key]
+        //[Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 

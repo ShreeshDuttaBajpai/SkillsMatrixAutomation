@@ -867,7 +867,9 @@ namespace Abp.StoryTracker.Migrations
                 name: "SkillsMatrix",
                 columns: table => new
                 {
-                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmployeeId = table.Column<int>(type: "int", nullable: true),
                     SubCategoryId = table.Column<int>(type: "int", nullable: true),
                     EmployeeScore = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime", nullable: false),
@@ -875,6 +877,11 @@ namespace Abp.StoryTracker.Migrations
                 },
                 constraints: table =>
                 {
+                    table.ForeignKey(
+                        name: "FK_SkillsMatrix_EmployeeDetails_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "EmployeeDetails",
+                        principalColumn: "EmployeeId");
                     table.ForeignKey(
                         name: "FK_SkillsMatrix_SubCategoryMapping_SubCategoryId",
                         column: x => x.SubCategoryId,
@@ -1110,6 +1117,11 @@ namespace Abp.StoryTracker.Migrations
                 column: "ReferenceId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_SkillsMatrix_EmployeeId",
+                table: "SkillsMatrix",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SkillsMatrix_SubCategoryId",
                 table: "SkillsMatrix",
                 column: "SubCategoryId");
@@ -1202,9 +1214,6 @@ namespace Abp.StoryTracker.Migrations
                 name: "AbpUserTokens");
 
             migrationBuilder.DropTable(
-                name: "EmployeeDetails");
-
-            migrationBuilder.DropTable(
                 name: "OpenIddictScopes");
 
             migrationBuilder.DropTable(
@@ -1230,6 +1239,9 @@ namespace Abp.StoryTracker.Migrations
 
             migrationBuilder.DropTable(
                 name: "OpenIddictAuthorizations");
+
+            migrationBuilder.DropTable(
+                name: "EmployeeDetails");
 
             migrationBuilder.DropTable(
                 name: "SubCategoryMapping");
