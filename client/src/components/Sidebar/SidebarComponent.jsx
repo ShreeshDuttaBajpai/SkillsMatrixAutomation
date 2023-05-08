@@ -1,7 +1,9 @@
 import {
     faLaptopCode,
     faPenToSquare,
-    faSitemap
+    faSitemap,
+    faTableList,
+    faCheck
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
@@ -16,7 +18,9 @@ const SidebarComponent = () => {
     const [activeLocation, setActiveLocation] = useState({
         home: path === "/",
         category: path === "/category",
-        clientScore: path === "/client-score"
+        clientScore: path === "/client-score",
+        employeeScore: path === "/employee-score",
+        skillMatrix: path === "/skill-matrix"
     });
     return (
         <div className={css.sidebarContainerDiv}>
@@ -78,6 +82,40 @@ const SidebarComponent = () => {
                 }
             >
                 <FontAwesomeIcon icon={faPenToSquare} />
+            </NavLink>
+            <NavLink
+                title="Employee Score Mapping"
+                to="/employee-score"
+                className={css.sidebarNavItem}
+                activeClassName={
+                    activeLocation.employeeScore ? css.sidebarActiveNavItem : ""
+                }
+                onClick={() =>
+                    handleNavItemClick(
+                        activeLocation,
+                        setActiveLocation,
+                        "employeeScore"
+                    )
+                }
+            >
+                <FontAwesomeIcon icon={faCheck} />
+            </NavLink>
+            <NavLink
+                title="Skill Matrix Table Page"
+                to="/skill-matrix"
+                className={css.sidebarNavItem}
+                activeClassName={
+                    activeLocation.skillMatrix ? css.sidebarActiveNavItem : ""
+                }
+                onClick={() =>
+                    handleNavItemClick(
+                        activeLocation,
+                        setActiveLocation,
+                        "skillMatrix"
+                    )
+                }
+            >
+                <FontAwesomeIcon icon={faTableList} />
             </NavLink>
         </div>
     );

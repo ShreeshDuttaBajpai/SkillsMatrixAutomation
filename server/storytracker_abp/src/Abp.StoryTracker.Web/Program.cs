@@ -60,9 +60,14 @@ public class Program
             app.MapSubCategoryMasterEndpoints();
             app.MapPostCategoryMasterEndpoints();
             app.MapGetSubCategoryMappingEndpoints();
-            //app.MapPostSubCategoryMappingEndpoints();
+            app.MapPostSubCategoryMasterEndpoints();
+            app.MapPostSubCategoryMappingEndpoints();
             app.MapEmployeeDetailsEndpoints();
             app.MapPutSubCategoryMappingEndpoints();
+            app.MapEmployeeDetailsTeamWiseEndpoints();
+            app.MapPostSkillMatrixEndpoints();
+            app.MapSkillsMatrixJoinTablesEndpoints();
+            app.MapEmployeeScoreEndpoints();
             await app.InitializeApplicationAsync();
             await app.RunAsync();
             return 0;

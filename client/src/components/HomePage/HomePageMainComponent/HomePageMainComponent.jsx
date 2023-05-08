@@ -6,8 +6,8 @@ import { useAuth } from "../../auth.context";
 import Cookies from "universal-cookie";
 import { ButtonComponent } from "../../ButtonComponent/ButtonComponent";
 import { Redirect } from "react-router-dom";
-import { getClientsList } from "../../ClientsComponent/ClientsComponentFunctions";
 import ClientsComponent from "../../ClientsComponent/ClientsComponent";
+import { getClientsList } from "../../ExpectedScoreMappingComponent/ExpectedScoreMappingFunctions";
 
 const HomePageMainComponent = props => {
     <script

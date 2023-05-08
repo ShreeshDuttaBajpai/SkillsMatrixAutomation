@@ -12,12 +12,12 @@ import { useState } from "react";
 const ClientsComponent = ({ client }) => {
     const [editPopupOpen, setEditPopupOpen] = useState(false);
     const [teams, setTeams] = useState([]);
-    useEffect(async () => {
-        setTeams(await getClientsTeamsList(client.clientId));
-    }, []);
+    // useEffect(async () => {
+    //     setTeams(await getClientsTeamsList(client.id));
+    // }, []);
     return (
         <div className={css.clientTeamsDetailsDiv}>
-            <div className={css.clientDetailsDiv}>
+            {/* <div className={css.clientDetailsDiv}>
                 <span className={css.clientSpan}>
                     {client.clientName} - {client.clientDescription}
                     <ButtonComponent
@@ -35,7 +35,7 @@ const ClientsComponent = ({ client }) => {
                         return <TeamsComponent key={index} team={team} />;
                     })}
             </div>
-            {editPopupOpen && <PopupContainer client={client} />}
+            {editPopupOpen && <PopupContainer client={client} />} */}
         </div>
     );
 };

@@ -1,5 +1,5 @@
 .sidebarContainerDiv {
-    min-height: 100vh;
+    min-height: calc(100vh - 70px);
     min-width: 100px;
     max-width: 100px;
     background-color: white;

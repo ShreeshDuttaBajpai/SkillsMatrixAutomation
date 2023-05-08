@@ -3,11 +3,15 @@ using Abp.StoryTracker.EntityFrameworkCore;
 using Abp.StoryTracker.Models;
 using Abp.StoryTracker.SkillsMatrixRepoInterface;
 using Abp.StoryTracker.SkillsMatrixServiceInterface;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 //using Abp.StoryTracker.StoryTrackerRepoInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Volo.Abp.ObjectMapping;
 
@@ -24,6 +28,20 @@ namespace Abp.StoryTracker.SkillsMatrixService
             this.objectMapper = objectMapper;
         }
 
+
+
+        public async Task<List<GetSkillsMatrixJoinTablesApplicationContractsModel>> GetSkillsMatrixJoinTablesListAsync()
+        {
+            var domainResult = await skillMatrixRepository.GetSkillsMatrixJoinTablesListAsync();
+            var applicationResult = new List<GetSkillsMatrixJoinTablesApplicationContractsModel>();
+            foreach (var item in domainResult)
+            {
+                var applicationStory = objectMapper.Map<GetSkillsMatrixJoinTablesModel, GetSkillsMatrixJoinTablesApplicationContractsModel>(item);
+                applicationResult.Add(applicationStory);
+            }
+            return applicationResult;
+        }
+        
 
         public async Task<List<SkillsMatrixApplicationContractsModel>> GetSkillsMatrixListAsync()
         {
@@ -114,6 +132,19 @@ namespace Abp.StoryTracker.SkillsMatrixService
         }
 
 
+        public async Task<List<EmployeeDetailsApplicationContractsModel>> GetEmployeeDetailsTeamWiseListAsync(int teamId)
+        {
+            var domainResult = await skillMatrixRepository.GetEmployeeDetailsTeamWiseListAsync(teamId);
+            var applicationResult = new List<EmployeeDetailsApplicationContractsModel>();
+            foreach (var item in domainResult)
+            {
+                var applicationStory = objectMapper.Map<EmployeeDetailsModel, EmployeeDetailsApplicationContractsModel>(item);
+                applicationResult.Add(applicationStory);
+            }
+            return applicationResult;
+        }
+
+
         public async Task<List<SubCategoryMappingApplicationContractsModel>> GetSubCategoryMappingListAsync()
         {
             var domainResult = await skillMatrixRepository.GetSubCategoryMappingListAsync();
@@ -124,6 +155,28 @@ namespace Abp.StoryTracker.SkillsMatrixService
                 applicationResult.Add(applicationStory);
             }
             return applicationResult;
+        }
+
+
+        public async Task<List<ScoresSubCategoryMappingApllicationContractsModel>> GetTeamSubCategoryMappingListAsync(int teamId)
+        {
+            var domainResult = await skillMatrixRepository.GetTeamSubCategoryMappingListAsync(teamId);
+            //var applicationResult = new PostSubCategoryMappingApplicationContractsModel();
+            //if (domainResult.Count > 0)
+            //{
+            //    applicationResult.teamId = (int)domainResult[0].TeamId;
+                var scoringObjList = new List<ScoresSubCategoryMappingApllicationContractsModel>();
+                foreach (var item in domainResult)
+                {
+                    var applicationStory = objectMapper.Map<SubCategoryMappingModel, SubCategoryMappingApplicationContractsModel>(item);
+                    var scoringObj = new ScoresSubCategoryMappingApllicationContractsModel();
+                    scoringObj.subCategoryId = (int)applicationStory.SubCategoryId;
+                    scoringObj.expectedClientScore = applicationStory.ClientExpectedScore;
+                    scoringObjList.Add(scoringObj);
+                }
+            //    applicationResult.scores = scoringObjList;
+            //}
+            return scoringObjList;
         }
 
 
@@ -138,7 +191,7 @@ namespace Abp.StoryTracker.SkillsMatrixService
             }
             return applicationResult;
         }
-
+        
 
         public async Task PostClientListAsync(ClientMasterApplicationContractsModel postClient)
         {
@@ -158,17 +211,76 @@ namespace Abp.StoryTracker.SkillsMatrixService
             await skillMatrixRepository.PostCategoryListAsync(postCategoryData);
         }
 
+        public async Task PostSubCategoryListAsync(SubCategoryMasterApplicationContractsModel postSubCategory)
+        {
+            var postSubCategoryData = objectMapper.Map<SubCategoryMasterApplicationContractsModel, SubCategoryMasterModel>(postSubCategory);
+            await skillMatrixRepository.PostSubCategoryMasterListAsync(postSubCategoryData);
+        }
 
-        //public async Task PostSubCategoryMappingListAsync(Object obj)
-        //{
-        //    var postSubCategoryMappingData = objectMapper.Map<SubCategoryMappingApplicationContractsModel, SubCategoryMappingModel>(obj);
-        //    await skillMatrixRepository.PostSubCategoryMappingListAsync(obj);
-        //}
+
+        public async Task PostSubCategoryMappingListAsync(PostSubCategoryMappingApplicationContractsModel postSubCategoryMapping)
+        {
+            List<SubCategoryMappingApplicationContractsModel> listOfPostSubCategoryMapping = new List<SubCategoryMappingApplicationContractsModel>();
+            foreach (var item in postSubCategoryMapping.scores)
+            {
+                var mode = new SubCategoryMappingApplicationContractsModel();
+                mode.TeamId = postSubCategoryMapping.teamId;
+                mode.SubCategoryId = item.subCategoryId;
+                mode.ClientExpectedScore = item.expectedClientScore;
+                //var postSubCategoryMappingData = objectMapper.Map<PostSubCategoryMappingApplicationContractsModel, SubCategoryMappingModel>(postSubCategoryMapping);
+                //await skillMatrixRepository.PostSubCategoryMappingListAsync(postSubCategoryMappingData);
+                listOfPostSubCategoryMapping.Add(mode);
+            }
+            foreach(var postItem in listOfPostSubCategoryMapping)
+            {
+                var postSubCategoryMappingData = objectMapper.Map<SubCategoryMappingApplicationContractsModel, SubCategoryMappingModel>(postItem);
+
+                await skillMatrixRepository.PostSubCategoryMappingListAsync(postSubCategoryMappingData);
+            }
+        }
+
+
+
+        public async Task PostSkillMatrixListAsync(PostSkillMatrixApplicationContractsModel postSkillMatrix)
+        {
+            List<SkillsMatrixApplicationContractsModel> listOfPostSkillsMatrixMapping = new List<SkillsMatrixApplicationContractsModel>();
+            foreach (var item in postSkillMatrix.scores)
+            {
+                var mode = new SkillsMatrixApplicationContractsModel();
+                mode.EmployeeId = postSkillMatrix.employeeId;
+                mode.SubCategoryId = item.subCategoryId;
+                mode.EmployeeScore = item.employeeScore;
+                //var postSubCategoryMappingData = objectMapper.Map<PostSubCategoryMappingApplicationContractsModel, SubCategoryMappingModel>(postSubCategoryMapping);
+                //await skillMatrixRepository.PostSubCategoryMappingListAsync(postSubCategoryMappingData);
+                listOfPostSkillsMatrixMapping.Add(mode);
+            }
+            foreach (var postItem in listOfPostSkillsMatrixMapping)
+            {
+                var postSkillsMatrixData = objectMapper.Map<SkillsMatrixApplicationContractsModel, SkillsMatrixModel>(postItem);
+                await skillMatrixRepository.PostSkillMatrixListAsync(postSkillsMatrixData);
+            }
+        }
+
+
 
         public async Task PutSubCategoryMappingListAsync(SubCategoryMappingApplicationContractsModel putSubCategoryMapping)
         {
             var putSubCategoryMappingData = objectMapper.Map<SubCategoryMappingApplicationContractsModel, SubCategoryMappingModel>(putSubCategoryMapping);
             await skillMatrixRepository.PutSubCategoryMappingListAsync(putSubCategoryMappingData);
+        }
+
+        public async Task<List<ScoresSkillMatrixApplicationContractsModel>> GetEmployeeScores(int employeeId)
+        {
+            var domainResult = await skillMatrixRepository.GetEmployeeScores(employeeId);
+            var scores = new List<ScoresSkillMatrixApplicationContractsModel>();
+            foreach(var item in domainResult)
+            {
+                var singleScore = new ScoresSkillMatrixApplicationContractsModel();
+                singleScore.subCategoryId = (int)item.SubCategoryId;
+                singleScore.employeeScore = item.EmployeeScore;
+                scores.Add(singleScore);
+            }
+            return scores;
         }
     }
 }

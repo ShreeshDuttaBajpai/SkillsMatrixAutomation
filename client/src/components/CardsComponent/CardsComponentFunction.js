@@ -1,5 +1,9 @@
-import { CategoryListApi, SubCategoryListApi } from "../../services/CategoryService/CategoryService";
-import { ClientListApi, ClientTeamsApi } from "../../services/ClientService/ClientService";
+import {
+    CategoryListApi,
+    SubCategoryListApi
+} from "../../services/CategoryService/CategoryService";
+import { ClientTeamsApi } from "../../services/ClientService/ClientService";
+import { ClientListApi } from "../../services/MasterService/MasterService";
 
 export const getClientsList = async () => {
     const result = await ClientListApi();

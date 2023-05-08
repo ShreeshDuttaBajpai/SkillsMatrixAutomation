@@ -1,0 +1,9 @@
+.subCategoryLi {
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 80px;
+    font-weight: 400;
+    font-size: 18px;
+    width: 100%;
+}

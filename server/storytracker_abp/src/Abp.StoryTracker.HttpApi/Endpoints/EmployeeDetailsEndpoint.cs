@@ -21,5 +21,26 @@ namespace Abp.StoryTracker.Endpoints
             }).WithTags("SkillsMatrix");
             return app;
         }
+
+
+        public static WebApplication MapEmployeeDetailsTeamWiseEndpoints(this WebApplication app)
+        {
+            _ = app.MapGet("/EmployeeDetailsTeamWise", async ([FromServices] ISkillsMatrixService skillsMatrixService, [FromQuery] int TeamId) =>
+            {
+                var result = await skillsMatrixService.GetEmployeeDetailsTeamWiseListAsync(TeamId);
+                return (result);
+            }).WithTags("SkillsMatrix");
+            return app;
+        }
+
+        public static WebApplication MapEmployeeScoreEndpoints(this WebApplication app)
+        {
+            _ = app.MapGet("/EmployeeScores", async ([FromServices] ISkillsMatrixService skillsMatrixService, int employeeId) =>
+            {
+                var result = await skillsMatrixService.GetEmployeeScores(employeeId);
+                return (result);
+            }).WithTags("SkillsMatrix");
+            return app;
+        }
     }
 }

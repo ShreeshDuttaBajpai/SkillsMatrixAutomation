@@ -1,0 +1,10 @@
+.subCategoryListLi {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #ededed;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    margin-left: 5px;
+}

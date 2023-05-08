@@ -1,0 +1,102 @@
+.employeeScoreContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 40px;
+    height: 100%;
+    align-items: center;
+}
+.dependentContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.employeeListContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    min-height: 64px;
+    max-height: 128px;
+    overflow-y: scroll;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.employeePaper {
+    margin: 10px 20px;
+    padding: 10px 15px;
+    background-color: #ededed;
+    color: #333;
+    cursor: pointer;
+}
+.scoreGridContainer {
+    margin-top: 30px;
+    display: flex;
+    max-height: 225px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 50%;
+}
+.categoryListUl {
+    list-style: none;
+    padding: 0;
+    margin-left: 15px;
+    width: 100%;
+}
+.subCategoryListUl {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+.categoryListLi {
+    cursor: pointer;
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #ededed;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+}
+.employeePaper:hover,
+.categoryListLi:hover {
+    /* background-color: #f1f1f1; */
+    background-color: #c5c5c5;
+    /* color: #ededed; */
+}
+.selectedDataItem {
+    /* background-color: #f3f3f3; */
+    background-color: #c5c5c5;
+    /* color: #333; */
+}
+.employeeScoreInputContainer {
+    display: flex;
+    flex-direction: column;
+}
+/* .employeeScoreDropdown {
+    margin-left: 40px;
+} */
+.disabledCategoryOptions {
+    opacity: 0.5;
+    pointer-events: none;
+}
+.scoresSaveBtn {
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
+    width: max-content;
+    padding: 10px 15px;
+    align-self: center;
+    background-color: #564ef7;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #ffffff;
+    font-family: "SF Pro Text", "SF Pro Icons", "AOS Icons", "Helvetica Neue",
+        Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    line-height: 1.47059;
+}
+.scoresSaveBtnDisabled {
+    opacity: 0.5;
+}

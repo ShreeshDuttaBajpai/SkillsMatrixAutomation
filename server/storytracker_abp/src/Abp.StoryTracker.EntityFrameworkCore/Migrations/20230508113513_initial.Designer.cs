@@ -13,8 +13,8 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Abp.StoryTracker.Migrations
 {
     [DbContext(typeof(SkillsMatrixDbContext))]
-    [Migration("20230504060452_mig1")]
-    partial class mig1
+    [Migration("20230508113513_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,7 +22,7 @@ namespace Abp.StoryTracker.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("_Abp_DatabaseProvider", EfCoreDatabaseProvider.SqlServer)
-                .HasAnnotation("ProductVersion", "7.0.1")
+                .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -106,11 +106,17 @@ namespace Abp.StoryTracker.Migrations
 
             modelBuilder.Entity("Abp.StoryTracker.Models.SkillsMatrixModel", b =>
                 {
-                    b.Property<int>("EmployeeId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime");
+
+                    b.Property<int?>("EmployeeId")
+                        .HasColumnType("int");
 
                     b.Property<int>("EmployeeScore")
                         .HasColumnType("int");
@@ -121,14 +127,11 @@ namespace Abp.StoryTracker.Migrations
                     b.Property<int?>("SubCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TeamId")
-                        .HasColumnType("int");
+                    b.HasKey("Id");
 
-                    b.HasKey("EmployeeId");
+                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("SubCategoryId");
-
-                    b.HasIndex("TeamId");
 
                     b.ToTable("SkillsMatrix", (string)null);
                 });
@@ -1864,17 +1867,17 @@ namespace Abp.StoryTracker.Migrations
 
             modelBuilder.Entity("Abp.StoryTracker.Models.SkillsMatrixModel", b =>
                 {
-                    b.HasOne("Abp.StoryTracker.Models.SubCategoryMasterModel", "SkillsSubCategoryModel")
+                    b.HasOne("Abp.StoryTracker.Models.EmployeeDetailsModel", "EmployeeDetailsModel")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId");
+
+                    b.HasOne("Abp.StoryTracker.Models.SubCategoryMasterModel", "SubCategoryMasterModel")
                         .WithMany()
                         .HasForeignKey("SubCategoryId");
 
-                    b.HasOne("Abp.StoryTracker.Models.TeamMasterModel", "TeamMasterModel")
-                        .WithMany()
-                        .HasForeignKey("TeamId");
+                    b.Navigation("EmployeeDetailsModel");
 
-                    b.Navigation("SkillsSubCategoryModel");
-
-                    b.Navigation("TeamMasterModel");
+                    b.Navigation("SubCategoryMasterModel");
                 });
 
             modelBuilder.Entity("Abp.StoryTracker.Models.SubCategoryMappingModel", b =>

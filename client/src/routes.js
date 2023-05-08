@@ -14,6 +14,8 @@ import configureStore from "./store/main";
 import css from "./routes.css";
 import SidebarContainer from "./components/Sidebar/SidebarContainer";
 import ClientScorePage from "./Pages/ClientScorePage";
+import EmployeeScorePage from "./Pages/EmployeeScorePage";
+import SkillMatrixPage from "./Pages/SkillMatrixPage";
 import ClientsCard from "./components/ClientsCard/ClientsCard";
 import HomePage from "./Pages/HomePage";
 import ClientsCardContainer from "./components/ClientsCard/ClientsCardContainer";
@@ -59,6 +61,7 @@ const App = () => {
                                         path="/client-score"
                                         component={ClientScorePage}
                                     />
+
                                     {/* <ProtectedRoute
                     path="/Table"
                     component={MainDashboardEntry}
@@ -70,6 +73,14 @@ const App = () => {
                                     <Route
                                         path="/Reports"
                                         component={ReportsPage}
+                                    />
+                                    <Route
+                                        path="/employee-score"
+                                        component={EmployeeScorePage}
+                                    />
+                                    <Route
+                                        path="/skill-matrix"
+                                        component={SkillMatrixPage}
                                     />
 
                                     <Route component={NoMatch} />

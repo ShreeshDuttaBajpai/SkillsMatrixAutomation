@@ -113,35 +113,64 @@ export const oldSelectedData = payload => ({
     payload
 });
 
-export const fetchClients = payload => ({
-    type: types.FETCH_CLIENTS,
+export const setClients = payload => ({
+    type: types.SET_CLIENTS,
     payload
 });
 
-export const fetchClientTeams = payload => ({
-    type: types.FETCH_CLIENT_TEAMS,
+export const setClientTeams = payload => ({
+    type: types.SET_CLIENT_TEAMS,
+    payload
+});
+
+export const setCategories = payload => ({
+    type: types.SET_CATEGORIES,
+    payload
+});
+
+export const setSubCategories = payload => ({
+    type: types.SET_SUB_CATEGORIES,
+    payload
+});
+
+export const setExpectedScoreMappings = payload => ({
+    type: types.SET_SCORE_MAPPINGS,
+    payload
+});
+
+export const setTeamEmployees = payload => ({
+    type: types.SET_TEAM_EMPLOYEES,
+    payload
+});
+
+export const setSkillMatrixData = payload => ({
+    type: types.SET_SKILL_MATRIX_DATA,
+    payload
+});
+export const setEmployeeScores = payload => ({
+    type: types.SET_EMPLOYEE_SCORES,
     payload
 });
 
 export const postTeams = payload => ({
-    type:types.POST_TEAMS,
+    type: types.POST_TEAMS,
     payload
-})
+});
 
-export const fetchCategory=payload=>({
-    type:types.FETCH_CATEGORY,
+export const fetchCategory = payload => ({
+    type: types.FETCH_CATEGORY,
     payload
-})
+});
 
-export const fetchSubCategory=payload=>({
-    type:types.FETCH_SUBCATEGORY,
+export const fetchSubCategory = payload => ({
+    type: types.FETCH_SUBCATEGORY,
     payload
-})
+});
 
-export const getClient=payload=>({
-    type:types.CLIENT,
+export const getClient = payload => ({
+    type: types.CLIENT,
     payload
-})
+});
 
 export const postSubCategory=payload=>({
     type:types.POST_SUBCATEGORY,

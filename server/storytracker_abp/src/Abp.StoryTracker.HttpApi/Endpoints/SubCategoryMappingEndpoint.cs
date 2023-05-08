@@ -20,19 +20,23 @@ namespace Abp.StoryTracker.Endpoints
                 var result = await skillsMatrixService.GetSubCategoryMappingListAsync();
                 return (result);
             }).WithTags("SkillsMatrix");
+            _ = app.MapGet("/GetTeamSubCategoryMapping", async ([FromServices] ISkillsMatrixService skillsMatrixService, [FromQuery] int teamId) =>
+            {
+                var result = await skillsMatrixService.GetTeamSubCategoryMappingListAsync(teamId);
+                return (result);
+            }).WithTags("SkillsMatrix");
             return app;
         }
 
 
-
-        //public static WebApplication MapPostSubCategoryMappingEndpoints(this WebApplication app)
-        //{
-        //    _ = app.MapPost("/PostSubCategoryMapping", async ([FromServices] ISkillsMatrixService skillsMatrixService, [FromBody] Object obj) =>
-        //    {
-        //        await skillsMatrixService.PostSubCategoryMappingListAsync(obj);
-        //    }).WithTags("SkillsMatrix");
-        //    return app;
-        //}
+        public static WebApplication MapPostSubCategoryMappingEndpoints(this WebApplication app)
+        {
+            _ = app.MapPost("/PostSubCategoryMapping", async ([FromServices] ISkillsMatrixService skillsMatrixService, [FromBody] PostSubCategoryMappingApplicationContractsModel postSubCategoryMapping) =>
+            {
+                await skillsMatrixService.PostSubCategoryMappingListAsync(postSubCategoryMapping);
+            }).WithTags("SkillsMatrix");
+            return app;
+        }
 
 
         public static WebApplication MapPutSubCategoryMappingEndpoints(this WebApplication app)
