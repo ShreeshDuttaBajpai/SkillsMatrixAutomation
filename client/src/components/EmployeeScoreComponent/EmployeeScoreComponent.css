@@ -58,22 +58,15 @@
 }
 .employeePaper:hover,
 .categoryListLi:hover {
-    /* background-color: #f1f1f1; */
     background-color: #c5c5c5;
-    /* color: #ededed; */
 }
 .selectedDataItem {
-    /* background-color: #f3f3f3; */
     background-color: #c5c5c5;
-    /* color: #333; */
 }
 .employeeScoreInputContainer {
     display: flex;
     flex-direction: column;
 }
-/* .employeeScoreDropdown {
-    margin-left: 40px;
-} */
 .disabledCategoryOptions {
     opacity: 0.5;
     pointer-events: none;

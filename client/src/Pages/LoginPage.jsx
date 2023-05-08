@@ -1,7 +1,7 @@
 import React from "react";
 
 function LoginPage() {
-    return <>Hii{/* <LoginPage /> */}</>;
+    return <>Hii</>;
 }
 
 export default LoginPage;

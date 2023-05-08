@@ -41,3 +41,4 @@ export const POST_TEAMS = "POST_TEAMS";
 export const FETCH_CATEGORY = "FETCH_CATEGORY";
 export const FETCH_SUBCATEGORY = "FETCH_SUBCATEGORY";
 export const CLIENT = "CLIENT";
+export const POST_SUBCATEGORY = "POST_SUBCATEGORY";

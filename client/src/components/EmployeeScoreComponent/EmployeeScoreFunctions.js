@@ -59,9 +59,3 @@ export const handleScoreSave = async (selectedEmployee, employeeScoringArr) => {
     console.log(employeeScoringObject);
     await PostEmployeeScore(employeeScoringObject);
 };
-
-// export const handleScoreSave = async (selectedTeam, expectedScoreMappings) => {
-//     const teamScores = { teamId: selectedTeam, scores: expectedScoreMappings };
-//     console.log(teamScores);
-//     await PostScoreMappings(teamScores);
-// };

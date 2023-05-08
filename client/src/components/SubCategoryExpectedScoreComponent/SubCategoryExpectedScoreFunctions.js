@@ -14,13 +14,11 @@ export const handleExpectedScoreChange = (
             updatedScoreMapping[isExisted].expectedClientScore = Number(
                 event.target.value
             );
-            // setExpectedScoreMappings(updatedScoreMapping);
         } else {
             updatedScoreMapping.push({
                 subCategoryId: subCatId,
                 expectedClientScore: Number(event.target.value)
             });
-            // setExpectedScoreMappings(updatedScoreMapping);
         }
     } else {
         updatedScoreMapping.push({

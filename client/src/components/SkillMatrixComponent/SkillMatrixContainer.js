@@ -4,7 +4,6 @@ import SkillMatrixComponent from "./SkillMatrixComponent";
 import { setSkillMatrixData } from "../../redux/common/actions";
 
 const mapStateToProps = state => {
-    // return { skillMatrixData: state.skillMatrixOps.skillMatrixData || [] };
     return {
         skillMatrixData: state.skillMatrixOps.skillMatrixData || [],
         teams: state.skillMatrixOps.teams || [],
