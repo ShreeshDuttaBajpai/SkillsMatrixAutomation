@@ -13,7 +13,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Abp.StoryTracker.Migrations
 {
     [DbContext(typeof(SkillsMatrixDbContext))]
-    [Migration("20230507190739_initial")]
+    [Migration("20230508081806_initial")]
     partial class initial
     {
         /// <inheritdoc />

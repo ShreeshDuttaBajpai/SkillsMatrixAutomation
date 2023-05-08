@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import css from "./EmployeeScoreComponent.css";
 import AccordionContainer from "../AccordionComponent/AccordionContainer";
 import cx from "classnames";
-import {
-    handleEmployeeScoreChange,
-    handleScoreSave
-} from "./EmployeeScoreFunctions";
+import { handleScoreSave } from "./EmployeeScoreFunctions";
+import EmployeeSubCategoryScoreContainer from "../EmployeeSubCategoryScoreComponent/EmployeeSubCategoryScoreContainer";
 
 const EmployeeScoreComponent = ({
     clients,
@@ -13,18 +11,26 @@ const EmployeeScoreComponent = ({
     employees,
     categories,
     subCategories,
+    employeeScores,
     fetchClientList,
     fetchClientTeamsList,
     fetchTeamEmployeesList,
     fetchCategoriesList,
-    fetchSubCategoriesList
+    fetchSubCategoriesList,
+    fetchEmployeeScores,
+    setExpectedScores
 }) => {
     const [isAnyAccordionOpen, setIsAnyAccordionOpen] = useState(false);
     const [selectedClient, setSelectedClient] = useState();
     const [selectedTeam, setSelectedTeam] = useState();
     const [selectedEmployee, setSelectedEmployee] = useState();
     const [selectedCategory, setSelectedCategory] = useState();
-    const [employeeScoringArray, setEmployeeScoringArray] = useState([]);
+    // const [employeeScoringArray, setEmployeeScoringArray] = useState([]);
+    useEffect(() => {
+        selectedEmployee &&
+            categories.length > 0 &&
+            setSelectedCategory(categories[0].id);
+    }, [selectedEmployee]);
     useEffect(() => {
         fetchClientList();
         fetchCategoriesList();
@@ -33,17 +39,25 @@ const EmployeeScoreComponent = ({
     useEffect(() => {
         setSelectedTeam();
         setSelectedEmployee();
+        setSelectedCategory();
+        setExpectedScores([]);
         selectedClient !== undefined && fetchClientTeamsList(selectedClient);
     }, [selectedClient, fetchClientTeamsList]);
 
     useEffect(() => {
         setSelectedEmployee();
+        setSelectedCategory();
+        setExpectedScores([]);
         selectedTeam !== undefined && fetchTeamEmployeesList(selectedTeam);
     }, [selectedTeam]);
 
     useEffect(() => {
         selectedCategory && fetchSubCategoriesList(selectedCategory);
     }, [selectedCategory]);
+
+    useEffect(() => {
+        selectedEmployee && fetchEmployeeScores(selectedEmployee);
+    }, [selectedEmployee]);
 
     return (
         <div className={css.employeeScoreContainer}>
@@ -113,29 +127,24 @@ const EmployeeScoreComponent = ({
                         subCategories.length > 0 &&
                         subCategories.map(subCategory => {
                             return (
-                                <li
-                                    className={css.subCategoryListLi}
+                                <EmployeeSubCategoryScoreContainer
+                                    subCategoryScore={
+                                        employeeScores.length > 0 &&
+                                        employeeScores.find(
+                                            score =>
+                                                score.subCategoryId ===
+                                                subCategory.id
+                                        )
+                                            ? employeeScores.find(
+                                                  score =>
+                                                      score.subCategoryId ===
+                                                      subCategory.id
+                                              ).employeeScore
+                                            : 0
+                                    }
+                                    subCategory={subCategory}
                                     key={subCategory.id}
-                                >
-                                    {subCategory.subCategoryName}
-                                    <select
-                                        className={css.employeeScoreDropdown}
-                                        onChange={e =>
-                                            handleEmployeeScoreChange(
-                                                e,
-                                                subCategory.id,
-                                                employeeScoringArray,
-                                                setEmployeeScoringArray
-                                            )
-                                        }
-                                    >
-                                        <option value={0}>0</option>
-                                        <option value={1}>1</option>
-                                        <option value={2}>2</option>
-                                        <option value={3}>3</option>
-                                        <option value={4}>4</option>
-                                    </select>
-                                </li>
+                                />
                             );
                         })}
                 </ul>
@@ -143,7 +152,7 @@ const EmployeeScoreComponent = ({
             <button
                 className={css.scoresSaveBtn}
                 onClick={() =>
-                    handleScoreSave(selectedEmployee, employeeScoringArray)
+                    handleScoreSave(selectedEmployee, employeeScores)
                 }
             >
                 Save Scores
