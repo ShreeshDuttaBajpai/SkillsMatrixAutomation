@@ -147,23 +147,27 @@ export const setSkillMatrixData = payload => ({
     type: types.SET_SKILL_MATRIX_DATA,
     payload
 });
+export const setEmployeeScores = payload => ({
+    type: types.SET_EMPLOYEE_SCORES,
+    payload
+});
 
 export const postTeams = payload => ({
-    type:types.POST_TEAMS,
+    type: types.POST_TEAMS,
     payload
-})
+});
 
-export const fetchCategory=payload=>({
-    type:types.FETCH_CATEGORY,
+export const fetchCategory = payload => ({
+    type: types.FETCH_CATEGORY,
     payload
-})
+});
 
-export const fetchSubCategory=payload=>({
-    type:types.FETCH_SUBCATEGORY,
+export const fetchSubCategory = payload => ({
+    type: types.FETCH_SUBCATEGORY,
     payload
-})
+});
 
-export const getClient=payload=>({
-    type:types.CLIENT,
+export const getClient = payload => ({
+    type: types.CLIENT,
     payload
-})
+});

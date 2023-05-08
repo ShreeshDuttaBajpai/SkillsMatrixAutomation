@@ -7,6 +7,11 @@ import {
     toggleAccordionOpen
 } from "./AccordionFunctions";
 import AccordionCategoriesContainer from "../AccordionCategoriesComponent/AccordionCategoriesContainer";
+import {
+    faChevronDown,
+    faChevronRight
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const AccordionComponent = ({
     accordionTitle,
@@ -41,7 +46,11 @@ const AccordionComponent = ({
                     )
                 }
             >
-                <span>&gt;</span>
+                {isAccordionOpen ? (
+                    <FontAwesomeIcon icon={faChevronDown} />
+                ) : (
+                    <FontAwesomeIcon icon={faChevronRight} />
+                )}
                 <span className={css.accordionTitleSpan}>{accordionTitle}</span>
                 <span>
                     {accordionTitle !== "Categories" &&

@@ -4,6 +4,7 @@ import {
 } from "../../services/MasterService/MasterService";
 
 import { PostEmployeeScore } from "../../services/EmployeeScoreService/EmployeeScoreService";
+import { EmployeeScoresApi } from "../../services/ScoreService/ScoreService";
 export const getTeamEmployeesList = async teamId => {
     const result = await TeamEmployeesListApi(teamId);
     console.log(result);
@@ -13,6 +14,10 @@ export const getTeamEmployeesList = async teamId => {
 export const getSubCategoriesList = async categoryId => {
     const result = await SubCategoryCategoryListApi(categoryId);
     console.log(result);
+    return result;
+};
+export const getEmployeeScoresList = async employeeId => {
+    const result = await EmployeeScoresApi(employeeId);
     return result;
 };
 export const handleEmployeeScoreChange = (

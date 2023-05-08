@@ -31,6 +31,6 @@ namespace Abp.StoryTracker.SkillsMatrixRepoInterface
         Task<List<SubCategoryMappingModel>> PutSubCategoryMappingListAsync(SubCategoryMappingModel putSubCategoryMapping);
         Task<List<SubCategoryMasterModel>> PostSubCategoryMasterListAsync(SubCategoryMasterModel postSubCategory);
         Task<List<SkillsMatrixModel>> PostSkillMatrixListAsync(SkillsMatrixModel postSkillsMatrix);
-        
+        Task<List<SkillsMatrixModel>> GetEmployeeScores(int employeeId);
     }
 }

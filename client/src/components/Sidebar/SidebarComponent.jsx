@@ -2,7 +2,9 @@ import {
     faLaptopCode,
     faPenToSquare,
     faSitemap,
-    faTableList
+    faTableList,
+    // faInputNumeric
+    faCheck
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
@@ -80,6 +82,23 @@ const SidebarComponent = () => {
                 }
             >
                 <FontAwesomeIcon icon={faPenToSquare} />
+            </NavLink>
+            <NavLink
+                title="Employee Score Mapping"
+                to="/employee-score"
+                className={css.sidebarNavItem}
+                activeClassName={
+                    activeLocation.clientScore ? css.sidebarActiveNavItem : ""
+                }
+                onClick={() =>
+                    handleNavItemClick(
+                        activeLocation,
+                        setActiveLocation,
+                        "clientScore"
+                    )
+                }
+            >
+                <FontAwesomeIcon icon={faCheck} />
             </NavLink>
             <NavLink
                 title="Skill Matrix Table Page"

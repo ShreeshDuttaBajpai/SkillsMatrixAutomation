@@ -9,10 +9,12 @@ import {
     setCategories,
     setClientTeams,
     setClients,
+    setEmployeeScores,
     setSubCategories,
     setTeamEmployees
 } from "../../redux/common/actions";
 import {
+    getEmployeeScoresList,
     getSubCategoriesList,
     getTeamEmployeesList
 } from "./EmployeeScoreFunctions";
@@ -23,7 +25,8 @@ const mapStateToProps = state => {
         teams: state.skillMatrixOps.teams || [],
         employees: state.skillMatrixOps.teamEmployees || [],
         categories: state.skillMatrixOps.categories || [],
-        subCategories: state.skillMatrixOps.subCategories || []
+        subCategories: state.skillMatrixOps.subCategories || [],
+        employeeScores: state.skillMatrixOps.employeeScores || []
     };
 };
 
@@ -48,6 +51,13 @@ const mapDispatchToProps = dispatch => {
         fetchSubCategoriesList: async categoryId => {
             const subCategories = await getSubCategoriesList(categoryId);
             dispatch(setSubCategories(subCategories));
+        },
+        fetchEmployeeScores: async employeeId => {
+            const employeeScores = await getEmployeeScoresList(employeeId);
+            dispatch(setEmployeeScores(employeeScores));
+        },
+        setExpectedScores: async scores => {
+            dispatch(setEmployeeScores(scores));
         }
     };
 };

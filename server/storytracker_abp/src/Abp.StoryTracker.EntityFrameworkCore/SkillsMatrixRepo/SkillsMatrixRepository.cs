@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Repositories.Dapper;
@@ -270,5 +271,13 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
         }
 
 
+        public async Task<List<SkillsMatrixModel>> GetEmployeeScores(int employeeId)
+        {
+            var dbConnection = await GetDbConnectionAsync();
+            var query = $"SELECT * FROM dbo.SkillsMatrix WHERE EmployeeId={employeeId};";
+            var result = (await dbConnection.QueryAsync<SkillsMatrixModel>(query, 
+                transaction: await GetDbTransactionAsync())).ToList();
+            return result;
+        }
     }
 }
