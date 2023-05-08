@@ -62,11 +62,11 @@ public class StoryTrackerEntityFrameworkCoreTestModule : AbpModule
         var connection = new SqliteConnection("Data Source=:memory:");
         connection.Open();
 
-        var options = new DbContextOptionsBuilder<StoryTrackerDbContext>()
+        var options = new DbContextOptionsBuilder<SkillsMatrixDbContext>()
             .UseSqlite(connection)
             .Options;
 
-        using (var context = new StoryTrackerDbContext(options))
+        using (var context = new SkillsMatrixDbContext(options))
         {
             context.GetService<IRelationalDatabaseCreator>().CreateTables();
         }

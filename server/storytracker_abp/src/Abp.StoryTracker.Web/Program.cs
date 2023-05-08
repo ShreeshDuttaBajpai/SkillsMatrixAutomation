@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Abp.StoryTracker.Endpoints;
-using Abp.StoryTracker.StoryTrackerRepo;
-using Abp.StoryTracker.StoryTrackerRepoInterface;
-using Abp.StoryTracker.StoryTrackerService;
-using Abp.StoryTracker.StoryTrackerServiceInterface;
+using Abp.StoryTracker.SkillsMatrixRepo;
+using Abp.StoryTracker.SkillsMatrixRepoInterface;
+using Abp.StoryTracker.SkillsMatrixService;
+using Abp.StoryTracker.SkillsMatrixServiceInterface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,8 +39,8 @@ public class Program
                 .UseAutofac()
                 .UseSerilog();
             await builder.AddApplicationAsync<StoryTrackerWebModule>();
-            builder.Services.AddScoped<IStoryTrackerService, Abp.StoryTracker.StoryTrackerService.StoryTrackerService>();
-            builder.Services.AddScoped<IStoryTrackerRepository, StoryTrackerRepository>();
+            builder.Services.AddScoped<ISkillsMatrixService, Abp.StoryTracker.SkillsMatrixService.SkillsMatrixService>();
+            builder.Services.AddScoped<ISkillsMatrixRepository, SkillsMatrixRepository>();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddCors(policyBuilder =>
              policyBuilder.AddDefaultPolicy(policy =>
@@ -49,7 +49,25 @@ public class Program
             builder.Services.AddSwaggerGen();
             var app = builder.Build();
             app.UseCors();
-            app.MapStoryTrackerEndpoints();
+            app.MapSkillsMatrixEndpoints();
+            app.MapClientMasterEndpoints();
+            app.MapTeamMasterEndpoints();
+            app.MapTeamMasterandClientsEndpoints();
+            app.MapCategoryMasterEndpoints();
+            app.MapPostClientMasterEndpoints();
+            app.MapPostTeamMasterEndpoints();
+            app.MapSubCategoryMasterAndCategoryEndpoints();
+            app.MapSubCategoryMasterEndpoints();
+            app.MapPostCategoryMasterEndpoints();
+            app.MapGetSubCategoryMappingEndpoints();
+            app.MapPostSubCategoryMasterEndpoints();
+            app.MapPostSubCategoryMappingEndpoints();
+            app.MapEmployeeDetailsEndpoints();
+            app.MapPutSubCategoryMappingEndpoints();
+            app.MapEmployeeDetailsTeamWiseEndpoints();
+            app.MapPostSkillMatrixEndpoints();
+            app.MapSkillsMatrixJoinTablesEndpoints();
+            app.MapEmployeeScoreEndpoints();
             await app.InitializeApplicationAsync();
             await app.RunAsync();
             return 0;

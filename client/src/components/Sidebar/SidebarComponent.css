@@ -1,0 +1,36 @@
+.sidebarContainerDiv {
+    min-height: calc(100vh - 70px);
+    min-width: 100px;
+    max-width: 100px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    font-size: 20px;
+    box-shadow: 2px 0 10px 2px rgba(0, 0, 0, 0.6);
+}
+
+.brandLogoDiv {
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+.brandLogoImg {
+    height: 60px;
+}
+
+.sidebarNavItem {
+    font-size: 30px;
+    margin: 10px 0;
+    padding: 15px;
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    color: rgb(33, 11, 122);
+}
+
+.sidebarActiveNavItem {
+    background-color: rgb(122, 255, 233);
+    color: rgba(33, 11, 122, 0.8);
+}

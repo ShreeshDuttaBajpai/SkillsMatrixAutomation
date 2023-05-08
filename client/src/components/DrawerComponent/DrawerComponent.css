@@ -1,0 +1,13 @@
+.drawer_container{
+    background-color: #e7e8e9;
+    width: 100vw;
+    position: relative;
+    transition: 0.8s ease;
+    padding: 2rem;
+    border-radius: 10px;
+    height: 100vh;
+    overflow: hidden;
+}
+.drawerheading{
+    padding-left: 10px;
+}

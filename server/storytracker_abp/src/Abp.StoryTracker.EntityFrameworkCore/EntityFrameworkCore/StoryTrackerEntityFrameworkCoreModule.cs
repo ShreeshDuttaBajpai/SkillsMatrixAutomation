@@ -39,7 +39,7 @@ public class StoryTrackerEntityFrameworkCoreModule : AbpModule
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         context.Services.AddAutoMapperObjectMapper<StoryTrackerEntityFrameworkCoreModule>();
-        context.Services.AddAbpDbContext<StoryTrackerDbContext>(options =>
+        context.Services.AddAbpDbContext<SkillsMatrixDbContext>(options =>
         {
                 /* Remove "includeAllEntities: true" to create
                  * default repositories only for aggregate roots */
