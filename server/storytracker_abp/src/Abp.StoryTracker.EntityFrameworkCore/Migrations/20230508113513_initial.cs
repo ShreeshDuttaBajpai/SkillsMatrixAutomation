@@ -877,15 +877,16 @@ namespace Abp.StoryTracker.Migrations
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_SkillsMatrix", x => x.Id);
                     table.ForeignKey(
                         name: "FK_SkillsMatrix_EmployeeDetails_EmployeeId",
                         column: x => x.EmployeeId,
                         principalTable: "EmployeeDetails",
                         principalColumn: "EmployeeId");
                     table.ForeignKey(
-                        name: "FK_SkillsMatrix_SubCategoryMapping_SubCategoryId",
+                        name: "FK_SkillsMatrix_SubCategoryMaster_SubCategoryId",
                         column: x => x.SubCategoryId,
-                        principalTable: "SubCategoryMapping",
+                        principalTable: "SubCategoryMaster",
                         principalColumn: "Id");
                 });
 
@@ -1223,6 +1224,9 @@ namespace Abp.StoryTracker.Migrations
                 name: "SkillsMatrix");
 
             migrationBuilder.DropTable(
+                name: "SubCategoryMapping");
+
+            migrationBuilder.DropTable(
                 name: "AbpEntityChanges");
 
             migrationBuilder.DropTable(
@@ -1244,16 +1248,13 @@ namespace Abp.StoryTracker.Migrations
                 name: "EmployeeDetails");
 
             migrationBuilder.DropTable(
-                name: "SubCategoryMapping");
+                name: "SubCategoryMaster");
 
             migrationBuilder.DropTable(
                 name: "AbpAuditLogs");
 
             migrationBuilder.DropTable(
                 name: "OpenIddictApplications");
-
-            migrationBuilder.DropTable(
-                name: "SubCategoryMaster");
 
             migrationBuilder.DropTable(
                 name: "TeamMaster");

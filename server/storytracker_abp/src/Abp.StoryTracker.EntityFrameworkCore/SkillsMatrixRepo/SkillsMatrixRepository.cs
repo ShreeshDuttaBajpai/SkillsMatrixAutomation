@@ -164,7 +164,7 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
             var dbConnection = await GetDbConnectionAsync();
             
 
-            var query2 = "Select * from dbo. SkillsMatrix where EmployeeId=" + postSkillMatrix.EmployeeId + " and SubCategoryId=" + postSkillMatrix.SubCategoryId + "";
+            var query2 = "Select * from dbo.SkillsMatrix where EmployeeId=" + postSkillMatrix.EmployeeId + " and SubCategoryId=" + postSkillMatrix.SubCategoryId + "";
             var result2 = (await dbConnection.QueryAsync<SkillsMatrixModel>(query2,
             transaction: await GetDbTransactionAsync())).ToList();
 
@@ -191,7 +191,7 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
 
             else if (result2.Count() == 0 && result4.Count() == 1)
             {
-                var query = "INSERT INTO dbo.SkillsMatrix VALUES ('" + postSkillMatrix.EmployeeId + "', '" + postSkillMatrix.SubCategoryId + "', '" + postSkillMatrix.EmployeeScore + "' , '" + DateTime.Now + "', '" + DateTime.Now + "')";
+                var query = "INSERT INTO dbo.SkillsMatrix VALUES (" + postSkillMatrix.EmployeeId + ", " + postSkillMatrix.SubCategoryId + ", " + postSkillMatrix.EmployeeScore + " , '" + DateTime.Now + "', '" + DateTime.Now + "')";
                 var result = (await dbConnection.QueryAsync<SkillsMatrixModel>(query,
                 transaction: await GetDbTransactionAsync())).ToList();
                 return result;

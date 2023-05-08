@@ -33,3 +33,6 @@
     line-height: 1.47059;
     z-index: 3;
 }
+.mappingsSaveBtnDisabled {
+    opacity: 0.5;
+}

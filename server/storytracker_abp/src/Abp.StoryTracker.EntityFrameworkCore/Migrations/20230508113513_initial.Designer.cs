@@ -13,7 +13,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Abp.StoryTracker.Migrations
 {
     [DbContext(typeof(SkillsMatrixDbContext))]
-    [Migration("20230508081806_initial")]
+    [Migration("20230508113513_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -106,6 +106,12 @@ namespace Abp.StoryTracker.Migrations
 
             modelBuilder.Entity("Abp.StoryTracker.Models.SkillsMatrixModel", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime");
 
@@ -115,17 +121,13 @@ namespace Abp.StoryTracker.Migrations
                     b.Property<int>("EmployeeScore")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<DateTime>("ModifiedOn")
                         .HasColumnType("datetime");
 
                     b.Property<int?>("SubCategoryId")
                         .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("EmployeeId");
 
@@ -1869,13 +1871,13 @@ namespace Abp.StoryTracker.Migrations
                         .WithMany()
                         .HasForeignKey("EmployeeId");
 
-                    b.HasOne("Abp.StoryTracker.Models.SubCategoryMappingModel", "SubCategoryMappingModel")
+                    b.HasOne("Abp.StoryTracker.Models.SubCategoryMasterModel", "SubCategoryMasterModel")
                         .WithMany()
                         .HasForeignKey("SubCategoryId");
 
                     b.Navigation("EmployeeDetailsModel");
 
-                    b.Navigation("SubCategoryMappingModel");
+                    b.Navigation("SubCategoryMasterModel");
                 });
 
             modelBuilder.Entity("Abp.StoryTracker.Models.SubCategoryMappingModel", b =>

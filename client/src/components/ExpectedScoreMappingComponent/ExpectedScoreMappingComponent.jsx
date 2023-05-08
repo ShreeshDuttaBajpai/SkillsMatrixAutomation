@@ -52,6 +52,9 @@ const ExpectedScoreMappingComponent = ({
                     setSelectedItem={setSelectedTeam}
                     isAnyAccordionOpen={isAnyAccordionOpen}
                     setIsAnyAccordionOpen={setIsAnyAccordionOpen}
+                    isAccordionDisabled={
+                        selectedClient === undefined || teams.length === 0
+                    }
                 />
             </div>
             <AccordionContainer
@@ -61,77 +64,24 @@ const ExpectedScoreMappingComponent = ({
                 setSelectedItem={setSelectedTeam}
                 isAnyAccordionOpen={isAnyAccordionOpen}
                 setIsAnyAccordionOpen={setIsAnyAccordionOpen}
+                isAccordionDisabled={
+                    selectedClient === undefined ||
+                    selectedTeam === undefined ||
+                    categories.length === 0
+                }
             />
             <button
-                className={css.mappingsSaveBtn}
+                className={cx(css.mappingsSaveBtn, {
+                    [css.mappingsSaveBtnDisabled]:
+                        !selectedClient || !selectedTeam
+                })}
                 onClick={() =>
                     handleScoreSave(selectedTeam, expectedScoreMappings)
                 }
+                disabled={!selectedClient || !selectedTeam}
             >
                 Save Mappings
             </button>
-            {/*  <div className={css.expectedScoreContainerDiv}>
-            <div className={css.accordionBtnDiv}>
-                <button className={css.accordionBtn}>
-                    Teams
-                    <br />
-                    <em>None selected</em>
-                </button>
-            </div>
-            <div className={css.clientListDiv}>
-                <h3>Clients</h3>
-                <ul className={css.dataListUl}>
-                    {clients.map((client, index) => {
-                        return (
-                            <li
-                                key={index}
-                                onClick={() => setSelectedClient(index)}
-                                className={cx(css.dataListLi, {
-                                    [css.selectedClientItem]:
-                                        selectedClient === index
-                                })}
-                            >
-                                {client.clientName}
-                            </li>
-                        );
-                    })}
-                </ul>
-            </div>
-            <div className={css.teamListDiv}>
-                <h3>Teams</h3>
-                <ul className={css.dataListUl}>
-                    {teams.map((team, index) => {
-                        return (
-                            <li
-                                key={index}
-                                // onClick={() => setSelectedClient(index)}
-                                className={cx(css.dataListLi, {
-                                    [css.selectedClientItem]:
-                                        selectedClient === index
-                                })}
-                            >
-                                {team.teamName}
-                            </li>
-                        );
-                    })}
-                </ul>
-            </div> */}
-            {/* <DataListContainer
-                data={clients}
-                selectedOptions={selectedClient}
-                setSelectedOptions={setSelectedClient}
-                listType={"client"}
-            />
-            <DataListContainer
-                data={teams}
-                listType={"team"}
-                selectedOptions={selectedTeam}
-                setSelectedOptions={setSelectedTeam}
-            />
-            <div className={css.categoryScoringDiv}>
-                <CategoryComponent />
-            </div>
-        </div>*/}
         </div>
     );
 };

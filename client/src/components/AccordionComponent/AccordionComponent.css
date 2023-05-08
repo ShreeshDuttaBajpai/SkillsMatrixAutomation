@@ -9,13 +9,13 @@
     margin-top: 40px;
     width: 100%;
 }
-.accordionContainer {
+.accordionTitleContainer {
     display: flex;
     justify-content: space-between;
     cursor: pointer;
     align-items: center;
 }
-.accordionContainer span {
+.accordionTitleContainer span {
     cursor: pointer;
 }
 .accordionTitleSpan {
