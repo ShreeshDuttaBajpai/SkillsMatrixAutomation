@@ -13,8 +13,8 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Abp.StoryTracker.Migrations
 {
     [DbContext(typeof(SkillsMatrixDbContext))]
-    [Migration("20230508113513_initial")]
-    partial class initial
+    [Migration("20230508120548_iniial")]
+    partial class iniial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
