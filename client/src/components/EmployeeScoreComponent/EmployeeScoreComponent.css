@@ -74,7 +74,9 @@
     pointer-events: none;
 }
 .scoresSaveBtn {
-    margin-top: 50px;
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
     width: max-content;
     padding: 10px 15px;
     align-self: center;

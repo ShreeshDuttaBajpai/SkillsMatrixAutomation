@@ -3,7 +3,6 @@ import {
     faPenToSquare,
     faSitemap,
     faTableList,
-    // faInputNumeric
     faCheck
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,6 +19,7 @@ const SidebarComponent = () => {
         home: path === "/",
         category: path === "/category",
         clientScore: path === "/client-score",
+        employeeScore: path === "/employee-score",
         skillMatrix: path === "/skill-matrix"
     });
     return (
@@ -88,13 +88,13 @@ const SidebarComponent = () => {
                 to="/employee-score"
                 className={css.sidebarNavItem}
                 activeClassName={
-                    activeLocation.clientScore ? css.sidebarActiveNavItem : ""
+                    activeLocation.employeeScore ? css.sidebarActiveNavItem : ""
                 }
                 onClick={() =>
                     handleNavItemClick(
                         activeLocation,
                         setActiveLocation,
-                        "clientScore"
+                        "employeeScore"
                     )
                 }
             >

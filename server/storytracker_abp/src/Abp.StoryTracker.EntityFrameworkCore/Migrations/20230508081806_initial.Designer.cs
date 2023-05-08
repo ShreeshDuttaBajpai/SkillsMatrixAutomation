@@ -13,13 +13,8 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Abp.StoryTracker.Migrations
 {
     [DbContext(typeof(SkillsMatrixDbContext))]
-<<<<<<<< HEAD:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230507190739_initial.Designer.cs
-    [Migration("20230507190739_initial")]
+    [Migration("20230508081806_initial")]
     partial class initial
-========
-    [Migration("20230504060452_mig1")]
-    partial class mig1
->>>>>>>> dd2379af6268c504392d6a9a8dda811a88379110:server/storytracker_abp/src/Abp.StoryTracker.EntityFrameworkCore/Migrations/20230504060452_mig1.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,7 +22,7 @@ namespace Abp.StoryTracker.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("_Abp_DatabaseProvider", EfCoreDatabaseProvider.SqlServer)
-                .HasAnnotation("ProductVersion", "7.0.1")
+                .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);

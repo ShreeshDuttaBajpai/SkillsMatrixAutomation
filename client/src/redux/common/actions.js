@@ -171,23 +171,3 @@ export const getClient = payload => ({
     type: types.CLIENT,
     payload
 });
-
-export const postTeams = payload => ({
-    type:types.POST_TEAMS,
-    payload
-})
-
-export const fetchCategory=payload=>({
-    type:types.FETCH_CATEGORY,
-    payload
-})
-
-export const fetchSubCategory=payload=>({
-    type:types.FETCH_SUBCATEGORY,
-    payload
-})
-
-export const getClient=payload=>({
-    type:types.CLIENT,
-    payload
-})

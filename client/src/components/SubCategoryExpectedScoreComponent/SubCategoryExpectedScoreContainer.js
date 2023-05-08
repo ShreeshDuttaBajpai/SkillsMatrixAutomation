@@ -4,7 +4,7 @@ import { setExpectedScoreMappings } from "../../redux/common/actions";
 
 const mapStateToProps = state => {
     return {
-        expectedScoreMappings: state.skillMatrixOps.expectedScoreMappings
+        expectedScoreMappings: state.skillMatrixOps.expectedScoreMappings || []
     };
 };
 
