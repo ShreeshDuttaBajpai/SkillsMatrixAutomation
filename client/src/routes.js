@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 import NoMatch from "./components/Test/NoMatch";
-import { Provider } from "react-redux";
+import { Provider, useSelector, useStore } from "react-redux";
 import MainPage from "./Pages/HomePage";
 import Cookies from "universal-cookie";
 import { AuthProvider } from "./components/auth.context";
@@ -19,6 +19,7 @@ import SkillMatrixPage from "./Pages/SkillMatrixPage";
 import ClientsCard from "./components/ClientsCard/ClientsCard";
 import HomePage from "./Pages/HomePage";
 import ClientsCardContainer from "./components/ClientsCard/ClientsCardContainer";
+import CategoryPage from "./Pages/CategoryPage";
 
 const store = configureStore();
 
@@ -30,11 +31,15 @@ const App = () => {
         const Emp_designation = decoded_token.Emp_designation;
         const Emp_id = decoded_token.Emp_id;
     }
+    // const store = useStore();
+    console.log(store.getState().skillMatrixOps.clients);
 
     return (
         <div>
             {
                 <Provider store={store}>
+                    {/* {myState = useSelector((state) => state.skillMatrixOps.clients)}
+                     {console.log(myState)} */}
                     {/* <AuthProvider tokenData={tokenData}> */}
                     <Router>
                         <div className={css.appContainerDiv}>
@@ -45,19 +50,11 @@ const App = () => {
                                     <Route
                                         exact
                                         path="/"
-                                        component={() => (
-                                            <ClientsCardContainer
-                                                addbutton={"Add CLient"}
-                                            />
-                                        )}
+                                        component={HomePage}
                                     />
                                     <Route
                                         path="/category"
-                                        component={() => (
-                                            <ClientsCardContainer
-                                                addbutton={"Add Category"}
-                                            />
-                                        )}
+                                        component={CategoryPage}
                                     />
                                     <Route
                                         path="/client-score"

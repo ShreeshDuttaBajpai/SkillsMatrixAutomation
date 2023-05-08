@@ -3,7 +3,6 @@ import axios from "axios";
 
 export const getApi = async baseURL => {
     const response = await axios.get(baseURL);
-    console.log(response);
     return response;
 };
 

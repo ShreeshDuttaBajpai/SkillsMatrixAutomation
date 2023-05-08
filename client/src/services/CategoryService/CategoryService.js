@@ -39,10 +39,10 @@ export const CategoryPostApi = async(data) => {
     return response;
 }
 
-export const TeamPostApi = async(data) => {
-    const baseURL = "https://localhost:44325/postTeamMaster";
+export const SubCatPostApi = async(data) => {
+    const baseURL = "https://localhost:44325/postSubCategoryMaster";
     const response=await postApi(baseURL,data).then(res => {
-        alert('Client added successfully!!')})
+        alert('Sub Category added successfully!!')})
         .catch(error => {
             return error;
         });
