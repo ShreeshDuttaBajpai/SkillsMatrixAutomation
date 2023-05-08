@@ -1,8 +1,6 @@
 import * as types from "rootpath/redux/common/constants/ActionTypes";
 import Cookies from "universal-cookie";
-import { userToken } from "../actions";
 import jwt_decode from "jwt-decode";
-// import jwt_decode from 'jwt-decode';
 
 const cookies = new Cookies();
 let tokenData = cookies.get("my_cookie");

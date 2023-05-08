@@ -4,14 +4,10 @@
     margin: 0;
     max-height: 270px;
     overflow-y: scroll;
-    /* column-count: 3;
-    column-gap: 40px; */
 }
 .categoryListLi {
     display: flex;
-    /* flex-direction: column; */
     justify-content: space-between;
-    /* align-items: center; */
     color: black;
     font-weight: 500;
     font-size: 20px;

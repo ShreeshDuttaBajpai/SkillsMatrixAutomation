@@ -9,21 +9,6 @@ export const refreshData = payload => ({
     payload
 });
 
-export const my_Data = payload => ({
-    type: types.MY_DATA,
-    payload
-});
-
-export const auth_Success = payload => ({
-    type: types.AUTH_SUCCESS,
-    payload
-});
-
-export const user_Token = payload => ({
-    type: types.AUTH_SUCCESS,
-    payload
-});
-
 export const openActions = payload => ({
     type: types.OPEN_ACTIONS,
     payload
@@ -34,38 +19,8 @@ export const selected = payload => ({
     payload
 });
 
-export const reviewdel = payload => ({
-    type: types.REVIEW_DEL,
-    payload
-});
-
-export const reviewupd = payload => ({
-    type: types.REVIEW_UPD,
-    payload
-});
-
-// export const oldData = payload => ({
-//   type: types.OLD_DATA,
-//   payload
-// });
-
-export const newData = payload => ({
-    type: types.NEW_DATA,
-    payload
-});
-
-export const setNewData = payload => ({
-    type: types.TICKET_DETAILS,
-    payload
-});
-
 export const openToggle = payload => ({
     type: types.OPEN,
-    payload
-});
-
-export const editopen = payload => ({
-    type: types.EDIT_OPEN,
     payload
 });
 
@@ -84,32 +39,8 @@ export const fetchData = payload => ({
     payload
 });
 
-export const handleChangeFirst = payload => ({
-    type: types.HANDLECHANGE_FIRST,
-    payload
-});
-
-export const handleChangeSec = payload => ({
-    type: types.HANDLECHANGE_SEC,
-    payload
-});
-export const tabledel = payload => ({
-    type: types.TableDel,
-    payload
-});
-
-export const tableupd = payload => ({
-    type: types.TableUpd,
-    payload
-});
-
 export const toggleOpen = payload => ({
     type: types.OPEN,
-    payload
-});
-
-export const oldSelectedData = payload => ({
-    type: types.OLD_DATA,
     payload
 });
 
@@ -170,13 +101,9 @@ export const fetchSubCategory = payload => ({
 export const getClient = payload => ({
     type: types.CLIENT,
     payload
-<<<<<<< HEAD
 });
-=======
-})
 
-export const postSubCategory=payload=>({
-    type:types.POST_SUBCATEGORY,
+export const postSubCategory = payload => ({
+    type: types.POST_SUBCATEGORY,
     payload
-})
->>>>>>> 7217bbc9dc9f0dca36bf74f8227b0ec57b41bb0e
+});

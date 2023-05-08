@@ -6,10 +6,6 @@ export const getApi = async baseURL => {
     return response;
 };
 
-// export const postApi = async (baseURL, data) => {
-//     await axios.post(baseURL, data);
-// };
-
 export const putApi = async (apiURL, data) => {
     const response = await axios.put(apiURL, data);
     return response;

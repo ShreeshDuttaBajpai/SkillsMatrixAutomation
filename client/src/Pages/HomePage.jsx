@@ -1,5 +1,4 @@
 import React from "react";
-// import HomePageContainer from '../components/HomePage/HomePageMainComponent/HomePageContainer';
 import ClientsCardContainer from "../components/ClientsCard/ClientsCardContainer";
 import { useSelector, useStore } from "react-redux";
 

@@ -1,4 +1,4 @@
-.add_button{
+.add_button {
     background-color: #564ef7;
     border: none;
     color: white;
@@ -12,12 +12,11 @@
     margin: 17px;
     margin-top: 30px;
 }
-.card_container{
+.card_container {
     display: flex;
-    /* justify-content: space-between; */
     flex-direction: column;
 }
-.card_row{
+.card_row {
     display: flex;
     flex-wrap: wrap;
     margin-left: 20px;
