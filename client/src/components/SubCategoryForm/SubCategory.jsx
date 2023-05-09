@@ -23,15 +23,10 @@ const SubCategory = ({ categoryItem, postSubCat, client }) => {
                 <label className={css.label}>SubCategory Name</label>
                 <input
                     className={css.form_input}
-                    type="text"
-                    defaultValue={client.clientName}
-                ></input>
-                <label className={css.label}>SubCategory Name</label>
-                <input
-                    className={css.form_input}
                     id={"subcategoryname"}
                     type="text"
                     onChange={e => handlechange(e)}
+                    defaultValue={client.clientName}
                 ></input>
                 <label className={css.label}>SubCategory Description</label>
                 <input

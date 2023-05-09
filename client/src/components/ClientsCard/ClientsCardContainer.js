@@ -5,11 +5,10 @@ import {
     getClientsList
 } from "../CardsComponent/CardsComponentFunction";
 import { fetchCategory, setClients } from "../../redux/common/actions";
-import { CategoryListApi } from "../../services/CategoryService/CategoryService";
 
 const mapStateToProps = state => ({
-    clients: state.skillMatrixOps.clients,
-    category: state.skillMatrixOps.category
+    // clients: state.skillMatrixOps.clients,
+    // category: state.skillMatrixOps.category,
 });
 
 const mapDispatchToProps = dispatch => ({

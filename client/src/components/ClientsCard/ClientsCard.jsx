@@ -20,19 +20,6 @@ const ClientsCard = ({
     const [showDrawer, setShowDrawer] = useState(false);
     const [form2Visible, setForm2Visible] = useState(false);
     const [form3Visible, setForm3Visible] = useState(false);
-    const showDrawerStyle = {
-        position: "absolute",
-        right: "0",
-        transition: "0.4s",
-        top: "0",
-        left: "0"
-    };
-    const hideDrawerStyle = {
-        position: "absolute",
-        left: "100vw",
-        top: "0",
-        transition: "0.4s"
-    };
 
     useEffect(() => {
         console.log("hello");
@@ -79,25 +66,21 @@ const ClientsCard = ({
                         );
                     })}
             </div>
-            {clients && form2Visible && (
-                <div style={showDrawer ? showDrawerStyle : hideDrawerStyle}>
-                    <DrawerComponent
-                        showDrawer={showDrawer}
-                        setShowDrawer={setShowDrawer}
-                        setForm2Visible={setForm2Visible}
-                        form2Visible={form2Visible}
-                    />
-                </div>
+            {clients && form2Visible && showDrawer && (
+                <DrawerComponent
+                    showDrawer={showDrawer}
+                    setShowDrawer={setShowDrawer}
+                    setForm2Visible={setForm2Visible}
+                    form2Visible={form2Visible}
+                />
             )}
-            {category && form3Visible && (
-                <div style={showDrawer ? showDrawerStyle : hideDrawerStyle}>
-                    <DrawerComponent
-                        showDrawer={showDrawer}
-                        setShowDrawer={setShowDrawer}
-                        setForm3Visible={setForm3Visible}
-                        form3Visible={form3Visible}
-                    />
-                </div>
+            {category && form3Visible && showDrawer && (
+                <DrawerComponent
+                    showDrawer={showDrawer}
+                    setShowDrawer={setShowDrawer}
+                    setForm3Visible={setForm3Visible}
+                    form3Visible={form3Visible}
+                />
             )}
         </div>
     );

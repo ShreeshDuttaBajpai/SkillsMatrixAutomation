@@ -54,3 +54,16 @@
 .removeBorderRight {
     border-right: 0;
 }
+
+.skillMatrixGridHeadingItem{
+    min-width: 175px;
+        width: 12.5%;
+        max-width: 12.5%;
+        text-align: center;
+        border-right: 1px solid rgb(156, 156, 156);
+        border-bottom: 1px solid rgb(156, 156, 156);
+        padding: 10px;
+        background-color: #ededed;
+        position: sticky;
+        top: 0;
+}

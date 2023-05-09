@@ -21,9 +21,16 @@ const FormAdd = () => {
     };
     return (
         <div>
-            <form className={css.form_container}>
+            <form
+                className={css.form_container}
+                onSubmit={e => {
+                    e.preventDefault();
+                    postClient();
+                }}
+            >
                 <label className={css.label}>Client Name</label>
                 <input
+                    required
                     className={css.form_input}
                     id={"clientname"}
                     type="text"
@@ -31,18 +38,21 @@ const FormAdd = () => {
                 ></input>
                 <label className={css.label}>Client Description</label>
                 <input
+                    required
                     className={css.form_input}
                     id={"clientdescription"}
                     type="text"
                     onChange={e => handlechange(e)}
                     size="50"
                 ></input>
+                <div>
+                    <ButtonComponent
+                        cname={css.add_button}
+                        value={"Submit"}
+                        // handleClick={postClient}
+                    />
+                </div>
             </form>
-            <ButtonComponent
-                cname={css.add_button}
-                value={"Submit"}
-                handleClick={postClient}
-            />
         </div>
     );
 };

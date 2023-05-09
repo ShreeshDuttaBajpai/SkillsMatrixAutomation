@@ -24,6 +24,7 @@ const AccordionComponent = ({
 }) => {
     console.log(isAccordionDisabled);
     const isDisabled = isAccordionDisabled || false;
+    console.log(isDisabled);
     const [isAccordionOpen, setIsAccordionOpen] = useState(false);
     return (
         <div

@@ -32,6 +32,7 @@ const TeamForm = ({ clients, postTeam, client }) => {
                 ></input>
                 <label className={css.label}>Team Name</label>
                 <input
+                    required
                     className={css.form_input}
                     id={"teamname"}
                     type="text"
@@ -39,6 +40,7 @@ const TeamForm = ({ clients, postTeam, client }) => {
                 ></input>
                 <label className={css.label}>Team Description</label>
                 <input
+                    required
                     className={css.form_input}
                     id={"teamdescription"}
                     type="text"

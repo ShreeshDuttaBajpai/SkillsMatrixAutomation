@@ -21,9 +21,16 @@ const CategoryForm = () => {
     };
     return (
         <div>
-            <form className={css.form_container}>
+            <form
+                className={css.form_container}
+                onSubmit={e => {
+                    e.preventDefault();
+                    postCategory();
+                }}
+            >
                 <label className={css.label}>Category Name</label>
                 <input
+                    required
                     className={css.form_input}
                     id={"categoryname"}
                     type="text"
@@ -31,18 +38,21 @@ const CategoryForm = () => {
                 ></input>
                 <label className={css.label}>Category Description</label>
                 <input
+                    required
                     className={css.form_input}
                     id={"categorydescription"}
                     type="text"
                     onChange={e => handlechange(e)}
                     size="50"
                 ></input>
+                <div>
+                    <ButtonComponent
+                        cname={css.add_button}
+                        value={"Submit"}
+                        // handleClick={postCategory}
+                    />
+                </div>
             </form>
-            <ButtonComponent
-                cname={css.add_button}
-                value={"Submit"}
-                handleClick={postCategory}
-            />
         </div>
     );
 };

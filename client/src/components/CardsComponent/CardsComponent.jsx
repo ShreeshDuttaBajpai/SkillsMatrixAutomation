@@ -15,21 +15,6 @@ const CardsComponent = ({ client, categoryItem, getClient }) => {
     const [form1Visible, setForm1Visible] = useState(false);
     const [form4Visible, setForm4Visible] = useState(false);
 
-    const showDrawerStyle = {
-        position: "absolute",
-        right: "0",
-        transition: "0.4s",
-        top: "0",
-        left: "0",
-        overflow: "hidden"
-    };
-    const hideDrawerStyle = {
-        position: "absolute",
-        left: "100vw",
-        top: "0",
-        transition: "0.4s"
-    };
-
     useEffect(() => {
         console.log("hello");
     }, [form4Visible]);
@@ -100,26 +85,24 @@ const CardsComponent = ({ client, categoryItem, getClient }) => {
                         })}
                 </p>
             </div>
-            <div style={showDrawer ? showDrawerStyle : hideDrawerStyle}>
-                {client && (
-                    <DrawerComponent
-                        showDrawer={showDrawer}
-                        setShowDrawer={setShowDrawer}
-                        form1Visible={form1Visible}
-                        setForm1Visible={setForm1Visible}
-                        parentid={client.id}
-                    />
-                )}
-                {categoryItem && (
-                    <DrawerComponent
-                        showDrawer={showDrawer}
-                        setShowDrawer={setShowDrawer}
-                        form14Visible={form4Visible}
-                        setForm4Visible={setForm4Visible}
-                        parentid={categoryItem.id}
-                    />
-                )}
-            </div>
+            {client && showDrawer && (
+                <DrawerComponent
+                    showDrawer={showDrawer}
+                    setShowDrawer={setShowDrawer}
+                    form1Visible={form1Visible}
+                    setForm1Visible={setForm1Visible}
+                    parentid={client.id}
+                />
+            )}
+            {categoryItem && showDrawer && (
+                <DrawerComponent
+                    showDrawer={showDrawer}
+                    setShowDrawer={setShowDrawer}
+                    form4Visible={form4Visible}
+                    setForm4Visible={setForm4Visible}
+                    parentid={categoryItem.id}
+                />
+            )}
         </div>
     );
 };
