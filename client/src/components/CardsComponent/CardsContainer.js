@@ -6,6 +6,7 @@ import {
 import {
     fetchClientTeams,
     fetchClients,
+    getCategory,
     setClientTeams
 } from "../../redux/common/actions";
 import CardsComponent from "./CardsComponent";
@@ -25,6 +26,9 @@ const mapDispatchToProps = dispatch => {
         },
         getClient: async client => {
             dispatch(getClient(client));
+        },
+        getCategory: async cat => {
+            dispatch(getCategory(cat))
         }
     };
 };

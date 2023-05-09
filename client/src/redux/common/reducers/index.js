@@ -151,10 +151,9 @@ const skillMatrixState = {
     employeeScores: [],
     category: [],
     subcategory: [],
-    client: {}
+    client: {},
+    categoryItem:{}
 };
-
-
 
 export const skillMatrixOps = (state = skillMatrixState, action) => {
     switch (action.type) {
@@ -176,8 +175,6 @@ export const skillMatrixOps = (state = skillMatrixState, action) => {
             return { ...state, employeeScores: action.payload };
         case types.POST_TEAMS:
             return { ...state, teams: action.payload };
-        case types.POST_TEAMS:
-            return { ...state, teams: action.payload };
         case types.FETCH_CATEGORY:
             return { ...state, category: action.payload };
         case types.FETCH_SUBCATEGORY:
@@ -186,7 +183,12 @@ export const skillMatrixOps = (state = skillMatrixState, action) => {
             return{...state, client:action.payload}
             case types.POST_SUBCATEGORY:
                 return{...state, subcategory:action.payload}
-            return { ...state, client: action.payload };
+            case types.CATEGORY:
+            return { ...state, categoryItem: action.payload };
+        case types.HANDLE_CATEGORY:
+            return { ...state, category: prev => {return { ...prev, [e.target.id]: action.payload };
+            }}
+            
         default:
             return state;
     }

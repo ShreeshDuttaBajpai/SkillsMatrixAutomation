@@ -8,20 +8,28 @@ import {
 } from "./CardsComponentFunction";
 import DrawerComponent from "../DrawerComponent/DrawerComponent";
 
-const CardsComponent = ({ client, categoryItem, getClient }) => {
+const CardsComponent = ({ client, categoryItem, getClient, getCategory }) => {
     const [teams, setTeams] = useState([]);
     const [subcategory, setSubCategory] = useState([]);
     const [showDrawer, setShowDrawer] = useState(false);
     const [form1Visible, setForm1Visible] = useState(false);
     const [form4Visible, setForm4Visible] = useState(false);
-
+    const show = () => {
+        // Disables Background Scrolling whilst the SideDrawer/Modal is open
+        if (typeof window != "undefined" && window.document) {
+            document.body.style.overflow = "hidden";
+        }
+    };
     const showDrawerStyle = {
-        position: "absolute",
+        //position: "absolute",
         right: "0",
         transition: "0.4s",
         top: "0",
         left: "0",
-        overflow: "hidden"
+        overflow: "hidden",
+        opacity: "1",
+        minheight: "100%",
+        "z-index": "1"
     };
     const hideDrawerStyle = {
         position: "absolute",
@@ -50,7 +58,14 @@ const CardsComponent = ({ client, categoryItem, getClient }) => {
         <div className={css.card_column}>
             <div className={css.card}>
                 <div className={css.header}>
-                    <h3 className={css.card_heading}>
+                    <h3
+                        className={css.card_heading}
+                        data-text={
+                            client
+                                ? client.clientName
+                                : categoryItem.categoryName
+                        }
+                    >
                         {client ? client.clientName : categoryItem.categoryName}
                     </h3>
                     {/* <span className={css.card_desc}>
@@ -70,6 +85,7 @@ const CardsComponent = ({ client, categoryItem, getClient }) => {
                                 setShowDrawer(!showDrawer);
                                 setForm1Visible(!form1Visible);
                                 getClient(client);
+                                show();
                             }}
                         />
                     ) : (
@@ -79,28 +95,36 @@ const CardsComponent = ({ client, categoryItem, getClient }) => {
                             handleClick={() => {
                                 setShowDrawer(!showDrawer);
                                 setForm4Visible(!form4Visible);
-                                getClient(categoryItem);
+                                getCategory(categoryItem);
                             }}
                         />
                     )}
+                    {console.log(categoryItem)}
                 </div>
                 <hr />
-                <p className={css.teamlist}>
-                    {teams &&
-                        teams.length > 0 &&
-                        teams.map((team, index) => {
-                            console.log(team);
-                            return <TeamsComponent key={index} team={team} />;
-                        })}
-                    {subcategory &&
-                        subcategory.length > 0 &&
-                        subcategory.map((sub, index) => {
-                            console.log(sub);
-                            return <TeamsComponent key={index} sub={sub} />;
-                        })}
-                </p>
+                <div className={css.scrollbar}>
+                    <p className={css.teamlist}>
+                        {teams &&
+                            teams.length > 0 &&
+                            teams.map((team, index) => {
+                                console.log(team);
+                                return (
+                                    <TeamsComponent key={index} team={team} />
+                                );
+                            })}
+                        {subcategory &&
+                            subcategory.length > 0 &&
+                            subcategory.map((sub, index) => {
+                                console.log(sub);
+                                return <TeamsComponent key={index} sub={sub} />;
+                            })}
+                    </p>
+                </div>
             </div>
-            <div style={showDrawer ? showDrawerStyle : hideDrawerStyle}>
+            <div
+                style={showDrawer ? showDrawerStyle : hideDrawerStyle}
+                className={css.hidescroll}
+            >
                 {client && (
                     <DrawerComponent
                         showDrawer={showDrawer}
@@ -114,7 +138,7 @@ const CardsComponent = ({ client, categoryItem, getClient }) => {
                     <DrawerComponent
                         showDrawer={showDrawer}
                         setShowDrawer={setShowDrawer}
-                        form14Visible={form4Visible}
+                        form4Visible={form4Visible}
                         setForm4Visible={setForm4Visible}
                         parentid={categoryItem.id}
                     />

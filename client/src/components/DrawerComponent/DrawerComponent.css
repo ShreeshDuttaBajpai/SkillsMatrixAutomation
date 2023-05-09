@@ -1,5 +1,6 @@
 .drawer_container{
     background-color: #e7e8e9;
+    z-index: 1;
     width: 100vw;
     position: relative;
     transition: 0.8s ease;

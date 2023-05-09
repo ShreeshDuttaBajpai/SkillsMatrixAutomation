@@ -23,7 +23,10 @@ const TeamForm = ({ clients, postTeam, client }) => {
     // };
     return (
         <div>
-            <form className={css.form_container}>
+            <form
+                className={css.form_container}
+                onSubmit={() => postTeam(team)}
+            >
                 <label className={css.label}>Client Name</label>
                 <input
                     className={css.form_input}
@@ -36,6 +39,7 @@ const TeamForm = ({ clients, postTeam, client }) => {
                     id={"teamname"}
                     type="text"
                     onChange={e => handlechange(e)}
+                    required
                 ></input>
                 <label className={css.label}>Team Description</label>
                 <input
@@ -44,12 +48,13 @@ const TeamForm = ({ clients, postTeam, client }) => {
                     type="text"
                     onChange={e => handlechange(e)}
                     size="50"
+                    required
                 ></input>
             </form>
             <ButtonComponent
                 cname={css.add_button}
                 value={"Submit"}
-                handleClick={() => postTeam(team)}
+                // handleClick={() => postTeam(team)}
             />
         </div>
     );

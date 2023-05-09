@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import css from "./SubCategoryForm.css";
 import { ButtonComponent } from "../ButtonComponent/ButtonComponent";
 
-const SubCategory = ({ categoryItem, postSubCat, client }) => {
+const SubCategory = ({ categoryItem, postSubCat }) => {
     const [subcat, setSubCat] = useState({
-        categoryid: client.id,
+        categoryid: categoryItem.id,
         subcategoryname: "",
         subcategorydescription: "",
         createdOn: new Date().toJSON(),
@@ -16,15 +16,20 @@ const SubCategory = ({ categoryItem, postSubCat, client }) => {
         });
         console.log("hi");
     };
-
+    console.log(categoryItem.subCategoryName);
+    console.log(categoryItem);
     return (
         <div>
-            <form className={css.form_container}>
-                <label className={css.label}>SubCategory Name</label>
+            <form
+                className={css.form_container}
+                onSubmit={() => postSubCat(subcat)}
+            >
+                <label className={css.label}>Category Name</label>
                 <input
                     className={css.form_input}
                     type="text"
-                    defaultValue={client.clientName}
+                    defaultValue={categoryItem.categoryName}
+                    size="40"
                 ></input>
                 <label className={css.label}>SubCategory Name</label>
                 <input
@@ -32,6 +37,7 @@ const SubCategory = ({ categoryItem, postSubCat, client }) => {
                     id={"subcategoryname"}
                     type="text"
                     onChange={e => handlechange(e)}
+                    required
                 ></input>
                 <label className={css.label}>SubCategory Description</label>
                 <input
@@ -40,13 +46,15 @@ const SubCategory = ({ categoryItem, postSubCat, client }) => {
                     type="text"
                     onChange={e => handlechange(e)}
                     size="50"
+                    required
                 ></input>
+                <br />
+                <ButtonComponent
+                    cname={css.add_button}
+                    value={"Submit"}
+                    //handleClick={() => postSubCat(subcat)}
+                />
             </form>
-            <ButtonComponent
-                cname={css.add_button}
-                value={"Submit"}
-                handleClick={() => postSubCat(subcat)}
-            />
         </div>
     );
 };

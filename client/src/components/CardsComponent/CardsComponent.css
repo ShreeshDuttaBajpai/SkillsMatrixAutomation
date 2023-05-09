@@ -3,7 +3,8 @@
     min-width: 33%;
     max-width: 33%;
     padding: 15px 15px;
-    height: 60%;
+    /* height: 60%; */
+    height: 50vh;
   }
   
   .card_row {margin:5px;}
@@ -14,6 +15,7 @@
     text-align: center;
     background-color: #f1f1f1;
     height: 100%;
+    overflow-y: scroll;
   }
   .add_button{
       background-color: #564ef7;
@@ -46,7 +48,7 @@
     cursor: default;
     position: relative;
   }
-  .card_heading:hover::after {
+  .card_heading::after {
     content: attr(data-text);
     position: absolute;
     top: 100%;
@@ -59,6 +61,15 @@
     font-size: 14px;
     max-width: 300px;
     line-height: 1.3;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  .card_heading:hover::after {
+    visibility: visible;
+    opacity: 1;
   }
 
   .card_desc{
@@ -72,5 +83,12 @@
   }
   .teamlist{
     text-align: left;
+    /* overflow-y: scroll; */
+  }
+  /* .scrollbar{
     overflow-y: scroll;
+  } */
+  .hidescroll{
+    /* position: fixed; */
+    overflow-x: hidden;
   }

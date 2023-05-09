@@ -6,6 +6,7 @@ import FormAdd from "../FormAdd/FormAdd";
 import TeamFormContainer from "../TeamForm/TeamFormContainer";
 import CategoryForm from "../CategoryForm/CategoryForm";
 import SubCategoryFormContainer from "../SubCategoryForm/SubCategoryFormContainer";
+import CategoryFormContainer from "../CategoryForm/CategoryFormContainer";
 
 const DrawerComponent = props => {
     return (
@@ -32,7 +33,7 @@ const DrawerComponent = props => {
                 <hr />
                 {props.form1Visible && props.parentid && <TeamFormContainer />}
                 {props.form2Visible && <FormAdd />}
-                {props.form3Visible && <CategoryForm />}
+                {props.form3Visible && <CategoryFormContainer />}
                 {props.form4Visible && props.parentid && (
                     <SubCategoryFormContainer />
                 )}

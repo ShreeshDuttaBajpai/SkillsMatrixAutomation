@@ -21,7 +21,7 @@ const FormAdd = () => {
     };
     return (
         <div>
-            <form className={css.form_container}>
+            <form className={css.form_container} onSubmit={() => postClient}>
                 <label className={css.label}>Client Name</label>
                 <input
                     className={css.form_input}
@@ -37,12 +37,13 @@ const FormAdd = () => {
                     onChange={e => handlechange(e)}
                     size="50"
                 ></input>
+                <br />
+                <ButtonComponent
+                    cname={css.add_button}
+                    value={"Submit"}
+                    //handleClick={postClient}
+                />
             </form>
-            <ButtonComponent
-                cname={css.add_button}
-                value={"Submit"}
-                handleClick={postClient}
-            />
         </div>
     );
 };

@@ -172,7 +172,17 @@ export const getClient = payload => ({
     payload
 });
 
+export const getCategory = payload => ({
+    type : types.CATEGORY ,
+    payload
+})
+
 export const postSubCategory=payload=>({
     type:types.POST_SUBCATEGORY,
+    payload
+})
+
+export const handlechangecategory = payload => ({
+    type : types.HANDLE_CATEGORY,
     payload
 })
