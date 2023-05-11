@@ -9,40 +9,35 @@ const ClientsCard = ({
     fetchClientList,
     clients,
     fetchCategoryList,
-    category
+    category,
+    teams,
+    fetchTeamList
 }) => {
-    useEffect(() => {
-        fetchClientList();
-    }, [fetchClientList]);
-    useEffect(() => {
-        fetchCategoryList();
-    }, [fetchCategoryList]);
     const [showDrawer, setShowDrawer] = useState(false);
     const [form2Visible, setForm2Visible] = useState(false);
     const [form3Visible, setForm3Visible] = useState(false);
-    const showDrawerStyle = {
-        position: "absolute",
-        right: "0",
-        transition: "0.4s",
-        top: "0",
-        left: "0"
-    };
-    const hideDrawerStyle = {
-        position: "absolute",
-        left: "100vw",
-        top: "0",
-        transition: "0.4s"
-    };
 
     useEffect(() => {
         console.log("hello");
         console.log(form2Visible);
     }, [form2Visible]);
 
+    useEffect(() => {
+        fetchClientList();
+    }, [fetchClientList]);
+
+    useEffect(() => {
+        fetchCategoryList();
+    }, [fetchCategoryList]);
+
+    useEffect(() => {
+       teams && fetchTeamList(clients.id);
+    }, [fetchTeamList])
+
     return (
         <div className={css.card_container}>
             <div>
-                {clients ? (
+                {clients && (
                     <ButtonComponent
                         cname={css.add_button}
                         value={addbutton}
@@ -51,7 +46,8 @@ const ClientsCard = ({
                             setForm2Visible(!form2Visible);
                         }}
                     />
-                ) : (
+                )}
+                {category && (
                     <ButtonComponent
                         cname={css.add_button}
                         value={addbutton}
@@ -62,6 +58,20 @@ const ClientsCard = ({
                     />
                 )}
             </div>
+            {teams && (
+                <select className={css.clientdropdown}>
+                    <option value="" disabled selected>
+                        Select Client
+                    </option>
+                    {clients.length > 1 &&
+                        clients.map(emp => (
+                            <option key={emp.Id} value={emp.Id}>
+                                {console.log(emp)}
+                                {emp.clientName}
+                            </option>
+                        ))}
+                </select>
+            )}
             <div className={css.card_row}>
                 {clients &&
                     clients.length &&
@@ -79,25 +89,21 @@ const ClientsCard = ({
                         );
                     })}
             </div>
-            {clients && form2Visible && (
-                <div style={showDrawer ? showDrawerStyle : hideDrawerStyle}>
-                    <DrawerComponent
-                        showDrawer={showDrawer}
-                        setShowDrawer={setShowDrawer}
-                        setForm2Visible={setForm2Visible}
-                        form2Visible={form2Visible}
-                    />
-                </div>
+            {clients && form2Visible && showDrawer && (
+                <DrawerComponent
+                    showDrawer={showDrawer}
+                    setShowDrawer={setShowDrawer}
+                    setForm2Visible={setForm2Visible}
+                    form2Visible={form2Visible}
+                />
             )}
-            {category && form3Visible && (
-                <div style={showDrawer ? showDrawerStyle : hideDrawerStyle}>
-                    <DrawerComponent
-                        showDrawer={showDrawer}
-                        setShowDrawer={setShowDrawer}
-                        setForm3Visible={setForm3Visible}
-                        form3Visible={form3Visible}
-                    />
-                </div>
+            {category && form3Visible && showDrawer && (
+                <DrawerComponent
+                    showDrawer={showDrawer}
+                    setShowDrawer={setShowDrawer}
+                    setForm3Visible={setForm3Visible}
+                    form3Visible={form3Visible}
+                />
             )}
         </div>
     );

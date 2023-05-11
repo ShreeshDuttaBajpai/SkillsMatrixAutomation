@@ -4,39 +4,27 @@ import TeamsComponent from "../TeamsComponent/TeamsComponent";
 import css from "./CardsComponent.css";
 import {
     getClientsTeamsList,
+    getEmployeeList,
     getSubCategoryList
 } from "./CardsComponentFunction";
 import DrawerComponent from "../DrawerComponent/DrawerComponent";
+import { EmpListApi } from "../../services/EmployeeService/EmployeeService";
 
-const CardsComponent = ({ client, categoryItem, getClient, getCategory }) => {
+const CardsComponent = ({
+    client,
+    categoryItem,
+    getClient,
+    getCategory,
+    team,
+    getEmp
+}) => {
+    const [employees, setEmployees] = useState([]);
     const [teams, setTeams] = useState([]);
     const [subcategory, setSubCategory] = useState([]);
     const [showDrawer, setShowDrawer] = useState(false);
     const [form1Visible, setForm1Visible] = useState(false);
     const [form4Visible, setForm4Visible] = useState(false);
-    const show = () => {
-        // Disables Background Scrolling whilst the SideDrawer/Modal is open
-        if (typeof window != "undefined" && window.document) {
-            document.body.style.overflow = "hidden";
-        }
-    };
-    const showDrawerStyle = {
-        //position: "absolute",
-        right: "0",
-        transition: "0.4s",
-        top: "0",
-        left: "0",
-        overflow: "hidden",
-        opacity: "1",
-        minheight: "100%",
-        "z-index": "1"
-    };
-    const hideDrawerStyle = {
-        position: "absolute",
-        left: "100vw",
-        top: "0",
-        transition: "0.4s"
-    };
+    const [form5Visible, setForm5Visible] = useState(false);
 
     useEffect(() => {
         console.log("hello");
@@ -54,6 +42,13 @@ const CardsComponent = ({ client, categoryItem, getClient, getCategory }) => {
         categoryItem &&
             setSubCategory(await getSubCategoryList(categoryItem.id));
     }, []);
+
+    useEffect(async () => {
+        team && setEmployees(await getEmployeeList(team.id));
+    }, []);
+
+    console.log(team);
+
     return (
         <div className={css.card_column}>
             <div className={css.card}>
@@ -63,10 +58,14 @@ const CardsComponent = ({ client, categoryItem, getClient, getCategory }) => {
                         data-text={
                             client
                                 ? client.clientName
-                                : categoryItem.categoryName
+                                : categoryItem
+                                ? categoryItem.categoryName
+                                : team.teamName
                         }
                     >
-                        {client ? client.clientName : categoryItem.categoryName}
+                        {client && client.clientName}{" "}
+                        {categoryItem && categoryItem.categoryName}
+                        {team && team.teamName}
                     </h3>
                     {/* <span className={css.card_desc}>
                         <h5>
@@ -77,7 +76,7 @@ const CardsComponent = ({ client, categoryItem, getClient, getCategory }) => {
                             )
                         </h5>
                     </span> */}
-                    {client ? (
+                    {client && (
                         <ButtonComponent
                             cname={css.add_button}
                             value={"Add Team"}
@@ -88,7 +87,8 @@ const CardsComponent = ({ client, categoryItem, getClient, getCategory }) => {
                                 show();
                             }}
                         />
-                    ) : (
+                    )}
+                    {categoryItem && (
                         <ButtonComponent
                             cname={css.add_button}
                             value={"Add SubCategory"}
@@ -100,50 +100,73 @@ const CardsComponent = ({ client, categoryItem, getClient, getCategory }) => {
                         />
                     )}
                     {console.log(categoryItem)}
+                    {team && (
+                        <ButtonComponent
+                            cname={css.add_button}
+                            value={"Add Employee"}
+                            handleClick={() => {
+                                setShowDrawer(!showDrawer);
+                                setForm5Visible(!form5Visible);
+                                getEmp(team);
+                            }}
+                        />
+                    )}
                 </div>
                 <hr />
-                <div className={css.scrollbar}>
-                    <p className={css.teamlist}>
-                        {teams &&
-                            teams.length > 0 &&
-                            teams.map((team, index) => {
-                                console.log(team);
-                                return (
-                                    <TeamsComponent key={index} team={team} />
-                                );
-                            })}
-                        {subcategory &&
-                            subcategory.length > 0 &&
-                            subcategory.map((sub, index) => {
-                                console.log(sub);
-                                return <TeamsComponent key={index} sub={sub} />;
-                            })}
-                    </p>
+                <div className={css.teamlist}>
+                    {teams &&
+                        teams.length > 0 &&
+                        teams.map((team, index) => {
+                            console.log(team);
+                            return <TeamsComponent key={index} team={team} />;
+                        })}
+                    {subcategory &&
+                        subcategory.length > 0 &&
+                        subcategory.map((sub, index) => {
+                            console.log(sub);
+                            return <TeamsComponent key={index} sub={sub} />;
+                        })}
+                    {console.log(employees)}
+                    {employees &&
+                        employees.length > 0 &&
+                        employees.map((employee, index) => {
+                            console.log(employee);
+                            return (
+                                <TeamsComponent
+                                    key={index}
+                                    employee={employee}
+                                />
+                            );
+                        })}
                 </div>
             </div>
-            <div
-                style={showDrawer ? showDrawerStyle : hideDrawerStyle}
-                className={css.hidescroll}
-            >
-                {client && (
-                    <DrawerComponent
-                        showDrawer={showDrawer}
-                        setShowDrawer={setShowDrawer}
-                        form1Visible={form1Visible}
-                        setForm1Visible={setForm1Visible}
-                        parentid={client.id}
-                    />
-                )}
-                {categoryItem && (
-                    <DrawerComponent
-                        showDrawer={showDrawer}
-                        setShowDrawer={setShowDrawer}
-                        form4Visible={form4Visible}
-                        setForm4Visible={setForm4Visible}
-                        parentid={categoryItem.id}
-                    />
-                )}
-            </div>
+            {client && showDrawer && (
+                <DrawerComponent
+                    showDrawer={showDrawer}
+                    setShowDrawer={setShowDrawer}
+                    form1Visible={form1Visible}
+                    setForm1Visible={setForm1Visible}
+                    parentid={client.id}
+                />
+            )}
+            {categoryItem && showDrawer && (
+                <DrawerComponent
+                    showDrawer={showDrawer}
+                    setShowDrawer={setShowDrawer}
+                    form4Visible={form4Visible}
+                    setForm4Visible={setForm4Visible}
+                    parentid={categoryItem.id}
+                />
+            )}
+            {team && showDrawer && (
+                <DrawerComponent
+                    showDrawer={showDrawer}
+                    setShowDrawer={setShowDrawer}
+                    form5Visible={form5Visible}
+                    setForm5Visible={setForm5Visible}
+                    parentid={team.id}
+                />
+            )}
         </div>
     );
 };

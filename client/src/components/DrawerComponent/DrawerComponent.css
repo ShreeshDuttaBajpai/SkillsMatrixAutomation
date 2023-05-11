@@ -1,13 +1,17 @@
 .drawer_container{
-    background-color: #e7e8e9;
     z-index: 1;
-    width: 100vw;
-    position: relative;
-    transition: 0.8s ease;
+    background-color: #e7e8e9;
+    width: 100%;
+    position:fixed;
+    transition: 20s;
     padding: 2rem;
-    border-radius: 10px;
-    height: 100vh;
+    /* border-radius: 10px; */
+    min-height: 100vh;
     overflow: hidden;
+    top: 0;
+    left: 0;
+    margin-left: 7vw;
+    margin-top: 10.6vh;
 }
 .drawerheading{
     padding-left: 10px;

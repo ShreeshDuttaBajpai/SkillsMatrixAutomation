@@ -24,13 +24,9 @@ const SubCategory = ({ categoryItem, postSubCat }) => {
                 className={css.form_container}
                 onSubmit={() => postSubCat(subcat)}
             >
-                <label className={css.label}>Category Name</label>
-                <input
-                    className={css.form_input}
-                    type="text"
-                    defaultValue={categoryItem.categoryName}
-                    size="40"
-                ></input>
+                <label className={css.label}>
+                    Category Name - {categoryItem.categoryName}
+                </label>
                 <label className={css.label}>SubCategory Name</label>
                 <input
                     className={css.form_input}

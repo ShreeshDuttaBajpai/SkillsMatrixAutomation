@@ -24,6 +24,7 @@ const FormAdd = () => {
             <form className={css.form_container} onSubmit={() => postClient}>
                 <label className={css.label}>Client Name</label>
                 <input
+                    required
                     className={css.form_input}
                     id={"clientname"}
                     type="text"
@@ -31,6 +32,7 @@ const FormAdd = () => {
                 ></input>
                 <label className={css.label}>Client Description</label>
                 <input
+                    required
                     className={css.form_input}
                     id={"clientdescription"}
                     type="text"

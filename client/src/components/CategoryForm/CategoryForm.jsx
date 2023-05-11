@@ -24,20 +24,20 @@ const CategoryForm = () => {
             <form className={css.form_container} onSubmit={() => postCategory}>
                 <label className={css.label}>Category Name</label>
                 <input
+                    required
                     className={css.form_input}
                     id={"categoryname"}
                     type="text"
                     onChange={e => handlechange(e)}
-                    required
                 ></input>
                 <label className={css.label}>Category Description</label>
                 <input
+                    required
                     className={css.form_input}
                     id={"categorydescription"}
                     type="text"
                     onChange={e => handlechange(e)}
                     size="50"
-                    required
                 ></input>
                 <br />
                 <ButtonComponent

@@ -4,13 +4,17 @@ import "font-awesome/css/font-awesome.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
 
-const TeamsComponent = ({ team, sub }) => {
+const TeamsComponent = ({ team, sub, employee }) => {
+    console.log(employee);
     return (
         <div className={css.teamsDiv}>
             <FontAwesomeIcon icon={faUsers} />
             <span className={css.teamSpan}>
-                {team ? team.teamName : sub.subCategoryName} -{" "}
-                {team ? team.teamDescription : sub.subCategoryDescription}
+                {team && team.teamName} {sub && sub.subCategoryName}{" "}
+                {employee && employee.employeeId} -{" "}
+                {team && team.teamDescription}{" "}
+                {sub && sub.subCategoryDescription}
+                {employee && employee.employeeName}
             </span>
         </div>
     );

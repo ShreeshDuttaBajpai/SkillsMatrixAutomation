@@ -13,13 +13,21 @@ const SkillMatrixComponent = ({ skillMatrixData, fetchSkillMatrixTable }) => {
             <h3>Skill Matrix Table</h3>
             <div className={css.skillMatrixGridContainer}>
                 <div className={css.skillMatrixGridHeader}>
-                    <div className={css.skillMatrixGridItem}>Client</div>
-                    <div className={css.skillMatrixGridItem}>Team</div>
-                    <div className={css.skillMatrixGridItem}>Employee ID</div>
-                    <div className={css.skillMatrixGridItem}>Employee Name</div>
-                    <div className={css.skillMatrixGridItem}>Category</div>
-                    <div className={css.skillMatrixGridItem}>Sub-Category</div>
-                    <div className={css.skillMatrixGridItem}>
+                    <div className={css.skillMatrixGridHeadingItem}>Client</div>
+                    <div className={css.skillMatrixGridHeadingItem}>Team</div>
+                    <div className={css.skillMatrixGridHeadingItem}>
+                        Employee ID
+                    </div>
+                    <div className={css.skillMatrixGridHeadingItem}>
+                        Employee Name
+                    </div>
+                    <div className={css.skillMatrixGridHeadingItem}>
+                        Category
+                    </div>
+                    <div className={css.skillMatrixGridHeadingItem}>
+                        Sub-Category
+                    </div>
+                    <div className={css.skillMatrixGridHeadingItem}>
                         Expected Score
                     </div>
                     <div

@@ -1,8 +1,6 @@
 import * as types from "rootpath/redux/common/constants/ActionTypes";
 import Cookies from "universal-cookie";
-import { userToken } from "../actions";
 import jwt_decode from "jwt-decode";
-// import jwt_decode from 'jwt-decode';
 
 const cookies = new Cookies();
 let tokenData = cookies.get("my_cookie");
@@ -12,147 +10,20 @@ console.log(userName);
 const skillMatrixState = {
     clients: [],
     teams: [],
+    category: [],
     categories: [],
     subCategories: [],
     expectedScoreMappings: [],
     teamEmployees: [],
-    skillMatrixData: [
-        {
-            client: "CW",
-            team: "CPL",
-            employeeId: 909,
-            employeeName: "Naina Upadhyay",
-            category: "MS Tech",
-            subCategory: "C#",
-            expectedScore: "3",
-            employeeScore: "2"
-        },
-        {
-            client: "CW",
-            team: "CPL",
-            employeeId: 909,
-            employeeName: "Naina Upadhyay",
-            category: "MS Tech",
-            subCategory: ".Net",
-            expectedScore: "2",
-            employeeScore: "4"
-        },
-        {
-            client: "CW",
-            team: "CPL",
-            employeeId: 909,
-            employeeName: "Naina Upadhyay",
-            category: "MS Tech",
-            subCategory: ".NetCore",
-            expectedScore: "3",
-            employeeScore: "3"
-        },
-        {
-            client: "CW",
-            team: "PSA",
-            employeeId: 784,
-            employeeName: "Gagan Narang",
-            category: "UI",
-            subCategory: "React",
-            expectedScore: "3",
-            employeeScore: "4"
-        },
-        {
-            client: "CW",
-            team: "PSA",
-            employeeId: 784,
-            employeeName: "Gagan Narang",
-            category: "UI",
-            subCategory: "React",
-            expectedScore: "3",
-            employeeScore: "4"
-        },
-        {
-            client: "CW",
-            team: "PSA",
-            employeeId: 784,
-            employeeName: "Gagan Narang",
-            category: "UI",
-            subCategory: "React",
-            expectedScore: "3",
-            employeeScore: "4"
-        },
-        {
-            client: "CW",
-            team: "PSA",
-            employeeId: 784,
-            employeeName: "Gagan Narang",
-            category: "UI",
-            subCategory: "React",
-            expectedScore: "3",
-            employeeScore: "4"
-        },
-        {
-            client: "CW",
-            team: "PSA",
-            employeeId: 784,
-            employeeName: "Gagan Narang",
-            category: "UI",
-            subCategory: "React",
-            expectedScore: "3",
-            employeeScore: "4"
-        },
-        {
-            client: "CW",
-            team: "PSA",
-            employeeId: 784,
-            employeeName: "Gagan Narang",
-            category: "UI",
-            subCategory: "React",
-            expectedScore: "3",
-            employeeScore: "4"
-        },
-        {
-            client: "CW",
-            team: "PSA",
-            employeeId: 784,
-            employeeName: "Gagan Narang",
-            category: "UI",
-            subCategory: "React",
-            expectedScore: "3",
-            employeeScore: "4"
-        },
-        {
-            client: "CW",
-            team: "PSA",
-            employeeId: 784,
-            employeeName: "Gagan Narang",
-            category: "UI",
-            subCategory: "React",
-            expectedScore: "3",
-            employeeScore: "4"
-        },
-        {
-            client: "CW",
-            team: "PSA",
-            employeeId: 784,
-            employeeName: "Gagan Narang",
-            category: "UI",
-            subCategory: "React",
-            expectedScore: "3",
-            employeeScore: "4"
-        },
-        {
-            client: "CW",
-            team: "PSA",
-            employeeId: 784,
-            employeeName: "Gagan Narang",
-            category: "UI",
-            subCategory: "React",
-            expectedScore: "3",
-            employeeScore: "4"
-        }
-    ],
+    skillMatrixData: [],
     employeeScores: [],
     category: [],
     subcategory: [],
     client: {},
-    categoryItem:{}
+    categoryItem:{},
+    employee: [],
+    empItem: {}
+
 };
 
 export const skillMatrixOps = (state = skillMatrixState, action) => {
@@ -185,10 +56,12 @@ export const skillMatrixOps = (state = skillMatrixState, action) => {
                 return{...state, subcategory:action.payload}
             case types.CATEGORY:
             return { ...state, categoryItem: action.payload };
-        case types.HANDLE_CATEGORY:
-            return { ...state, category: prev => {return { ...prev, [e.target.id]: action.payload };
-            }}
-            
+        case types.GET_EMPLOYEE:
+            return { ...state, employee: action.payload };  
+        case types.EMPLOYEE:
+            return {...state, empItem: action.payload}     
+        case types.POST_EMPLOYEE:
+            return {...state, employee: action.payload}      
         default:
             return state;
     }

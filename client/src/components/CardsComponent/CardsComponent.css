@@ -3,7 +3,6 @@
     min-width: 33%;
     max-width: 33%;
     padding: 15px 15px;
-    /* height: 60%; */
     height: 50vh;
   }
   
@@ -15,7 +14,7 @@
     text-align: center;
     background-color: #f1f1f1;
     height: 100%;
-    overflow-y: scroll;
+    /* overflow-y: auto; */
   }
   .add_button{
       background-color: #564ef7;
@@ -83,6 +82,8 @@
   }
   .teamlist{
     text-align: left;
+    height: 75%;
+    overflow-y: auto;
     /* overflow-y: scroll; */
   }
   /* .scrollbar{

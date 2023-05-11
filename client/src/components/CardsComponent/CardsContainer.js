@@ -6,6 +6,7 @@ import {
 import {
     fetchClientTeams,
     fetchClients,
+    fetchEmp,
     getCategory,
     setClientTeams
 } from "../../redux/common/actions";
@@ -29,6 +30,9 @@ const mapDispatchToProps = dispatch => {
         },
         getCategory: async cat => {
             dispatch(getCategory(cat))
+        },
+        getEmp: async e => {
+            dispatch(fetchEmp(e))
         }
     };
 };

@@ -1,0 +1,8 @@
+.clientdropdown{
+    margin: 7px;
+}
+.card_row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 20px;
+}

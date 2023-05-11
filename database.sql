@@ -540,11 +540,11 @@ SELECT
 	SkillsMatrix.EmployeeScore
 FROM SkillsMatrix
 inner JOIN EmployeeDetails
-ON EmployeeDetails.EmployeeId = SkillsMatrix.EmployeeId
-inner JOIN SubCategoryMapping
-ON SkillsMatrix.SubCategoryId = SubCategoryMapping.SubCategoryId and SubCategoryMapping.TeamId=EmployeeDetails.TeamId
+ON SkillsMatrix.EmployeeId=EmployeeDetails.EmployeeId 
 inner JOIN TeamMaster
 ON EmployeeDetails.TeamId=TeamMaster.Id
+inner JOIN SubCategoryMapping
+ON SkillsMatrix.SubCategoryId = SubCategoryMapping.SubCategoryId and SubCategoryMapping.TeamId=EmployeeDetails.TeamId
 inner JOIN ClientMaster
 ON TeamMaster.ClientId=ClientMaster.Id
 inner JOIN SubCategoryMaster

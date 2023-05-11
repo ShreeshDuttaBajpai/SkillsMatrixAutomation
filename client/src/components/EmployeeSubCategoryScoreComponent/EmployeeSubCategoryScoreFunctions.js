@@ -13,20 +13,17 @@ export const handleEmployeeScoreChange = (
         );
         if (isExisted > -1) {
             updatedScoringArr[isExisted].employeeScore = event.target.value;
-            // setEmployeeScoringArr(updatedScoringArr);
         } else {
             updatedScoringArr.push({
                 subCategoryId: subCatId,
                 employeeScore: event.target.value
             });
-            // setEmployeeScoringArr(updatedScoringArr);
         }
     } else {
         updatedScoringArr.push({
             subCategoryId: subCatId,
             employeeScore: event.target.value
         });
-        // setEmployeeScoringArr(updatedScoringArr);
     }
     setEmployeeScoringArr(updatedScoringArr);
     setEmployeeSubCategoryScore(

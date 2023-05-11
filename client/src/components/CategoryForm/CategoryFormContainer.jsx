@@ -5,11 +5,7 @@ import CategoryForm from "./CategoryForm";
 const mapStateToProps = state => ({
     category: state.skillMatrixOps.category
 });
-const mapDispatchToProps = dispatch => ({
-    handlechange: async e => {
-        dispatch(handlechangecategory(e));
-    }
-});
+const mapDispatchToProps = dispatch => ({});
 const CategoryFormContainer = connect(
     mapStateToProps,
     mapDispatchToProps
