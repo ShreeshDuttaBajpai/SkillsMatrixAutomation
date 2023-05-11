@@ -76,42 +76,49 @@ const CardsComponent = ({
                             )
                         </h5>
                     </span> */}
-                    {client && (
+                    <div>
                         <ButtonComponent
                             cname={css.add_button}
-                            value={"Add Team"}
-                            handleClick={() => {
-                                setShowDrawer(!showDrawer);
-                                setForm1Visible(!form1Visible);
-                                getClient(client);
-                                show();
-                            }}
+                            value={"Edit"}
                         />
-                    )}
-                    {categoryItem && (
-                        <ButtonComponent
-                            cname={css.add_button}
-                            value={"Add SubCategory"}
-                            handleClick={() => {
-                                setShowDrawer(!showDrawer);
-                                setForm4Visible(!form4Visible);
-                                getCategory(categoryItem);
-                            }}
-                        />
-                    )}
-                    {console.log(categoryItem)}
-                    {team && (
-                        <ButtonComponent
-                            cname={css.add_button}
-                            value={"Add Employee"}
-                            handleClick={() => {
-                                setShowDrawer(!showDrawer);
-                                setForm5Visible(!form5Visible);
-                                getEmp(team);
-                            }}
-                        />
-                    )}
+                        {client && (
+                            <ButtonComponent
+                                cname={css.add_button}
+                                value={"Add Team"}
+                                handleClick={() => {
+                                    setShowDrawer(!showDrawer);
+                                    setForm1Visible(!form1Visible);
+                                    getClient(client);
+                                    show();
+                                }}
+                            />
+                        )}
+                        {categoryItem && (
+                            <ButtonComponent
+                                cname={css.add_button}
+                                value={"Add SubCategory"}
+                                handleClick={() => {
+                                    setShowDrawer(!showDrawer);
+                                    setForm4Visible(!form4Visible);
+                                    getCategory(categoryItem);
+                                }}
+                            />
+                        )}
+                        {console.log(categoryItem)}
+                        {team && (
+                            <ButtonComponent
+                                cname={css.add_button}
+                                value={"Add Employee"}
+                                handleClick={() => {
+                                    setShowDrawer(!showDrawer);
+                                    setForm5Visible(!form5Visible);
+                                    getEmp(team);
+                                }}
+                            />
+                        )}
+                    </div>
                 </div>
+
                 <hr />
                 <div className={css.teamlist}>
                     {teams &&

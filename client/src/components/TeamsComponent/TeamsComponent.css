@@ -1,5 +1,7 @@
 .teamsDiv {
     padding: 0 10px 10px;
+    display: flex;
+    justify-content: space-between;
 }
 .teamSpan{
     padding-left: 10px;

@@ -21,7 +21,7 @@ const TeamCards = ({ clients, fetchClientList, fetchTeamList, teams }) => {
     console.log(teams);
 
     return (
-        <div className={css.teamcard_container}>
+        <div className={css.team_container}>
             <select
                 className={css.clientdropdown}
                 value={selectedClient}
@@ -38,11 +38,13 @@ const TeamCards = ({ clients, fetchClientList, fetchTeamList, teams }) => {
                         </option>
                     ))}
             </select>
-            <div className={css.card_row}>
-                {teams.length &&
-                    teams.map((team, index) => {
-                        return <CardsContainer key={index} team={team} />;
-                    })}
+            <div className={css.teamcard_container}>
+                <div className={css.card_row}>
+                    {teams.length &&
+                        teams.map((team, index) => {
+                            return <CardsContainer key={index} team={team} />;
+                        })}
+                </div>
             </div>
         </div>
     );
