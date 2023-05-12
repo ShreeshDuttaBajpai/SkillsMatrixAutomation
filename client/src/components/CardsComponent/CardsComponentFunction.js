@@ -38,4 +38,3 @@ export const getEmployeeList = async teamId => {
     console.log(result);
     return result;
 };
-

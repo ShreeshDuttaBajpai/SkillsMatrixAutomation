@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import css from "./TeamForm.css";
 import { ButtonComponent } from "../ButtonComponent/ButtonComponent";
 import { validationInput } from "../commonValidationFunction";
+import { getClientsTeamsList } from "../CardsComponent/CardsComponentFunction";
 
 const TeamForm = props => {
     const [team, setTeam] = useState({
@@ -21,11 +22,15 @@ const TeamForm = props => {
         <div>
             <form
                 className={css.form_container}
-                onSubmit={e => {
+                onSubmit={async e => {
                     e.preventDefault();
                     var validate = validationInput(team, "team");
                     if (validate === true) {
-                        props.postTeam(team);
+                        await props.postTeam(team).then(async () => {
+                            props.setTeams(
+                                await getClientsTeamsList(team.clientid)
+                            );
+                        });
                         props.setaddTeamFormVisible(!props.addTeamFormVisible);
                         props.setShowDrawer(!props.showDrawer);
                     }

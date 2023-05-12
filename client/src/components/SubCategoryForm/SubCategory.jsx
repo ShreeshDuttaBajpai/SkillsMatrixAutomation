@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import css from "./SubCategoryForm.css";
 import { ButtonComponent } from "../ButtonComponent/ButtonComponent";
 import { validationInput } from "../commonValidationFunction";
+import { getSubCategoryList } from "../CardsComponent/CardsComponentFunction";
 
 const SubCategory = props => {
     const [subCategory, setSubCategory] = useState({
@@ -18,26 +19,30 @@ const SubCategory = props => {
         });
         console.log("hi");
     };
-    console.log(categoryItem.subCategoryName);
-    console.log(categoryItem);
     return (
         <div>
             <form
                 className={css.form_container}
-                onSubmit={() => postSubCat(subcat)}
-            >
-                onSubmit=
-                {e => {
+                onSubmit={async e => {
                     e.preventDefault();
                     var validate = validationInput(subCategory, "subcategory");
                     if (validate === true) {
-                        props.postSubCategory(subCategory);
+                        await props
+                            .postSubCategory(subCategory)
+                            .then(async () => {
+                                props.setSubCategories(
+                                    await getSubCategoryList(
+                                        subCategory.categoryid
+                                    )
+                                );
+                            });
                         props.setaddSubCategoryFormVisible(
                             !props.addSubCategoryFormVisible
                         );
                         props.setShowDrawer(!props.showDrawer);
                     }
                 }}
+            >
                 <label className={css.label}>
                     Category Name - {props.categoryItem.categoryName}
                 </label>

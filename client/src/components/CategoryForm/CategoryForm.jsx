@@ -19,7 +19,9 @@ const CategoryForm = props => {
         // console.log("hi");
     };
     const postCategory = async state => {
-        await CategoryPostApi(state);
+        await CategoryPostApi(state).then(() => {
+            props.fetchCategoriesList();
+        });
     };
 
     return (
