@@ -23,6 +23,7 @@ const ExpectedScoreMappingComponent = ({
     useEffect(() => {
         setSelectedTeam("");
         selectedClient && fetchClientTeamsList(selectedClient);
+        fetchExpectedScore();
     }, [selectedClient, fetchClientTeamsList]);
 
     useEffect(() => {
