@@ -1,5 +1,5 @@
 import React from "react";
-import SkillMatrixContainer from "../components/SkillMatrixComponent/SkillMatrixContainer";
+import SkillMatrixContainer from "../components/SkillMatrix/SkillMatrixContainer";
 
 const SkillMatrixPage = () => {
     return <SkillMatrixContainer />;
