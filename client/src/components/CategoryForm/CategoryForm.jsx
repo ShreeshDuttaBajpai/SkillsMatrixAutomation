@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { ButtonComponent } from "../ButtonComponent/ButtonComponent";
 import css from "./CategoryForm.css";
 import { validationInput } from "../commonValidationFunction";
+import { CategoryPostApi } from "../../services/CategoryService/CategoryService";
 
 const CategoryForm = props => {
     const [category, setCategory] = useState({
+        categoryfunction: "",
         categoryname: "",
         categorydescription: "",
         createdOn: new Date().toJSON(),
@@ -14,7 +16,10 @@ const CategoryForm = props => {
         setCategory(prev => {
             return { ...prev, [e.target.id]: e.target.value };
         });
-        console.log("hi");
+        // console.log("hi");
+    };
+    const postCategory = async state => {
+        await CategoryPostApi(state);
     };
 
     return (
@@ -25,6 +30,7 @@ const CategoryForm = props => {
                     e.preventDefault();
                     var validation = validationInput(category, "category");
                     if (validation === true) {
+                        postCategory(category);
                         props.setcategoryFormVisible(
                             !props.categoryFormVisible
                         );
@@ -32,6 +38,13 @@ const CategoryForm = props => {
                     }
                 }}
             >
+                <label className={css.label}>Category Function</label>
+                <input
+                    className={css.form_input}
+                    id={"categoryfunction"}
+                    type="text"
+                    onChange={e => handlechange(e)}
+                ></input>
                 <label className={css.label}>Category Name</label>
                 <input
                     className={css.form_input}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ButtonComponent } from "../ButtonComponent/ButtonComponent";
 import css from "./FormAdd.css";
 import { validationInput } from "../commonValidationFunction";
+import { ClientPostApi } from "../../services/ClientService/ClientService";
 
 const FormAdd = props => {
     const [client, setClient] = useState({
@@ -19,7 +20,9 @@ const FormAdd = props => {
     };
 
     console.log(client.clientname);
-
+    const postClient = async state => {
+        await ClientPostApi(state);
+    };
     return (
         <div>
             <form
@@ -28,6 +31,7 @@ const FormAdd = props => {
                     e.preventDefault();
                     var validation = validationInput(client, "client");
                     if (validation === true) {
+                        postClient(client);
                         props.setclientFormVisible(!props.clientFormVisible);
                         props.setShowDrawer(!props.showDrawer);
                     }
@@ -40,8 +44,7 @@ const FormAdd = props => {
                     type="text"
                     onChange={e => handlechange(e)}
                 ></input>
-                <span></span>
-
+                {/* <span>{formError.clientname}</span> */}
                 <label className={css.label}>Client Description</label>
                 <input
                     className={css.form_input}
