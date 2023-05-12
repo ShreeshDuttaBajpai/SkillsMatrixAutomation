@@ -1,26 +1,38 @@
-.categoriesListUl {
-    list-style: none;
+.categoriesListContainer {
+    /* list-style: none; */
     padding: 0;
     margin: 0;
-    max-height: 270px;
-    overflow-y: scroll;
+    /* border: 1px solid #eee; */
+    /* overflow-y: scroll;
+    max-height: 270px; */
 }
-.categoryListLi {
+.categoryListItem {
     display: flex;
     justify-content: space-between;
     color: black;
     font-weight: 500;
-    font-size: 20px;
-    padding: 30px 150px;
-    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+    /* padding: 5px 0; */
+    align-items: center;
+    border-bottom: 1px solid black;
+    /* padding: 30px 150px; */
 }
-.subCategoriesListUl {
-    list-style: none;
+.removeBorderBottom {
+    border: 0;
+}
+.subCategoriesListContainer {
+    /* list-style: none; */
     padding: 0;
-    padding-left: 20px;
+    /* padding-left: 20px; */
     margin: 0;
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 60%;
     align-items: flex-start;
+    /* border-left: 1px solid #ddd; */
+}
+.categoryDiv {
+    width: 40%;
+    text-align: center;
+    padding: 2.5px 0;
 }

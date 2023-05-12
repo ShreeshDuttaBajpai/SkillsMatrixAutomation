@@ -28,24 +28,29 @@ export const SubCategoryListApi = async categoryId => {
     return response;
 };
 
-export const CategoryPostApi = async(data) => {
+export const CategoryPostApi = async data => {
     const baseURL = "https://localhost:44325/postCategoryMaster";
-    const response=await postApi(baseURL,data).then(res => {
-        alert('Category added successfully!!')})
+    const response = await postApi(baseURL, data)
+        .then(res => {
+            alert("Category added successfully!!");
+            return res;
+        })
         .catch(error => {
             return error;
         });
     console.log(response);
     return response;
-}
+};
 
-export const SubCatPostApi = async(data) => {
+export const SubCatPostApi = async data => {
     const baseURL = "https://localhost:44325/postSubCategoryMaster";
-    const response=await postApi(baseURL,data).then(res => {
-        alert('Sub Category added successfully!!')})
+    const response = await postApi(baseURL, data)
+        .then(res => {
+            alert("Sub Category added successfully!!");
+        })
         .catch(error => {
             return error;
         });
     console.log(response);
     return response;
-}
+};

@@ -6,6 +6,9 @@ import FormAdd from "../FormAdd/FormAdd";
 import TeamFormContainer from "../TeamForm/TeamFormContainer";
 import CategoryForm from "../CategoryForm/CategoryForm";
 import SubCategoryFormContainer from "../SubCategoryForm/SubCategoryFormContainer";
+import CategoryFormContainer from "../CategoryForm/CategoryFormContainer";
+import EmpFormContainer from "../EmpForm/EmpFormContainer";
+import FormAddContainer from "../FormAdd/FormAddContainer";
 
 const DrawerComponent = props => {
     return (
@@ -18,23 +21,78 @@ const DrawerComponent = props => {
                         size="lg"
                         onClick={() => {
                             props.setShowDrawer(!props.showDrawer);
-                            props.setForm1Visible &&
-                                props.setForm1Visible(!props.form1Visible);
-                            props.setForm2Visible &&
-                                props.setForm2Visible(!props.form2Visible);
-                            props.setForm3Visible &&
-                                props.setForm3Visible(!props.form3Visible);
-                            props.setForm4Visible &&
-                                props.setForm4Visible(!props.form4Visible);
+                            props.setaddTeamFormVisible &&
+                                props.setaddTeamFormVisible(
+                                    !props.addTeamFormVisible
+                                );
+                            props.setclientFormVisible &&
+                                props.setclientFormVisible(
+                                    !props.clientFormVisible
+                                );
+                            props.setcategoryFormVisible &&
+                                props.setcategoryFormVisible(
+                                    !props.categoryFormVisible
+                                );
+                            props.setaddSubCategoryFormVisible &&
+                                props.setaddSubCategoryFormVisible(
+                                    !props.addSubCategoryFormVisible
+                                );
+                            props.setaddEmployeeFormVisible &&
+                                props.setaddEmployeeFormVisible(
+                                    !props.addEmployeeFormVisible
+                                );
                         }}
                     />
                 </span>
                 <hr />
-                {props.form1Visible && props.parentid && <TeamFormContainer />}
-                {props.form2Visible && <FormAdd />}
-                {props.form3Visible && <CategoryForm />}
-                {props.form4Visible && props.parentid && (
-                    <SubCategoryFormContainer />
+                {props.clientFormVisible && (
+                    <FormAddContainer
+                        clientFormVisible={props.clientFormVisible}
+                        setclientFormVisible={props.setclientFormVisible}
+                        showDrawer={props.showDrawer}
+                        setShowDrawer={props.setShowDrawer}
+                    />
+                )}
+                {props.addTeamFormVisible && props.parentid && (
+                    <TeamFormContainer
+                        addTeamFormVisible={props.addTeamFormVisible}
+                        setaddTeamFormVisible={props.setaddTeamFormVisible}
+                        showDrawer={props.showDrawer}
+                        setShowDrawer={props.setShowDrawer}
+                        setTeams={props.setTeams}
+                    />
+                )}
+                {props.categoryFormVisible && (
+                    <CategoryFormContainer
+                        categoryFormVisible={props.categoryFormVisible}
+                        setcategoryFormVisible={props.setcategoryFormVisible}
+                        showDrawer={props.showDrawer}
+                        setShowDrawer={props.setShowDrawer}
+                    />
+                )}
+                {props.addSubCategoryFormVisible && props.parentid && (
+                    <SubCategoryFormContainer
+                        addSubCategoryFormVisible={
+                            props.addSubCategoryFormVisible
+                        }
+                        setaddSubCategoryFormVisible={
+                            props.setaddSubCategoryFormVisible
+                        }
+                        showDrawer={props.showDrawer}
+                        setShowDrawer={props.setShowDrawer}
+                        setSubCategories={props.setSubCategories}
+                    />
+                )}
+                {props.addEmployeeFormVisible && props.parentid && (
+                    <EmpFormContainer
+                        addEmployeeFormVisible={props.addEmployeeFormVisible}
+                        setaddEmployeeFormVisible={
+                            props.setaddEmployeeFormVisible
+                        }
+                        showDrawer={props.showDrawer}
+                        setShowDrawer={props.setShowDrawer}
+                        setEmployees={props.setEmployees}
+                    />
                 )}
             </div>
         </div>

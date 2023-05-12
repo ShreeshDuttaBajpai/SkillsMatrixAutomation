@@ -7,13 +7,11 @@ import { PostEmployeeScore } from "../../services/EmployeeScoreService/EmployeeS
 import { EmployeeScoresApi } from "../../services/ScoreService/ScoreService";
 export const getTeamEmployeesList = async teamId => {
     const result = await TeamEmployeesListApi(teamId);
-    console.log(result);
     return result;
 };
 
 export const getSubCategoriesList = async categoryId => {
     const result = await SubCategoryCategoryListApi(categoryId);
-    console.log(result);
     return result;
 };
 export const getEmployeeScoresList = async employeeId => {
@@ -26,7 +24,6 @@ export const handleEmployeeScoreChange = (
     employeeScoringArr,
     setEmployeeScoringArr
 ) => {
-    console.log(employeeScoringArr);
     const updatedScoringArr = employeeScoringArr;
     if (updatedScoringArr.length > 0) {
         const isExisted = updatedScoringArr.findIndex(

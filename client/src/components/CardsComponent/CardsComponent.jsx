@@ -4,35 +4,32 @@ import TeamsComponent from "../TeamsComponent/TeamsComponent";
 import css from "./CardsComponent.css";
 import {
     getClientsTeamsList,
+    getEmployeeList,
     getSubCategoryList
 } from "./CardsComponentFunction";
 import DrawerComponent from "../DrawerComponent/DrawerComponent";
+import { EmpListApi } from "../../services/EmployeeService/EmployeeService";
 
-const CardsComponent = ({ client, categoryItem, getClient }) => {
+const CardsComponent = ({
+    client,
+    categoryItem,
+    getClient,
+    getCategory,
+    team,
+    getEmp
+}) => {
+    const [employees, setEmployees] = useState([]);
     const [teams, setTeams] = useState([]);
-    const [subcategory, setSubCategory] = useState([]);
+    const [subcategories, setSubCategories] = useState([]);
     const [showDrawer, setShowDrawer] = useState(false);
-    const [form1Visible, setForm1Visible] = useState(false);
-    const [form4Visible, setForm4Visible] = useState(false);
-
-    const showDrawerStyle = {
-        position: "absolute",
-        right: "0",
-        transition: "0.4s",
-        top: "0",
-        left: "0",
-        overflow: "hidden"
-    };
-    const hideDrawerStyle = {
-        position: "absolute",
-        left: "100vw",
-        top: "0",
-        transition: "0.4s"
-    };
+    const [addTeamFormVisible, setaddTeamFormVisible] = useState(false);
+    const [addSubCategoryFormVisible, setaddSubCategoryFormVisible] =
+        useState(false);
+    const [addEmployeeFormVisible, setaddEmployeeFormVisible] = useState(false);
 
     useEffect(() => {
         console.log("hello");
-    }, [form4Visible]);
+    }, [addSubCategoryFormVisible]);
 
     // useEffect(() => {
     //     fetchClientTeamsList(client.id);
@@ -44,14 +41,32 @@ const CardsComponent = ({ client, categoryItem, getClient }) => {
 
     useEffect(async () => {
         categoryItem &&
-            setSubCategory(await getSubCategoryList(categoryItem.id));
+            setSubCategories(await getSubCategoryList(categoryItem.id));
     }, []);
+
+    useEffect(async () => {
+        team && setEmployees(await getEmployeeList(team.id));
+    }, []);
+
+    console.log(team);
+
     return (
         <div className={css.card_column}>
             <div className={css.card}>
                 <div className={css.header}>
-                    <h3 className={css.card_heading}>
-                        {client ? client.clientName : categoryItem.categoryName}
+                    <h3
+                        className={css.card_heading}
+                        data-text={
+                            client
+                                ? client.clientName
+                                : categoryItem
+                                ? categoryItem.categoryName
+                                : team.teamName
+                        }
+                    >
+                        {client && client.clientName}{" "}
+                        {categoryItem && categoryItem.categoryName}
+                        {team && team.teamName}
                     </h3>
                     {/* <span className={css.card_desc}>
                         <h5>
@@ -62,64 +77,110 @@ const CardsComponent = ({ client, categoryItem, getClient }) => {
                             )
                         </h5>
                     </span> */}
-                    {client ? (
+                    <div>
                         <ButtonComponent
                             cname={css.add_button}
-                            value={"Add Team"}
-                            handleClick={() => {
-                                setShowDrawer(!showDrawer);
-                                setForm1Visible(!form1Visible);
-                                getClient(client);
-                            }}
+                            value={"Edit"}
                         />
-                    ) : (
-                        <ButtonComponent
-                            cname={css.add_button}
-                            value={"Add SubCategory"}
-                            handleClick={() => {
-                                setShowDrawer(!showDrawer);
-                                setForm4Visible(!form4Visible);
-                                getClient(categoryItem);
-                            }}
-                        />
-                    )}
+                        {client && (
+                            <ButtonComponent
+                                cname={css.add_button}
+                                value={"Add Team"}
+                                handleClick={() => {
+                                    setShowDrawer(!showDrawer);
+                                    setaddTeamFormVisible(!addTeamFormVisible);
+                                    getClient(client);
+                                }}
+                            />
+                        )}
+                        {categoryItem && (
+                            <ButtonComponent
+                                cname={css.add_button}
+                                value={"Add SubCategory"}
+                                handleClick={() => {
+                                    setShowDrawer(!showDrawer);
+                                    setaddSubCategoryFormVisible(
+                                        !addSubCategoryFormVisible
+                                    );
+                                    getCategory(categoryItem);
+                                }}
+                            />
+                        )}
+                        {console.log(categoryItem)}
+                        {team && (
+                            <ButtonComponent
+                                cname={css.add_button}
+                                value={"Add Employee"}
+                                handleClick={() => {
+                                    setShowDrawer(!showDrawer);
+                                    setaddEmployeeFormVisible(
+                                        !addEmployeeFormVisible
+                                    );
+                                    getEmp(team);
+                                }}
+                            />
+                        )}
+                    </div>
                 </div>
+
                 <hr />
-                <p className={css.teamlist}>
+                <div className={css.teamlist}>
                     {teams &&
                         teams.length > 0 &&
                         teams.map((team, index) => {
                             console.log(team);
                             return <TeamsComponent key={index} team={team} />;
                         })}
-                    {subcategory &&
-                        subcategory.length > 0 &&
-                        subcategory.map((sub, index) => {
+                    {subcategories &&
+                        subcategories.length > 0 &&
+                        subcategories.map((sub, index) => {
                             console.log(sub);
                             return <TeamsComponent key={index} sub={sub} />;
                         })}
-                </p>
+                    {console.log(employees)}
+                    {employees &&
+                        employees.length > 0 &&
+                        employees.map((employee, index) => {
+                            console.log(employee);
+                            return (
+                                <TeamsComponent
+                                    key={index}
+                                    employee={employee}
+                                />
+                            );
+                        })}
+                </div>
             </div>
-            <div style={showDrawer ? showDrawerStyle : hideDrawerStyle}>
-                {client && (
-                    <DrawerComponent
-                        showDrawer={showDrawer}
-                        setShowDrawer={setShowDrawer}
-                        form1Visible={form1Visible}
-                        setForm1Visible={setForm1Visible}
-                        parentid={client.id}
-                    />
-                )}
-                {categoryItem && (
-                    <DrawerComponent
-                        showDrawer={showDrawer}
-                        setShowDrawer={setShowDrawer}
-                        form14Visible={form4Visible}
-                        setForm4Visible={setForm4Visible}
-                        parentid={categoryItem.id}
-                    />
-                )}
-            </div>
+            {client && showDrawer && (
+                <DrawerComponent
+                    showDrawer={showDrawer}
+                    setShowDrawer={setShowDrawer}
+                    addTeamFormVisible={addTeamFormVisible}
+                    setaddTeamFormVisible={setaddTeamFormVisible}
+                    parentid={client.id}
+                    setTeams={setTeams}
+                />
+            )}
+            {categoryItem && showDrawer && (
+                <DrawerComponent
+                    showDrawer={showDrawer}
+                    setShowDrawer={setShowDrawer}
+                    addSubCategoryFormVisible={addSubCategoryFormVisible}
+                    setaddSubCategoryFormVisible={setaddSubCategoryFormVisible}
+                    parentid={categoryItem.id}
+                    setSubCategories={setSubCategories}
+                />
+            )}
+            {team && showDrawer && (
+                <DrawerComponent
+                    showDrawer={showDrawer}
+                    setShowDrawer={setShowDrawer}
+                    addEmployeeFormVisible={addEmployeeFormVisible}
+                    setaddEmployeeFormVisible={setaddEmployeeFormVisible}
+                    parentid={team.id}
+                    setEmployees={setEmployees}
+                />
+            )}
         </div>
     );
 };

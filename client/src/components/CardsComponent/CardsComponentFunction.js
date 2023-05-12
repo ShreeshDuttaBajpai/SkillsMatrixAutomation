@@ -3,6 +3,7 @@ import {
     SubCategoryListApi
 } from "../../services/CategoryService/CategoryService";
 import { ClientTeamsApi } from "../../services/ClientService/ClientService";
+import { EmpListApi } from "../../services/EmployeeService/EmployeeService";
 import { ClientListApi } from "../../services/MasterService/MasterService";
 
 export const getClientsList = async () => {
@@ -27,6 +28,13 @@ export const getCategoryList = async () => {
 export const getSubCategoryList = async catId => {
     console.log(catId);
     const result = await SubCategoryListApi(catId);
+    console.log(result);
+    return result;
+};
+
+export const getEmployeeList = async teamId => {
+    console.log(teamId);
+    const result = await EmpListApi(teamId);
     console.log(result);
     return result;
 };

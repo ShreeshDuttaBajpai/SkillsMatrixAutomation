@@ -17,7 +17,7 @@
     margin-top: 30px;
     min-height: 64px;
     max-height: 128px;
-    overflow-y: scroll;
+    overflow-y: auto;
     width: 100%;
     justify-content: center;
     align-items: center;
@@ -33,7 +33,7 @@
     margin-top: 30px;
     display: flex;
     max-height: 225px;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     width: 50%;
 }

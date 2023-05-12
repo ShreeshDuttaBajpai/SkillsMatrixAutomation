@@ -2,8 +2,24 @@
     color: #333;
     display: flex;
     justify-content: space-between;
-    margin-right: 80px;
+    /* margin-right: 80px; */
     font-weight: 400;
     font-size: 18px;
     width: 100%;
+    align-items: center;
+    /* margin: 10px 80px 10px 0; */
+}
+.subCategoryScoreSelect {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    /* padding: 10px 0; */
+    height: min-content;
+}
+.subCategoryDiv {
+    width: 60%;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    text-align: center;
+    padding: 2.5px 0;
 }

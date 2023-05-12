@@ -19,7 +19,11 @@ const skillMatrixState = {
     employeeScores: [],
     category: [],
     subcategory: [],
-    client: {}
+    client: {},
+    categoryItem:{},
+    employee: [],
+    empItem: {}
+
 };
 
 export const skillMatrixOps = (state = skillMatrixState, action) => {
@@ -42,16 +46,22 @@ export const skillMatrixOps = (state = skillMatrixState, action) => {
             return { ...state, employeeScores: action.payload };
         case types.POST_TEAMS:
             return { ...state, teams: action.payload };
-        case types.POST_TEAMS:
-            return { ...state, teams: action.payload };
         case types.FETCH_CATEGORY:
             return { ...state, category: action.payload };
         case types.FETCH_SUBCATEGORY:
             return { ...state, subcategory: action.payload };
         case types.CLIENT:
-            return { ...state, client: action.payload };
-        case types.POST_SUBCATEGORY:
-            return { ...state, subcategory: action.payload };
+            return{...state, client:action.payload}
+            case types.POST_SUBCATEGORY:
+                return{...state, subcategory:action.payload}
+            case types.CATEGORY:
+            return { ...state, categoryItem: action.payload };
+        case types.GET_EMPLOYEE:
+            return { ...state, employee: action.payload };  
+        case types.EMPLOYEE:
+            return {...state, empItem: action.payload}     
+        case types.POST_EMPLOYEE:
+            return {...state, employee: action.payload}      
         default:
             return state;
     }

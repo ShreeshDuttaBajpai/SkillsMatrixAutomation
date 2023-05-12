@@ -103,7 +103,27 @@ export const getClient = payload => ({
     payload
 });
 
-export const postSubCategory = payload => ({
-    type: types.POST_SUBCATEGORY,
+export const getCategory = payload => ({
+    type : types.CATEGORY ,
     payload
-});
+})
+
+export const postSubCategory=payload=>({
+    type:types.POST_SUBCATEGORY,
+    payload
+})
+
+export const getEmpList = payload => ({
+    type : types.GET_EMPLOYEE,
+    payload
+})
+
+export const fetchEmp = payload => ({
+    type : types.EMPLOYEE,
+    payload
+})
+
+export const postEmp = payload => ({
+    type : types.POST_EMPLOYEE,
+    payload
+})

@@ -14,16 +14,15 @@ const ExpectedScoreMappingComponent = ({
     fetchClientTeamsList,
     fetchExpectedScore
 }) => {
-    const [selectedClient, setSelectedClient] = useState();
-    const [selectedTeam, setSelectedTeam] = useState();
-    const [isAnyAccordionOpen, setIsAnyAccordionOpen] = useState(false);
+    const [selectedClient, setSelectedClient] = useState("");
+    const [selectedTeam, setSelectedTeam] = useState("");
     useEffect(() => {
         fetchClientList();
     }, [fetchClientList]);
 
     useEffect(() => {
-        setSelectedTeam();
-        selectedClient !== undefined && fetchClientTeamsList(selectedClient);
+        setSelectedTeam("");
+        selectedClient && fetchClientTeamsList(selectedClient);
     }, [selectedClient, fetchClientTeamsList]);
 
     useEffect(() => {
@@ -37,41 +36,67 @@ const ExpectedScoreMappingComponent = ({
     return (
         <div className={css.expectedScoreContainerDiv}>
             <div className={css.dependentContainer}>
-                <AccordionContainer
-                    accordionTitle={"Clients"}
-                    accordionData={clients}
-                    selectedItem={selectedClient}
-                    setSelectedItem={setSelectedClient}
-                    isAnyAccordionOpen={isAnyAccordionOpen}
-                    setIsAnyAccordionOpen={setIsAnyAccordionOpen}
-                />
-                <AccordionContainer
-                    accordionTitle={"Teams"}
-                    accordionData={teams}
-                    selectedItem={selectedTeam}
-                    setSelectedItem={setSelectedTeam}
-                    isAnyAccordionOpen={isAnyAccordionOpen}
-                    setIsAnyAccordionOpen={setIsAnyAccordionOpen}
-                    isAccordionDisabled={
-                        selectedClient === undefined || teams.length === 0
+                <div className={css.selectionDiv}>
+                    <select
+                        name="clients"
+                        id="clientsDropdown"
+                        value={selectedClient}
+                        onChange={e => setSelectedClient(e.target.value)}
+                    >
+                        <option value="">--- Clients ---</option>
+                        {clients.length > 0 &&
+                            clients.map(client => {
+                                return (
+                                    <option key={client.id} value={client.id}>
+                                        {client.clientName}
+                                    </option>
+                                );
+                            })}
+                    </select>
+                    <select
+                        name="teams"
+                        id="teamsDropdown"
+                        value={selectedTeam}
+                        onChange={e => setSelectedTeam(e.target.value)}
+                        disabled={!selectedClient}
+                        className={cx({
+                            [css.disabledSelect]: !selectedClient
+                        })}
+                    >
+                        <option value="">--- Teams ---</option>
+                        {teams.length > 0 &&
+                            teams.map(team => {
+                                return (
+                                    <option key={team.id} value={team.id}>
+                                        {team.teamName}
+                                    </option>
+                                );
+                            })}
+                    </select>
+                </div>
+                <button
+                    className={cx(css.mappingsSaveBtn, {
+                        [css.mappingsSaveBtnDisabled]:
+                            !selectedClient || !selectedTeam
+                    })}
+                    onClick={() =>
+                        handleScoreSave(selectedTeam, expectedScoreMappings)
                     }
-                />
+                    disabled={!selectedClient || !selectedTeam}
+                >
+                    Save Mappings
+                </button>
             </div>
             <AccordionContainer
                 accordionTitle={"Categories"}
                 accordionData={categories}
-                selectedItem={selectedTeam}
-                setSelectedItem={setSelectedTeam}
-                isAnyAccordionOpen={isAnyAccordionOpen}
-                setIsAnyAccordionOpen={setIsAnyAccordionOpen}
+                selectedTeam={selectedTeam}
                 isAccordionDisabled={
-                    selectedClient === undefined ||
-                    selectedTeam === undefined ||
-                    categories.length === 0
+                    !selectedClient || !selectedTeam || categories.length === 0
                 }
             />
             <button
-                className={cx(css.mappingsSaveBtn, {
+                className={cx(css.mappingsSaveBtn, css.secondMappingsSaveBtn, {
                     [css.mappingsSaveBtnDisabled]:
                         !selectedClient || !selectedTeam
                 })}
