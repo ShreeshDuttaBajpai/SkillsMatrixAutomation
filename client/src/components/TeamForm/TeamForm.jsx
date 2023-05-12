@@ -12,6 +12,7 @@ const TeamForm = props => {
         createdOn: new Date().toJSON(),
         modifiedOn: new Date().toJSON()
     });
+    const [errorMessage, setErrorMessage] = useState([]);
     const handlechange = e => {
         setTeam(prev => {
             return { ...prev, [e.target.id]: e.target.value };
@@ -25,7 +26,8 @@ const TeamForm = props => {
                 onSubmit={async e => {
                     e.preventDefault();
                     var validate = validationInput(team, "team");
-                    if (validate === true) {
+                    setErrorMessage(validate);
+                    if (validate.length === 0) {
                         await props.postTeam(team).then(async () => {
                             props.setTeams(
                                 await getClientsTeamsList(team.clientid)
@@ -51,6 +53,14 @@ const TeamForm = props => {
                     type="text"
                     onChange={e => handlechange(e)}
                 ></input>
+                {errorMessage.map(
+                    item =>
+                        item.field === "name" && (
+                            <div className={css.error_messages}>
+                                <span>{item.error}</span>
+                            </div>
+                        )
+                )}
                 <label className={css.label}>Team Description</label>
                 <input
                     className={css.form_input}
@@ -59,6 +69,14 @@ const TeamForm = props => {
                     onChange={e => handlechange(e)}
                     size="50"
                 ></input>
+                {errorMessage.map(
+                    item =>
+                        item.field === "description" && (
+                            <div className={css.error_messages}>
+                                <span>{item.error}</span>
+                            </div>
+                        )
+                )}
                 <div>
                     <ButtonComponent cname={css.add_button} value={"Submit"} />
                 </div>

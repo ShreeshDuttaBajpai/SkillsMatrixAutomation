@@ -14,13 +14,16 @@ export const EmpListApi = async teamId => {
 };
 
 export const EmpPostApi = async data => {
-    const baseURL = "https://localhost:44325/postEmpMaster";
+    const baseURL = "https://localhost:44325/postEmployeeMaster";
+
     const response = await postApi(baseURL, data)
         .then(res => {
-            alert("Team added successfully!!");
+            alert("Employee added successfully!!");
         })
+
         .catch(error => {
             return error;
         });
+
     return response;
 };

@@ -12,6 +12,7 @@ const SubCategory = props => {
         createdOn: new Date().toJSON(),
         modifiedOn: new Date().toJSON()
     });
+    const [errorMessage, setErrorMessage] = useState([]);
     console.log(subCategory);
     const handlechange = e => {
         setSubCategory(prev => {
@@ -26,7 +27,8 @@ const SubCategory = props => {
                 onSubmit={async e => {
                     e.preventDefault();
                     var validate = validationInput(subCategory, "subcategory");
-                    if (validate === true) {
+                    setErrorMessage(validate);
+                    if (validate.length === 0) {
                         await props
                             .postSubCategory(subCategory)
                             .then(async () => {
@@ -36,6 +38,7 @@ const SubCategory = props => {
                                     )
                                 );
                             });
+
                         props.setaddSubCategoryFormVisible(
                             !props.addSubCategoryFormVisible
                         );
@@ -54,6 +57,14 @@ const SubCategory = props => {
                     onChange={e => handlechange(e)}
                     // defaultValue={client.clientName}
                 ></input>
+                {errorMessage.map(
+                    item =>
+                        item.field === "name" && (
+                            <div className={css.error_messages}>
+                                <span>{item.error}</span>
+                            </div>
+                        )
+                )}
                 <label className={css.label}>SubCategory Description</label>
                 <input
                     className={css.form_input}
@@ -61,8 +72,15 @@ const SubCategory = props => {
                     type="text"
                     onChange={e => handlechange(e)}
                     size="50"
-                    required
                 ></input>
+                {errorMessage.map(
+                    item =>
+                        item.field === "description" && (
+                            <div className={css.error_messages}>
+                                <span>{item.error}</span>
+                            </div>
+                        )
+                )}
                 <div>
                     <ButtonComponent cname={css.add_button} value={"Submit"} />
                 </div>
