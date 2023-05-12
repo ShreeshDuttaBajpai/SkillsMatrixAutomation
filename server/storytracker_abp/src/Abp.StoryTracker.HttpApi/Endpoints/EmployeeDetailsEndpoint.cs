@@ -1,4 +1,5 @@
-﻿using Abp.StoryTracker.SkillsMatrixServiceInterface;
+﻿using Abp.StoryTracker.ApplicationModels;
+using Abp.StoryTracker.SkillsMatrixServiceInterface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -39,6 +40,16 @@ namespace Abp.StoryTracker.Endpoints
             {
                 var result = await skillsMatrixService.GetEmployeeScores(employeeId);
                 return (result);
+            }).WithTags("SkillsMatrix");
+            return app;
+        }
+
+
+        public static WebApplication MapPostEmployeeEndpoints(this WebApplication app)
+        {
+            _ = app.MapPost("/postEmployeeMaster", async ([FromServices] ISkillsMatrixService skillsMatrixService, [FromBody] EmployeeDetailsApplicationContractsModel postEmployee) =>
+            {
+                await skillsMatrixService.PostEmployeeListAsync(postEmployee);
             }).WithTags("SkillsMatrix");
             return app;
         }

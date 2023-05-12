@@ -3,7 +3,7 @@
     background-color: #e7e8e9;
     width: 100%;
     position:fixed;
-    transition: 20s;
+    /* transition: 20s; */
     padding: 2rem;
     /* border-radius: 10px; */
     min-height: 100vh;

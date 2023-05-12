@@ -211,6 +211,12 @@ namespace Abp.StoryTracker.SkillsMatrixService
             await skillMatrixRepository.PostCategoryListAsync(postCategoryData);
         }
 
+        public async Task PostEmployeeListAsync(EmployeeDetailsApplicationContractsModel postEmployee)
+        {
+            var postEmployeeData = objectMapper.Map<EmployeeDetailsApplicationContractsModel, EmployeeDetailsModel>(postEmployee);
+            await skillMatrixRepository.PostEmployeeListAsync(postEmployeeData);
+        }
+
         public async Task PostSubCategoryListAsync(SubCategoryMasterApplicationContractsModel postSubCategory)
         {
             var postSubCategoryData = objectMapper.Map<SubCategoryMasterApplicationContractsModel, SubCategoryMasterModel>(postSubCategory);

@@ -157,6 +157,16 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
         }
 
 
+        public async Task<List<EmployeeDetailsModel>> PostEmployeeListAsync(EmployeeDetailsModel postEmployee)
+        {
+            var dbConnection = await GetDbConnectionAsync();
+            var query = "INSERT INTO dbo.EmployeeDetails VALUES ('" + postEmployee.EmployeeId + "', '" + postEmployee.TeamId + "', '" + postEmployee.EmployeeName + "')";
+            var result = (await dbConnection.QueryAsync<EmployeeDetailsModel>(query,
+                transaction: await GetDbTransactionAsync())).ToList();
+            return result;
+        }
+
+
 
         public async Task<List<SkillsMatrixModel>> PostSkillMatrixListAsync(SkillsMatrixModel postSkillMatrix)
         {

@@ -14,7 +14,7 @@
     margin-bottom: 1rem;
 }
 .add_button{
-    background-color: #564ef7;
+    /* background-color: #564ef7;
     border: none;
     color: white;
     padding: 6px 10px;
@@ -24,5 +24,17 @@
     cursor: pointer;
     border-radius: 5px;
     float: left;
-    margin: 17px;
+    margin: 17px; */
+
+    background-color: #564ef7;
+        border: none;
+        color: white;
+        padding: 6px 10px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 5px;
+        float: left;
+        margin-top: 25px;
 }

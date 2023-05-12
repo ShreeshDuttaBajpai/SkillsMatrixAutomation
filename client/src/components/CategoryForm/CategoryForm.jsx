@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { ButtonComponent } from "../ButtonComponent/ButtonComponent";
 import css from "./CategoryForm.css";
-import { CategoryPostApi } from "../../services/CategoryService/CategoryService";
+import { validationInput } from "../commonValidationFunction";
 
-const CategoryForm = () => {
+const CategoryForm = props => {
     const [category, setCategory] = useState({
         categoryname: "",
         categorydescription: "",
@@ -16,21 +16,24 @@ const CategoryForm = () => {
         });
         console.log("hi");
     };
-    const postCategory = async () => {
-        await CategoryPostApi(category);
-    };
+
     return (
         <div>
             <form
                 className={css.form_container}
                 onSubmit={e => {
                     e.preventDefault();
-                    postCategory();
+                    var validation = validationInput(category, "category");
+                    if (validation === true) {
+                        props.setcategoryFormVisible(
+                            !props.categoryFormVisible
+                        );
+                        props.setShowDrawer(!props.showDrawer);
+                    }
                 }}
             >
                 <label className={css.label}>Category Name</label>
                 <input
-                    required
                     className={css.form_input}
                     id={"categoryname"}
                     type="text"
@@ -38,7 +41,6 @@ const CategoryForm = () => {
                 ></input>
                 <label className={css.label}>Category Description</label>
                 <input
-                    required
                     className={css.form_input}
                     id={"categorydescription"}
                     type="text"
@@ -46,11 +48,7 @@ const CategoryForm = () => {
                     size="50"
                 ></input>
                 <div>
-                    <ButtonComponent
-                        cname={css.add_button}
-                        value={"Submit"}
-                        // handleClick={postCategory}
-                    />
+                    <ButtonComponent cname={css.add_button} value={"Submit"} />
                 </div>
             </form>
         </div>

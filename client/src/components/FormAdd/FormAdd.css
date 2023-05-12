@@ -1,18 +1,21 @@
 .form_container{
     margin-left: 15px;
 }
+
 .label{
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 550;
     font-size: large;
 }
+
 .form_input{
     padding: 0.5rem;
     border-radius: 0.5rem;
     border: 1px solid #ccc;;
     margin-bottom: 1rem;
 }
+
 .add_button{
     background-color: #564ef7;
     border: none;

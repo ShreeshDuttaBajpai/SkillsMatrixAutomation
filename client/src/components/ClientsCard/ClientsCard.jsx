@@ -18,13 +18,14 @@ const ClientsCard = ({
         fetchCategoryList();
     }, [fetchCategoryList]);
     const [showDrawer, setShowDrawer] = useState(false);
-    const [form2Visible, setForm2Visible] = useState(false);
-    const [form3Visible, setForm3Visible] = useState(false);
+    const [clientFormVisible, setclientFormVisible] = useState(false);
+    const [categoryFormVisible, setcategoryFormVisible] = useState(false);
 
     useEffect(() => {
         console.log("hello");
-        console.log(form2Visible);
-    }, [form2Visible]);
+        console.log(showDrawer);
+        console.log(clientFormVisible);
+    }, [clientFormVisible]);
 
     return (
         <div className={css.card_container}>
@@ -35,7 +36,7 @@ const ClientsCard = ({
                         value={addbutton}
                         handleClick={() => {
                             setShowDrawer(!showDrawer);
-                            setForm2Visible(!form2Visible);
+                            setclientFormVisible(!clientFormVisible);
                         }}
                     />
                 ) : (
@@ -44,7 +45,7 @@ const ClientsCard = ({
                         value={addbutton}
                         handleClick={() => {
                             setShowDrawer(!showDrawer);
-                            setForm3Visible(!form3Visible);
+                            setcategoryFormVisible(!categoryFormVisible);
                         }}
                     />
                 )}
@@ -66,20 +67,20 @@ const ClientsCard = ({
                         );
                     })}
             </div>
-            {clients && form2Visible && showDrawer && (
+            {clients && clientFormVisible && showDrawer && (
                 <DrawerComponent
                     showDrawer={showDrawer}
                     setShowDrawer={setShowDrawer}
-                    setForm2Visible={setForm2Visible}
-                    form2Visible={form2Visible}
+                    setclientFormVisible={setclientFormVisible}
+                    clientFormVisible={clientFormVisible}
                 />
             )}
-            {category && form3Visible && showDrawer && (
+            {category && categoryFormVisible && showDrawer && (
                 <DrawerComponent
                     showDrawer={showDrawer}
                     setShowDrawer={setShowDrawer}
-                    setForm3Visible={setForm3Visible}
-                    form3Visible={form3Visible}
+                    setcategoryFormVisible={setcategoryFormVisible}
+                    categoryFormVisible={categoryFormVisible}
                 />
             )}
         </div>

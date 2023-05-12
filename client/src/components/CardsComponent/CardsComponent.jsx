@@ -12,12 +12,13 @@ const CardsComponent = ({ client, categoryItem, getClient }) => {
     const [teams, setTeams] = useState([]);
     const [subcategory, setSubCategory] = useState([]);
     const [showDrawer, setShowDrawer] = useState(false);
-    const [form1Visible, setForm1Visible] = useState(false);
-    const [form4Visible, setForm4Visible] = useState(false);
+    const [addTeamFormVisible, setaddTeamFormVisible] = useState(false);
+    const [addSubCategoryFormVisible, setaddSubCategoryFormVisible] =
+        useState(false);
 
     useEffect(() => {
         console.log("hello");
-    }, [form4Visible]);
+    }, [addSubCategoryFormVisible]);
 
     // useEffect(() => {
     //     fetchClientTeamsList(client.id);
@@ -53,7 +54,7 @@ const CardsComponent = ({ client, categoryItem, getClient }) => {
                             value={"Add Team"}
                             handleClick={() => {
                                 setShowDrawer(!showDrawer);
-                                setForm1Visible(!form1Visible);
+                                setaddTeamFormVisible(!addTeamFormVisible);
                                 getClient(client);
                             }}
                         />
@@ -63,7 +64,9 @@ const CardsComponent = ({ client, categoryItem, getClient }) => {
                             value={"Add SubCategory"}
                             handleClick={() => {
                                 setShowDrawer(!showDrawer);
-                                setForm4Visible(!form4Visible);
+                                setaddSubCategoryFormVisible(
+                                    !addSubCategoryFormVisible
+                                );
                                 getClient(categoryItem);
                             }}
                         />
@@ -89,8 +92,8 @@ const CardsComponent = ({ client, categoryItem, getClient }) => {
                 <DrawerComponent
                     showDrawer={showDrawer}
                     setShowDrawer={setShowDrawer}
-                    form1Visible={form1Visible}
-                    setForm1Visible={setForm1Visible}
+                    addTeamFormVisible={addTeamFormVisible}
+                    setaddTeamFormVisible={setaddTeamFormVisible}
                     parentid={client.id}
                 />
             )}
@@ -98,8 +101,8 @@ const CardsComponent = ({ client, categoryItem, getClient }) => {
                 <DrawerComponent
                     showDrawer={showDrawer}
                     setShowDrawer={setShowDrawer}
-                    form4Visible={form4Visible}
-                    setForm4Visible={setForm4Visible}
+                    addSubCategoryFormVisible={addSubCategoryFormVisible}
+                    setaddSubCategoryFormVisible={setaddSubCategoryFormVisible}
                     parentid={categoryItem.id}
                 />
             )}
