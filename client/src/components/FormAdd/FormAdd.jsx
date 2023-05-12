@@ -21,7 +21,9 @@ const FormAdd = props => {
 
     console.log(client.clientname);
     const postClient = async state => {
-        await ClientPostApi(state);
+        await ClientPostApi(state).then(() => {
+            props.fetchClientList();
+        });
     };
     return (
         <div>

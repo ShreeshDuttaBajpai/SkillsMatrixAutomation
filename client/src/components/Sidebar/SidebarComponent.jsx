@@ -3,7 +3,8 @@ import {
     faPenToSquare,
     faSitemap,
     faTableList,
-    faCheck
+    faCheck,
+    faUsers
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
@@ -18,19 +19,20 @@ const SidebarComponent = () => {
     const [activeLocation, setActiveLocation] = useState({
         home: path === "/",
         category: path === "/category",
+        employee: path === "/employee",
         clientScore: path === "/client-score",
         employeeScore: path === "/employee-score",
         skillMatrix: path === "/skill-matrix"
     });
     return (
         <div className={css.sidebarContainerDiv}>
-            <div className={css.brandLogoDiv}>
+            {/* <div className={css.brandLogoDiv}>
                 <img
                     src={BhavnaLogo}
                     alt="Bhavna Corp"
                     className={css.brandLogoImg}
                 />
-            </div>
+            </div> */}
             <NavLink
                 title="Client Master"
                 to="/"
@@ -65,6 +67,23 @@ const SidebarComponent = () => {
                 }
             >
                 <FontAwesomeIcon icon={faLaptopCode} />
+            </NavLink>
+            <NavLink
+                title="Employee Master"
+                to="/employee"
+                className={css.sidebarNavItem}
+                activeClassName={
+                    activeLocation.category ? css.sidebarActiveNavItem : ""
+                }
+                onClick={() =>
+                    handleNavItemClick(
+                        activeLocation,
+                        setActiveLocation,
+                        "employee"
+                    )
+                }
+            >
+                <FontAwesomeIcon icon={faUsers} />
             </NavLink>
             <NavLink
                 title="Client Expected Score Mapping"

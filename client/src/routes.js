@@ -14,6 +14,7 @@ import SkillMatrixPage from "./Pages/SkillMatrixPage";
 import ClientsCardContainer from "./components/ClientsCard/ClientsCardContainer";
 import CategoryPage from "./Pages/CategoryPage";
 import HomePage from "./Pages/HomePage";
+import EmployeePage from "./Pages/EmployeePage";
 
 const store = configureStore();
 
@@ -45,6 +46,9 @@ const App = () => {
                                         path="/category"
                                         component={CategoryPage}
                                     />
+                                    <Route 
+                                        path="/employee" 
+                                        component={EmployeePage} />
                                     <Route
                                         path="/client-score"
                                         component={ClientScorePage}

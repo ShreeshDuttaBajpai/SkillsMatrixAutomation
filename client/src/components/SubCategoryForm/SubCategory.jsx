@@ -5,7 +5,7 @@ import { validationInput } from "../commonValidationFunction";
 
 const SubCategory = props => {
     const [subCategory, setSubCategory] = useState({
-        categoryid: props.client.id,
+        categoryid: props.categoryItem.id,
         subcategoryname: "",
         subcategorydescription: "",
         createdOn: new Date().toJSON(),
@@ -18,12 +18,16 @@ const SubCategory = props => {
         });
         console.log("hi");
     };
-
+    console.log(categoryItem.subCategoryName);
+    console.log(categoryItem);
     return (
         <div>
             <form
                 className={css.form_container}
-                onSubmit={e => {
+                onSubmit={() => postSubCat(subcat)}
+            >
+                onSubmit=
+                {e => {
                     e.preventDefault();
                     var validate = validationInput(subCategory, "subcategory");
                     if (validate === true) {
@@ -34,14 +38,16 @@ const SubCategory = props => {
                         props.setShowDrawer(!props.showDrawer);
                     }
                 }}
-            >
+                <label className={css.label}>
+                    Category Name - {props.categoryItem.categoryName}
+                </label>
                 <label className={css.label}>SubCategory Name</label>
                 <input
                     className={css.form_input}
                     id={"subcategoryname"}
                     type="text"
                     onChange={e => handlechange(e)}
-                    defaultValue={props.client.clientName}
+                    // defaultValue={client.clientName}
                 ></input>
                 <label className={css.label}>SubCategory Description</label>
                 <input
@@ -50,6 +56,7 @@ const SubCategory = props => {
                     type="text"
                     onChange={e => handlechange(e)}
                     size="50"
+                    required
                 ></input>
                 <div>
                     <ButtonComponent cname={css.add_button} value={"Submit"} />

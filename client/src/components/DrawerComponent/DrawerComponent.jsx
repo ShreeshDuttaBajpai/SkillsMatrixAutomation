@@ -6,6 +6,9 @@ import FormAdd from "../FormAdd/FormAdd";
 import TeamFormContainer from "../TeamForm/TeamFormContainer";
 import CategoryForm from "../CategoryForm/CategoryForm";
 import SubCategoryFormContainer from "../SubCategoryForm/SubCategoryFormContainer";
+import CategoryFormContainer from "../CategoryForm/CategoryFormContainer";
+import EmpFormContainer from "../EmpForm/EmpFormContainer";
+import FormAddContainer from "../FormAdd/FormAddContainer";
 
 const DrawerComponent = props => {
     return (
@@ -34,12 +37,14 @@ const DrawerComponent = props => {
                                 props.setaddSubCategoryFormVisible(
                                     !props.addSubCategoryFormVisible
                                 );
+                            props.setForm5Visible &&
+                                props.setForm5Visible(!props.form5Visible);
                         }}
                     />
                 </span>
                 <hr />
                 {props.clientFormVisible && (
-                    <FormAdd
+                    <FormAddContainer
                         clientFormVisible={props.clientFormVisible}
                         setclientFormVisible={props.setclientFormVisible}
                         showDrawer={props.showDrawer}
@@ -60,6 +65,7 @@ const DrawerComponent = props => {
                         setcategoryFormVisible={props.setcategoryFormVisible}
                         showDrawer={props.showDrawer}
                         setShowDrawer={props.setShowDrawer}
+                        Container
                     />
                 )}
                 {props.addSubCategoryFormVisible && props.parentid && (
@@ -74,6 +80,7 @@ const DrawerComponent = props => {
                         setShowDrawer={props.setShowDrawer}
                     />
                 )}
+                {props.form5Visible && props.parentid && <EmpFormContainer />}
             </div>
         </div>
     );

@@ -1,11 +1,11 @@
 import { connect } from "react-redux";
 import { postSubCategory, postTeams } from "../../redux/common/actions";
-import SubCategoryForm from "./SubCategory";
 import { SubCatPostApi } from "../../services/CategoryService/CategoryService";
 import SubCategory from "./SubCategory";
 
 const mapStateToProps = state => ({
-    client: state.skillMatrixOps.client
+    client: state.skillMatrixOps.client,
+    categoryItem: state.skillMatrixOps.categoryItem
 });
 
 const mapDispatchToProps = dispatch => ({

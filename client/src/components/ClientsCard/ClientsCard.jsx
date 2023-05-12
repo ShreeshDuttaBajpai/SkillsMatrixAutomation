@@ -9,47 +9,69 @@ const ClientsCard = ({
     fetchClientList,
     clients,
     fetchCategoryList,
-    category
+    category,
+    teams,
+    fetchTeamList
 }) => {
-    useEffect(() => {
-        fetchClientList();
-    }, [fetchClientList]);
-    useEffect(() => {
-        fetchCategoryList();
-    }, [fetchCategoryList]);
     const [showDrawer, setShowDrawer] = useState(false);
-    const [clientFormVisible, setclientFormVisible] = useState(false);
-    const [categoryFormVisible, setcategoryFormVisible] = useState(false);
+    const [form2Visible, setForm2Visible] = useState(false);
+    const [form3Visible, setForm3Visible] = useState(false);
 
     useEffect(() => {
         console.log("hello");
-        console.log(showDrawer);
-        console.log(clientFormVisible);
-    }, [clientFormVisible]);
+        console.log(form2Visible);
+    }, [form2Visible]);
+
+    useEffect(() => {
+        fetchClientList();
+    }, [fetchClientList]);
+
+    useEffect(() => {
+        fetchCategoryList();
+    }, [fetchCategoryList]);
+
+    useEffect(() => {
+        teams && fetchTeamList(clients.id);
+    }, [fetchTeamList]);
 
     return (
         <div className={css.card_container}>
             <div>
-                {clients ? (
+                {clients && (
                     <ButtonComponent
                         cname={css.add_button}
                         value={addbutton}
                         handleClick={() => {
                             setShowDrawer(!showDrawer);
-                            setclientFormVisible(!clientFormVisible);
+                            setForm2Visible(!form2Visible);
                         }}
                     />
-                ) : (
+                )}
+                {category && (
                     <ButtonComponent
                         cname={css.add_button}
                         value={addbutton}
                         handleClick={() => {
                             setShowDrawer(!showDrawer);
-                            setcategoryFormVisible(!categoryFormVisible);
+                            setForm3Visible(!form3Visible);
                         }}
                     />
                 )}
             </div>
+            {teams && (
+                <select className={css.clientdropdown}>
+                    <option value="" disabled selected>
+                        Select Client
+                    </option>
+                    {clients.length > 1 &&
+                        clients.map(emp => (
+                            <option key={emp.Id} value={emp.Id}>
+                                {console.log(emp)}
+                                {emp.clientName}
+                            </option>
+                        ))}
+                </select>
+            )}
             <div className={css.card_row}>
                 {clients &&
                     clients.length &&
@@ -67,20 +89,20 @@ const ClientsCard = ({
                         );
                     })}
             </div>
-            {clients && clientFormVisible && showDrawer && (
+            {clients && form2Visible && showDrawer && (
                 <DrawerComponent
                     showDrawer={showDrawer}
                     setShowDrawer={setShowDrawer}
-                    setclientFormVisible={setclientFormVisible}
-                    clientFormVisible={clientFormVisible}
+                    setForm2Visible={setForm2Visible}
+                    form2Visible={form2Visible}
                 />
             )}
-            {category && categoryFormVisible && showDrawer && (
+            {category && form3Visible && showDrawer && (
                 <DrawerComponent
                     showDrawer={showDrawer}
                     setShowDrawer={setShowDrawer}
-                    setcategoryFormVisible={setcategoryFormVisible}
-                    categoryFormVisible={categoryFormVisible}
+                    setForm3Visible={setForm3Visible}
+                    form3Visible={form3Visible}
                 />
             )}
         </div>

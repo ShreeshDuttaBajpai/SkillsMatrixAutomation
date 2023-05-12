@@ -31,12 +31,14 @@ const TeamForm = props => {
                     }
                 }}
             >
-                <label className={css.label}>Client Name</label>
-                <input
+                <label className={css.label}>
+                    Client Name - {props.client.clientName}
+                </label>
+                {/* <input
                     className={css.form_input}
                     type="text"
-                    defaultValue={props.client.clientName}
-                ></input>
+                    defaultValue={client.clientName}
+                ></input> */}
                 <label className={css.label}>Team Name</label>
                 <input
                     className={css.form_input}
