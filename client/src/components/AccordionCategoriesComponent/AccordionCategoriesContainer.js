@@ -9,8 +9,7 @@ import {
 const mapStateToProps = state => {
     return {
         categories: state.skillMatrixOps.categories || [],
-        subCategories: state.skillMatrixOps.subCategories || [],
-        expectedScoreMappings: state.skillMatrixOps.expectedScoreMappings || []
+        subCategories: state.skillMatrixOps.subCategories || []
     };
 };
 
@@ -19,9 +18,6 @@ const mapDispatchToProps = dispatch => {
         fetchSubCategoriesList: async () => {
             const subCategories = await getSubCategoriesList();
             dispatch(setSubCategories(subCategories));
-        },
-        setExpectedScoreMappings: scoringData => {
-            dispatch(setExpectedScoreMappings(scoringData));
         }
     };
 };

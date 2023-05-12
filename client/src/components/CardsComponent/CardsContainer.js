@@ -29,10 +29,10 @@ const mapDispatchToProps = dispatch => {
             dispatch(getClient(client));
         },
         getCategory: async cat => {
-            dispatch(getCategory(cat))
+            dispatch(getCategory(cat));
         },
         getEmp: async e => {
-            dispatch(fetchEmp(e))
+            dispatch(fetchEmp(e));
         }
     };
 };

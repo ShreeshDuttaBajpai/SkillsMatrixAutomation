@@ -20,7 +20,7 @@ const CardsComponent = ({
 }) => {
     const [employees, setEmployees] = useState([]);
     const [teams, setTeams] = useState([]);
-    const [subcategory, setSubCategory] = useState([]);
+    const [subcategories, setSubCategories] = useState([]);
     const [showDrawer, setShowDrawer] = useState(false);
     const [addTeamFormVisible, setaddTeamFormVisible] = useState(false);
     const [addSubCategoryFormVisible, setaddSubCategoryFormVisible] =
@@ -41,7 +41,7 @@ const CardsComponent = ({
 
     useEffect(async () => {
         categoryItem &&
-            setSubCategory(await getSubCategoryList(categoryItem.id));
+            setSubCategories(await getSubCategoryList(categoryItem.id));
     }, []);
 
     useEffect(async () => {
@@ -90,7 +90,6 @@ const CardsComponent = ({
                                     setShowDrawer(!showDrawer);
                                     setaddTeamFormVisible(!addTeamFormVisible);
                                     getClient(client);
-                                    show();
                                 }}
                             />
                         )}
@@ -130,9 +129,9 @@ const CardsComponent = ({
                             console.log(team);
                             return <TeamsComponent key={index} team={team} />;
                         })}
-                    {subcategory &&
-                        subcategory.length > 0 &&
-                        subcategory.map((sub, index) => {
+                    {subcategories &&
+                        subcategories.length > 0 &&
+                        subcategories.map((sub, index) => {
                             console.log(sub);
                             return <TeamsComponent key={index} sub={sub} />;
                         })}
@@ -157,6 +156,7 @@ const CardsComponent = ({
                     addTeamFormVisible={addTeamFormVisible}
                     setaddTeamFormVisible={setaddTeamFormVisible}
                     parentid={client.id}
+                    setTeams={setTeams}
                 />
             )}
             {categoryItem && showDrawer && (
@@ -166,6 +166,7 @@ const CardsComponent = ({
                     addSubCategoryFormVisible={addSubCategoryFormVisible}
                     setaddSubCategoryFormVisible={setaddSubCategoryFormVisible}
                     parentid={categoryItem.id}
+                    setSubCategories={setSubCategories}
                 />
             )}
             {team && showDrawer && (

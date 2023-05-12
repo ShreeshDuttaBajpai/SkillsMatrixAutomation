@@ -1,18 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import css from "./AccordionCategoriesComponent.css";
-import {
-    getScoreForSubCategoryId,
-    handleExpectedScoreChange
-} from "./AccordionCategoriesFunctions";
 import SubCategoryExpectedScoreContainer from "../SubCategoryExpectedScoreComponent/SubCategoryExpectedScoreContainer";
 import cx from "classnames";
 
 const AccordionCategoriesComponent = ({
     categories,
     subCategories,
-    expectedScoreMappings,
-    fetchSubCategoriesList,
-    setExpectedScoreMappings
+    fetchSubCategoriesList
 }) => {
     useEffect(() => {
         fetchSubCategoriesList();
@@ -39,21 +33,6 @@ const AccordionCategoriesComponent = ({
                                   )
                                   .map(subCategory => (
                                       <SubCategoryExpectedScoreContainer
-                                          expectedScoreObj={
-                                              expectedScoreMappings.length >
-                                                  0 &&
-                                              expectedScoreMappings.find(
-                                                  score =>
-                                                      score.subCategoryId ===
-                                                      subCategory.id
-                                              )
-                                                  ? expectedScoreMappings.find(
-                                                        score =>
-                                                            score.subCategoryId ===
-                                                            subCategory.id
-                                                    ).expectedClientScore
-                                                  : 0
-                                          }
                                           subCategory={subCategory}
                                           key={subCategory.id}
                                       />
