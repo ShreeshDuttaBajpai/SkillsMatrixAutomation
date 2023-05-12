@@ -26,13 +26,13 @@ const SidebarComponent = () => {
     });
     return (
         <div className={css.sidebarContainerDiv}>
-            <div className={css.brandLogoDiv}>
+            {/* <div className={css.brandLogoDiv}>
                 <img
                     src={BhavnaLogo}
                     alt="Bhavna Corp"
                     className={css.brandLogoImg}
                 />
-            </div>
+            </div> */}
             <NavLink
                 title="Client Master"
                 to="/"

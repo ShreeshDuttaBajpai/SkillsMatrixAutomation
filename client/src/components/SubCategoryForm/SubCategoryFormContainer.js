@@ -6,15 +6,18 @@ import SubCategory from "./SubCategory";
 const mapStateToProps = state => ({
     client: state.skillMatrixOps.client,
     categoryItem: state.skillMatrixOps.categoryItem
-  });
+});
 
-  const mapDispatchToProps =  dispatch =>({
-    postSubCat : async (cat) => {
-        const teams=await SubCatPostApi(cat)
-        dispatch(postSubCategory(teams))
+const mapDispatchToProps = dispatch => ({
+    postSubCategory: async cat => {
+        const teams = await SubCatPostApi(cat);
+        dispatch(postSubCategory(teams));
     }
-  })
+});
 
-  const SubCategoryFormContainer=connect(mapStateToProps,mapDispatchToProps)(SubCategory);
+const SubCategoryFormContainer = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SubCategory);
 
 export default SubCategoryFormContainer;

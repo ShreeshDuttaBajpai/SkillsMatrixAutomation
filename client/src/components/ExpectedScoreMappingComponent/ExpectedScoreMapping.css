@@ -2,23 +2,31 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    margin: 20px 40px;
+    margin: 20px;
     height: 100%;
 }
 .dependentContainer {
     display: flex;
+    /* width: 25%; */
     justify-content: space-between;
-    flex-direction: row;
+}
+.selectionDiv {
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+}
+.selectionDiv select {
+    min-width: 20%;
+    padding: 2.5px 5px;
+    cursor: pointer;
+    height: max-content;
 }
 .categoryScoringDiv {
     width: 40%;
 }
 .mappingsSaveBtn {
-    position: absolute;
-    right: 50px;
-    bottom: 50px;
     width: max-content;
-    padding: 10px 15px;
+    padding: 2.5px 5px;
     align-self: center;
     background-color: #564ef7;
     border: none;
@@ -35,4 +43,10 @@
 }
 .mappingsSaveBtnDisabled {
     opacity: 0.5;
+}
+.secondMappingsSaveBtn {
+    align-self: flex-end;
+}
+.disabledSelect {
+    cursor: default !important;
 }

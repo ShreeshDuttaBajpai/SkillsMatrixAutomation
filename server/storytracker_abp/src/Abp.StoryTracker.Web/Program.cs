@@ -68,6 +68,7 @@ public class Program
             app.MapPostSkillMatrixEndpoints();
             app.MapSkillsMatrixJoinTablesEndpoints();
             app.MapEmployeeScoreEndpoints();
+            app.MapPostEmployeeEndpoints();
             await app.InitializeApplicationAsync();
             await app.RunAsync();
             return 0;

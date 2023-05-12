@@ -2,7 +2,6 @@ import { SubCategoryListApi } from "../../services/MasterService/MasterService";
 
 export const getSubCategoriesList = async () => {
     const result = await SubCategoryListApi();
-    console.log(result);
     return result;
 };
 export const handleExpectedScoreChange = (
@@ -11,7 +10,6 @@ export const handleExpectedScoreChange = (
     expectedScoreMappings,
     setExpectedScoreMappings
 ) => {
-    console.log(expectedScoreMappings);
     const updatedScoreMapping = expectedScoreMappings;
     if (updatedScoreMapping.length > 0) {
         const isExisted = updatedScoreMapping.findIndex(

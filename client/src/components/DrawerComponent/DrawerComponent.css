@@ -1,18 +1,18 @@
-.drawer_container{
+.drawer_container {
     z-index: 1;
     background-color: #e7e8e9;
     width: 100%;
-    position:fixed;
-    transition: 20s;
+    position: fixed;
+    /* transition: 20s; */
     padding: 2rem;
     /* border-radius: 10px; */
     min-height: 100vh;
     overflow: hidden;
-    top: 0;
-    left: 0;
-    margin-left: 7vw;
-    margin-top: 10.6vh;
+    top: 50px;
+    left: 65px;
+    /* margin-left: 7vw;
+    margin-top: 10.6vh; */
 }
-.drawerheading{
+.drawerheading {
     padding-left: 10px;
 }
