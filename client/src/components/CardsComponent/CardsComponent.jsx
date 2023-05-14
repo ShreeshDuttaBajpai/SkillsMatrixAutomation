@@ -25,7 +25,7 @@ const CardsComponent = ({
     const [addTeamFormVisible, setaddTeamFormVisible] = useState(false);
     const [addSubCategoryFormVisible, setaddSubCategoryFormVisible] =
         useState(false);
-    const [form5Visible, setForm5Visible] = useState(false);
+    const [addEmployeeFormVisible, setaddEmployeeFormVisible] = useState(false);
 
     useEffect(() => {
         console.log("hello");
@@ -113,7 +113,9 @@ const CardsComponent = ({
                                 value={"Add Employee"}
                                 handleClick={() => {
                                     setShowDrawer(!showDrawer);
-                                    setForm5Visible(!form5Visible);
+                                    setaddEmployeeFormVisible(
+                                        !addEmployeeFormVisible
+                                    );
                                     getEmp(team);
                                 }}
                             />
@@ -173,9 +175,10 @@ const CardsComponent = ({
                 <DrawerComponent
                     showDrawer={showDrawer}
                     setShowDrawer={setShowDrawer}
-                    form5Visible={form5Visible}
-                    setForm5Visible={setForm5Visible}
+                    addEmployeeFormVisible={addEmployeeFormVisible}
+                    setaddEmployeeFormVisible={setaddEmployeeFormVisible}
                     parentid={team.id}
+                    setEmployees={setEmployees}
                 />
             )}
         </div>

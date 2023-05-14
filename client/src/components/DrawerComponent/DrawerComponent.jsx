@@ -6,7 +6,6 @@ import FormAdd from "../FormAdd/FormAdd";
 import TeamFormContainer from "../TeamForm/TeamFormContainer";
 import CategoryForm from "../CategoryForm/CategoryForm";
 import SubCategoryFormContainer from "../SubCategoryForm/SubCategoryFormContainer";
-// import CategoryFormContainer from "../CategoryForm/CategoryFormContainer";
 import CategoryFormContainer from "../CategoryForm/CategoryFormContainer";
 import EmpFormContainer from "../EmpForm/EmpFormContainer";
 import FormAddContainer from "../FormAdd/FormAddContainer";
@@ -38,8 +37,10 @@ const DrawerComponent = props => {
                                 props.setaddSubCategoryFormVisible(
                                     !props.addSubCategoryFormVisible
                                 );
-                            props.setForm5Visible &&
-                                props.setForm5Visible(!props.form5Visible);
+                            props.setaddEmployeeFormVisible &&
+                                props.setaddEmployeeFormVisible(
+                                    !props.addEmployeeFormVisible
+                                );
                         }}
                     />
                 </span>
@@ -82,7 +83,17 @@ const DrawerComponent = props => {
                         setSubCategories={props.setSubCategories}
                     />
                 )}
-                {props.form5Visible && props.parentid && <EmpFormContainer />}
+                {props.addEmployeeFormVisible && props.parentid && (
+                    <EmpFormContainer
+                        addEmployeeFormVisible={props.addEmployeeFormVisible}
+                        setaddEmployeeFormVisible={
+                            props.setaddEmployeeFormVisible
+                        }
+                        showDrawer={props.showDrawer}
+                        setShowDrawer={props.setShowDrawer}
+                        setEmployees={props.setEmployees}
+                    />
+                )}
             </div>
         </div>
     );

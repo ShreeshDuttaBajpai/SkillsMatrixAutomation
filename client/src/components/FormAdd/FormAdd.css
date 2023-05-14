@@ -7,13 +7,14 @@
     margin-bottom: 0.5rem;
     font-weight: 550;
     font-size: large;
+    margin-top: 1rem;
 }
 
 .form_input{
     padding: 0.5rem;
     border-radius: 0.5rem;
     border: 1px solid #ccc;;
-    margin-bottom: 1rem;
+ 
 }
 
 .add_button{
@@ -28,4 +29,10 @@
     border-radius: 5px;
     float: left;
     margin-top: 25px;
+}
+
+.error_messages{
+    margin-bottom: 10px;
+    color: red;
+    margin-top: 0;
 }

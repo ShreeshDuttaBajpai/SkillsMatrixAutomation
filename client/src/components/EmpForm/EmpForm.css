@@ -24,5 +24,11 @@
     cursor: pointer;
     border-radius: 5px;
     float: left;
-    margin: 17px;
+    margin-top: 25px;
+}
+
+.error_messages{
+    margin-bottom: 10px;
+    color: red;
+    margin-top: 0;
 }

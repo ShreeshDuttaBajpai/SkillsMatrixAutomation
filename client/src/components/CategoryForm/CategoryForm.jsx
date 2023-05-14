@@ -12,6 +12,7 @@ const CategoryForm = props => {
         createdOn: new Date().toJSON(),
         modifiedOn: new Date().toJSON()
     });
+    const [errorMessage, setErrorMesaage] = useState([]);
     const handlechange = e => {
         setCategory(prev => {
             return { ...prev, [e.target.id]: e.target.value };
@@ -31,7 +32,8 @@ const CategoryForm = props => {
                 onSubmit={e => {
                     e.preventDefault();
                     var validation = validationInput(category, "category");
-                    if (validation === true) {
+                    setErrorMesaage(validation);
+                    if (validation.length === 0) {
                         postCategory(category);
                         props.setcategoryFormVisible(
                             !props.categoryFormVisible
@@ -47,6 +49,14 @@ const CategoryForm = props => {
                     type="text"
                     onChange={e => handlechange(e)}
                 ></input>
+                {errorMessage.map(
+                    item =>
+                        item.field === "function" && (
+                            <div className={css.error_messages}>
+                                <span>{item.error}</span>
+                            </div>
+                        )
+                )}
                 <label className={css.label}>Category Name</label>
                 <input
                     className={css.form_input}
@@ -54,6 +64,14 @@ const CategoryForm = props => {
                     type="text"
                     onChange={e => handlechange(e)}
                 ></input>
+                {errorMessage.map(
+                    item =>
+                        item.field === "name" && (
+                            <div className={css.error_messages}>
+                                <span>{item.error}</span>
+                            </div>
+                        )
+                )}
                 <label className={css.label}>Category Description</label>
                 <input
                     className={css.form_input}
@@ -62,6 +80,14 @@ const CategoryForm = props => {
                     onChange={e => handlechange(e)}
                     size="50"
                 ></input>
+                {errorMessage.map(
+                    item =>
+                        item.field === "description" && (
+                            <div className={css.error_messages}>
+                                <span>{item.error}</span>
+                            </div>
+                        )
+                )}
                 <div>
                     <ButtonComponent cname={css.add_button} value={"Submit"} />
                 </div>

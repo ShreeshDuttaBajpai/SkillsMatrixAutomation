@@ -97,7 +97,7 @@ const EmployeeScoreComponent = ({
                                       setSelectedEmployee(employee.employeeId);
                                   }}
                               >
-                                  {employee.employeeName}
+                                  {employee.employeeame}
                               </div>
                           );
                       })

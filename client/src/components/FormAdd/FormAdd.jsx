@@ -12,6 +12,7 @@ const FormAdd = props => {
         modifiedOn: new Date().toJSON()
     });
     // const [formError, setformError] = useState({});
+    const [errorMessage, setErrorMesaage] = useState([]);
     const handlechange = e => {
         setClient(prev => {
             return { ...prev, [e.target.id]: e.target.value };
@@ -32,7 +33,8 @@ const FormAdd = props => {
                 onSubmit={e => {
                     e.preventDefault();
                     var validation = validationInput(client, "client");
-                    if (validation === true) {
+                    setErrorMesaage(validation);
+                    if (validation.length === 0) {
                         postClient(client);
                         props.setclientFormVisible(!props.clientFormVisible);
                         props.setShowDrawer(!props.showDrawer);
@@ -46,7 +48,16 @@ const FormAdd = props => {
                     type="text"
                     onChange={e => handlechange(e)}
                 ></input>
-                {/* <span>{formError.clientname}</span> */}
+
+                {errorMessage.map(
+                    item =>
+                        item.field === "name" && (
+                            <div className={css.error_messages}>
+                                <span>{item.error}</span>
+                            </div>
+                        )
+                )}
+
                 <label className={css.label}>Client Description</label>
                 <input
                     className={css.form_input}
@@ -55,6 +66,15 @@ const FormAdd = props => {
                     onChange={e => handlechange(e)}
                     size="50"
                 ></input>
+
+                {errorMessage.map(
+                    item =>
+                        item.field === "description" && (
+                            <div className={css.error_messages}>
+                                <span>{item.error}</span>
+                            </div>
+                        )
+                )}
                 <div>
                     <ButtonComponent cname={css.add_button} value={"Submit"} />
                 </div>
