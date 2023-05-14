@@ -37,5 +37,8 @@ namespace Abp.StoryTracker.SkillsMatrixServiceInterface
 
      
         Task PutSubCategoryMappingListAsync(SubCategoryMappingApplicationContractsModel putSubCategoryMapping);
+        Task DeleteEmployee(int employeeId);
+        Task DeleteTeam(int teamId);
+        Task DeleteSubCategory(int subCategoryId);
     }
 }

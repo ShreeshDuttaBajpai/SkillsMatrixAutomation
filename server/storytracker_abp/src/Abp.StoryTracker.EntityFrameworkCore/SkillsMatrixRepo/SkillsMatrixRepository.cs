@@ -67,7 +67,7 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
         }
 
 
-        
+
         public async Task<List<SubCategoryMasterModel>> GetSubCategoryListAsync()
         {
             var dbConnection = await GetDbConnectionAsync();
@@ -148,7 +148,7 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
 
 
         public async Task<List<CategoryMasterModel>> PostCategoryListAsync(CategoryMasterModel postCategory)
-        {   
+        {
             var dbConnection = await GetDbConnectionAsync();
             var query = "INSERT INTO dbo.CategoryMaster VALUES ('" + postCategory.CategoryFunction + "', '" + postCategory.CategoryName + "', '" + postCategory.CategoryDescription + "' , '" + postCategory.CreatedOn + "', '" + postCategory.ModifiedOn + "')";
             var result = (await dbConnection.QueryAsync<CategoryMasterModel>(query,
@@ -171,7 +171,7 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
         public async Task<List<SkillsMatrixModel>> PostSkillMatrixListAsync(SkillsMatrixModel postSkillMatrix)
         {
             var dbConnection = await GetDbConnectionAsync();
-            
+
 
             var query2 = "Select * from dbo.SkillsMatrix where EmployeeId=" + postSkillMatrix.EmployeeId + " and SubCategoryId=" + postSkillMatrix.SubCategoryId + "";
             var result2 = (await dbConnection.QueryAsync<SkillsMatrixModel>(query2,
@@ -222,7 +222,7 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
                 return result;
             }
             else
-                
+
             {
                 var query3 = "UPDATE dbo.SubCategoryMapping set ClientExpectedScore = " + postSubCategoryMapping.ClientExpectedScore + " where TeamId=" + postSubCategoryMapping.TeamId + " and SubCategoryId=" + postSubCategoryMapping.SubCategoryId + "";
                 var result3 = (await dbConnection.QueryAsync<SubCategoryMappingModel>(query3,
@@ -255,9 +255,52 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
         {
             var dbConnection = await GetDbConnectionAsync();
             var query = $"SELECT * FROM dbo.SkillsMatrix WHERE EmployeeId={employeeId};";
-            var result = (await dbConnection.QueryAsync<SkillsMatrixModel>(query, 
+            var result = (await dbConnection.QueryAsync<SkillsMatrixModel>(query,
                 transaction: await GetDbTransactionAsync())).ToList();
             return result;
+        }
+
+        public async Task DeleteEmployee(int employeeId)
+        {
+            var dbConnection = await GetDbConnectionAsync();
+            var query = $"DELETE FROM dbo.EmployeeDetails WHERE EmployeeId={employeeId}";
+            await dbConnection.QueryAsync<string>(query, transaction: await GetDbTransactionAsync());
+        }
+
+        public async Task DeleteTeam(int teamId)
+        {
+            var dbConnection = await GetDbConnectionAsync();
+            var getEmployeesQuery = $"SELECT EmployeeId from dbo.EmployeeDetails where TeamId={teamId}";
+            var employeeIds = (await dbConnection.QueryAsync<int>(getEmployeesQuery,
+                transaction: await GetDbTransactionAsync())).ToList();
+
+            foreach (var employeeId in employeeIds)
+            {
+                var deleteScoreQuery = $"DELETE FROM dbo.SkillsMatrix where EmployeeId={employeeId}";
+                await dbConnection.QueryAsync(deleteScoreQuery, transaction: await GetDbTransactionAsync());
+            }
+
+            var deleteMappingsQuery = $"DELETE FROM dbo.SubCategoryMapping where TeamId={teamId}";
+            await dbConnection.QueryAsync(deleteMappingsQuery, transaction: await GetDbTransactionAsync());
+
+            var deleteEmployeesQuery = $"DELETE FROM dbo.EmployeeDetails where TeamId={teamId}";
+            await dbConnection.QueryAsync(deleteEmployeesQuery, transaction: await GetDbTransactionAsync());
+
+            var deleteTeamQuery = $"DELETE FROM dbo.TeamMaster WHERE id={teamId}";
+            await dbConnection.QueryAsync(deleteTeamQuery, transaction: await GetDbTransactionAsync());
+        }
+        public async Task DeleteSubCategory(int subCategoryId)
+        {
+            var dbConnection = await GetDbConnectionAsync();
+
+            var deleteScoreQuery = $"DELETE FROM dbo.SkillsMatrix where SubCategoryId={subCategoryId}";
+            await dbConnection.QueryAsync(deleteScoreQuery , transaction: await GetDbTransactionAsync());
+
+            var deleteMappingsQuery = $"DELETE FROM dbo.SubCategoryMapping where SubCategoryId={subCategoryId}";
+            await dbConnection.QueryAsync(deleteMappingsQuery , transaction: await GetDbTransactionAsync());
+
+            var deleteSubCategoryQuery = $"DELETE FROM dbo.SubCategoryMaster WHERE id={subCategoryId}";
+            await dbConnection.QueryAsync(deleteSubCategoryQuery, transaction: await GetDbTransactionAsync());
         }
     }
 }
