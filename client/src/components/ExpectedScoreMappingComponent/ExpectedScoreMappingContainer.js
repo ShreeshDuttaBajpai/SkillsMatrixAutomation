@@ -37,7 +37,7 @@ const mapDispatchToProps = dispatch => {
             dispatch(setCategories(categories));
         },
         fetchExpectedScore: async teamId => {
-            const scores = await getTeamExpectedScores(teamId);
+            const scores = teamId ? await getTeamExpectedScores(teamId) : [];
             console.log(scores);
             dispatch(setExpectedScoreMappings(scores));
         }

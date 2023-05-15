@@ -20,6 +20,10 @@ namespace Abp.StoryTracker.Endpoints
                 var result = await skillsMatrixService.GetSubCategoryListAsync();
                 return (result);
             }).WithTags("SkillsMatrix");
+            _ = app.MapDelete("/subcategorymaster", async ([FromServices] ISkillsMatrixService skillsMatrixService, int subCategoryId) =>
+            {
+                await skillsMatrixService.DeleteSubCategory(subCategoryId);
+            });
             return app;
         }
 

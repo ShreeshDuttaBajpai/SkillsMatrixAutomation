@@ -288,5 +288,18 @@ namespace Abp.StoryTracker.SkillsMatrixService
             }
             return scores;
         }
+
+        public async Task DeleteEmployee(int employeeId)
+        {
+            await skillMatrixRepository.DeleteEmployee(employeeId);
+        }
+        public async Task DeleteTeam(int teamId)
+        {
+            await skillMatrixRepository.DeleteTeam(teamId);
+        }
+        public async Task DeleteSubCategory(int subCategoryId)
+        {
+            await skillMatrixRepository.DeleteSubCategory(subCategoryId);
+        }
     }
 }

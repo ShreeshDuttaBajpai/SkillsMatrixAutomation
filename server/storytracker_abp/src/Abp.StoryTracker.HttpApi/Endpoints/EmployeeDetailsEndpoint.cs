@@ -20,6 +20,11 @@ namespace Abp.StoryTracker.Endpoints
                 var result = await skillsMatrixService.GetEmployeeDetailsListAsync();
                 return (result);
             }).WithTags("SkillsMatrix");
+
+            _ = app.MapDelete("/EmployeeDelete", async ([FromServices] ISkillsMatrixService skillsMatrixService, [FromQuery] int employeeId) =>
+            {
+                await skillsMatrixService.DeleteEmployee(employeeId);
+            }).WithTags("SkillsMatrix");
             return app;
         }
 
