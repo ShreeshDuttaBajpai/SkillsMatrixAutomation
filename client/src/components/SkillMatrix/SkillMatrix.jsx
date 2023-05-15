@@ -84,14 +84,18 @@ const SkillMatrix = ({
                     </option>
                 ))}
             </select>
-            <AccordionContainer
-                accordionTitle={"Categories"}
-                accordionData={categories}
-                selectedTeam={selectedTeam}
-                isAccordionDisabled={
-                    !selectedClient || !selectedTeam || categories.length === 0
-                }
-            />
+            <div className={css.dependentContainer}>
+                <AccordionContainer
+                    accordionTitle={"Categories"}
+                    accordionData={categories}
+                    selectedTeam={selectedTeam}
+                    isAccordionDisabled={
+                        !selectedClient ||
+                        !selectedTeam ||
+                        categories.length === 0
+                    }
+                />
+            </div>
             <div className={css.mappingsBtnContainer}>
                 <button
                     className={cx(css.mappingsBtn, css.secondMappingsBtn, {
