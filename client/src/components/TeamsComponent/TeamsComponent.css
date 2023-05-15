@@ -3,6 +3,18 @@
     display: flex;
     justify-content: space-between;
 }
-.teamSpan{
+.teamSpan {
     padding-left: 10px;
+}
+.deleteItemIcon {
+    cursor: pointer;
+}
+.editableInputFields {
+    width: 45%;
+}
+.cardItemRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 85%;
 }

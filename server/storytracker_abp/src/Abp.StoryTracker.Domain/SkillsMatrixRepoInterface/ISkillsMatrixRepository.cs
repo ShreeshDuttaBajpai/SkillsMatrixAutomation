@@ -34,5 +34,8 @@ namespace Abp.StoryTracker.SkillsMatrixRepoInterface
         Task<List<SubCategoryMasterModel>> PostSubCategoryMasterListAsync(SubCategoryMasterModel postSubCategory);
         Task<List<SkillsMatrixModel>> PostSkillMatrixListAsync(SkillsMatrixModel postSkillsMatrix);
         Task<List<SkillsMatrixModel>> GetEmployeeScores(int employeeId);
+        Task DeleteEmployee(int employeeId);
+        Task DeleteTeam(int teamId);
+        Task DeleteSubCategory(int subCategoryId);
     }
 }

@@ -6,7 +6,7 @@ import TeamCardsContainer from "../components/TeamCards/TeamCardsContainer";
 const EmployeePage = () => {
     const teams = useSelector(state => state.skillMatrixOps.teams);
     const clients = useSelector(state => state.skillMatrixOps.clients);
-    console.log(teams);
+    // console.log(teams);
     return <TeamCardsContainer />;
 };
 

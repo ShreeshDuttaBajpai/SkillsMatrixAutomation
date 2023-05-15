@@ -19,8 +19,10 @@ export const EmpPostApi = async data => {
         .then(res => {
             alert("Employee added successfully!!");
         })
+
         .catch(error => {
             return error;
         });
+
     return response;
 };
