@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import ClientsCard from "./ClientsCard";
+
 import {
     getCategoryList,
     getClientsList,
@@ -33,9 +33,9 @@ const mapDispatchToProps = dispatch => ({
         console.log(categories);
         dispatch(setCategories(categories));
     },
-    fetchSubCategoryList: async id => {
-        const sub = await getSubCategoryList(id);
-        dispatch(setSubCategories(sub));
+    fetchSubCategoriesList: async () => {
+        const subCategories = await getSubCategoriesList();
+        dispatch(setSubCategories(subCategories));
     }
 });
 

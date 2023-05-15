@@ -1,18 +1,39 @@
 import React, { useEffect, useState } from "react";
 import css from "./SkillMatrix.css";
+import cx from "classnames";
 import { months } from "./SkillMatrixConstant";
 import SkillMatrixTable from "../SkillMatrixTable/SkillMatrixTable";
+import SkillMatrixTableContainer from "../SkillMatrixTable/SkillMatrixTableContainer";
+import AccordionContainer from "../AccordionComponent/AccordionContainer";
 
-const SkillMatrix = ({ clients, fetchClientList, fetchTeamList, teams }) => {
+const SkillMatrix = ({
+    clients,
+    teams,
+    categories,
+    expectedScoreMappings,
+    fetchCategoriesList,
+    fetchClientList,
+    fetchClientTeamsList,
+    fetchExpectedScore
+}) => {
     const [selectedClient, setSelectedClient] = useState([]);
-    const [selectedTeam, setSelectedTeam] = useState([]);
+    const [selectedTeam, setSelectedTeam] = useState("");
     useEffect(() => {
         fetchClientList();
     }, [fetchClientList]);
 
     useEffect(() => {
-        selectedClient && fetchTeamList(selectedClient);
-    }, [selectedClient, fetchTeamList]);
+        setSelectedTeam("");
+        selectedClient && fetchClientTeamsList(selectedClient);
+    }, [selectedClient, fetchClientTeamsList]);
+
+    useEffect(() => {
+        fetchCategoriesList();
+    }, [fetchCategoriesList]);
+
+    useEffect(() => {
+        selectedTeam && fetchExpectedScore(selectedTeam);
+    }, [selectedTeam]);
 
     const handlechange = e => {
         setSelectedClient(e.target.value);
@@ -33,7 +54,6 @@ const SkillMatrix = ({ clients, fetchClientList, fetchTeamList, teams }) => {
                 {clients.length > 1 &&
                     clients.map(emp => (
                         <option key={emp.id} value={emp.id}>
-                            {console.log(emp)}
                             {emp.clientName}
                         </option>
                     ))}
@@ -64,10 +84,38 @@ const SkillMatrix = ({ clients, fetchClientList, fetchTeamList, teams }) => {
                     </option>
                 ))}
             </select>
-            <SkillMatrixTable
-                selectedClient={selectedClient}
+            <AccordionContainer
+                accordionTitle={"Categories"}
+                accordionData={categories}
                 selectedTeam={selectedTeam}
+                isAccordionDisabled={
+                    !selectedClient || !selectedTeam || categories.length === 0
+                }
             />
+            <div className={css.mappingsBtnContainer}>
+                <button
+                    className={cx(css.mappingsBtn, css.secondMappingsBtn, {
+                        [css.mappingsBtnDisabled]:
+                            !selectedClient || !selectedTeam
+                    })}
+                    onClick={() => fetchExpectedScore(selectedTeam)}
+                    disabled={!selectedClient || !selectedTeam}
+                >
+                    Cancel
+                </button>
+                <button
+                    className={cx(css.mappingsBtn, css.secondMappingsBtn, {
+                        [css.mappingsBtnDisabled]:
+                            !selectedClient || !selectedTeam
+                    })}
+                    onClick={() =>
+                        handleScoreSave(selectedTeam, expectedScoreMappings)
+                    }
+                    disabled={!selectedClient || !selectedTeam}
+                >
+                    Save Mappings
+                </button>
+            </div>
         </div>
     );
 };

@@ -30,7 +30,6 @@ const ClientsCard = ({
     useEffect(() => {
         fetchCategoryList();
     }, [fetchCategoryList]);
-
     useEffect(() => {
         teams && fetchTeamList(clients.id);
     }, [fetchTeamList]);

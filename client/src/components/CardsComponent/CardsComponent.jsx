@@ -20,7 +20,7 @@ const CardsComponent = ({
 }) => {
     const [employees, setEmployees] = useState([]);
     const [teams, setTeams] = useState([]);
-    const [subcategories, setSubCategories] = useState([]);
+    const [subcategory, setSubCategory] = useState([]);
     const [showDrawer, setShowDrawer] = useState(false);
     const [addTeamFormVisible, setaddTeamFormVisible] = useState(false);
     const [addSubCategoryFormVisible, setaddSubCategoryFormVisible] =
@@ -41,14 +41,23 @@ const CardsComponent = ({
 
     useEffect(async () => {
         categoryItem &&
-            setSubCategories(await getSubCategoryList(categoryItem.id));
+            setSubCategory(await getSubCategoryList(categoryItem.id));
     }, []);
 
     useEffect(async () => {
         team && setEmployees(await getEmployeeList(team.id));
-    }, []);
+    }, [team]);
 
     console.log(team);
+
+    function getEmployeesByTeamId(employees, team) {
+        const filteredEmployees = employees.filter(
+            employee => employee.teamId === team.id
+        );
+        return filteredEmployees;
+    }
+
+    const matchedEmployees = getEmployeesByTeamId(employees, team);
 
     return (
         <div className={css.card_column}>
@@ -90,6 +99,7 @@ const CardsComponent = ({
                                     setShowDrawer(!showDrawer);
                                     setaddTeamFormVisible(!addTeamFormVisible);
                                     getClient(client);
+                                    show();
                                 }}
                             />
                         )}
@@ -129,9 +139,9 @@ const CardsComponent = ({
                             console.log(team);
                             return <TeamsComponent key={index} team={team} />;
                         })}
-                    {subcategories &&
-                        subcategories.length > 0 &&
-                        subcategories.map((sub, index) => {
+                    {subcategory &&
+                        subcategory.length > 0 &&
+                        subcategory.map((sub, index) => {
                             console.log(sub);
                             return <TeamsComponent key={index} sub={sub} />;
                         })}
@@ -156,7 +166,6 @@ const CardsComponent = ({
                     addTeamFormVisible={addTeamFormVisible}
                     setaddTeamFormVisible={setaddTeamFormVisible}
                     parentid={client.id}
-                    setTeams={setTeams}
                 />
             )}
             {categoryItem && showDrawer && (
@@ -166,7 +175,6 @@ const CardsComponent = ({
                     addSubCategoryFormVisible={addSubCategoryFormVisible}
                     setaddSubCategoryFormVisible={setaddSubCategoryFormVisible}
                     parentid={categoryItem.id}
-                    setSubCategories={setSubCategories}
                 />
             )}
             {team && showDrawer && (

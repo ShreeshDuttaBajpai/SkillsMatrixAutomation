@@ -4,12 +4,15 @@ import css from "./SkillMatrixTable.css";
 const SkillMatrixTable = ({
     fetchCategoryList,
     categories,
-    fetchSubCategoryList,
+    fetchSubCategoriesList,
     subCategories
 }) => {
     useEffect(() => {
-        fetchCategoryList;
+        fetchCategoryList();
     }, [fetchCategoryList]);
+    useEffect(() => {
+        fetchSubCategoriesList();
+    }, [fetchSubCategoriesList]);
 
     return (
         <div>
@@ -29,7 +32,13 @@ const SkillMatrixTable = ({
                 </thead>
                 <tbody>
                     <tr>
-                        <td rowspan="3">Category 1</td>
+                        {categories &&
+                            categories.length > 0 &&
+                            categories.map(category => {
+                                console.log(category);
+                                return <td>{category.categoryName}</td>;
+                            })}
+                        <td rowSpan="3">Category 1</td>
                         <td>Subcategory 1.1</td>
                         <td>
                             <select>
