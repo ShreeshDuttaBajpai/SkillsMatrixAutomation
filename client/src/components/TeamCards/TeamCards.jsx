@@ -17,9 +17,6 @@ const TeamCards = ({ clients, fetchClientList, fetchTeamList, teams }) => {
         setSelectedClient(e.target.value);
     };
 
-    console.log(selectedClient);
-    console.log(teams);
-
     return (
         <div className={css.team_container}>
             <select

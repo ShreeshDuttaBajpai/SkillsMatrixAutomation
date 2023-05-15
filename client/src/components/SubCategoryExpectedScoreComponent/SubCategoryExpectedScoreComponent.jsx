@@ -5,13 +5,21 @@ import { handleExpectedScoreChange } from "./SubCategoryExpectedScoreFunctions";
 const SubCategoryExpectedScoreComponent = ({
     subCategory,
     expectedScoreMappings,
-    setExpectedScoreMappings,
-    expectedScoreObj
+    setExpectedScoreMappings
 }) => {
-    const [subCategoryScore, setSubCategoryScore] = useState(expectedScoreObj);
+    const [subCategoryScore, setSubCategoryScore] = useState(0);
     useEffect(() => {
-        setSubCategoryScore(expectedScoreObj);
-    }, [expectedScoreObj]);
+        setSubCategoryScore(
+            expectedScoreMappings.length > 0 &&
+                expectedScoreMappings.find(
+                    score => score.subCategoryId === subCategory.id
+                )
+                ? expectedScoreMappings.find(
+                      score => score.subCategoryId === subCategory.id
+                  ).expectedClientScore
+                : 0
+        );
+    }, [expectedScoreMappings]);
     return (
         <div key={subCategory.id} className={css.subCategoryLi}>
             <div className={css.subCategoryDiv}>

@@ -23,6 +23,7 @@ const ExpectedScoreMappingComponent = ({
     useEffect(() => {
         setSelectedTeam("");
         selectedClient && fetchClientTeamsList(selectedClient);
+        fetchExpectedScore();
     }, [selectedClient, fetchClientTeamsList]);
 
     useEffect(() => {
@@ -74,9 +75,55 @@ const ExpectedScoreMappingComponent = ({
                             })}
                     </select>
                 </div>
+                <div className={css.mappingsBtnContainer}>
+                    <button
+                        className={cx(css.mappingsBtn, {
+                            [css.mappingsBtnDisabled]:
+                                !selectedClient || !selectedTeam
+                        })}
+                        onClick={() => {
+                            fetchExpectedScore(selectedTeam);
+                        }}
+                        disabled={!selectedClient || !selectedTeam}
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        className={cx(css.mappingsBtn, {
+                            [css.mappingsBtnDisabled]:
+                                !selectedClient || !selectedTeam
+                        })}
+                        onClick={() =>
+                            handleScoreSave(selectedTeam, expectedScoreMappings)
+                        }
+                        disabled={!selectedClient || !selectedTeam}
+                    >
+                        Save Mappings
+                    </button>
+                </div>
+            </div>
+            <AccordionContainer
+                accordionTitle={"Categories"}
+                accordionData={categories}
+                selectedTeam={selectedTeam}
+                isAccordionDisabled={
+                    !selectedClient || !selectedTeam || categories.length === 0
+                }
+            />
+            <div className={css.mappingsBtnContainer}>
                 <button
-                    className={cx(css.mappingsSaveBtn, {
-                        [css.mappingsSaveBtnDisabled]:
+                    className={cx(css.mappingsBtn, css.secondMappingsBtn, {
+                        [css.mappingsBtnDisabled]:
+                            !selectedClient || !selectedTeam
+                    })}
+                    onClick={() => fetchExpectedScore(selectedTeam)}
+                    disabled={!selectedClient || !selectedTeam}
+                >
+                    Cancel
+                </button>
+                <button
+                    className={cx(css.mappingsBtn, css.secondMappingsBtn, {
+                        [css.mappingsBtnDisabled]:
                             !selectedClient || !selectedTeam
                     })}
                     onClick={() =>
@@ -87,26 +134,6 @@ const ExpectedScoreMappingComponent = ({
                     Save Mappings
                 </button>
             </div>
-            <AccordionContainer
-                accordionTitle={"Categories"}
-                accordionData={categories}
-                selectedTeam={selectedTeam}
-                isAccordionDisabled={
-                    !selectedClient || !selectedTeam || categories.length === 0
-                }
-            />
-            <button
-                className={cx(css.mappingsSaveBtn, css.secondMappingsSaveBtn, {
-                    [css.mappingsSaveBtnDisabled]:
-                        !selectedClient || !selectedTeam
-                })}
-                onClick={() =>
-                    handleScoreSave(selectedTeam, expectedScoreMappings)
-                }
-                disabled={!selectedClient || !selectedTeam}
-            >
-                Save Mappings
-            </button>
         </div>
     );
 };

@@ -7,11 +7,10 @@
 }
 .dependentContainer {
     display: flex;
-    /* width: 25%; */
     justify-content: space-between;
 }
 .selectionDiv {
-    width: 30%;
+    min-width: 300px;
     display: flex;
     justify-content: space-between;
 }
@@ -24,7 +23,7 @@
 .categoryScoringDiv {
     width: 40%;
 }
-.mappingsSaveBtn {
+.mappingsBtn {
     width: max-content;
     padding: 2.5px 5px;
     align-self: center;
@@ -41,12 +40,15 @@
     line-height: 1.47059;
     z-index: 3;
 }
-.mappingsSaveBtnDisabled {
+.mappingsBtnDisabled {
     opacity: 0.5;
-}
-.secondMappingsSaveBtn {
-    align-self: flex-end;
 }
 .disabledSelect {
     cursor: default !important;
+}
+.mappingsBtnContainer {
+    width: 240px;
+    display: flex;
+    justify-content: space-between;
+    align-self: flex-end;
 }

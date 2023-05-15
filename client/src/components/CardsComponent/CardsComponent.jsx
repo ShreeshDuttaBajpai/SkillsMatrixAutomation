@@ -9,6 +9,7 @@ import {
 } from "./CardsComponentFunction";
 import DrawerComponent from "../DrawerComponent/DrawerComponent";
 import { EmpListApi } from "../../services/EmployeeService/EmployeeService";
+import TeamsContainer from "../TeamsComponent/TeamsContainer";
 
 const CardsComponent = ({
     client,
@@ -26,14 +27,11 @@ const CardsComponent = ({
     const [addSubCategoryFormVisible, setaddSubCategoryFormVisible] =
         useState(false);
     const [addEmployeeFormVisible, setaddEmployeeFormVisible] = useState(false);
+    const [isCardEditable, setIsCardEditable] = useState(false);
 
     useEffect(() => {
         console.log("hello");
     }, [addSubCategoryFormVisible]);
-
-    // useEffect(() => {
-    //     fetchClientTeamsList(client.id);
-    // }, [fetchClientTeamsList]);
 
     useEffect(async () => {
         client && setTeams(await getClientsTeamsList(client.id));
@@ -68,35 +66,36 @@ const CardsComponent = ({
                         {categoryItem && categoryItem.categoryName}
                         {team && team.teamName}
                     </h3>
-                    {/* <span className={css.card_desc}>
-                        <h5>
-                            (
-                            {client
-                                ? client.clientDescription
-                                : categoryItem.categoryDescription}
-                            )
-                        </h5>
-                    </span> */}
                     <div>
                         <ButtonComponent
                             cname={css.add_button}
-                            value={"Edit"}
+                            value={!isCardEditable ? "Edit" : "Cancel"}
+                            handleClick={() => {
+                                setIsCardEditable(prev => !prev);
+                            }}
                         />
                         {client && (
                             <ButtonComponent
                                 cname={css.add_button}
-                                value={"Add Team"}
+                                value={!isCardEditable ? "Add Team" : "Save"}
                                 handleClick={() => {
-                                    setShowDrawer(!showDrawer);
-                                    setaddTeamFormVisible(!addTeamFormVisible);
-                                    getClient(client);
+                                    if (!isCardEditable) {
+                                        setShowDrawer(!showDrawer);
+                                        setaddTeamFormVisible(
+                                            !addTeamFormVisible
+                                        );
+                                        getClient(client);
+                                    } else {
+                                    }
                                 }}
                             />
                         )}
                         {categoryItem && (
                             <ButtonComponent
                                 cname={css.add_button}
-                                value={"Add SubCategory"}
+                                value={
+                                    !isCardEditable ? "Add SubCategory" : "Save"
+                                }
                                 handleClick={() => {
                                     setShowDrawer(!showDrawer);
                                     setaddSubCategoryFormVisible(
@@ -106,11 +105,12 @@ const CardsComponent = ({
                                 }}
                             />
                         )}
-                        {console.log(categoryItem)}
                         {team && (
                             <ButtonComponent
                                 cname={css.add_button}
-                                value={"Add Employee"}
+                                value={
+                                    !isCardEditable ? "Add Employee" : "Save"
+                                }
                                 handleClick={() => {
                                     setShowDrawer(!showDrawer);
                                     setaddEmployeeFormVisible(
@@ -128,24 +128,35 @@ const CardsComponent = ({
                     {teams &&
                         teams.length > 0 &&
                         teams.map((team, index) => {
-                            console.log(team);
-                            return <TeamsComponent key={index} team={team} />;
+                            return (
+                                <TeamsContainer
+                                    key={index}
+                                    team={team}
+                                    setTeams={setTeams}
+                                    isCardEditable={isCardEditable}
+                                />
+                            );
                         })}
                     {subcategories &&
                         subcategories.length > 0 &&
                         subcategories.map((sub, index) => {
-                            console.log(sub);
-                            return <TeamsComponent key={index} sub={sub} />;
+                            return (
+                                <TeamsContainer
+                                    key={index}
+                                    sub={sub}
+                                    setSubCategories={setSubCategories}
+                                    isCardEditable={isCardEditable}
+                                />
+                            );
                         })}
-                    {console.log(employees)}
                     {employees &&
                         employees.length > 0 &&
                         employees.map((employee, index) => {
-                            console.log(employee);
                             return (
-                                <TeamsComponent
+                                <TeamsContainer
                                     key={index}
                                     employee={employee}
+                                    isCardEditable={isCardEditable}
                                 />
                             );
                         })}

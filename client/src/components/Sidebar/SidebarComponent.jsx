@@ -73,7 +73,7 @@ const SidebarComponent = () => {
                 to="/employee"
                 className={css.sidebarNavItem}
                 activeClassName={
-                    activeLocation.category ? css.sidebarActiveNavItem : ""
+                    activeLocation.employee ? css.sidebarActiveNavItem : ""
                 }
                 onClick={() =>
                     handleNavItemClick(

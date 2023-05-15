@@ -1,4 +1,4 @@
-import { getApi, postApi } from "../baseApiService";
+import { delApi, getApi, postApi } from "../baseApiService";
 
 export const ClientListApi = async () => {
     const baseURL = "https://localhost:44325/clientmaster";
@@ -48,4 +48,34 @@ export const TeamPostApi = async data => {
             return error;
         });
     return response;
+};
+export const DeleteEmployeeApi = async employeeId => {
+    const baseURL = `https://localhost:44325/EmployeeDelete?employeeId=${employeeId}`;
+    await delApi(baseURL)
+        .then(() => {
+            alert("Employee deleted successfully");
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
+export const DeleteTeamApi = async teamId => {
+    const baseURL = `https://localhost:44325/teammaster?teamId=${teamId}`;
+    await delApi(baseURL)
+        .then(() => {
+            alert("Team deleted successfully");
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
+export const DeleteSubCategoryApi = async subCategoryId => {
+    const baseURL = `https://localhost:44325/subcategorymaster?subCategoryId=${subCategoryId}`;
+    await delApi(baseURL)
+        .then(() => {
+            alert("Sub-Category deleted successfully");
+        })
+        .catch(error => {
+            console.log(error);
+        });
 };
