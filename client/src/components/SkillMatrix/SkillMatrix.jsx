@@ -6,6 +6,7 @@ import SkillMatrixTable from "../SkillMatrixTable/SkillMatrixTable";
 import SkillMatrixTableContainer from "../SkillMatrixTable/SkillMatrixTableContainer";
 import AccordionContainer from "../AccordionComponent/AccordionContainer";
 import SubCategoryExpectedScoreContainer from "../SubCategoryExpectedScoreComponent/SubCategoryExpectedScoreContainer";
+import SkillMatrixContainer from "../SkillMatrixComponent/SkillMatrixContainer";
 
 const SkillMatrix = ({
     clients,
@@ -17,7 +18,9 @@ const SkillMatrix = ({
     fetchClientTeamsList,
     fetchExpectedScore,
     fetchEmplist,
-    employee
+    employee,
+    fetchEmployeeScores,
+    employeeScores
 }) => {
     const [selectedClient, setSelectedClient] = useState([]);
     const [selectedTeam, setSelectedTeam] = useState("");
@@ -41,6 +44,10 @@ const SkillMatrix = ({
 
     useEffect(() => {
         selectedTeam && fetchEmplist(selectedTeam);
+    }, [selectedTeam]);
+
+    useEffect(() => {
+        selectedTeam && fetchEmployeeScores(selectedTeam);
     }, [selectedTeam]);
 
     const handlechange = e => {
@@ -102,7 +109,7 @@ const SkillMatrix = ({
                 </select>
             </div>
             {/* <div className={css.dependentContainer}> */}
-            <AccordionContainer
+            {/* <AccordionContainer
                 accordionTitle={"Categories"}
                 accordionData={categories}
                 selectedTeam={selectedTeam}
@@ -111,7 +118,8 @@ const SkillMatrix = ({
                 isAccordionDisabled={
                     !selectedClient || !selectedTeam || categories.length === 0
                 }
-            />
+            /> */}
+            <SkillMatrixContainer employee={employee} />
             {/* </div> */}
             <div className={css.mappingsBtnContainer}>
                 <button

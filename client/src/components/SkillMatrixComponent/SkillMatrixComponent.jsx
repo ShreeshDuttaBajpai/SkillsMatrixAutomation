@@ -3,45 +3,49 @@ import css from "./SkillMatrixComponent.css";
 import cx from "classnames";
 import { useEffect } from "react";
 
-const SkillMatrixComponent = ({ skillMatrixData, fetchSkillMatrixTable }) => {
+const SkillMatrixComponent = ({
+    skillMatrixData,
+    fetchSkillMatrixTable,
+    fetchCategoriesList,
+    categories,
+    subCategories,
+    fetchSubCategoriesList,
+    employee
+}) => {
     useEffect(() => {
         fetchSkillMatrixTable();
     }, [fetchSkillMatrixTable]);
+    useEffect(() => {
+        fetchSubCategoriesList();
+    }, [fetchSubCategoriesList]);
+    // useEffect(() => {
+    //     fetchCategoriesList();
+    // }, fetchCategoriesList);
+    console.log(categories);
+    console.log(subCategories);
     console.log(skillMatrixData);
     return (
         <div className={css.skillMatrixPageContainer}>
-            <h3>Skill Matrix Table</h3>
             <div className={css.skillMatrixGridContainer}>
                 <div className={css.skillMatrixGridHeader}>
-                    <div className={css.skillMatrixGridHeadingItem}>Client</div>
-                    <div className={css.skillMatrixGridHeadingItem}>Team</div>
-                    <div className={css.skillMatrixGridHeadingItem}>
-                        Employee ID
-                    </div>
-                    <div className={css.skillMatrixGridHeadingItem}>
-                        Employee Name
-                    </div>
                     <div className={css.skillMatrixGridHeadingItem}>
                         Category
                     </div>
                     <div className={css.skillMatrixGridHeadingItem}>
-                        Sub-Category
+                        Client Expected Score
                     </div>
-                    <div className={css.skillMatrixGridHeadingItem}>
-                        Expected Score
-                    </div>
-                    <div
-                        className={cx(
-                            css.skillMatrixGridItem,
-                            css.removeBorderRight
-                        )}
-                    >
-                        Employee Score
-                    </div>
+                    {employee &&
+                        employee.map(emp => {
+                            return (
+                                <div className={css.skillMatrixGridHeadingItem}>
+                                    {emp.employeeName}
+                                </div>
+                            );
+                        })}
                 </div>
                 <div className={css.skillMatrixGridBody}>
                     {skillMatrixData.length > 0 &&
-                        skillMatrixData.map((matrixRow, index) => {
+                        categories.map((category, index) => {
                             return (
                                 <div
                                     className={cx(css.skillMatrixGridRow, {
@@ -51,33 +55,26 @@ const SkillMatrixComponent = ({ skillMatrixData, fetchSkillMatrixTable }) => {
                                     key={index}
                                 >
                                     <div className={css.skillMatrixGridItem}>
-                                        {matrixRow.clientName}
-                                    </div>
-                                    <div className={css.skillMatrixGridItem}>
-                                        {matrixRow.teamName}
-                                    </div>
-                                    <div className={css.skillMatrixGridItem}>
-                                        {matrixRow.employeeID}
-                                    </div>
-                                    <div className={css.skillMatrixGridItem}>
-                                        {matrixRow.employeeName}
-                                    </div>
-                                    <div className={css.skillMatrixGridItem}>
-                                        {matrixRow.categoryName}
-                                    </div>
-                                    <div className={css.skillMatrixGridItem}>
-                                        {matrixRow.subCategoryName}
-                                    </div>
-                                    <div className={css.skillMatrixGridItem}>
-                                        {matrixRow.clientExpectedScore}
-                                    </div>
-                                    <div
-                                        className={cx(
-                                            css.skillMatrixGridItem,
-                                            css.removeBorderRight
-                                        )}
-                                    >
-                                        {matrixRow.employeeScore}
+                                        <h5 className={css.categoryname}>
+                                            {category.categoryName}
+                                        </h5>
+                                        {subCategories
+                                            .filter(
+                                                subCategory =>
+                                                    subCategory.categoryId ===
+                                                    category.id
+                                            )
+                                            .map(subCategory => (
+                                                <div
+                                                    className={
+                                                        css.subcategoryname
+                                                    }
+                                                >
+                                                    {
+                                                        subCategory.subCategoryName
+                                                    }
+                                                </div>
+                                            ))}
                                     </div>
                                 </div>
                             );
