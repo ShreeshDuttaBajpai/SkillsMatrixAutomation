@@ -23,7 +23,7 @@ namespace Abp.StoryTracker.Endpoints
             _ = app.MapDelete("/subcategorymaster", async ([FromServices] ISkillsMatrixService skillsMatrixService, int subCategoryId) =>
             {
                 await skillsMatrixService.DeleteSubCategory(subCategoryId);
-            });
+            }).WithTags("SkillsMatrix");
             return app;
         }
 

@@ -17,9 +17,9 @@ import {
 import SkillMatrixTable from "./SkillMatrixTable";
 
 const mapStateToProps = state => ({
-    clients: state.skillMatrixOps.clients,
-    categories: state.skillMatrixOps.categories,
-    subCategories: state.skillMatrixOps.subCategories
+    clients: state.skillMatrixOps.clients || [],
+    categories: state.skillMatrixOps.categories || [],
+    subCategories: state.skillMatrixOps.subCategories || []
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import {
+    getCategoryList,
     getClientsList,
     getClientsTeamsList,
     getEmployeeList
@@ -10,15 +11,17 @@ import {
     fetchEmp,
     getCategory,
     getEmpList,
-    setClientTeams
+    setCategories,
+    setClientTeams,
+    setClients
 } from "../../redux/common/actions";
 import CardsComponent from "./CardsComponent";
 import { getClient } from "../../redux/common/actions";
 
 const mapStateToProps = state => ({
-    clients: state.skillMatrixOps.clients,
-    teams: state.skillMatrixOps.teams,
-    employee: state.skillMatrixOps.employee
+    clients: state.skillMatrixOps.clients || [],
+    teams: state.skillMatrixOps.teams || [],
+    employee: state.skillMatrixOps.employee || []
 });
 
 const mapDispatchToProps = dispatch => {
@@ -30,8 +33,8 @@ const mapDispatchToProps = dispatch => {
         },
         fetchEmplist: async teamid => {
             const emps = await getEmployeeList(teamid);
-            console.log(emps)
-            dispatch(getEmpList(emps))
+            console.log(emps);
+            dispatch(getEmpList(emps));
         },
         getClient: async client => {
             dispatch(getClient(client));
@@ -41,6 +44,14 @@ const mapDispatchToProps = dispatch => {
         },
         getEmp: async e => {
             dispatch(fetchEmp(e));
+        },
+        fetchClientList: async () => {
+            const clients = await getClientsList();
+            dispatch(setClients(clients));
+        },
+        fetchCategoryList: async () => {
+            const categories = await getCategoryList();
+            dispatch(setCategories(categories));
         }
     };
 };

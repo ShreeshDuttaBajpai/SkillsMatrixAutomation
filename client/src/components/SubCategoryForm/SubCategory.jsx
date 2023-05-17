@@ -32,7 +32,7 @@ const SubCategory = props => {
                         await props
                             .postSubCategory(subCategory)
                             .then(async () => {
-                                props.setSubCategories(
+                                props.setSubCategory(
                                     await getSubCategoryList(
                                         subCategory.categoryid
                                     )

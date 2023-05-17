@@ -15,19 +15,17 @@ import {
 } from "../../redux/common/actions";
 
 const mapStateToProps = state => ({
-    clients: state.skillMatrixOps.clients,
-    categories: state.skillMatrixOps.categories
+    clients: state.skillMatrixOps.clients || [],
+    categories: state.skillMatrixOps.categories || []
 });
 
 const mapDispatchToProps = dispatch => ({
     fetchClientList: async () => {
         const clients = await getClientsList();
-        console.log(1);
         dispatch(setClients(clients));
     },
     fetchCategoryList: async () => {
         const categories = await getCategoryList();
-        console.log(categories);
         dispatch(setCategories(categories));
     },
     fetchTeamList: async id => {
