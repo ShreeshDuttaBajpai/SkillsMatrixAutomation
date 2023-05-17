@@ -20,6 +20,10 @@ namespace Abp.StoryTracker.Endpoints
                 var result = await skillsMatrixService.GetClientListAsync();
                 return (result);
             }).WithTags("SkillsMatrix");
+            _ = app.MapPut("/client-teams", async ([FromServices] ISkillsMatrixService skillsMatrixService, [FromBody] EditClientTeamsApplicationContractsModel editClientTeamsObj) =>
+            {
+                await skillsMatrixService.EditClientTeams(editClientTeamsObj);
+            }).WithTags("SkillsMatrix");
             return app;
         }
 

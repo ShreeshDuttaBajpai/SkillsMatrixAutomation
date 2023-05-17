@@ -302,5 +302,68 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
             var deleteSubCategoryQuery = $"DELETE FROM dbo.SubCategoryMaster WHERE id={subCategoryId}";
             await dbConnection.QueryAsync(deleteSubCategoryQuery, transaction: await GetDbTransactionAsync());
         }
+        public async Task EditClientTeams(EditClientTeamsModel editClientTeams)
+        {
+            var dbConnection = await GetDbConnectionAsync();
+
+            var updateClientQuery = $"UPDATE dbo.ClientMaster " +
+                $"SET ClientName='{editClientTeams.ClientName}', " +
+                $"ClientDescription='{editClientTeams.ClientDescription}', " +
+                $"ModifiedOn='{editClientTeams.ModifiedOn}' " +
+                $"WHERE Id={editClientTeams.Id}" ;
+            await dbConnection.QueryAsync(updateClientQuery, transaction: await GetDbTransactionAsync());
+
+            foreach(var team in editClientTeams.TeamMasterList)
+            {
+                var updateTeamQuery = $"UPDATE dbo.TeamMaster " +
+                $"SET TeamName='{team.TeamName}', " +
+                $"TeamDescription='{team.TeamDescription}', " +
+                $"ModifiedOn='{editClientTeams.ModifiedOn}' " +
+                $"WHERE Id={team.Id}";
+                await dbConnection.QueryAsync(updateTeamQuery, transaction: await GetDbTransactionAsync());
+            }
+        }
+        public async Task EditCategorySubcategory(EditCategorySubcategoryModel editCategorySubcategoryObj)
+        {
+            var dbConnection = await GetDbConnectionAsync();
+
+            var updateCategoryQuery = $"UPDATE dbo.CategoryMaster " +
+                $"SET CategoryName='{editCategorySubcategoryObj.CategoryName}', " +
+                $"CategoryDescription='{editCategorySubcategoryObj.CategoryDescription}', " +
+                $"ModifiedOn='{editCategorySubcategoryObj.ModifiedOn}' " +
+                $"WHERE Id={editCategorySubcategoryObj.Id}";
+            await dbConnection.QueryAsync(updateCategoryQuery, transaction: await GetDbTransactionAsync());
+
+
+            foreach (var subCategory in editCategorySubcategoryObj.SubCategories)
+            {
+                var updateSubCategoryQuery = $"UPDATE dbo.SubCategoryMaster " +
+                $"SET SubCategoryName='{subCategory.SubCategoryName}', " +
+                $"SubCategoryDescription='{subCategory.SubCategoryDescription}', " +
+                $"ModifiedOn='{editCategorySubcategoryObj.ModifiedOn}' " +
+                $"WHERE Id={subCategory.Id}";
+                await dbConnection.QueryAsync(updateSubCategoryQuery, transaction: await GetDbTransactionAsync());
+            }
+        }
+        public async Task EditTeamEmployees(EditTeamEmployeesModel editTeamEmployeesObj)
+        {
+            var dbConnection = await GetDbConnectionAsync();
+
+            var updateTeamQuery = $"UPDATE dbo.TeamMaster " +
+                $"SET TeamName='{editTeamEmployeesObj.TeamName}', " +
+                $"TeamDescription='{editTeamEmployeesObj.TeamDescription}', " +
+                $"ModifiedOn='{editTeamEmployeesObj.ModifiedOn}' " +
+                $"WHERE Id={editTeamEmployeesObj.Id}";
+            await dbConnection.QueryAsync(updateTeamQuery, transaction: await GetDbTransactionAsync());
+
+
+            foreach (var employee in editTeamEmployeesObj.Employees)
+            {
+                var updateEmployeeQuery = $"UPDATE dbo.EmployeeDetails " +
+                $"SET EmployeeName='{employee.EmployeeName}' " +
+                $"WHERE EmployeeId={employee.EmployeeId}";
+                await dbConnection.QueryAsync(updateEmployeeQuery, transaction: await GetDbTransactionAsync());
+            }
+        }
     }
 }

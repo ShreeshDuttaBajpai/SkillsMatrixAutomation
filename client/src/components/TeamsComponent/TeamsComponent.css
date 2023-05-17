@@ -2,6 +2,7 @@
     padding: 0 10px 10px;
     display: flex;
     justify-content: space-between;
+    /* align-items: center; */
 }
 .teamSpan {
     padding-left: 10px;
@@ -10,11 +11,21 @@
     cursor: pointer;
 }
 .editableInputFields {
-    width: 45%;
+    width: 100%;
 }
 .cardItemRow {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: space-between;
     width: 85%;
+}
+.inputErrorsContainer {
+    width: 45%;
+}
+.errorMsgSpan {
+    font-size: 13px;
+    color: red;
+}
+.rowIcon {
+    margin-top: 7px;
 }

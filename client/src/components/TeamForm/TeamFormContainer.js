@@ -4,7 +4,7 @@ import { TeamPostApi } from "../../services/ClientService/ClientService";
 import { postTeams } from "../../redux/common/actions";
 
 const mapStateToProps = state => ({
-    clients: state.skillMatrixOps.clients,
+    clients: state.skillMatrixOps.clients || [],
     client: state.skillMatrixOps.client
 });
 

@@ -301,5 +301,39 @@ namespace Abp.StoryTracker.SkillsMatrixService
         {
             await skillMatrixRepository.DeleteSubCategory(subCategoryId);
         }
+        public async Task EditClientTeams(EditClientTeamsApplicationContractsModel editClientTeams)
+        {
+            var mapEditClientTeams = objectMapper.Map<EditClientTeamsApplicationContractsModel, EditClientTeamsModel>(editClientTeams);
+            mapEditClientTeams.TeamMasterList = new List<TeamMasterModel>();
+            foreach (var teamApplicationMaster in editClientTeams.Teams)
+            {
+                var teamMaster = objectMapper.Map<TeamMasterApplicationContractsModel, TeamMasterModel>(teamApplicationMaster);
+                mapEditClientTeams.TeamMasterList.Add(teamMaster);
+            }
+            //mapEditClientTeams.TeamMasterList = objectMapper.Map<TeamMasterApplicationContractsModel, TeamMasterModel>(editClientTeams.TeamMasterApplicationList);
+            await skillMatrixRepository.EditClientTeams(mapEditClientTeams);
+        }
+        public async Task EditCategorySubcategory(EditCategorySubcategoryApplicationContractsModel editCategorySubcategoryObj)
+        {
+            var mapEditCategorySubcategory = objectMapper.Map<EditCategorySubcategoryApplicationContractsModel, EditCategorySubcategoryModel>(editCategorySubcategoryObj);
+            mapEditCategorySubcategory.SubCategories = new List<SubCategoryMasterModel>();
+            foreach(var subCategory in  editCategorySubcategoryObj.SubCategories)
+            {
+                var mapSubCategory = objectMapper.Map<SubCategoryMasterApplicationContractsModel, SubCategoryMasterModel>(subCategory);
+                mapEditCategorySubcategory.SubCategories.Add(mapSubCategory);
+            }
+            await skillMatrixRepository.EditCategorySubcategory(mapEditCategorySubcategory);
+        }
+        public async Task EditTeamEmployees(EditTeamEmployeesApplicationContractsModel editTeamEmployeesObj)
+        {
+            var mapEditTeamEmployees = objectMapper.Map<EditTeamEmployeesApplicationContractsModel, EditTeamEmployeesModel>(editTeamEmployeesObj);
+            mapEditTeamEmployees.Employees = new List<EmployeeDetailsModel>();
+            foreach(var employee in editTeamEmployeesObj.Employees)
+            {
+                var mapEmployees = objectMapper.Map<EmployeeDetailsApplicationContractsModel, EmployeeDetailsModel>(employee);
+                mapEditTeamEmployees.Employees.Add(mapEmployees);
+            }
+            await skillMatrixRepository.EditTeamEmployees(mapEditTeamEmployees);
+        }
     }
 }

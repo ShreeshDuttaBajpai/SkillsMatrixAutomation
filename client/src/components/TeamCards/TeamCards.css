@@ -1,7 +1,8 @@
-.clientdropdown{
+.clientdropdown {
     margin: 10px;
     margin-left: 2rem;
     padding: 4px;
+    cursor: pointer;
 }
 .card_row {
     display: flex;
@@ -15,6 +16,6 @@
     /* height: 100%; */
     width: 100%;
 }
-.team_container{
+.team_container {
     width: 100%;
 }

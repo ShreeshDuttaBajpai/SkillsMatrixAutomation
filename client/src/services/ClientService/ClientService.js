@@ -1,4 +1,4 @@
-import { delApi, getApi, postApi } from "../baseApiService";
+import { delApi, getApi, postApi, putApi } from "../baseApiService";
 
 export const ClientListApi = async () => {
     const baseURL = "https://localhost:44325/clientmaster";
@@ -49,6 +49,7 @@ export const TeamPostApi = async data => {
         });
     return response;
 };
+
 export const DeleteEmployeeApi = async employeeId => {
     const baseURL = `https://localhost:44325/EmployeeDelete?employeeId=${employeeId}`;
     await delApi(baseURL)
@@ -59,6 +60,7 @@ export const DeleteEmployeeApi = async employeeId => {
             console.log(error);
         });
 };
+
 export const DeleteTeamApi = async teamId => {
     const baseURL = `https://localhost:44325/teammaster?teamId=${teamId}`;
     await delApi(baseURL)
@@ -69,6 +71,7 @@ export const DeleteTeamApi = async teamId => {
             console.log(error);
         });
 };
+
 export const DeleteSubCategoryApi = async subCategoryId => {
     const baseURL = `https://localhost:44325/subcategorymaster?subCategoryId=${subCategoryId}`;
     await delApi(baseURL)
@@ -76,6 +79,42 @@ export const DeleteSubCategoryApi = async subCategoryId => {
             alert("Sub-Category deleted successfully");
         })
         .catch(error => {
+            console.log(error);
+        });
+};
+
+export const EditClientTeamApi = async editObj => {
+    const baseURL = "https://localhost:44325/client-teams";
+    await putApi(baseURL, editObj)
+        .then(() => {
+            alert("Client and teams updated successfully");
+        })
+        .catch(error => {
+            alert("Error ocurred. Check console.");
+            console.log(error);
+        });
+};
+
+export const EditCategorySubcategoriesApi = async editObj => {
+    const baseURL = "https://localhost:44325/category-subcategory";
+    await putApi(baseURL, editObj)
+        .then(() => {
+            alert("Category and sub-categories updated successfully");
+        })
+        .catch(error => {
+            alert("Error ocurred. Check console.");
+            console.log(error);
+        });
+};
+
+export const EditTeamEmployeesApi = async editObj => {
+    const baseURL = "https://localhost:44325/team-employees";
+    await putApi(baseURL, editObj)
+        .then(() => {
+            alert("Team and employees updated successfully");
+        })
+        .catch(error => {
+            alert("Error ocurred. Check console.");
             console.log(error);
         });
 };

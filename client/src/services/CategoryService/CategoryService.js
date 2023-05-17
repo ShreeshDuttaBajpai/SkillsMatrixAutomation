@@ -10,7 +10,6 @@ export const CategoryListApi = async () => {
         .catch(error => {
             return error;
         });
-    console.log(response);
     return response;
 };
 
@@ -24,7 +23,6 @@ export const SubCategoryListApi = async categoryId => {
         .catch(error => {
             return error;
         });
-    console.log(response);
     return response;
 };
 
@@ -38,19 +36,17 @@ export const CategoryPostApi = async data => {
         .catch(error => {
             return error;
         });
-    console.log(response);
     return response;
 };
 
 export const SubCatPostApi = async data => {
     const baseURL = "https://localhost:44325/postSubCategoryMaster";
     const response = await postApi(baseURL, data)
-        .then(res => {
+        .then(() => {
             alert("Sub Category added successfully!!");
         })
         .catch(error => {
             return error;
         });
-    console.log(response);
     return response;
 };
