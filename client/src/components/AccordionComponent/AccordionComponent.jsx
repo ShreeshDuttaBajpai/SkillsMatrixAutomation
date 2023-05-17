@@ -5,7 +5,12 @@ import { useState } from "react";
 import AccordionCategoriesContainer from "../AccordionCategoriesComponent/AccordionCategoriesContainer";
 import { useEffect } from "react";
 
-const AccordionComponent = ({ selectedTeam, isAccordionDisabled }) => {
+const AccordionComponent = ({
+    selectedTeam,
+    isAccordionDisabled,
+    selectedMonth,
+    employee
+}) => {
     const isDisabled = isAccordionDisabled || false;
     const [isAccordionOpen, setIsAccordionOpen] = useState(false);
     useEffect(() => {
@@ -26,6 +31,14 @@ const AccordionComponent = ({ selectedTeam, isAccordionDisabled }) => {
                     <div className={css.clientExpectedDiv}>
                         Client Expected Score
                     </div>
+                    {employee &&
+                        employee.map(emp => {
+                            return (
+                                <div className={css.employeeheading}>
+                                    {emp.employeeName}
+                                </div>
+                            );
+                        })}
                 </div>
             </div>
             <div
@@ -34,7 +47,7 @@ const AccordionComponent = ({ selectedTeam, isAccordionDisabled }) => {
                     [css.accordionDisabled]: isDisabled
                 })}
             >
-                <AccordionCategoriesContainer />
+                <AccordionCategoriesContainer employee={employee} />
             </div>
         </div>
     );

@@ -24,7 +24,7 @@ const TeamCards = ({ clients, fetchClientList, fetchTeamList, teams }) => {
                 value={selectedClient}
                 onChange={handlechange}
             >
-                <option value="" disabled selected>
+                <option value="" disabled>
                     Select Client
                 </option>
                 {clients.length > 1 &&

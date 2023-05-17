@@ -251,10 +251,10 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
         }
 
 
-        public async Task<List<SkillsMatrixModel>> GetEmployeeScores(int employeeId)
+        public async Task<List<SkillsMatrixModel>> GetEmployeeScores(int teamId)
         {
             var dbConnection = await GetDbConnectionAsync();
-            var query = $"SELECT * FROM dbo.SkillsMatrix WHERE EmployeeId={employeeId};";
+            var query = $"select EmployeeId,EmployeeScore from SkillsMatrix s inner join SubCategoryMapping c on s.SubCategoryId=c.SubCategoryId where c.TeamId=" + teamId + "";
             var result = (await dbConnection.QueryAsync<SkillsMatrixModel>(query,
                 transaction: await GetDbTransactionAsync())).ToList();
             return result;
