@@ -20,6 +20,11 @@ namespace Abp.StoryTracker.Endpoints
                 var result = await skillsMatrixService.GetCategoryListAsync();
                 return (result);
             }).WithTags("SkillsMatrix");
+
+            _ = app.MapPut("/category-subcategory", async ([FromServices] ISkillsMatrixService skillsMatrixService, [FromBody] EditCategorySubcategoryApplicationContractsModel editCategorySubcategoryObj) =>
+            {
+                await skillsMatrixService.EditCategorySubcategory(editCategorySubcategoryObj);
+            }).WithTags("SkillsMatrix");
             return app;
         }
 

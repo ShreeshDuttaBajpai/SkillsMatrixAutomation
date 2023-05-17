@@ -30,14 +30,13 @@ const TeamCards = ({ clients, fetchClientList, fetchTeamList, teams }) => {
                 {clients.length > 1 &&
                     clients.map(emp => (
                         <option key={emp.id} value={emp.id}>
-                            {console.log(emp)}
                             {emp.clientName}
                         </option>
                     ))}
             </select>
             <div className={css.teamcard_container}>
                 <div className={css.card_row}>
-                    {teams.length &&
+                    {teams.length > 0 &&
                         teams.map((team, index) => {
                             return <CardsContainer key={index} team={team} />;
                         })}

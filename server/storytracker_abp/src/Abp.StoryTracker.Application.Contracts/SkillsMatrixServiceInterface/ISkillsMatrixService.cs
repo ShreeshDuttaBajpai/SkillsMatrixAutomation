@@ -40,5 +40,8 @@ namespace Abp.StoryTracker.SkillsMatrixServiceInterface
         Task DeleteEmployee(int employeeId);
         Task DeleteTeam(int teamId);
         Task DeleteSubCategory(int subCategoryId);
+        Task EditClientTeams(EditClientTeamsApplicationContractsModel editClientTeams);
+        Task EditCategorySubcategory(EditCategorySubcategoryApplicationContractsModel editCategorySubcategoryObj);
+        Task EditTeamEmployees(EditTeamEmployeesApplicationContractsModel editTeamEmployeesObj);
     }
 }

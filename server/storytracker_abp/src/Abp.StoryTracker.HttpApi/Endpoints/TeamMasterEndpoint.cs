@@ -25,6 +25,11 @@ namespace Abp.StoryTracker.Endpoints
             {
                 await skillsMatrixService.DeleteTeam(teamId);
             }).WithTags("SkillsMatrix");
+
+            _ = app.MapPut("/team-employees", async ([FromServices] ISkillsMatrixService skillsMatrixService, [FromBody] EditTeamEmployeesApplicationContractsModel editTeamEmployeesObj) =>
+            {
+                await skillsMatrixService.EditTeamEmployees(editTeamEmployeesObj);
+            }).WithTags("SkillsMatrix");
             return app;
         }
 

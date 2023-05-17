@@ -36,7 +36,6 @@ export const CategoryListApi = async () => {
         .catch(error => {
             return error;
         });
-    console.log(response);
     return response;
 };
 
@@ -50,7 +49,6 @@ export const SubCategoryListApi = async () => {
         .catch(error => {
             return error;
         });
-    console.log(response);
     return response;
 };
 
@@ -64,7 +62,6 @@ export const SubCategoryCategoryListApi = async categoryId => {
         .catch(error => {
             return error;
         });
-    console.log(response);
     return response;
 };
 
@@ -78,6 +75,5 @@ export const TeamEmployeesListApi = async teamId => {
         .catch(error => {
             return error;
         });
-    console.log(response);
     return response;
 };

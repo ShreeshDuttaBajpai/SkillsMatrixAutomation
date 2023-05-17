@@ -1,118 +1,60 @@
-// import { useState } from "react";
-// export const validationInput = (state, title) => {
-//     // const [formError, setformError] = useState({});
-//     // let err = {};
-//     // let array = [];
-//     var result3 = `${title}name`;
-//     console.log(state);
-//     console.log(result3);
-
-//     var regex = /^[ A-Za-z0-9_-]*$/;
-//     if (state[`${title}name`] === "" && state[`${title}description`] === "") {
-//         return { error: "No blank values allowed", field: "both" };
-//     } else if (
-//         !state[`${title}name`].match(regex) &&
-//         !state[`${title}description`].match(regex)
-//     ) {
-//         return {
-//             error: "Alphanumeric with - and _ are allowed",
-//             field: "both"
-//         };
-//     } else if (state[`${title}name`] === "") {
-//         // var validateName = formError.clientName;
-//         // console.log(validateName);
-//         // err.clientName = "Enter alphanumeric";
-//         // err[`${title}name`] = "No blank values allowed";
-
-//         // alert("No blank values allowed");
-//         // return false;
-//         return { error: "No blank values allowed", field: "name" };
-//     } else if (state[`${title}function`] === "") {
-//         // err;
-//         // alert("No blank values allowed");
-//         // return false;
-//         return "no blank values allowed";
-//     } else if (state[`${title}description`] === "") {
-//         // alert("No blank values allowed");
-
-//         // return false;
-//         return { error: "No blank values allowed", field: "description" };
-//     } else if (
-//         state[`${title}name`].match(regex) &&
-//         state[`${title}description`].match(regex)
-//     ) {
-//         if (`${title}` === "client") {
-//             return "";
-//         } else if (`${title}` === "team") {
-//             return "";
-//         } else if (`${title}` === "category") {
-//             // postCategory(state);
-//             return "";
-//         } else if (`${title}` === "subcategory") {
-//             return "";
-//         }
-//         // } else if (
-//         //     !state[`${title}name`].match(regex) ||
-//         //     !state[`${title}description`].match(regex) ||
-//         //     !state[`${title}function`].match(regex)
-//         // ) {
-//         //     // alert("Alphanumeric with - and _ are allowed");
-//         //     // return false;
-//         //     return "Alphanumeric with - and _ are allowed";
-//         // }
-//     } else if (!state[`${title}name`].match(regex)) {
-//         return {
-//             error: "Alphanumeric with - and _ are allowed",
-//             field: "name"
-//         };
-//     } else if (!state[`${title}description`].match(regex)) {
-//         return {
-//             error: "Alphanumeric with - and _ are allowed",
-//             field: "description"
-//         };
-//     }
-//     setformError({ ...err });
-// };
-
-//import { useState } from "react";
-
 export const validationInput = (state, title) => {
-    // const [formError, setformError] = useState({});
-    // let err = {};
-    let array = [];
-    var result3 = `${title}name`;
-    console.log(state);
-    console.log(result3);
-    var regex = /^[ A-Za-z0-9_-]*$/;
-    if (state[`${title}name`] !== undefined && state[`${title}name`] === "") {
-        array.push({ error: "Blank values are not allowed", field: "name" });
+    let errorArray = [];
+    console.log(state[`${title}Name`]);
+    const blankError = "Blank values are not allowed";
+    const specialCharError =
+        "Alphanumeric with only '&', '.', '-' and '_' are allowed";
+    var regex = /^[ &.A-Za-z0-9_-]*$/;
+    if (
+        state[`${title}name`] !== undefined &&
+        state[`${title}name`].trim() === ""
+    ) {
+        errorArray.push({
+            error: blankError,
+            field: "name"
+        });
     }
-    if (state[`${title}Name`] !== undefined && state[`${title}Name`] === "") {
-        array.push({ error: "Blank values are not allowed", field: "Name" });
+    if (
+        state[`${title}Name`] !== undefined &&
+        state[`${title}Name`].trim() === ""
+    ) {
+        errorArray.push({
+            error: blankError,
+            field: "Name"
+        });
     }
     if (
         state[`${title}description`] !== undefined &&
-        state[`${title}description`] === ""
+        state[`${title}description`].trim() === ""
     ) {
-        array.push({
-            error: "Blank values are not allowed",
+        errorArray.push({
+            error: blankError,
             field: "description"
+        });
+    }
+    if (
+        state[`${title}Description`] !== undefined &&
+        state[`${title}Description`].trim() === ""
+    ) {
+        errorArray.push({
+            error: blankError,
+            field: "Description"
         });
     }
 
     if (state[`${title}Id`] !== undefined && state[`${title}Id`] === 0) {
-        array.push({
-            error: "Blank values is not allowed",
+        errorArray.push({
+            error: blankError,
             field: "Id"
         });
     }
 
     if (
         state[`${title}function`] !== undefined &&
-        state[`${title}function`] === ""
+        state[`${title}function`].trim() === ""
     ) {
-        array.push({
-            error: "Blank values are not allowed",
+        errorArray.push({
+            error: blankError,
             field: "function"
         });
     }
@@ -120,9 +62,18 @@ export const validationInput = (state, title) => {
         state[`${title}name`] !== undefined &&
         !state[`${title}name`].match(regex)
     ) {
-        array.push({
-            error: "Alphanumeric with - and _ are allowed",
+        errorArray.push({
+            error: specialCharError,
             field: "name"
+        });
+    }
+    if (
+        state[`${title}Name`] !== undefined &&
+        !state[`${title}Name`].match(regex)
+    ) {
+        errorArray.push({
+            error: specialCharError,
+            field: "Name"
         });
     }
 
@@ -130,8 +81,8 @@ export const validationInput = (state, title) => {
         state[`${title}function`] !== undefined &&
         !state[`${title}function`].match(regex)
     ) {
-        array.push({
-            error: "Alphanumeric with - and _ are allowed",
+        errorArray.push({
+            error: specialCharError,
             field: "function"
         });
     }
@@ -139,78 +90,47 @@ export const validationInput = (state, title) => {
         state[`${title}description`] !== undefined &&
         !state[`${title}description`].match(regex)
     ) {
-        array.push({
-            error: "Alphanumeric with - and _ are allowed",
+        errorArray.push({
+            error: specialCharError,
             field: "description"
         });
     }
-    return array;
+    if (
+        state[`${title}Description`] !== undefined &&
+        !state[`${title}Description`].match(regex)
+    ) {
+        errorArray.push({
+            error: specialCharError,
+            field: "Description"
+        });
+    }
+    return errorArray;
 };
-// else if (
-//     !state[`${title}name`].match(regex) &&
-//     !state[`${title}description`].match(regex)
-// ) {
-//     return {
-//         error: "Alphanumeric with - and _ are allowed",
-//         field: "both"
-//     };
-// }
-// else if (state[`${title}name`] === "") {
-//     // var validateName = formError.clientName;
-//     // console.log(validateName);
-//     // err.clientName = "Enter alphanumeric";
-//     // err[`${title}name`] = "No blank values allowed";
 
-//     // alert("No blank values allowed");
-//     // return false;
-//     return { error: "No blank values allowed", field: "name" };
-// }
-// else if (state[`${title}function`] === "") {
-//     // err;
-//     // alert("No blank values allowed");
-//     // return false;
-//     return "no blank values allowed";
-// }
-
-// else if (state[`${title}description`] === "") {
-//     // alert("No blank values allowed");
-
-//     // return false;
-//     return { error: "No blank values allowed", field: "description" };
-// }
-// else if (
-//     state[`${title}name`].match(regex) &&
-//     state[`${title}description`].match(regex)
-// ) {
-//     if (`${title}` === "client") {
-//         return "";
-//     } else if (`${title}` === "team") {
-//         return "";
-//     } else if (`${title}` === "category") {
-//         // postCategory(state);
-//         return "";
-//     } else if (`${title}` === "subcategory") {
-//         return "";
-//     }
-//     // } else if (
-//     //     !state[`${title}name`].match(regex) ||
-//     //     !state[`${title}description`].match(regex) ||
-//     //     !state[`${title}function`].match(regex)
-//     // ) {
-//     //     // alert("Alphanumeric with - and _ are allowed");
-//     //     // return false;
-//     //     return "Alphanumeric with - and _ are allowed";
-//     // }
-// } else if (!state[`${title}name`].match(regex)) {
-//     return {
-//         error: "Alphanumeric with - and _ are allowed",
-//         field: "name"
-//     };
-// } else if (!state[`${title}description`].match(regex)) {
-//     return {
-//         error: "Alphanumeric with - and _ are allowed",
-//         field: "description"
-//     };
-// }
-// setformError({ ...err });
-//};
+export const validateEditObj = (state, title, subTitle) => {
+    const errorObj =
+        title === "client"
+            ? {
+                  id: state.id,
+                  [`${title}Error`]: validationInput(state, title),
+                  [`${subTitle}Errors`]: state[`${subTitle}s`].map(sub =>
+                      validationInput(sub, subTitle)
+                  )
+              }
+            : title === "category"
+            ? {
+                  id: state.id,
+                  [`${title}Error`]: validationInput(state, title),
+                  [`${subTitle}Errors`]: state.subCategories.map(sub =>
+                      validationInput(sub, subTitle)
+                  )
+              }
+            : title === "team" && {
+                  id: state.id,
+                  [`${title}Error`]: validationInput(state, title),
+                  [`${subTitle}Errors`]: state[`${subTitle}s`].map(sub =>
+                      validationInput(sub, subTitle)
+                  )
+              };
+    return errorObj;
+};

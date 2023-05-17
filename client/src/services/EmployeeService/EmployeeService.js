@@ -15,6 +15,7 @@ export const EmpListApi = async teamId => {
 
 export const EmpPostApi = async data => {
     const baseURL = "https://localhost:44325/postEmployeeMaster";
+
     const response = await postApi(baseURL, data)
         .then(res => {
             alert("Employee added successfully!!");

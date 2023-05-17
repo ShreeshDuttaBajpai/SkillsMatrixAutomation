@@ -80,7 +80,7 @@ const DrawerComponent = props => {
                         }
                         showDrawer={props.showDrawer}
                         setShowDrawer={props.setShowDrawer}
-                        setSubCategories={props.setSubCategories}
+                        setSubCategory={props.setSubCategory}
                     />
                 )}
                 {props.addEmployeeFormVisible && props.parentid && (

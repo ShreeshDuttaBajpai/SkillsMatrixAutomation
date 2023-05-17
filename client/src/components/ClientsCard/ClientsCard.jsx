@@ -19,11 +19,6 @@ const ClientsCard = ({
     const [categoryFormVisible, setcategoryFormVisible] = useState(false);
 
     useEffect(() => {
-        console.log("hello");
-        console.log(clientFormVisible);
-    }, [clientFormVisible]);
-
-    useEffect(() => {
         fetchClientList();
     }, [fetchClientList]);
 
@@ -59,11 +54,11 @@ const ClientsCard = ({
                 )}
             </div>
             {teams && (
-                <select className={css.clientdropdown}>
-                    <option value="" disabled selected>
+                <select className={css.clientdropdown} defaultValue={""}>
+                    <option value="" disabled>
                         Select Client
                     </option>
-                    {clients.length > 1 &&
+                    {clients.length > 0 &&
                         clients.map(emp => (
                             <option key={emp.Id} value={emp.Id}>
                                 {console.log(emp)}
