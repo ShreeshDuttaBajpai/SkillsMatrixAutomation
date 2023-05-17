@@ -275,15 +275,17 @@ namespace Abp.StoryTracker.SkillsMatrixService
             await skillMatrixRepository.PutSubCategoryMappingListAsync(putSubCategoryMappingData);
         }
 
-        public async Task<List<ScoresSkillMatrixApplicationContractsModel>> GetEmployeeScores(int teamId)
+        public async Task<List<SkillsMatrixApplicationContractsModel>> GetEmployeeScores(int teamId)
         {
             var domainResult = await skillMatrixRepository.GetEmployeeScores(teamId);
-            var scores = new List<ScoresSkillMatrixApplicationContractsModel>();
+            var scores = new List<SkillsMatrixApplicationContractsModel>();
             foreach(var item in domainResult)
             {
-                var singleScore = new ScoresSkillMatrixApplicationContractsModel();
-                singleScore.employeeId = (int)item.EmployeeId;
-                singleScore.employeeScore = item.EmployeeScore;
+                //var singleScore = new SkillsMatrixApplicationContractsModel();
+                //singleScore.employeeId = (int)item.EmployeeId;
+                //singleScore.employeeScore = item.EmployeeScore;
+                //scores.Add(singleScore);
+                var singleScore = objectMapper.Map<SkillsMatrixModel, SkillsMatrixApplicationContractsModel>(item);
                 scores.Add(singleScore);
             }
             return scores;

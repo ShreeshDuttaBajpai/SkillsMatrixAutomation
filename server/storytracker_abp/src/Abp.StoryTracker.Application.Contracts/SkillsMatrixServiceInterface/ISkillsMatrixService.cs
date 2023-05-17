@@ -24,7 +24,7 @@ namespace Abp.StoryTracker.SkillsMatrixServiceInterface
         Task<List<EmployeeDetailsApplicationContractsModel>> GetEmployeeDetailsListAsync();
         Task<List<EmployeeDetailsApplicationContractsModel>> GetEmployeeDetailsTeamWiseListAsync(int TeamId);
 
-        Task<List<ScoresSkillMatrixApplicationContractsModel>> GetEmployeeScores(int teamId);
+        Task<List<SkillsMatrixApplicationContractsModel>> GetEmployeeScores(int teamId);
         //Task<List<EmpSkillMatrixScoreApplicationModel>> GetEmpSkillMatrixScore(int employeeId);
        
 
