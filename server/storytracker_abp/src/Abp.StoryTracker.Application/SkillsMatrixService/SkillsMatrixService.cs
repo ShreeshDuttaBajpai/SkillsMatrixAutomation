@@ -254,7 +254,7 @@ namespace Abp.StoryTracker.SkillsMatrixService
             {
                 var mode = new SkillsMatrixApplicationContractsModel();
                 mode.EmployeeId = postSkillMatrix.employeeId;
-                mode.SubCategoryId = item.subCategoryId;
+                mode.EmployeeId = item.employeeId;
                 mode.EmployeeScore = item.employeeScore;
                 //var postSubCategoryMappingData = objectMapper.Map<PostSubCategoryMappingApplicationContractsModel, SubCategoryMappingModel>(postSubCategoryMapping);
                 //await skillMatrixRepository.PostSubCategoryMappingListAsync(postSubCategoryMappingData);
@@ -275,14 +275,14 @@ namespace Abp.StoryTracker.SkillsMatrixService
             await skillMatrixRepository.PutSubCategoryMappingListAsync(putSubCategoryMappingData);
         }
 
-        public async Task<List<ScoresSkillMatrixApplicationContractsModel>> GetEmployeeScores(int employeeId)
+        public async Task<List<ScoresSkillMatrixApplicationContractsModel>> GetEmployeeScores(int teamId)
         {
-            var domainResult = await skillMatrixRepository.GetEmployeeScores(employeeId);
+            var domainResult = await skillMatrixRepository.GetEmployeeScores(teamId);
             var scores = new List<ScoresSkillMatrixApplicationContractsModel>();
             foreach(var item in domainResult)
             {
                 var singleScore = new ScoresSkillMatrixApplicationContractsModel();
-                singleScore.subCategoryId = (int)item.SubCategoryId;
+                singleScore.employeeId = (int)item.EmployeeId;
                 singleScore.employeeScore = item.EmployeeScore;
                 scores.Add(singleScore);
             }

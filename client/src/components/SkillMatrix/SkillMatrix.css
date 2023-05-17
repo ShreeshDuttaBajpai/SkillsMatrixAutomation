@@ -14,7 +14,15 @@
     height: 100%;
 }
 .team_container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
     height: 100%;
+}
+.dependentContainer {
+    min-width: 300px;
+    display: flex;
 }
 .mappingsBtn {
     width: max-content;
@@ -39,18 +47,23 @@
 .disabledSelect {
     cursor: default !important;
 }
-.dependentContainer {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin: 20px 40px;
-    height: 100%;
-    align-items: center;
-}
 .mappingsBtnContainer {
     width: 240px;
     display: flex;
     justify-content: space-between;
     align-self: flex-end;
     float: right;
+}
+.employeeheading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    font-size: 20px;
+    font-weight: 500;
+    background-color: #ededed;
+}
+.nameheading{
+    text-align: center;
+    padding: 5px;
 }

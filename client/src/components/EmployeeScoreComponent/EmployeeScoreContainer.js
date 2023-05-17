@@ -10,6 +10,7 @@ import {
     setClientTeams,
     setClients,
     setEmployeeScores,
+    setExpectedScoreMappings,
     setSubCategories,
     setTeamEmployees
 } from "../../redux/common/actions";
@@ -26,7 +27,8 @@ const mapStateToProps = state => {
         employees: state.skillMatrixOps.teamEmployees || [],
         categories: state.skillMatrixOps.categories || [],
         subCategories: state.skillMatrixOps.subCategories || [],
-        employeeScores: state.skillMatrixOps.employeeScores || []
+        employeeScores: state.skillMatrixOps.employeeScores || [],
+        expectedScoreMappings: state.skillMatrixOps.expectedScoreMappings || []
     };
 };
 
@@ -58,6 +60,9 @@ const mapDispatchToProps = dispatch => {
         },
         setExpectedScores: async scores => {
             dispatch(setEmployeeScores(scores));
+        },
+        setExpectedScoreMappings: scoringData => {
+            dispatch(setExpectedScoreMappings(scoringData));
         }
     };
 };

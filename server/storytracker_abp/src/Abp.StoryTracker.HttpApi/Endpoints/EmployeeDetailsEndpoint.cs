@@ -41,9 +41,9 @@ namespace Abp.StoryTracker.Endpoints
 
         public static WebApplication MapEmployeeScoreEndpoints(this WebApplication app)
         {
-            _ = app.MapGet("/EmployeeScores", async ([FromServices] ISkillsMatrixService skillsMatrixService, int employeeId) =>
+            _ = app.MapGet("/EmployeeScores", async ([FromServices] ISkillsMatrixService skillsMatrixService, int teamId) =>
             {
-                var result = await skillsMatrixService.GetEmployeeScores(employeeId);
+                var result = await skillsMatrixService.GetEmployeeScores(teamId);
                 return (result);
             }).WithTags("SkillsMatrix");
             return app;
