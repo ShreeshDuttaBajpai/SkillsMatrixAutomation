@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
-import { getSkillsMatrixTableList } from "./SkillMatrixFunctions";
+import { getEmployeeScoresList, getSkillsMatrixTableList } from "./SkillMatrixFunctions";
 import SkillMatrixComponent from "./SkillMatrixComponent";
-import { setCategories, setSkillMatrixData, setSubCategories } from "../../redux/common/actions";
+import { setCategories, setEmployeeScores, setSkillMatrixData, setSubCategories } from "../../redux/common/actions";
 import { getCategoriesList } from "../ExpectedScoreMappingComponent/ExpectedScoreMappingFunctions";
 import { getSubCategoriesList } from "../AccordionCategoriesComponent/AccordionCategoriesFunctions";
 
@@ -11,7 +11,8 @@ const mapStateToProps = state => {
         teams: state.skillMatrixOps.teams || [],
         categories: state.skillMatrixOps.categories || [],
         subCategories: state.skillMatrixOps.subCategories || [],
-        expectedScoreMappings: state.skillMatrixOps.expectedScoreMappings || []
+        expectedScoreMappings: state.skillMatrixOps.expectedScoreMappings || [],
+        employeeScores: state.skillMatrixOps.employeeScores || []
     };
 };
 
@@ -25,10 +26,14 @@ const mapDispatchToProps = dispatch => {
             const categories = await getCategoriesList();
             dispatch(setCategories(categories));
         },
-        fetchSubCategoriesList: async categoryId => {
-            const subCategories = await getSubCategoriesList(categoryId);
+        fetchSubCategoriesList: async () => {
+            const subCategories = await getSubCategoriesList();
             dispatch(setSubCategories(subCategories));
         },
+        fetchEmployeeScore: async (teamid) => {
+            const score = await getEmployeeScoresList(teamid);
+            dispatch(setEmployeeScores(score))
+        }
     };
 };
 

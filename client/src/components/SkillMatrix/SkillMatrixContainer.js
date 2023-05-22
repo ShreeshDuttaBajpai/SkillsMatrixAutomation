@@ -41,8 +41,8 @@ const mapDispatchToProps = dispatch => ({
         console.log(emps)
         dispatch(getEmpList(emps))
     },
-    fetchEmployeeScores: async employeeId => {
-        const employeeScores = await getEmployeeScoresList(employeeId);
+    fetchEmployeeScores: async teamId => {
+        const employeeScores = await getEmployeeScoresList(teamId);
         dispatch(setEmployeeScores(employeeScores));
     },
 });

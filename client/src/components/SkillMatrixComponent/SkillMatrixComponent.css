@@ -1,74 +1,95 @@
-.skillMatrixPageContainer {
-    /* padding-top: 50px; */
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 10px;
-}
 .skillMatrixGridContainer {
     margin-top: 20px;
     border: 1px solid rgb(145, 144, 144);
-    height: fit-content;
+    width: 100%;
+    height: 70vh; 
+    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-y: auto;
     max-width: 90vw;
-    max-height: 70vh;
-    overflow: scroll;
 }
+
+.skillMatrixGridContainer > .skillMatrixGridHeader,
+.skillMatrixGridContainer > .skillMatrixGridBody {
+    width: 100%;
+    border-bottom: 1px solid rgb(145, 144, 144);
+}
+
 .skillMatrixGridHeader {
     display: flex;
     font-weight: 500;
     color: black;
 }
-.categoryname{
-    font-size: 1rem;
-}
-.skillMatrixGridHeader > .skillMatrixGridItem {
+
+.skillMatrixGridHeader > .skillMatrixGridHeadingItem {
     padding: 10px;
     background-color: #ededed;
+    position: sticky;
+    top: 0;
+    text-align: center;
 }
-.skillMatrixGridContainer,
-.skillMatrixGridBody {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
+
 .skillMatrixGridRow {
     display: flex;
     color: #333;
+    flex-direction: row;
 }
+
 .skillMatrixGridRow > .skillMatrixGridItem {
     padding: 5px;
-    /* display: flex; */
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     align-items: center;
+    flex-grow: 1; 
+    flex-basis: 0;
 }
-.skillMatrixGridItem {
-    min-width: 175px;
-    width: 12.5%;
-    max-width: 12.5%;
+
+.skillMatrixGridRow > .skillMatrixGridItemCol {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1; 
+    flex-basis: 0;
+}
+
+.skillMatrixGridRow > .skillMatrixGridItemInput {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    flex-grow: 1; 
+    flex-basis: 0;
+}
+
+
+.skillMatrixGridItem,
+.skillMatrixGridItemInput,
+.skillMatrixGridItemCol {
     text-align: center;
     border-right: 1px solid rgb(156, 156, 156);
     border-bottom: 1px solid rgb(156, 156, 156);
     font-weight: 400;
+    flex-grow: 1;
 }
-.skillMatrixGridHeader,
-.skillMatrixGridRow {
-    width: 100%;
+
+.categoryname {
+    font-size: 1rem;
 }
+
+.subcategoryname {
+    margin-top: 9px;
+}
+
+.inputbox {
+    margin-bottom: 4px;
+}
+
 .removeBorderRight {
     border-right: 0;
 }
 
-.skillMatrixGridHeadingItem{
-    min-width: 175px;
-        width: 12.5%;
-        max-width: 12.5%;
-        text-align: center;
-        border-right: 1px solid rgb(156, 156, 156);
-        border-bottom: 1px solid rgb(156, 156, 156);
-        padding: 10px;
-        background-color: #ededed;
-        position: sticky;
-        top: 0;
+.inputfeilds {
+    margin-top: 9px;
 }

@@ -188,7 +188,7 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
 
             if (result2.Count() == 1)
             {
-                var query3 = "UPDATE dbo.SkillsMatrix set EmployeeScore = " + postSkillMatrix.EmployeeScore + " where EmployeeId=" + postSkillMatrix.EmployeeId + " and SubCategoryId=" + postSkillMatrix.SubCategoryId + "";
+                var query3 = "DELETE FROM dbo.SkillsMatrix ";
                 var result3 = (await dbConnection.QueryAsync<SkillsMatrixModel>(query3,
                     transaction: await GetDbTransactionAsync())).ToList();
                 return result3;

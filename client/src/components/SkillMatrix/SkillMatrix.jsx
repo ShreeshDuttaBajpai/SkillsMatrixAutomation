@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import css from "./SkillMatrix.css";
 import cx from "classnames";
 import { months } from "./SkillMatrixConstant";
-import SkillMatrixTable from "../SkillMatrixTable/SkillMatrixTable";
-import SkillMatrixTableContainer from "../SkillMatrixTable/SkillMatrixTableContainer";
 import AccordionContainer from "../AccordionComponent/AccordionContainer";
 import SubCategoryExpectedScoreContainer from "../SubCategoryExpectedScoreComponent/SubCategoryExpectedScoreContainer";
 import SkillMatrixContainer from "../SkillMatrixComponent/SkillMatrixContainer";
+import { handleScoreSave } from "../EmployeeScoreComponent/EmployeeScoreFunctions";
 
 const SkillMatrix = ({
     clients,
@@ -25,12 +24,12 @@ const SkillMatrix = ({
     const [selectedClient, setSelectedClient] = useState([]);
     const [selectedTeam, setSelectedTeam] = useState("");
     const [selectedMonth, setSelectedMonth] = useState("");
+    const [employeeScoreArr, setEmployeeScoreArr] = useState(employeeScores);
     useEffect(() => {
         fetchClientList();
     }, [fetchClientList]);
 
     useEffect(() => {
-        setSelectedTeam("");
         selectedClient && fetchClientTeamsList(selectedClient);
     }, [selectedClient, fetchClientTeamsList]);
 
@@ -88,7 +87,6 @@ const SkillMatrix = ({
                     {teams.length > 0 &&
                         teams.map(team => (
                             <option key={team.id} value={team.id}>
-                                {console.log(team.teamName)}
                                 {team.teamName}
                             </option>
                         ))}
@@ -108,43 +106,47 @@ const SkillMatrix = ({
                     ))}
                 </select>
             </div>
-            {/* <div className={css.dependentContainer}> */}
-            {/* <AccordionContainer
-                accordionTitle={"Categories"}
-                accordionData={categories}
-                selectedTeam={selectedTeam}
-                // selectedMonth={selectedMonth}
-                employee={employee}
-                isAccordionDisabled={
-                    !selectedClient || !selectedTeam || categories.length === 0
-                }
-            /> */}
-            <SkillMatrixContainer employee={employee} />
-            {/* </div> */}
-            <div className={css.mappingsBtnContainer}>
-                <button
-                    className={cx(css.mappingsBtn, css.secondMappingsBtn, {
-                        [css.mappingsBtnDisabled]:
-                            !selectedClient || !selectedTeam
-                    })}
-                    onClick={() => fetchExpectedScore(selectedTeam)}
-                    disabled={!selectedClient || !selectedTeam}
-                >
-                    Cancel
-                </button>
-                <button
-                    className={cx(css.mappingsBtn, css.secondMappingsBtn, {
-                        [css.mappingsBtnDisabled]:
-                            !selectedClient || !selectedTeam
-                    })}
-                    onClick={() =>
-                        handleScoreSave(selectedTeam, expectedScoreMappings)
-                    }
-                    disabled={!selectedClient || !selectedTeam}
-                >
-                    Save Mappings
-                </button>
-            </div>
+            {selectedTeam && (
+                <div>
+                    <SkillMatrixContainer
+                        employee={employee}
+                        selectedTeam={selectedTeam}
+                        employeeScoreArr={employeeScoreArr}
+                        setEmployeeScoreArr={setEmployeeScoreArr}
+                    />
+                    {/* </div> */}
+                    <div className={css.mappingsBtnContainer}>
+                        <button
+                            className={cx(
+                                css.mappingsBtn,
+                                css.secondMappingsBtn,
+                                {
+                                    [css.mappingsBtnDisabled]:
+                                        !selectedClient || !selectedTeam
+                                }
+                            )}
+                            onClick={() => fetchEmployeeScores(selectedTeam)}
+                            disabled={!selectedClient || !selectedTeam}
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            className={cx(
+                                css.mappingsBtn,
+                                css.secondMappingsBtn,
+                                {
+                                    [css.mappingsBtnDisabled]:
+                                        !selectedClient || !selectedTeam
+                                }
+                            )}
+                            onClick={() => handleScoreSave(employeeScoreArr)}
+                            disabled={!selectedClient || !selectedTeam}
+                        >
+                            Save Mappings
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

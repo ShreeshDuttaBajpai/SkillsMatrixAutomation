@@ -101,7 +101,7 @@ const SidebarComponent = () => {
                 }
             >
                 <FontAwesomeIcon icon={faPenToSquare} />
-            </NavLink>
+                {/* </NavLink>
             <NavLink
                 title="Employee Score Mapping"
                 to="/employee-score"
@@ -117,7 +117,7 @@ const SidebarComponent = () => {
                     )
                 }
             >
-                <FontAwesomeIcon icon={faCheck} />
+                <FontAwesomeIcon icon={faCheck} /> */}
             </NavLink>
             <NavLink
                 title="Skill Matrix Table Page"
