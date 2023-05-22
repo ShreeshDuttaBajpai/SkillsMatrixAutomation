@@ -20,33 +20,33 @@ export const getEmployeeScoresList = async employeeId => {
 };
 
 export const handleEmployeeScoreChange = (
-    event,
-    subCatId,
-    employeeScoringArr,
-    setEmployeeScoringArr,
-    empId
-  ) => {
-    const updatedScoringArr = employeeScoringArr.map((score) => ({ ...score }));
-  
-    const existingScoreIndex = updatedScoringArr.findIndex(
-      (score) =>
-        score.subCategoryId === subCatId && score.employeeId === empId
-    );
-  
-    if (existingScoreIndex !== -1) {
-      updatedScoringArr[existingScoreIndex].employeeScore = event.target.value;
-    } else {
-      updatedScoringArr.push({
-        employeeId: empId,
-        subCategoryId: subCatId,
-        employeeScore: event.target.value,
-        
-      });
-    }
-  
-    setEmployeeScoringArr(updatedScoringArr);
-  };
-    
+  event,
+  subCatId,
+  employeeScoringArr,
+  setEmployeeScoringArr,
+  empId
+) => {
+  const updatedScoringArr = employeeScoringArr.map((score) => ({ ...score }));
+
+  const existingScoreIndex = updatedScoringArr.findIndex(
+    (score) =>
+      score.subCategoryId === subCatId && score.employeeId === empId
+  );
+
+  const employeeScore = parseInt(event.target.value, 10); 
+
+  if (existingScoreIndex !== -1) {
+    updatedScoringArr[existingScoreIndex].employeeScore = employeeScore;
+  } else {
+    updatedScoringArr.push({
+      employeeId: empId,
+      subCategoryId: subCatId,
+      employeeScore: employeeScore,
+    });
+  }
+
+  setEmployeeScoringArr(updatedScoringArr);
+};
 
 export const handleScoreSave = async (employeeScoringArr) => {
     await PostEmployeeScore(employeeScoringArr);

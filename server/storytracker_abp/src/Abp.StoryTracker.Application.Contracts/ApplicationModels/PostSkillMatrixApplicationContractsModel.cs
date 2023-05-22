@@ -6,7 +6,7 @@ namespace Abp.StoryTracker.ApplicationModels
 {
     public class PostSkillMatrixApplicationContractsModel
     {
-        public int employeeId { get; set; }
         public List<ScoresSkillMatrixApplicationContractsModel> scores { get; set; }
+
     }
 }

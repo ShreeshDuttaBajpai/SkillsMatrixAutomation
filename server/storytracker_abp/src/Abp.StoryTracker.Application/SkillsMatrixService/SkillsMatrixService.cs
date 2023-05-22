@@ -253,9 +253,10 @@ namespace Abp.StoryTracker.SkillsMatrixService
             foreach (var item in postSkillMatrix.scores)
             {
                 var mode = new SkillsMatrixApplicationContractsModel();
-                mode.EmployeeId = postSkillMatrix.employeeId;
+                //mode.EmployeeId = postSkillMatrix.employeeId;
                 mode.EmployeeId = item.employeeId;
                 mode.EmployeeScore = item.employeeScore;
+                mode.SubCategoryId = item.subcategoryId;
                 //var postSubCategoryMappingData = objectMapper.Map<PostSubCategoryMappingApplicationContractsModel, SubCategoryMappingModel>(postSubCategoryMapping);
                 //await skillMatrixRepository.PostSubCategoryMappingListAsync(postSubCategoryMappingData);
                 listOfPostSkillsMatrixMapping.Add(mode);

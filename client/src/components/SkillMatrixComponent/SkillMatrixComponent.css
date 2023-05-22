@@ -93,3 +93,9 @@
 .inputfeilds {
     margin-top: 9px;
 }
+
+.horizontalScore {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+  }
