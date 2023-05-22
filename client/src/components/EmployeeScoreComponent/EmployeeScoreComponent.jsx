@@ -1,170 +1,78 @@
 import React, { useState, useEffect } from "react";
 import css from "./EmployeeScoreComponent.css";
-import AccordionContainer from "../AccordionComponent/AccordionContainer";
-import cx from "classnames";
-import { handleScoreSave } from "./EmployeeScoreFunctions";
-import EmployeeSubCategoryScoreContainer from "../EmployeeSubCategoryScoreComponent/EmployeeSubCategoryScoreContainer";
+import { handleEmployeeScoreChange } from "./EmployeeScoreFunctions";
 
 const EmployeeScoreComponent = ({
-    clients,
-    teams,
-    employees,
-    categories,
-    subCategories,
+    emp,
+    subCategory,
     employeeScores,
-    fetchClientList,
-    fetchClientTeamsList,
-    fetchTeamEmployeesList,
-    fetchCategoriesList,
-    fetchSubCategoriesList,
-    fetchEmployeeScores,
-    setExpectedScores
+    employeeScoreArr,
+    setEmployeeScoreArr
 }) => {
-    const [isAnyAccordionOpen, setIsAnyAccordionOpen] = useState(false);
-    const [selectedClient, setSelectedClient] = useState();
-    const [selectedTeam, setSelectedTeam] = useState();
-    const [selectedEmployee, setSelectedEmployee] = useState();
-    const [selectedCategory, setSelectedCategory] = useState();
-    useEffect(() => {
-        selectedEmployee &&
-            categories.length > 0 &&
-            setSelectedCategory(categories[0].id);
-    }, [selectedEmployee]);
-    useEffect(() => {
-        fetchClientList();
-        fetchCategoriesList();
-    }, [fetchClientList, fetchCategoriesList]);
+    const [employeeScore, setEmployeeScore] = useState(0);
 
     useEffect(() => {
-        setSelectedTeam();
-        setSelectedEmployee();
-        setSelectedCategory();
-        setExpectedScores([]);
-        selectedClient !== undefined && fetchClientTeamsList(selectedClient);
-    }, [selectedClient, fetchClientTeamsList]);
+        setEmployeeScore(employeeScores);
+    }, [employeeScores]);
+
+    console.log(employeeScoreArr);
 
     useEffect(() => {
-        setSelectedEmployee();
-        setSelectedCategory();
-        setExpectedScores([]);
-        selectedTeam !== undefined && fetchTeamEmployeesList(selectedTeam);
-    }, [selectedTeam]);
+        employeeScoreArr.length > 0 &&
+            employeeScoreArr.find(
+                score =>
+                    score.subCategoryId === subCategory.id &&
+                    score.employeeId === emp.employeeId
+            ) &&
+            console.log(
+                employeeScoreArr.find(
+                    score =>
+                        score.subCategoryId === subCategory.id &&
+                        score.employeeId === emp.employeeId
+                ).employeeScore
+            );
+        console.log("Hello");
+        setEmployeeScore(
+            employeeScoreArr.length > 0 &&
+                employeeScoreArr.find(
+                    score =>
+                        score.subCategoryId === subCategory.id &&
+                        score.employeeId === emp.employeeId
+                )
+                ? employeeScoreArr.find(
+                      score =>
+                          score.subCategoryId === subCategory.id &&
+                          score.employeeId === emp.employeeId
+                  ).employeeScore
+                : 0
+        );
+    }, [employeeScoreArr]);
 
     useEffect(() => {
-        selectedCategory && fetchSubCategoriesList(selectedCategory);
-    }, [selectedCategory]);
-
-    useEffect(() => {
-        selectedEmployee && fetchEmployeeScores(selectedEmployee);
-    }, [selectedEmployee]);
+        setEmployeeScoreArr([...employeeScores]);
+        console.log("Hello2");
+    }, [employeeScores]);
 
     return (
-        <div className={css.employeeScoreContainer}>
-            <div className={css.dependentContainer}>
-                <AccordionContainer
-                    accordionTitle={"Clients"}
-                    accordionData={clients}
-                    isAnyAccordionOpen={isAnyAccordionOpen}
-                    setIsAnyAccordionOpen={setIsAnyAccordionOpen}
-                    selectedItem={selectedClient}
-                    setSelectedItem={setSelectedClient}
-                />
-                <AccordionContainer
-                    accordionTitle={"Teams"}
-                    accordionData={teams}
-                    isAnyAccordionOpen={isAnyAccordionOpen}
-                    setIsAnyAccordionOpen={setIsAnyAccordionOpen}
-                    selectedItem={selectedTeam}
-                    setSelectedItem={setSelectedTeam}
-                    isAccordionDisabled={
-                        selectedClient === undefined || teams.length === 0
-                    }
-                />
-            </div>
-            <div className={css.employeeListContainer}>
-                {selectedTeam && employees.length > 0
-                    ? employees.map(employee => {
-                          return (
-                              <div
-                                  className={cx(css.employeePaper, {
-                                      [css.selectedDataItem]:
-                                          selectedEmployee ===
-                                          employee.employeeId
-                                  })}
-                                  key={employee.employeeId}
-                                  onClick={() => {
-                                      setSelectedCategory();
-                                      setSelectedEmployee(employee.employeeId);
-                                  }}
-                              >
-                                  {employee.employeeame}
-                              </div>
-                          );
-                      })
-                    : "No employees to display"}
-            </div>
-            <div className={css.scoreGridContainer}>
-                <ul className={css.categoryListUl}>
-                    {categories.length > 0 &&
-                        categories.map(category => {
-                            return (
-                                <li
-                                    className={cx(css.categoryListLi, {
-                                        [css.disabledCategoryOptions]:
-                                            selectedEmployee === undefined,
-                                        [css.selectedDataItem]:
-                                            selectedCategory === category.id
-                                    })}
-                                    key={category.id}
-                                    onClick={() =>
-                                        setSelectedCategory(category.id)
-                                    }
-                                >
-                                    {category.categoryName}
-                                </li>
-                            );
-                        })}
-                </ul>
-                <ul className={css.subCategoryListUl}>
-                    {selectedEmployee &&
-                        selectedCategory &&
-                        subCategories.length > 0 &&
-                        subCategories.map(subCategory => {
-                            return (
-                                <EmployeeSubCategoryScoreContainer
-                                    subCategoryScore={
-                                        employeeScores.length > 0 &&
-                                        employeeScores.find(
-                                            score =>
-                                                score.subCategoryId ===
-                                                subCategory.id
-                                        )
-                                            ? employeeScores.find(
-                                                  score =>
-                                                      score.subCategoryId ===
-                                                      subCategory.id
-                                              ).employeeScore
-                                            : 0
-                                    }
-                                    subCategory={subCategory}
-                                    key={subCategory.id}
-                                />
-                            );
-                        })}
-                </ul>
-            </div>
-            <button
-                className={cx(css.scoresSaveBtn, {
-                    [css.scoresSaveBtnDisabled]:
-                        !selectedClient || !selectedTeam || !selectedEmployee
-                })}
-                onClick={() =>
-                    handleScoreSave(selectedEmployee, employeeScores)
-                }
-                disabled={!selectedClient || !selectedTeam || !selectedEmployee}
+        <div className={css.subCategoryScoreSelect}>
+            <select
+                onChange={e => {
+                    handleEmployeeScoreChange(
+                        e,
+                        subCategory.id,
+                        employeeScoreArr,
+                        setEmployeeScoreArr,
+                        emp.employeeId
+                    );
+                }}
+                value={employeeScore}
             >
-                Save Scores
-            </button>
+                <option value={0}>0</option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+            </select>
         </div>
     );
 };

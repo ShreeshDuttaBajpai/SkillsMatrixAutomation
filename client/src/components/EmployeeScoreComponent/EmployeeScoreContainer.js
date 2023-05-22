@@ -10,6 +10,7 @@ import {
     setClientTeams,
     setClients,
     setEmployeeScores,
+    setExpectedScoreMappings,
     setSubCategories,
     setTeamEmployees
 } from "../../redux/common/actions";
@@ -21,43 +22,22 @@ import {
 
 const mapStateToProps = state => {
     return {
-        clients: state.skillMatrixOps.clients || [],
-        teams: state.skillMatrixOps.teams || [],
-        employees: state.skillMatrixOps.teamEmployees || [],
-        categories: state.skillMatrixOps.categories || [],
-        subCategories: state.skillMatrixOps.subCategories || [],
-        employeeScores: state.skillMatrixOps.employeeScores || []
+        employeeScores: state.skillMatrixOps.employeeScores || [],
+        expectedScoreMappings: state.skillMatrixOps.expectedScoreMappings || []
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchClientList: async () => {
-            const clients = await getClientsList();
-            dispatch(setClients(clients));
-        },
-        fetchClientTeamsList: async clientId => {
-            const teams = await getClientsTeamsList(clientId);
-            dispatch(setClientTeams(teams));
-        },
-        fetchTeamEmployeesList: async teamId => {
-            const employees = await getTeamEmployeesList(teamId);
-            dispatch(setTeamEmployees(employees));
-        },
-        fetchCategoriesList: async () => {
-            const categories = await getCategoriesList();
-            dispatch(setCategories(categories));
-        },
-        fetchSubCategoriesList: async categoryId => {
-            const subCategories = await getSubCategoriesList(categoryId);
-            dispatch(setSubCategories(subCategories));
-        },
-        fetchEmployeeScores: async employeeId => {
-            const employeeScores = await getEmployeeScoresList(employeeId);
-            dispatch(setEmployeeScores(employeeScores));
+        fetchEmployeeScore: async (teamid) => {
+            const score = await getEmployeeScoresList(teamid);
+            dispatch(setEmployeeScores(score))
         },
         setExpectedScores: async scores => {
             dispatch(setEmployeeScores(scores));
+        },
+        setExpectedScoreMappings: scoringData => {
+            dispatch(setExpectedScoreMappings(scoringData));
         }
     };
 };

@@ -38,6 +38,12 @@
     width: 40%;
     text-align: center;
 }
+.employeeheading{
+    text-align: center;
+    border-left: 1px solid black;
+    width: 40%;
+
+}
 .accordionTitleSpan {
     text-transform: uppercase;
     font-weight: 600;

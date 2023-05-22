@@ -18,41 +18,36 @@ export const getEmployeeScoresList = async employeeId => {
     const result = await EmployeeScoresApi(employeeId);
     return result;
 };
+
 export const handleEmployeeScoreChange = (
-    event,
-    subCatId,
-    employeeScoringArr,
-    setEmployeeScoringArr
+  event,
+  subCatId,
+  employeeScoringArr,
+  setEmployeeScoringArr,
+  empId
 ) => {
-    const updatedScoringArr = employeeScoringArr;
-    if (updatedScoringArr.length > 0) {
-        const isExisted = updatedScoringArr.findIndex(
-            score => score.subCategoryId === subCatId
-        );
-        if (isExisted > -1) {
-            updatedScoringArr[isExisted].employeeScore = event.target.value;
-            setEmployeeScoringArr(updatedScoringArr);
-        } else {
-            updatedScoringArr.push({
-                subCategoryId: subCatId,
-                employeeScore: event.target.value
-            });
-            setEmployeeScoringArr(updatedScoringArr);
-        }
-    } else {
-        updatedScoringArr.push({
-            subCategoryId: subCatId,
-            employeeScore: event.target.value
-        });
-        setEmployeeScoringArr(updatedScoringArr);
-    }
+  const updatedScoringArr = employeeScoringArr.map((score) => ({ ...score }));
+
+  const existingScoreIndex = updatedScoringArr.findIndex(
+    (score) =>
+      score.subCategoryId === subCatId && score.employeeId === empId
+  );
+
+  const employeeScore = parseInt(event.target.value, 10); 
+
+  if (existingScoreIndex !== -1) {
+    updatedScoringArr[existingScoreIndex].employeeScore = employeeScore;
+  } else {
+    updatedScoringArr.push({
+      employeeId: empId,
+      subCategoryId: subCatId,
+      employeeScore: employeeScore,
+    });
+  }
+
+  setEmployeeScoringArr(updatedScoringArr);
 };
 
-export const handleScoreSave = async (selectedEmployee, employeeScoringArr) => {
-    const employeeScoringObject = {
-        employeeId: selectedEmployee,
-        scores: employeeScoringArr
-    };
-    console.log(employeeScoringObject);
-    await PostEmployeeScore(employeeScoringObject);
+export const handleScoreSave = async (employeeScoringArr) => {
+    await PostEmployeeScore(employeeScoringArr);
 };

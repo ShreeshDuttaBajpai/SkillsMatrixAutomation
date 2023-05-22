@@ -253,9 +253,10 @@ namespace Abp.StoryTracker.SkillsMatrixService
             foreach (var item in postSkillMatrix.scores)
             {
                 var mode = new SkillsMatrixApplicationContractsModel();
-                mode.EmployeeId = postSkillMatrix.employeeId;
-                mode.SubCategoryId = item.subCategoryId;
+                //mode.EmployeeId = postSkillMatrix.employeeId;
+                mode.EmployeeId = item.employeeId;
                 mode.EmployeeScore = item.employeeScore;
+                mode.SubCategoryId = item.subcategoryId;
                 //var postSubCategoryMappingData = objectMapper.Map<PostSubCategoryMappingApplicationContractsModel, SubCategoryMappingModel>(postSubCategoryMapping);
                 //await skillMatrixRepository.PostSubCategoryMappingListAsync(postSubCategoryMappingData);
                 listOfPostSkillsMatrixMapping.Add(mode);
@@ -275,15 +276,17 @@ namespace Abp.StoryTracker.SkillsMatrixService
             await skillMatrixRepository.PutSubCategoryMappingListAsync(putSubCategoryMappingData);
         }
 
-        public async Task<List<ScoresSkillMatrixApplicationContractsModel>> GetEmployeeScores(int employeeId)
+        public async Task<List<SkillsMatrixApplicationContractsModel>> GetEmployeeScores(int teamId)
         {
-            var domainResult = await skillMatrixRepository.GetEmployeeScores(employeeId);
-            var scores = new List<ScoresSkillMatrixApplicationContractsModel>();
+            var domainResult = await skillMatrixRepository.GetEmployeeScores(teamId);
+            var scores = new List<SkillsMatrixApplicationContractsModel>();
             foreach(var item in domainResult)
             {
-                var singleScore = new ScoresSkillMatrixApplicationContractsModel();
-                singleScore.subCategoryId = (int)item.SubCategoryId;
-                singleScore.employeeScore = item.EmployeeScore;
+                //var singleScore = new SkillsMatrixApplicationContractsModel();
+                //singleScore.employeeId = (int)item.EmployeeId;
+                //singleScore.employeeScore = item.EmployeeScore;
+                //scores.Add(singleScore);
+                var singleScore = objectMapper.Map<SkillsMatrixModel, SkillsMatrixApplicationContractsModel>(item);
                 scores.Add(singleScore);
             }
             return scores;

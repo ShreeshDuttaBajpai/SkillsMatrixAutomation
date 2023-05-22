@@ -4,3 +4,31 @@
 .mainContainerDiv {
     display: flex;
 }
+.unauthenticatedLayout {
+    min-height: calc(100vh - 50px);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.loginText {
+    font-size: 20px;
+    padding: 10px 0;
+}
+.loginBtn {
+    width: max-content;
+    padding: 10px 15px;
+    align-self: center;
+    background-color: #564ef7;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #ffffff;
+    font-family: "SF Pro Text", "SF Pro Icons", "AOS Icons", "Helvetica Neue",
+        Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    line-height: 1.47059;
+}

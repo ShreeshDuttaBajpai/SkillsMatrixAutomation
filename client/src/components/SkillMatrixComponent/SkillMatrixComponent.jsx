@@ -1,47 +1,89 @@
-import React from "react";
+import React, { useState } from "react";
 import css from "./SkillMatrixComponent.css";
 import cx from "classnames";
 import { useEffect } from "react";
+import EmployeeScoreContainer from "../EmployeeScoreComponent/EmployeeScoreContainer";
 
-const SkillMatrixComponent = ({ skillMatrixData, fetchSkillMatrixTable }) => {
+const SkillMatrixComponent = ({
+    skillMatrixData,
+    fetchSkillMatrixTable,
+    fetchCategoriesList,
+    categories,
+    subCategories,
+    fetchSubCategoriesList,
+    employee,
+    fetchEmployeeScore,
+    selectedTeam,
+    employeeScores,
+    expectedScoreMappings,
+    employeeScoreArr,
+    setEmployeeScoreArr
+}) => {
+    useEffect(() => {
+        selectedTeam && fetchEmployeeScore(selectedTeam);
+    }, [selectedTeam, fetchEmployeeScore]);
     useEffect(() => {
         fetchSkillMatrixTable();
     }, [fetchSkillMatrixTable]);
-    console.log(skillMatrixData);
+    useEffect(() => {
+        fetchSubCategoriesList();
+    }, [fetchSubCategoriesList]);
+    // useEffect(() => {
+    //     fetchCategoriesList();
+    // }, fetchCategoriesList);
+    console.log(expectedScoreMappings);
+
+    const employeeCount = employee ? employee.length : 0;
+    const columnWidth = 100 / (employeeCount + 2);
+
+    const sumscore = categories.map(category => {
+        const categorySubCategories = subCategories.filter(
+            subCategory => subCategory.categoryId === category.id
+        );
+
+        const subCategoryScores = categorySubCategories.map(subCategory => {
+            return expectedScoreMappings
+                .filter(empscore => empscore.subCategoryId === subCategory.id)
+                .reduce((a, v) => a + v.expectedClientScore, 0);
+        });
+
+        return subCategoryScores.reduce((a, v) => a + v, 0);
+    });
+
+    console.log(sumscore);
+
     return (
         <div className={css.skillMatrixPageContainer}>
-            <h3>Skill Matrix Table</h3>
             <div className={css.skillMatrixGridContainer}>
                 <div className={css.skillMatrixGridHeader}>
-                    <div className={css.skillMatrixGridHeadingItem}>Client</div>
-                    <div className={css.skillMatrixGridHeadingItem}>Team</div>
-                    <div className={css.skillMatrixGridHeadingItem}>
-                        Employee ID
-                    </div>
-                    <div className={css.skillMatrixGridHeadingItem}>
-                        Employee Name
-                    </div>
-                    <div className={css.skillMatrixGridHeadingItem}>
+                    <div
+                        className={css.skillMatrixGridHeadingItem}
+                        style={{ width: `${columnWidth}%` }}
+                    >
                         Category
                     </div>
-                    <div className={css.skillMatrixGridHeadingItem}>
-                        Sub-Category
-                    </div>
-                    <div className={css.skillMatrixGridHeadingItem}>
-                        Expected Score
-                    </div>
                     <div
-                        className={cx(
-                            css.skillMatrixGridItem,
-                            css.removeBorderRight
-                        )}
+                        className={css.skillMatrixGridHeadingItem}
+                        style={{ width: `${columnWidth}%` }}
                     >
-                        Employee Score
+                        Client Expected Score
                     </div>
+                    {employee &&
+                        employee.map((emp, index) => {
+                            return (
+                                <div
+                                    className={css.skillMatrixGridHeadingItem}
+                                    key={index}
+                                    style={{ width: `${columnWidth}%` }}
+                                >
+                                    {emp.employeeName}
+                                </div>
+                            );
+                        })}
                 </div>
                 <div className={css.skillMatrixGridBody}>
                     {skillMatrixData.length > 0 &&
-                        skillMatrixData.map((matrixRow, index) => {
+                        categories.map((category, index) => {
                             return (
                                 <div
                                     className={cx(css.skillMatrixGridRow, {
@@ -50,35 +92,111 @@ const SkillMatrixComponent = ({ skillMatrixData, fetchSkillMatrixTable }) => {
                                     })}
                                     key={index}
                                 >
-                                    <div className={css.skillMatrixGridItem}>
-                                        {matrixRow.clientName}
-                                    </div>
-                                    <div className={css.skillMatrixGridItem}>
-                                        {matrixRow.teamName}
-                                    </div>
-                                    <div className={css.skillMatrixGridItem}>
-                                        {matrixRow.employeeID}
-                                    </div>
-                                    <div className={css.skillMatrixGridItem}>
-                                        {matrixRow.employeeName}
-                                    </div>
-                                    <div className={css.skillMatrixGridItem}>
-                                        {matrixRow.categoryName}
-                                    </div>
-                                    <div className={css.skillMatrixGridItem}>
-                                        {matrixRow.subCategoryName}
-                                    </div>
-                                    <div className={css.skillMatrixGridItem}>
-                                        {matrixRow.clientExpectedScore}
+                                    <div className={css.skillMatrixGridItemCol}>
+                                        <h5 className={css.categoryname}>
+                                            {category.categoryName}
+                                        </h5>
+                                        {subCategories
+                                            .filter(
+                                                subCategory =>
+                                                    subCategory.categoryId ===
+                                                    category.id
+                                            )
+                                            .map((subCategory, index) => (
+                                                <div
+                                                    className={
+                                                        css.subcategoryname
+                                                    }
+                                                    key={index}
+                                                >
+                                                    {
+                                                        subCategory.subCategoryName
+                                                    }
+                                                </div>
+                                            ))}
                                     </div>
                                     <div
-                                        className={cx(
-                                            css.skillMatrixGridItem,
-                                            css.removeBorderRight
-                                        )}
+                                        className={css.skillMatrixGridItemInput}
                                     >
-                                        {matrixRow.employeeScore}
+                                        <div className={css.inputbox}>
+                                            Sum : {sumscore[index]}
+                                        </div>
+
+                                        {subCategories
+                                            .filter(
+                                                subCategory =>
+                                                    subCategory.categoryId ===
+                                                    category.id
+                                            )
+                                            .map((subCategory, index) => (
+                                                <div
+                                                    className={
+                                                        css.subCategoryScoreSelect
+                                                    }
+                                                    key={index}
+                                                >
+                                                    {expectedScoreMappings
+                                                        .filter(
+                                                            empscore =>
+                                                                empscore.subCategoryId ===
+                                                                subCategory.id
+                                                        )
+                                                        .map(
+                                                            (client, index) => (
+                                                                <div
+                                                                    className={
+                                                                        css.inputfeilds
+                                                                    }
+                                                                    key={index}
+                                                                >
+                                                                    {
+                                                                        client.expectedClientScore
+                                                                    }
+                                                                </div>
+                                                            )
+                                                        )}
+                                                </div>
+                                            ))}
                                     </div>
+
+                                    {employee &&
+                                        employee.map((emp, index) => {
+                                            return (
+                                                <div
+                                                    className={
+                                                        css.skillMatrixGridItem
+                                                    }
+                                                    key={index}
+                                                >
+                                                    {subCategories
+                                                        .filter(
+                                                            subCategory =>
+                                                                subCategory.categoryId ===
+                                                                category.id
+                                                        )
+                                                        .map(
+                                                            (
+                                                                subCategory,
+                                                                index
+                                                            ) => (
+                                                                <EmployeeScoreContainer
+                                                                    emp={emp}
+                                                                    subCategory={
+                                                                        subCategory
+                                                                    }
+                                                                    key={index}
+                                                                    employeeScoreArr={
+                                                                        employeeScoreArr
+                                                                    }
+                                                                    setEmployeeScoreArr={
+                                                                        setEmployeeScoreArr
+                                                                    }
+                                                                />
+                                                            )
+                                                        )}
+                                                </div>
+                                            );
+                                        })}
                                 </div>
                             );
                         })}

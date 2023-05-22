@@ -25,8 +25,8 @@ export const TeamExpectedScoresListApi = async teamId => {
         });
     return response;
 };
-export const EmployeeScoresApi = async employeeId => {
-    const baseURL = `https://localhost:44325/EmployeeScores?employeeId=${employeeId}`;
+export const EmployeeScoresApi = async teamId => {
+    const baseURL = `https://localhost:44325/EmployeeScores?teamId=${teamId}`;
     const response = await getApi(baseURL)
         .then(res => {
             if (res.data !== null) return res.data;
