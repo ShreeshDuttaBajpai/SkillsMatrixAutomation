@@ -1,9 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 import NoMatch from "./components/Test/NoMatch";
 import { Provider } from "react-redux";
-import Cookies from "universal-cookie";
-import jwt_decode from "jwt-decode";
 import Navbar from "./components/Navbar/Navbar";
 import configureStore from "./store/main";
 import css from "./routes.css";
@@ -11,29 +9,39 @@ import SidebarContainer from "./components/Sidebar/SidebarContainer";
 import ClientScorePage from "./Pages/ClientScorePage";
 import EmployeeScorePage from "./Pages/EmployeeScorePage";
 import SkillMatrixPage from "./Pages/SkillMatrixPage";
-import ClientsCardContainer from "./components/ClientsCard/ClientsCardContainer";
 import CategoryPage from "./Pages/CategoryPage";
 import HomePage from "./Pages/HomePage";
 import EmployeePage from "./Pages/EmployeePage";
+import {
+    AuthenticatedTemplate,
+    UnauthenticatedTemplate,
+    useIsAuthenticated,
+    useMsal
+} from "@azure/msal-react";
+import { useEffect } from "react";
+import msalInstance, { msalConfig } from "./msalConfig";
+import { callMsGraph } from "./graph";
+import { acquireToken, handleLogin } from "./commonFunctions";
 
 const store = configureStore();
 
 const App = () => {
-    const cookies = new Cookies();
-    let tokenData = cookies.get("my_cookie");
-    if (tokenData) {
-        const decoded_token = jwt_decode(tokenData);
-    }
-    // const store = useStore();
-    console.log(store.getState().skillMatrixOps.clients);
+    const { instance, accounts } = useMsal();
+    const [graphData, setGraphData] = useState(null);
+
+    useEffect(() => {
+        accounts.length && acquireToken(instance, accounts, setGraphData);
+    }, [accounts]);
+
+    useEffect(() => {});
 
     return (
         <div>
-            {
-                <Provider store={store}>
-                    <Router>
-                        <div className={css.appContainerDiv}>
-                            <Navbar />
+            <Provider store={store}>
+                <Router>
+                    <div className={css.appContainerDiv}>
+                        <Navbar />
+                        <AuthenticatedTemplate>
                             <div className={css.mainContainerDiv}>
                                 <SidebarContainer />
                                 <Switch>
@@ -46,9 +54,10 @@ const App = () => {
                                         path="/category"
                                         component={CategoryPage}
                                     />
-                                    <Route 
-                                        path="/employee" 
-                                        component={EmployeePage} />
+                                    <Route
+                                        path="/employee"
+                                        component={EmployeePage}
+                                    />
                                     <Route
                                         path="/client-score"
                                         component={ClientScorePage}
@@ -65,10 +74,23 @@ const App = () => {
                                     <Route component={NoMatch} />
                                 </Switch>
                             </div>
-                        </div>
-                    </Router>
-                </Provider>
-            }
+                        </AuthenticatedTemplate>
+                        <UnauthenticatedTemplate>
+                            <div className={css.unauthenticatedLayout}>
+                                <div className={css.loginText}>
+                                    Please login to continue
+                                </div>
+                                <button
+                                    onClick={() => handleLogin(instance)}
+                                    className={css.loginBtn}
+                                >
+                                    Sign In
+                                </button>
+                            </div>
+                        </UnauthenticatedTemplate>
+                    </div>
+                </Router>
+            </Provider>
         </div>
     );
 };

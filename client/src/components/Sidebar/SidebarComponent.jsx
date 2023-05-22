@@ -17,7 +17,7 @@ import BhavnaLogo from "../../assets/bhavna-logo.png";
 const SidebarComponent = () => {
     const path = window.location.pathname;
     const [activeLocation, setActiveLocation] = useState({
-        home: path === "/",
+        clients: path === "/",
         category: path === "/category",
         employee: path === "/employee",
         clientScore: path === "/client-score",
@@ -26,26 +26,19 @@ const SidebarComponent = () => {
     });
     return (
         <div className={css.sidebarContainerDiv}>
-            {/* <div className={css.brandLogoDiv}>
-                <img
-                    src={BhavnaLogo}
-                    alt="Bhavna Corp"
-                    className={css.brandLogoImg}
-                />
-            </div> */}
             <NavLink
                 title="Client Master"
                 to="/"
                 exact
                 className={css.sidebarNavItem}
                 activeClassName={
-                    activeLocation.home ? css.sidebarActiveNavItem : ""
+                    activeLocation.clients ? css.sidebarActiveNavItem : ""
                 }
                 onClick={() =>
                     handleNavItemClick(
                         activeLocation,
                         setActiveLocation,
-                        "home"
+                        "clients"
                     )
                 }
             >

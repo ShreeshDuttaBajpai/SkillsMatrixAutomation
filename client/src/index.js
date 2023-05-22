@@ -1,12 +1,19 @@
-import { hot } from 'react-hot-loader/root';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './theme/app.scss';
-import routes from './routes';
-import reportWebVitals from './reportWebVitals';
+import { hot } from "react-hot-loader/root";
+import React from "react";
+import ReactDOM from "react-dom";
+import "./theme/app.scss";
+import routes from "./routes";
+import reportWebVitals from "./reportWebVitals";
+import { MsalProvider } from "@azure/msal-react";
+import msalInstance from "./msalConfig";
 
 const render = Component =>
-  ReactDOM.render(<Component />, document.getElementById('root'));
+    ReactDOM.render(
+        <MsalProvider instance={msalInstance}>
+            <Component />
+        </MsalProvider>,
+        document.getElementById("root")
+    );
 
 render(hot(routes));
 
