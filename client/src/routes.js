@@ -21,50 +21,20 @@ import {
 import { useEffect } from "react";
 import msalInstance, { msalConfig } from "./msalConfig";
 import { callMsGraph } from "./graph";
+import { acquireToken, handleLogin } from "./commonFunctions";
 
 const store = configureStore();
 
 const App = () => {
     const { instance, accounts } = useMsal();
-    const [accessToken, setAccessToken] = useState("");
     const [graphData, setGraphData] = useState(null);
 
-    console.log(accounts);
-    const handleLogin = async () => {
-        try {
-            await instance.loginRedirect();
-        } catch (err) {
-            console.error(err);
-        }
-    };
-
-    const acquireToken = () => {
-        console.log(accounts);
-        instance
-            .acquireTokenSilent({
-                ...msalConfig.auth.scopes,
-                account: accounts[0]
-            })
-            .then(response => {
-                callMsGraph(response.accessToken).then(response =>
-                    setGraphData(response)
-                );
-            });
-    };
-
     useEffect(() => {
-        accounts.length && acquireToken();
+        accounts.length && acquireToken(instance, accounts, setGraphData);
     }, [accounts]);
 
-    const handleLogout = () => {
-        instance.logout();
-    };
+    useEffect(() => {});
 
-    useEffect(() => {
-        console.log(graphData);
-    }, [graphData]);
-
-    const isAuthenticated = useIsAuthenticated();
     return (
         <div>
             <Provider store={store}>
@@ -106,7 +76,17 @@ const App = () => {
                             </div>
                         </AuthenticatedTemplate>
                         <UnauthenticatedTemplate>
-                            <button onClick={handleLogin}>Sign In</button>
+                            <div className={css.unauthenticatedLayout}>
+                                <div className={css.loginText}>
+                                    Please login to continue
+                                </div>
+                                <button
+                                    onClick={() => handleLogin(instance)}
+                                    className={css.loginBtn}
+                                >
+                                    Sign In
+                                </button>
+                            </div>
                         </UnauthenticatedTemplate>
                     </div>
                 </Router>
