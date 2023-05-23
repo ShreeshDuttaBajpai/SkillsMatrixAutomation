@@ -184,7 +184,7 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
             var result4 = (await dbConnection.QueryAsync<SubCategoryMappingModel>(query4,
             transaction: await GetDbTransactionAsync())).ToList();
 
-            if (result2.Count() == 1)
+            if (result2.Count() >= 1)
             {
                 var query3 = "DELETE FROM dbo.SkillsMatrix ";
                 var result3 = (await dbConnection.QueryAsync<SkillsMatrixModel>(query3,

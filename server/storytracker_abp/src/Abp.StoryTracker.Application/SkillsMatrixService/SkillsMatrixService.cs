@@ -246,9 +246,16 @@ namespace Abp.StoryTracker.SkillsMatrixService
         }
 
 
-
-        public async Task PostSkillMatrixListAsync(PostSkillMatrixApplicationContractsModel postSkillMatrix)
+public async Task PostSkillMatrixListAsync(PostSkillMatrixApplicationContractsModel postSkillMatrix)
         {
+            foreach (var score in postSkillMatrix.scores)
+            {
+                int employeeId = score.employeeId;
+                int subCategoryId = score.subCategoryId;
+                int employeeScore = score.employeeScore;
+
+                // Use the extracted properties as needed
+            }
             List<SkillsMatrixApplicationContractsModel> listOfPostSkillsMatrixMapping = new List<SkillsMatrixApplicationContractsModel>();
             foreach (var item in postSkillMatrix.scores)
             {

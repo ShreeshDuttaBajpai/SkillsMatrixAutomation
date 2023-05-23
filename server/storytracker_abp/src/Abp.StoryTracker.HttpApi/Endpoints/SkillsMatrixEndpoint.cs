@@ -38,8 +38,7 @@ namespace Abp.StoryTracker.Endpoints
         public static WebApplication MapPostSkillMatrixEndpoints(this WebApplication app)
         {
             _ = app.MapPost("/PostSkillMatrix", async ([FromServices] ISkillsMatrixService skillsMatrixService, [FromBody] PostSkillMatrixApplicationContractsModel postSkillMatrix) =>
-            {
-                PostSkillMatrixApplicationContractsModel postSkill = JsonConvert.DeserializeObject<PostSkillMatrixApplicationContractsModel>(postSkillMatrix)
+            { 
                 await skillsMatrixService.PostSkillMatrixListAsync(postSkillMatrix);
             }).WithTags("SkillsMatrix");
             return app;
