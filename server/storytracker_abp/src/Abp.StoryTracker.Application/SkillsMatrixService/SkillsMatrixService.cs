@@ -256,7 +256,7 @@ namespace Abp.StoryTracker.SkillsMatrixService
                 //mode.EmployeeId = postSkillMatrix.employeeId;
                 mode.EmployeeId = item.employeeId;
                 mode.EmployeeScore = item.employeeScore;
-                mode.SubCategoryId = item.subcategoryId;
+                mode.SubCategoryId = item.subCategoryId;
                 //var postSubCategoryMappingData = objectMapper.Map<PostSubCategoryMappingApplicationContractsModel, SubCategoryMappingModel>(postSubCategoryMapping);
                 //await skillMatrixRepository.PostSubCategoryMappingListAsync(postSubCategoryMappingData);
                 listOfPostSkillsMatrixMapping.Add(mode);
@@ -267,8 +267,6 @@ namespace Abp.StoryTracker.SkillsMatrixService
                 await skillMatrixRepository.PostSkillMatrixListAsync(postSkillsMatrixData);
             }
         }
-
-
 
         public async Task PutSubCategoryMappingListAsync(SubCategoryMappingApplicationContractsModel putSubCategoryMapping)
         {

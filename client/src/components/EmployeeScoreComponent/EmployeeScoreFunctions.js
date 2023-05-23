@@ -49,5 +49,7 @@ export const handleEmployeeScoreChange = (
 };
 
 export const handleScoreSave = async (employeeScoringArr) => {
-    await PostEmployeeScore(employeeScoringArr);
+     
+    const postobj = {scores:employeeScoringArr}
+    await PostEmployeeScore(postobj);
 };

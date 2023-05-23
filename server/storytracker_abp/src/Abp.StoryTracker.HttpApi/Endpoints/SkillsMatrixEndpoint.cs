@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 
 namespace Abp.StoryTracker.Endpoints
@@ -38,6 +39,7 @@ namespace Abp.StoryTracker.Endpoints
         {
             _ = app.MapPost("/PostSkillMatrix", async ([FromServices] ISkillsMatrixService skillsMatrixService, [FromBody] PostSkillMatrixApplicationContractsModel postSkillMatrix) =>
             {
+                PostSkillMatrixApplicationContractsModel postSkill = JsonConvert.DeserializeObject<PostSkillMatrixApplicationContractsModel>(postSkillMatrix)
                 await skillsMatrixService.PostSkillMatrixListAsync(postSkillMatrix);
             }).WithTags("SkillsMatrix");
             return app;
