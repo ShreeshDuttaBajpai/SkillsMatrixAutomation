@@ -172,7 +172,6 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
         {
             var dbConnection = await GetDbConnectionAsync();
 
-
             var query2 = "Select * from dbo.SkillsMatrix where EmployeeId=" + postSkillMatrix.EmployeeId + " and SubCategoryId=" + postSkillMatrix.SubCategoryId + "";
             var result2 = (await dbConnection.QueryAsync<SkillsMatrixModel>(query2,
             transaction: await GetDbTransactionAsync())).ToList();
@@ -184,7 +183,6 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
             var query4 = "Select * from dbo.SubCategoryMapping where SubCategoryId=" + postSkillMatrix.SubCategoryId + " and TeamId=" + result5[0].TeamId + "";
             var result4 = (await dbConnection.QueryAsync<SubCategoryMappingModel>(query4,
             transaction: await GetDbTransactionAsync())).ToList();
-
 
             if (result2.Count() == 1)
             {
@@ -254,7 +252,7 @@ namespace Abp.StoryTracker.SkillsMatrixRepo
         public async Task<List<SkillsMatrixModel>> GetEmployeeScores(int teamId)
         {
             var dbConnection = await GetDbConnectionAsync();
-            var query = $@"SELECT sm.* FROM dbo.SkillsMatrix sm 
+            var query = $@"SELECT sm.EmployeeId,sm.SubCategoryId,sm.EmployeeScore FROM dbo.SkillsMatrix sm 
                            INNER JOIN dbo.SubCategoryMapping scm ON 
                            sm.SubCategoryId=scm.SubCategoryId
                            WHERE scm.ClientExpectedScore > 0 AND sm.EmployeeId= ANY 
