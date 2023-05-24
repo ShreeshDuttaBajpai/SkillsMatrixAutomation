@@ -3,9 +3,8 @@
     border: 1px solid rgb(145, 144, 144);
     width: 100%;
     height: 70vh; 
-    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-x: auto; 
     overflow-y: auto;
-    max-width: 90vw;
 }
 
 .skillMatrixGridContainer > .skillMatrixGridHeader,
@@ -26,6 +25,9 @@
     position: sticky;
     top: 0;
     text-align: center;
+    border-right: 1px solid rgb(145, 144, 144);
+    width: 100%;
+    min-width: 15%;
 }
 
 .skillMatrixGridRow {
@@ -42,6 +44,8 @@
     align-items: center;
     flex-grow: 1; 
     flex-basis: 0;
+    width: 100%;
+    min-width: 15%;
 }
 
 .skillMatrixGridRow > .skillMatrixGridItemCol {
@@ -51,6 +55,8 @@
     align-items: center;
     flex-grow: 1; 
     flex-basis: 0;
+    width: 100%;
+    min-width: 15%;
 }
 
 .skillMatrixGridRow > .skillMatrixGridItemInput {
@@ -61,6 +67,8 @@
     align-items: center;
     flex-grow: 1; 
     flex-basis: 0;
+    width: 100%;
+    min-width: 15%;
 }
 
 
@@ -93,9 +101,3 @@
 .inputfeilds {
     margin-top: 9px;
 }
-
-.horizontalScore {
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-  }
