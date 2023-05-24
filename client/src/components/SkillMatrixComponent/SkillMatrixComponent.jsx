@@ -58,13 +58,13 @@ const SkillMatrixComponent = ({
                 <div className={css.skillMatrixGridHeader}>
                     <div
                         className={css.skillMatrixGridHeadingItem}
-                        style={{ width: `${columnWidth}%` }}
+                        //style={{ width: `${columnWidth}%` }}
                     >
                         Category
                     </div>
                     <div
                         className={css.skillMatrixGridHeadingItem}
-                        style={{ width: `${columnWidth}%` }}
+                        //style={{ width: `${columnWidth}%` }}
                     >
                         Client Expected Score
                     </div>
@@ -74,7 +74,7 @@ const SkillMatrixComponent = ({
                                 <div
                                     className={css.skillMatrixGridHeadingItem}
                                     key={index}
-                                    style={{ width: `${columnWidth}%` }}
+                                    //style={{ width: `${columnWidth}%` }}
                                 >
                                     {emp.employeeName}
                                 </div>
